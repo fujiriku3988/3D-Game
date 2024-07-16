@@ -91,6 +91,9 @@
     <Filter Include="Src\Application\GameObject\Terrains">
       <UniqueIdentifier>{3d2216c7-a27b-4381-806a-218f5f0ef9d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Asset">
+      <UniqueIdentifier>{a18c4a23-6c0f-44bf-a80b-f2e5aca4eb81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -274,6 +277,9 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Ground\Ground.h">
       <Filter>Src\Application\GameObject\Terrains</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Asset\AssetManager.h">
+      <Filter>Src\Application\GameObject\Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -429,6 +435,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Ground\Ground.cpp">
       <Filter>Src\Application\GameObject\Terrains</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Asset\AssetManager.cpp">
+      <Filter>Src\Application\GameObject\Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
