@@ -11,6 +11,7 @@ public:
 	void PreDraw()			override;
 
 	void SetTarget(const std::shared_ptr<KdGameObject>& target);
+	void SetDegAng(Math::Vector3 _deg);
 
 	// 「絶対変更しません！見るだけ！」な書き方
 	const std::shared_ptr<KdCamera>& GetCamera() const
@@ -38,6 +39,7 @@ public:
 			   DirectX::XMConvertToRadians(m_DegAng.y));
 	}
 
+	const Math::Vector3 GetDegAng() { return m_DegAng; }
 private:
 	// カメラ回転用角度
 	Math::Vector3				m_DegAng		= Math::Vector3::Zero;

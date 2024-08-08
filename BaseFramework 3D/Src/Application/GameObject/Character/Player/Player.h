@@ -1,5 +1,6 @@
 ﻿#pragma once
-class Player :public KdGameObject
+#include"../../../GameObject/Character/CharacterBase.h"
+class Player :public CharacterBase
 {
 public:
 	Player() {}
@@ -7,11 +8,7 @@ public:
 
 	void Init()override;
 	void Update()override;
-	void DrawLit() override;
 
-	void Load();
 
 private:
-	std::shared_ptr<KdModelData>m_model;
-	Math::Vector3 m_pos;
 };

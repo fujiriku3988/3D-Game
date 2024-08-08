@@ -32,6 +32,16 @@ void CameraBase::SetTarget(const std::shared_ptr<KdGameObject>& target)
 	m_wpTarget = target;
 }
 
+void CameraBase::SetDegAng(Math::Vector3 _deg)
+{
+	Math::Vector3 DegMax = _deg;
+	m_DegAng.y += 1.0f;
+	if(m_DegAng.y >= DegMax.y)
+	{
+		m_DegAng.y = DegMax.y;
+	}
+}
+
 void CameraBase::UpdateRotateByMouse()
 {
 	// マウスでカメラを回転させる処理
