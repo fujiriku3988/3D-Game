@@ -4,7 +4,7 @@ class Player :public CharacterBase
 {
 public:
 	Player() {}
-	~Player() {}
+	~Player() override{}
 
 	void Init()override;
 	void Update()override;

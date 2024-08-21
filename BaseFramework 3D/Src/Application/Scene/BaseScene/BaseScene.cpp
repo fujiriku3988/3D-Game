@@ -1,4 +1,5 @@
 ﻿#include "BaseScene.h"
+#include"../../Fade/Fade.h"
 
 void BaseScene::PreUpdate()
 {
@@ -34,7 +35,7 @@ void BaseScene::Update()
 	{
 		obj->Update();
 	}
-
+	Fade::Instance().Update();
 	// シーン毎のイベント処理
 	Event();
 }
@@ -113,6 +114,9 @@ void BaseScene::DrawSprite()
 			obj->DrawSprite();
 		}
 	}
+
+	Fade::Instance().Draw();
+
 	KdShaderManager::Instance().m_spriteShader.End();
 }
 

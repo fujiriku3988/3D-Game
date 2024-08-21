@@ -4,13 +4,22 @@ class BaseScene;
 
 class SceneManager
 {
-public :
+public:
 
 	// シーン情報
 	enum class SceneType
 	{
 		Title,
 		Game,
+		GameDevelop,
+		GameSales,
+	};
+
+	//追加モード
+	enum class ModeType
+	{
+		GameHome,
+		GameWork,
 	};
 
 	void PreUpdate();
@@ -34,7 +43,12 @@ public :
 	// 現在のシーンにオブジェクトを追加
 	void AddObject(const std::shared_ptr<KdGameObject>& obj);
 
-private :
+	//追加
+	ModeType GetModeType() { return m_nowModeType; }
+	void SetNextMode(ModeType nextMode) { m_nowModeType = nextMode; }
+	SceneType GetSceneType() { return m_currentSceneType; }
+
+private:
 
 	// マネージャーの初期化
 	// インスタンス生成(アプリ起動)時にコンストラクタで自動実行
@@ -52,9 +66,12 @@ private :
 
 	// 現在のシーンの種類を保持している変数
 	SceneType m_currentSceneType = SceneType::Game;
-	
+
 	// 次のシーンの種類を保持している変数
 	SceneType m_nextSceneType = m_currentSceneType;
+
+	//追加
+	ModeType m_nowModeType = ModeType::GameHome;
 
 private:
 

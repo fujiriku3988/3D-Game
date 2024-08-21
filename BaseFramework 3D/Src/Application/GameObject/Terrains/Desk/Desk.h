@@ -3,7 +3,7 @@ class Desk :public KdGameObject
 {
 public:
 	Desk() {}
-	~Desk() {}
+	~Desk() override {}
 
 	void Init()override;
 	void DrawLit()override;

@@ -3,7 +3,7 @@ class Chair :public KdGameObject
 {
 public:
 	Chair() {}
-	~Chair() {}
+	~Chair() override {}
 
 	void Init()override;
 	void DrawLit()override;

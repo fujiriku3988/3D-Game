@@ -103,6 +103,30 @@
     <Filter Include="Src\Application\GameObject\GUI">
       <UniqueIdentifier>{24805b04-bf54-471f-8ec6-27463f0ea791}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\WhiteBoad">
+      <UniqueIdentifier>{c82f66fc-9cf6-4f25-9887-a9ad99eab54b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Button">
+      <UniqueIdentifier>{b180ff7d-f11a-40aa-961e-c5ed47282b2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Button\Development">
+      <UniqueIdentifier>{2d1c3c6f-0135-4bf8-a3f4-7aa3d7df8524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Fade">
+      <UniqueIdentifier>{96783785-87b6-4754-b1c4-67f491a9b6c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Button\Sales">
+      <UniqueIdentifier>{b32e1df1-ce06-433f-a9cc-aaead44f8e8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Button\Work">
+      <UniqueIdentifier>{918a0fec-9dbe-4dc6-9612-7d309b095c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameDevelop">
+      <UniqueIdentifier>{d4986cf2-51a1-478b-a00b-94939d7e5741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameSales">
+      <UniqueIdentifier>{bb4494c1-aea1-41f9-a268-6d858ea30d8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -294,8 +318,29 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Chair\Chair.h">
       <Filter>Src\Application\GameObject\Terrains\Chair</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\Boad\Boad.h">
-      <Filter>Src\Application\GameObject\GUI</Filter>
+    <ClInclude Include="Src\Application\GameObject\Terrains\WhiteBoad\WhiteBoad.h">
+      <Filter>Src\Application\GameObject\Terrains\WhiteBoad</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Fade\Fade.h">
+      <Filter>Src\Application\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h">
+      <Filter>Src\Application\GameObject\GUI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Button\Development\DevelopButton.h">
+      <Filter>Src\Application\GameObject\GUI\Button\Development</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Button\Sales\SalesButton.h">
+      <Filter>Src\Application\GameObject\GUI\Button\Sales</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h">
+      <Filter>Src\Application\GameObject\GUI\Button\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameDevelop\GameDevelop.h">
+      <Filter>Src\Application\Scene\GameDevelop</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameSales\GameSales.h">
+      <Filter>Src\Application\Scene\GameSales</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -461,8 +506,29 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Chair\Chair.cpp">
       <Filter>Src\Application\GameObject\Terrains\Chair</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\Boad\Boad.cpp">
-      <Filter>Src\Application\GameObject\GUI</Filter>
+    <ClCompile Include="Src\Application\GameObject\Terrains\WhiteBoad\WhiteBoad.cpp">
+      <Filter>Src\Application\GameObject\Terrains\WhiteBoad</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Fade\Fade.cpp">
+      <Filter>Src\Application\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp">
+      <Filter>Src\Application\GameObject\GUI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Button\Development\DevelopButton.cpp">
+      <Filter>Src\Application\GameObject\GUI\Button\Development</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Button\Sales\SalesButton.cpp">
+      <Filter>Src\Application\GameObject\GUI\Button\Sales</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp">
+      <Filter>Src\Application\GameObject\GUI\Button\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameDevelop\GameDevelop.cpp">
+      <Filter>Src\Application\Scene\GameDevelop</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameSales\GameSales.cpp">
+      <Filter>Src\Application\Scene\GameSales</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
