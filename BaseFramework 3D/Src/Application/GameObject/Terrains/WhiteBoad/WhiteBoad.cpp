@@ -35,9 +35,9 @@ void WhiteBoad::Update()
 	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = scaleMat * rotMatY * transMat;
 
-	Application::Instance().m_log.Clear();
+	/*Application::Instance().m_log.Clear();
 	Application::Instance().m_log.AddLog("m_rotX:%f\n", m_rot.x);
 	Application::Instance().m_log.AddLog("m_rotY:%f\n", m_rot.y);
 	Application::Instance().m_log.AddLog("m_rotZ:%f\n", m_rot.z);
-	Application::Instance().m_log.AddLog("m_rot:%f\n", m_rot);
+	Application::Instance().m_log.AddLog("m_rot:%f\n", m_rot);*/
 }

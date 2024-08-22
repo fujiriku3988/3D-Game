@@ -13,9 +13,6 @@ void DevelopButton::Init()
 	m_color = { 1,1,1,1 };
 	m_drawFlg = true;
 	m_rotFlg = false;
-	//if (SceneManager::Instance().GetModeType() == SceneManager::ModeType::GameWork)
-	{
-	}
 }
 
 void DevelopButton::DrawSprite()

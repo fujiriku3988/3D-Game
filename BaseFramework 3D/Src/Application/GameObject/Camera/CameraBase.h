@@ -14,7 +14,8 @@ public:
 	void SetTarget(const std::shared_ptr<KdGameObject>& target);
 	void SetDegAngY(float _degY);
 	void SetDegAngX(float _degX);
-	void SetCamPos(Math::Vector3 _pos);
+	void SetControlPos(Math::Vector3 _pos);
+	void SetCameraPos(Math::Vector3 _pos) { m_camPos = _pos; }
 	bool GetDegAngYFlg() { return m_degFlgY; }
 	bool GetDegAngXFlg() { return m_degFlgX; }
 	bool GetCamPosFlg() { return m_camFlg; }

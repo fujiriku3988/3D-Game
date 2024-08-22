@@ -98,7 +98,7 @@ void CameraBase::SetDegAngX(float _degX)
 	//m_DegAng.x = std::clamp(m_DegAng.x, -45.f, 45.f);
 }
 
-void CameraBase::SetCamPos(Math::Vector3 _pos)
+void CameraBase::SetControlPos(Math::Vector3 _pos)
 {
 	Math::Vector3 maxPos = _pos;
 	//m_camPos = { 0, 10.0f, 0.0f };
@@ -146,7 +146,6 @@ void CameraBase::SetCamPos(Math::Vector3 _pos)
 	{
 		m_camFlg = false;
 	}
-	m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);
 }
 
 void CameraBase::UpdateRotateByMouse()

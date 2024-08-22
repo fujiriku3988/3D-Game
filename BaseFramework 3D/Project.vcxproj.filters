@@ -127,6 +127,30 @@
     <Filter Include="Src\Application\Scene\GameSales">
       <UniqueIdentifier>{bb4494c1-aea1-41f9-a268-6d858ea30d8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot">
+      <UniqueIdentifier>{262fb1c4-d89d-4e79-9bff-f142c062df28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\Head">
+      <UniqueIdentifier>{51dae4e9-c506-4543-a1d5-b7b2e69b1cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\Body">
+      <UniqueIdentifier>{eb2bf114-2b79-4d47-9273-e3bda4ab5685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\LegRight">
+      <UniqueIdentifier>{cd341e2f-aed3-4b95-a565-c1c43a811ae4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\LegLeft">
+      <UniqueIdentifier>{3e1d34c9-9025-4a4a-a47d-7415d3071335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\ArmRight">
+      <UniqueIdentifier>{4b2a21ad-1e92-4283-9691-4db0a5c1a7be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\ArmLeft">
+      <UniqueIdentifier>{9a83451b-c684-4f32-8166-9c3f376dba0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\DevelopBar">
+      <UniqueIdentifier>{20ca6b31-cedc-4659-ab82-0aee7ba25281}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -342,6 +366,30 @@
     <ClInclude Include="Src\Application\Scene\GameSales\GameSales.h">
       <Filter>Src\Application\Scene\GameSales</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\Head\Head.h">
+      <Filter>Src\Application\GameObject\Character\Robot\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\Body\Body.h">
+      <Filter>Src\Application\GameObject\Character\Robot\Body</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\LegRight\LegRight.h">
+      <Filter>Src\Application\GameObject\Character\Robot\LegRight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\LegLeft\LegLeft.h">
+      <Filter>Src\Application\GameObject\Character\Robot\LegLeft</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\ArmRight\ArmRight.h">
+      <Filter>Src\Application\GameObject\Character\Robot\ArmRight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.h">
+      <Filter>Src\Application\GameObject\Character\Robot\ArmLeft</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.h">
+      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.h">
+      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -529,6 +577,30 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\GameSales\GameSales.cpp">
       <Filter>Src\Application\Scene\GameSales</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\Head\Head.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\Body\Body.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\LegRight\LegRight.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\LegRight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\LegLeft\LegLeft.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\LegLeft</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\ArmRight\ArmRight.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\ArmRight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\ArmLeft</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
