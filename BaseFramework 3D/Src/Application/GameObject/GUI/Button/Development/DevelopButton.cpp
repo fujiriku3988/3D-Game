@@ -7,8 +7,8 @@
 void DevelopButton::Init()
 {
 	ButtonBase::Init();
-	m_Spos = { 300,0 };
-	m_scale = { 0.7f,0.7f };
+	m_pos = { 200,0 };
+	m_scale = { 0.7f };
 	m_tex.Load("Asset/Textures/UI/boad.png");
 	m_color = { 1,1,1,1 };
 	m_drawFlg = true;
@@ -19,14 +19,14 @@ void DevelopButton::DrawSprite()
 {
 	if (SceneManager::Instance().GetModeType() == SceneManager::ModeType::GameWork)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_Spos.x, m_Spos.y,
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
 			384 * m_scale.x, 128 * m_scale.y, nullptr, &m_color);
 	}
 }
 
 void DevelopButton::Update()
 {
-	//if (SceneManager::Instance().GetModeType() == SceneManager::ModeType::GameHome)
+	if (SceneManager::Instance().GetModeType() == SceneManager::ModeType::GameWork)
 	{
 		POINT nowPos;
 		GetCursorPos(&nowPos);
@@ -40,10 +40,10 @@ void DevelopButton::Update()
 
 
 		std::shared_ptr<CameraBase>spCamera = m_wpCamera.lock();
-		if (nowLength.y <= -m_Spos.y + 40 && nowLength.y >= -m_Spos.y - 60
-			&& nowLength.x >= m_Spos.x - 140 && nowLength.x <= m_Spos.x + 140)
+		if (nowLength.y <= -m_pos.y + 40 && nowLength.y >= -m_pos.y - 60
+			&& nowLength.x >= m_pos.x - 140 && nowLength.x <= m_pos.x + 140)
 		{
-			m_color = { 1,1,1,0.2f };
+			m_color = { 1,1,1,0.5f };
 			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 			{
 				m_rotFlg = true;

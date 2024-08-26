@@ -11,6 +11,10 @@
 #include"../../GameObject/GUI/Button/Development/DevelopButton.h"
 #include"../../GameObject/GUI/Button/Sales/SalesButton.h"
 #include"../../GameObject/GUI/Button/Work/WorkButton.h"
+#include"../../GameObject/UI/Text/Work/Work.h"
+#include"../../GameObject/UI/Text/Develop/Develop.h"
+#include"../../GameObject/UI/Text/Sales/Sales.h"
+#include"../../GameObject/Terrains/Wall/Wall.h"
 
 void GameScene::Event()
 {
@@ -22,6 +26,10 @@ void GameScene::Init()
 	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
 	camera->Init();
 	AddObject(camera);
+	//壁
+	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
+	wall->Init();
+	AddObject(wall);
 	//地面
 	std::shared_ptr<Ground> ground = std::make_shared<Ground>();
 	ground->Init();
@@ -39,10 +47,6 @@ void GameScene::Init()
 	whiteBoad->Init();
 	AddObject(whiteBoad);
 
-	//多分いらん
-	std::shared_ptr<Player> player = std::make_shared<Player>();
-	player->Init();
-
 	//UI
 	std::shared_ptr<WorkButton> work = std::make_shared<WorkButton>();
 	work->Init();
@@ -58,4 +62,16 @@ void GameScene::Init()
 	develop->Init();
 	develop->SetCamera(camera);//boadにカメラの情報を渡す
 	AddObject(develop);
+
+	std::shared_ptr<Develop> developText = std::make_shared<Develop>();
+	developText->Init();
+	AddObject(developText);
+
+	std::shared_ptr<Sales> salesText = std::make_shared<Sales>();
+	salesText->Init();
+	AddObject(salesText);
+
+	std::shared_ptr<Work> workText = std::make_shared<Work>();
+	workText->Init();
+	AddObject(workText);
 }

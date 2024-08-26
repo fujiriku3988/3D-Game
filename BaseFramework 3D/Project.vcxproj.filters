@@ -151,6 +151,78 @@
     <Filter Include="Src\Application\GameObject\GUI\DevelopBar">
       <UniqueIdentifier>{20ca6b31-cedc-4659-ab82-0aee7ba25281}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\UI">
+      <UniqueIdentifier>{9d3011a6-349b-43d5-9b84-61c876dd7a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text">
+      <UniqueIdentifier>{d3a66a6f-0390-4d31-900a-db4fad3b0bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Bad">
+      <UniqueIdentifier>{8f9342e1-0ee1-4215-91b5-332ac474f9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Good">
+      <UniqueIdentifier>{e23e0339-29f8-4b9a-af17-65598980ded9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Great">
+      <UniqueIdentifier>{17a19df5-442a-4f21-b71a-4e21b44fd803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Perfect">
+      <UniqueIdentifier>{6e7d5173-4dbf-49e0-b8c8-f57e36e3d09d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Wall">
+      <UniqueIdentifier>{1cff3f4b-77ab-49a5-931a-bb58d94075d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\ResultScene">
+      <UniqueIdentifier>{cfb62063-8ed3-419f-9554-8b352583461c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\ResultScene\ResultDevelop">
+      <UniqueIdentifier>{e95c7495-e778-43e3-b589-caaf3fdf2f27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\ResultScene\ResultSales">
+      <UniqueIdentifier>{783049e1-20cc-40db-a566-1c7bdda67213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\Robot\Full">
+      <UniqueIdentifier>{ec0914f2-82a5-44de-bef5-e57ffad1d22b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank">
+      <UniqueIdentifier>{6d995ce9-8623-4cab-965e-434468262d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\A">
+      <UniqueIdentifier>{d2afef9a-e036-4b6b-8def-8f0f5a6bddc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\B">
+      <UniqueIdentifier>{747b93fe-66fc-4427-8d47-3eb185297afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\C">
+      <UniqueIdentifier>{50c9f95f-e12c-4c75-bc09-ff06057605a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\D">
+      <UniqueIdentifier>{2f4f0cef-4807-4154-a37e-c110c64bbee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\E">
+      <UniqueIdentifier>{fc6c5165-e039-495a-ac12-b8ea925fd444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\S">
+      <UniqueIdentifier>{d64402f4-8547-448c-8681-8d26e9cb20a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Rank\Rank">
+      <UniqueIdentifier>{8d5b8c13-fb6c-4642-81a1-f9cb10f70cca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\CSV">
+      <UniqueIdentifier>{ab32716e-b34c-41a8-ac99-0bcdeb9ab6d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Eneter">
+      <UniqueIdentifier>{c670f410-b867-4cd9-b056-700c3867e4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Develop">
+      <UniqueIdentifier>{c0f06ee4-612e-4de7-8afd-5c48de07c650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Sales">
+      <UniqueIdentifier>{5788c4cf-9cb6-41f9-9f54-90e873cf92fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Work">
+      <UniqueIdentifier>{e41b40ed-3ee5-4bc6-aa41-49df443937a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -390,6 +462,69 @@
     <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.h">
       <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Bad\Bad.h">
+      <Filter>Src\Application\GameObject\UI\Text\Bad</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Good\Good.h">
+      <Filter>Src\Application\GameObject\UI\Text\Good</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Great\Great.h">
+      <Filter>Src\Application\GameObject\UI\Text\Great</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Perfect\Perfect.h">
+      <Filter>Src\Application\GameObject\UI\Text\Perfect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Wall\Wall.h">
+      <Filter>Src\Application\GameObject\Terrains\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.h">
+      <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\ResultScene\ResultSales\ResultSales.h">
+      <Filter>Src\Application\Scene\ResultScene\ResultSales</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\Robot\Full\Full.h">
+      <Filter>Src\Application\GameObject\Character\Robot\Full</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\A\A.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\A</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\B\B.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\B</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\C\C.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\C</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\D\D.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\D</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\E\E.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\E</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\S\S.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\S</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Rank\Rank\Rank.h">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\Rank</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\CSV\CSVLoad.h">
+      <Filter>Src\Application\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\CSV\RankCalc.h">
+      <Filter>Src\Application\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h">
+      <Filter>Src\Application\GameObject\UI\Text\Eneter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Develop\Develop.h">
+      <Filter>Src\Application\GameObject\UI\Text\Develop</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Work\Work.h">
+      <Filter>Src\Application\GameObject\UI\Text\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Sales\Sales.h">
+      <Filter>Src\Application\GameObject\UI\Text\Sales</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -601,6 +736,69 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.cpp">
       <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Bad\Bad.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Bad</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Good\Good.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Good</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Great\Great.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Great</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Perfect\Perfect.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Perfect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Wall\Wall.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.cpp">
+      <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\ResultScene\ResultSales\ResultSales.cpp">
+      <Filter>Src\Application\Scene\ResultScene\ResultSales</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\Robot\Full\Full.cpp">
+      <Filter>Src\Application\GameObject\Character\Robot\Full</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\A\A.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\A</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\B\B.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\B</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\C\C.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\C</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\D\D.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\D</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\E\E.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\E</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\S\S.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\S</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Rank\Rank\Rank.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Rank\Rank</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\CSV\CSVLoad.cpp">
+      <Filter>Src\Application\CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\CSV\RankCalc.cpp">
+      <Filter>Src\Application\CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Eneter.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Eneter</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Develop\Develop.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Develop</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Work\Work.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Sales\Sales.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Sales</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

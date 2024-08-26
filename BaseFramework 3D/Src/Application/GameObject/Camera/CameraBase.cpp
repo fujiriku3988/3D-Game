@@ -138,6 +138,25 @@ void CameraBase::SetControlPos(Math::Vector3 _pos)
 			m_camPos.z = maxPos.z;
 		}
 	}
+	//X軸は適当にやって大丈夫でしょ
+	//一応左右対応
+	if (maxPos.x > 0)
+	{
+		m_camPos.x += 0.1f;
+		if (m_camPos.x >= maxPos.x)
+		{
+			m_camPos.x = maxPos.x;
+		}
+	}
+	if (maxPos.x < 0)
+	{
+		m_camPos.x -= 0.1f;
+		if (m_camPos.x <= maxPos.x)
+		{
+			m_camPos.x = maxPos.x;
+		}
+	}
+
 	if (m_camPos.y == maxPos.y && m_camPos.z == maxPos.z)
 	{
 		m_camFlg = true;

@@ -11,6 +11,9 @@
 #include"../../GameObject/Terrains/WhiteBoad/WhiteBoad.h"
 #include"../../GameObject/GUI/DevelopBar/DevelopBar.h"
 #include"../../GameObject/GUI/DevelopBar/StopBar.h"
+#include"../../GameObject/UI/Text/Bad/Bad.h"
+#include"../../GameObject/Terrains/Wall/Wall.h"
+#include"../../CSV/RankCalc.h"
 
 void GameDevelop::Event()
 {
@@ -23,6 +26,11 @@ void GameDevelop::Init()
 	camera->Init();
 	camera->SetCameraPos({0,5.0f,-7.0f});
 	AddObject(camera);
+
+	//壁（仮）
+	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
+	wall->Init();
+	AddObject(wall);
 
 	//地面
 	std::shared_ptr<Ground> ground = std::make_shared<Ground>();
@@ -57,16 +65,11 @@ void GameDevelop::Init()
 	legRight->Init();
 	AddObject(legRight);
 
-	//ホワイトボード
-	std::shared_ptr<WhiteBoad> whiteBoad = std::make_shared<WhiteBoad>();
-	whiteBoad->Init();
-	AddObject(whiteBoad);
-
 	//開発バー
 	std::shared_ptr<DevelopBar> developBar = std::make_shared<DevelopBar>();
 	developBar->Init();
 	AddObject(developBar);
-	//開発バー
+	//開発ストップバー
 	std::shared_ptr<StopBar> stopBar = std::make_shared<StopBar>();
 	stopBar->Init();
 	stopBar->SetHead(head);
@@ -74,5 +77,7 @@ void GameDevelop::Init()
 	stopBar->SetArmRight(armRight);
 	stopBar->SetLegLeft(legLeft);
 	stopBar->SetLegRight(legRight);
+	stopBar->SetDevelopBar(developBar);
+	stopBar->SetCamera(camera);
 	AddObject(stopBar);
 }

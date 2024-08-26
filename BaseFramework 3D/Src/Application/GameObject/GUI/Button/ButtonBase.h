@@ -18,6 +18,6 @@ protected:
 	Math::Vector2 m_texSize;
 	bool m_drawFlg = false;//表示させるかのフラグ（実験用）
 	bool m_rotFlg = false;//回転させるときの
-	POINT m_Spos;//マウス座標
+	POINT m_pos;//マウス座標
 	std::weak_ptr<CameraBase>m_wpCamera;
 };

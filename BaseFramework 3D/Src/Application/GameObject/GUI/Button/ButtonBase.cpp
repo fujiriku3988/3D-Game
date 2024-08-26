@@ -2,7 +2,7 @@
 
 void ButtonBase::Init()
 {
-	m_Spos = {};
+	m_pos = {};
 	m_scale = {};
 	m_texSize = { 384,128 };
 	m_color = { 1,1,1,1 };
@@ -13,7 +13,7 @@ void ButtonBase::Init()
 void ButtonBase::DrawSprite()
 {
 	if (m_drawFlg == false) { return; }
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_Spos.x, m_Spos.y,
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
 		384 * m_scale.x, 128 * m_scale.y, nullptr, &m_color);
 }
 

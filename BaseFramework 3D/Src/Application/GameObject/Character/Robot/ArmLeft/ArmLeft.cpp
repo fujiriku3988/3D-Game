@@ -4,7 +4,7 @@ void ArmLeft::Init()
 {
 	m_model = std::make_shared<KdModelData>();
 	m_model->Load("Asset/Models/Robot/Arm/armLeft.gltf");
-	m_pos = { 10,3,0 };
+	m_pos = { 15,3,0 };
 	//m_pos = { 0,3,0 };
 	m_color = { 1,1,1,1 };
 }
