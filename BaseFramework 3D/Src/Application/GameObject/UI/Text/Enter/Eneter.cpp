@@ -4,10 +4,12 @@
 
 void Enter::Init()
 {
+	UIBase::Init();
 	m_pos = { -250,-200 };
 	m_scale = { 1.0f };
 	m_tex.Load("Asset/Textures/UI/Text/enter.png");
 	m_color = { 1,1,1,1 };
+	m_texSize = { 404,70 };
 	m_alpha = 1.0f;
 	m_alphaMax = 360.0f;
 	m_alphaMin = 0.3f;
@@ -18,7 +20,7 @@ void Enter::DrawSprite()
 {
 	m_color = { 1,1,1,m_alpha };
 	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-		539 * m_scale.x, 72 * m_scale.y, nullptr, &m_color);
+		m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 }
 
 void Enter::Update()
@@ -42,11 +44,5 @@ void Enter::Update()
 	//m_alphaSpeedは1rad～-1radの値しかでないから0.35fをかけて
 	//0.35f～-0.35fの幅で値を変える
 	m_alpha = sin(DirectX::XMConvertToRadians(m_alphaSpeed)) * 0.35f + 0.65f;
-	
-
-	/*m_alpha -= m_alphaSpeed;
-
-	if (m_alpha <= m_alphaMin) { m_alphaSpeed *= -1; }
-	if (m_alpha > m_alphaMax) { m_alphaSpeed *= -1; }*/
 
 }

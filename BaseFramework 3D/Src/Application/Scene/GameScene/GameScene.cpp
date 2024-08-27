@@ -4,7 +4,7 @@
 #include"../../GameObject/Camera/TPSCamera/TPSCamera.h"
 #include"../../GameObject/Camera/FPSCamera/FPSCamera.h"
 #include"../../GameObject/Character/Player/Player.h"
-#include"../../GameObject/Terrains/Ground/Ground.h"
+#include"../../GameObject/Terrains/Tile/Carpet/Carpet.h"
 #include"../../GameObject/Terrains/Desk/Desk.h"
 #include"../../GameObject/Terrains/Chair/Chair.h"
 #include"../../GameObject/Terrains/WhiteBoad/WhiteBoad.h"
@@ -22,18 +22,15 @@ void GameScene::Event()
 
 void GameScene::Init()
 {
-	//カメラ
-	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
-	camera->Init();
-	AddObject(camera);
 	//壁
 	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
 	wall->Init();
 	AddObject(wall);
 	//地面
-	std::shared_ptr<Ground> ground = std::make_shared<Ground>();
-	ground->Init();
-	AddObject(ground);
+	std::shared_ptr<Carpet> tile = std::make_shared<Carpet>();
+	tile->Init();
+	tile->SetPos({ 0,3,3 });
+	AddObject(tile);
 	//机
 	std::shared_ptr<Desk> desk = std::make_shared<Desk>();
 	desk->Init();
@@ -50,17 +47,14 @@ void GameScene::Init()
 	//UI
 	std::shared_ptr<WorkButton> work = std::make_shared<WorkButton>();
 	work->Init();
-	work->SetCamera(camera);//boadにカメラの情報を渡す
 	AddObject(work);
 
 	std::shared_ptr<SalesButton> sales = std::make_shared<SalesButton>();
 	sales->Init();
-	sales->SetCamera(camera);//boadにカメラの情報を渡す
 	AddObject(sales);
 
 	std::shared_ptr<DevelopButton> develop = std::make_shared<DevelopButton>();
 	develop->Init();
-	develop->SetCamera(camera);//boadにカメラの情報を渡す
 	AddObject(develop);
 
 	std::shared_ptr<Develop> developText = std::make_shared<Develop>();
@@ -74,4 +68,12 @@ void GameScene::Init()
 	std::shared_ptr<Work> workText = std::make_shared<Work>();
 	workText->Init();
 	AddObject(workText);
+
+	//カメラ
+	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
+	camera->Init();
+	AddObject(camera);
+	work->SetCamera(camera);//boadにカメラの情報を渡す
+	sales->SetCamera(camera);//boadにカメラの情報を渡す
+	develop->SetCamera(camera);//boadにカメラの情報を渡す
 }

@@ -13,6 +13,13 @@
 #include"../../../GameObject/UI/Text/Great/Great.h"
 #include"../../../GameObject/UI/Text/Perfect/Perfect.h"
 #include"../../../GameObject/Camera/CameraBase.h"
+#include"../../../GameObject/GUI/Robot/ArmLeft/ArmLeftGUI.h"
+#include"../../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
+#include"../../../GameObject/GUI/Robot/Body/BodyGUI.h"
+#include"../../../GameObject/GUI/Robot/Head/HeadGUI.h"
+#include"../../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
+#include"../../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
+#include"../../../GameObject/GUI/Robot/RobotGUIBase.h"
 #include<iostream>
 #include<string>
 #include<fstream>
@@ -63,6 +70,13 @@ void StopBar::Update()
 
 	std::shared_ptr<DevelopBar>spDevelopBar = m_wpDevelopBar.lock();
 	std::shared_ptr<CameraBase>spCamera = m_wpCamera.lock();
+	//ロボGUI
+	std::shared_ptr<HeadGUI>spHeadGUI = m_wpHeadGUI.lock();
+	std::shared_ptr<BodyGUI>spBodyGUI = m_wpBodyGUI.lock();
+	std::shared_ptr<ArmLeftGUI>spArmLeftGUI = m_wpArmLeftGUI.lock();
+	std::shared_ptr<ArmRightGUI>spArmRightGUI = m_wpArmRightGUI.lock();
+	std::shared_ptr<LegLeftGUI>spLegLeftGUI = m_wpLegLeftGUI.lock();
+	std::shared_ptr<LegRightGUI>spLegRightGUI = m_wpLegRightGUI.lock();
 
 	Action();
 	MoveParts();
@@ -76,6 +90,12 @@ void StopBar::Update()
 		m_alpha -= 0.1f;
 		m_wait--;
 		spDevelopBar->aliveFlgOff();
+		spHeadGUI->AliveFlgOff();
+		spBodyGUI->AliveFlgOff();
+		spArmLeftGUI->AliveFlgOff();
+		spArmRightGUI->AliveFlgOff();
+		spLegLeftGUI->AliveFlgOff();
+		spLegRightGUI->AliveFlgOff();
 	}
 
 	if (m_resultFlg == true)
@@ -237,11 +257,18 @@ void StopBar::Action()
 
 void StopBar::MoveParts()
 {
+	//ロボモデル
 	std::shared_ptr<Head>spHead = m_wpHead.lock();
 	std::shared_ptr<ArmLeft>spArmLeft = m_wpArmLeft.lock();
 	std::shared_ptr<ArmRight>spArmRight = m_wpArmRight.lock();
 	std::shared_ptr<LegLeft>spLegLeft = m_wpLegLeft.lock();
 	std::shared_ptr<LegRight>spLegRight = m_wpLegRight.lock();
+	//ロボGUI
+	std::shared_ptr<HeadGUI>spHeadGUI = m_wpHeadGUI.lock();
+	std::shared_ptr<ArmLeftGUI>spArmLeftGUI = m_wpArmLeftGUI.lock();
+	std::shared_ptr<ArmRightGUI>spArmRightGUI = m_wpArmRightGUI.lock();
+	std::shared_ptr<LegLeftGUI>spLegLeftGUI = m_wpLegLeftGUI.lock();
+	std::shared_ptr<LegRightGUI>spLegRightGUI = m_wpLegRightGUI.lock();
 
 	//パーツ動かす処理関連
 	if (m_stepFlg)
@@ -253,19 +280,24 @@ void StopBar::MoveParts()
 	switch (m_step)
 	{
 	case 1:
-		spHead->OnFlg();
+		spHead->MoveFlgOn();
+		spHeadGUI->DrawFlgOn();
 		break;
 	case 2:
-		spArmLeft->OnFlg();
+		spArmLeft->MoveFlgOn();
+		spArmLeftGUI->DrawFlgOn();
 		break;
 	case 3:
-		spArmRight->OnFlg();
+		spArmRight->MoveFlgOn();
+		spArmRightGUI->DrawFlgOn();
 		break;
 	case 4:
-		spLegLeft->OnFlg();
+		spLegLeft->MoveFlgOn();
+		spLegLeftGUI->DrawFlgOn();
 		break;
 	case 5:
-		spLegRight->OnFlg();
+		spLegRight->MoveFlgOn();
+		spLegRightGUI->DrawFlgOn();
 		break;
 	}
 }

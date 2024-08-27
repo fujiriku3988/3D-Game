@@ -23,6 +23,7 @@ public:
 	void SetCharacterPoly(std::shared_ptr<CharacterBase>_poly) { m_wpPoly = _poly; }
 	void SetCharacterModel(std::shared_ptr<CharacterBase>_model) { m_wpModel = _model; }
 	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
+	void MoveFlgOn() { m_moveFlg = true; }
 
 protected:
 	std::shared_ptr<KdSquarePolygon>m_poly = nullptr;
@@ -41,6 +42,7 @@ protected:
 	float m_speed;
 	float m_gravity;
 	bool m_hitFlg = false;
+	bool m_moveFlg = false;
 	//行列
 	Math::Matrix scaleMat;
 	Math::Matrix transMat;

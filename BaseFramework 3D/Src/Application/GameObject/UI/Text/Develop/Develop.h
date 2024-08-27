@@ -1,6 +1,6 @@
 ﻿#pragma once
-
-class Develop :public KdGameObject
+#include"../../UIBase.h"
+class Develop :public UIBase
 {
 public:
 	Develop() {}
@@ -11,10 +11,4 @@ public:
 	void Update()override;
 
 private:
-	KdTexture m_tex;
-	Math::Vector2 m_pos;
-	Math::Color m_color;
-	Math::Vector2 m_scale;
-	Math::Vector2 m_texSize;
-	int m_time;
 };

@@ -1,6 +1,6 @@
 ﻿#include "GameDevelop.h"
 #include"../../GameObject/Camera/FPSCamera/FPSCamera.h"
-#include"../../GameObject/Terrains/Ground/Ground.h"
+#include"../../GameObject/Terrains/Tile/Stone/Stone.h"
 #include"../../GameObject/Character/Robot/Head/Head.h"
 #include"../../GameObject/Character/Robot/Body/Body.h"
 #include"../../GameObject/Character/Robot/ArmLeft/ArmLeft.h"
@@ -13,6 +13,13 @@
 #include"../../GameObject/GUI/DevelopBar/StopBar.h"
 #include"../../GameObject/UI/Text/Bad/Bad.h"
 #include"../../GameObject/Terrains/Wall/Wall.h"
+#include"../../GameObject/Terrains/Light/Light.h"
+#include"../../GameObject/GUI/Robot/Body/BodyGUI.h"
+#include"../../GameObject/GUI/Robot/Head/HeadGUI.h"
+#include"../../GameObject/GUI/Robot/ArmLeft/ArmLeftGUI.h"
+#include"../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
+#include"../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
+#include"../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
 #include"../../CSV/RankCalc.h"
 
 void GameDevelop::Event()
@@ -21,21 +28,24 @@ void GameDevelop::Event()
 
 void GameDevelop::Init()
 {
-	//カメラ
-	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
-	camera->Init();
-	camera->SetCameraPos({0,5.0f,-7.0f});
-	AddObject(camera);
-
 	//壁（仮）
 	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
 	wall->Init();
 	AddObject(wall);
 
+	//光
+	for (int i = 0; i < 3; i++)
+	{
+		std::shared_ptr<Light> light = std::make_shared<Light>();
+		light->Init();
+		light->SetPos({ -5+(i*5.0f),15,5});
+		AddObject(light);
+	}
+
 	//地面
-	std::shared_ptr<Ground> ground = std::make_shared<Ground>();
-	ground->Init();
-	AddObject(ground);
+	std::shared_ptr<Stone> tile = std::make_shared<Stone>();
+	tile->Init();
+	AddObject(tile);
 
 	//ロボ頭
 	std::shared_ptr<Head> head = std::make_shared<Head>();
@@ -65,6 +75,31 @@ void GameDevelop::Init()
 	legRight->Init();
 	AddObject(legRight);
 
+	//ロボGUI
+	std::shared_ptr<BodyGUI> bodyGUI = std::make_shared<BodyGUI>();
+	bodyGUI->Init();
+	AddObject(bodyGUI);
+
+	std::shared_ptr<HeadGUI> headGUI = std::make_shared<HeadGUI>();
+	headGUI->Init();
+	AddObject(headGUI);
+
+	std::shared_ptr<ArmLeftGUI> armLeftGUI = std::make_shared<ArmLeftGUI>();
+	armLeftGUI->Init();
+	AddObject(armLeftGUI);
+
+	std::shared_ptr<ArmRightGUI> armRightGUI = std::make_shared<ArmRightGUI>();
+	armRightGUI->Init();
+	AddObject(armRightGUI);
+
+	std::shared_ptr<LegLeftGUI> legLeftGUI = std::make_shared<LegLeftGUI>();
+	legLeftGUI->Init();
+	AddObject(legLeftGUI);
+
+	std::shared_ptr<LegRightGUI> legRightGUI = std::make_shared<LegRightGUI>();
+	legRightGUI->Init();
+	AddObject(legRightGUI);
+
 	//開発バー
 	std::shared_ptr<DevelopBar> developBar = std::make_shared<DevelopBar>();
 	developBar->Init();
@@ -72,12 +107,28 @@ void GameDevelop::Init()
 	//開発ストップバー
 	std::shared_ptr<StopBar> stopBar = std::make_shared<StopBar>();
 	stopBar->Init();
+	//ロボモデル
 	stopBar->SetHead(head);
 	stopBar->SetArmLeft(armLeft);
 	stopBar->SetArmRight(armRight);
 	stopBar->SetLegLeft(legLeft);
 	stopBar->SetLegRight(legRight);
+	//ロボGUI
+	stopBar->SetHeadGUI(headGUI);
+	stopBar->SetBodyGUI(bodyGUI);
+	stopBar->SetArmLeftGUI(armLeftGUI);
+	stopBar->SetArmRightGUI(armRightGUI);
+	stopBar->SetLegLeftGUI(legLeftGUI);
+	stopBar->SetLegRightGUI(legRightGUI);
+	//開発バー
 	stopBar->SetDevelopBar(developBar);
-	stopBar->SetCamera(camera);
 	AddObject(stopBar);
+
+	//カメラ
+	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
+	camera->Init();
+	camera->SetCameraPos({ 0,5.0f,-7.0f });
+	AddObject(camera);
+	//カメラセット
+	stopBar->SetCamera(camera);
 }

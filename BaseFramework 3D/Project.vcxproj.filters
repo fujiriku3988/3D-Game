@@ -94,9 +94,6 @@
     <Filter Include="Src\Application\GameObject\Terrains\Desk">
       <UniqueIdentifier>{731c8f42-6797-46a6-bf97-bbc7dff226fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\Ground">
-      <UniqueIdentifier>{2070e994-a6c2-4b89-9c1e-c76194954dac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\Terrains\Chair">
       <UniqueIdentifier>{093a7337-e397-454d-8483-96e412b088fb}</UniqueIdentifier>
     </Filter>
@@ -222,6 +219,51 @@
     </Filter>
     <Filter Include="Src\Application\GameObject\UI\Text\Work">
       <UniqueIdentifier>{e41b40ed-3ee5-4bc6-aa41-49df443937a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Tile">
+      <UniqueIdentifier>{c9e5069c-918e-4af5-8cc0-75b151de63da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Tile\Carpet">
+      <UniqueIdentifier>{f9305866-0c62-4d88-8095-2e3dab457036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Tile\Stone">
+      <UniqueIdentifier>{1e6b2f50-cad6-4300-a26e-494613cad615}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Light">
+      <UniqueIdentifier>{6bf4a18b-e72b-4cb9-87a7-44101083f5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot">
+      <UniqueIdentifier>{3c3e45de-2ab1-4e84-a8e8-0dc7ae52dec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\Head">
+      <UniqueIdentifier>{2af61ddb-d292-4781-aaae-21717b0dea4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\Body">
+      <UniqueIdentifier>{72e2df9a-755e-4b13-923c-cac878ce7441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Ground">
+      <UniqueIdentifier>{ec1f704f-73d0-41c1-843b-ed3226262e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\ArmLeft">
+      <UniqueIdentifier>{41e952fd-7628-46df-808b-7a08d0be0aa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\ArmRight">
+      <UniqueIdentifier>{f3958a63-0667-44eb-ae4e-dfafbf45fd83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\LegLeft">
+      <UniqueIdentifier>{24637445-7d5a-4f45-bb63-ec1e6d3b11f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Robot\LegRight">
+      <UniqueIdentifier>{ac8b33f4-f572-4a09-a80b-7a9df4e5eeae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\CSV\Rank">
+      <UniqueIdentifier>{6aca295c-fdb3-4f94-b374-f4a630a852f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\CSV\Exp">
+      <UniqueIdentifier>{5faffba3-36f7-465e-b08b-19cb89c44066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\ExpBar">
+      <UniqueIdentifier>{53c63399-fbe7-4a73-8b13-5c00a7574c55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -405,9 +447,6 @@
     <ClInclude Include="Src\Application\GameObject\Character\CharacterBase.h">
       <Filter>Src\Application\GameObject\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Terrains\Ground\Ground.h">
-      <Filter>Src\Application\GameObject\Terrains\Ground</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\Desk\Desk.h">
       <Filter>Src\Application\GameObject\Terrains\Desk</Filter>
     </ClInclude>
@@ -510,9 +549,6 @@
     <ClInclude Include="Src\Application\CSV\CSVLoad.h">
       <Filter>Src\Application\CSV</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\CSV\RankCalc.h">
-      <Filter>Src\Application\CSV</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h">
       <Filter>Src\Application\GameObject\UI\Text\Eneter</Filter>
     </ClInclude>
@@ -524,6 +560,51 @@
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Sales\Sales.h">
       <Filter>Src\Application\GameObject\UI\Text\Sales</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\UIBase.h">
+      <Filter>Src\Application\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Tile\Carpet\Carpet.h">
+      <Filter>Src\Application\GameObject\Terrains\Tile\Carpet</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Tile\Stone\Stone.h">
+      <Filter>Src\Application\GameObject\Terrains\Tile\Stone</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Light\Light.h">
+      <Filter>Src\Application\GameObject\Terrains\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Ground\Ground.h">
+      <Filter>Src\Application\GameObject\Terrains\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\Head\HeadGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\Body\BodyGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\Body</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\ArmLeft\ArmLeftGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\ArmLeft</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\ArmRight\ArmRightGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\ArmRight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\LegLeft\LegLeftGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\LegLeft</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\LegRight\LegRightGUI.h">
+      <Filter>Src\Application\GameObject\GUI\Robot\LegRight</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Robot\RobotGUIBase.h">
+      <Filter>Src\Application\GameObject\GUI\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\CSV\Rank\RankCalc.h">
+      <Filter>Src\Application\CSV\Rank</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\CSV\Exp\ExpCalc.h">
+      <Filter>Src\Application\CSV\Exp</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.h">
+      <Filter>Src\Application\GameObject\GUI\ExpBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -680,9 +761,6 @@
     <ClCompile Include="Src\Application\GameObject\Character\CharacterBase.cpp">
       <Filter>Src\Application\GameObject\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Terrains\Ground\Ground.cpp">
-      <Filter>Src\Application\GameObject\Terrains\Ground</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Desk\Desk.cpp">
       <Filter>Src\Application\GameObject\Terrains\Desk</Filter>
     </ClCompile>
@@ -785,9 +863,6 @@
     <ClCompile Include="Src\Application\CSV\CSVLoad.cpp">
       <Filter>Src\Application\CSV</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\CSV\RankCalc.cpp">
-      <Filter>Src\Application\CSV</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Eneter.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Eneter</Filter>
     </ClCompile>
@@ -799,6 +874,51 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Sales\Sales.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Sales</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\UIBase.cpp">
+      <Filter>Src\Application\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Tile\Carpet\Carpet.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Tile\Carpet</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Tile\Stone\Stone.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Tile\Stone</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Light\Light.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Ground\Ground.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\Head\HeadGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\Body\BodyGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\Body</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\ArmLeft\ArmLefttGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\ArmLeft</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\ArmRight\ArmRightGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\ArmRight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\LegLeft\LegLeftGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\LegLeft</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\LegRight\LegRightGUI.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot\LegRight</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Robot\RobotGUIBase.cpp">
+      <Filter>Src\Application\GameObject\GUI\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\CSV\Rank\RankCalc.cpp">
+      <Filter>Src\Application\CSV\Rank</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\CSV\Exp\ExpCalc.cpp">
+      <Filter>Src\Application\CSV\Exp</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\ExpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

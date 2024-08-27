@@ -9,6 +9,7 @@ void Work::Init()
 	m_color = { 1,1,1,1 };
 	m_time = 60;
 	m_drawFlg = true;
+	m_texSize = { 134,80 };
 }
 
 void Work::DrawSprite()
@@ -16,7 +17,7 @@ void Work::DrawSprite()
 	if (m_drawFlg)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-			134 * m_scale.x, 80 * m_scale.y, nullptr, &m_color);
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 	}
 }
 

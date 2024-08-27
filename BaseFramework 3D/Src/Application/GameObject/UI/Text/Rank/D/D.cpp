@@ -3,16 +3,12 @@
 
 void D::Init()
 {
-	m_pos = { -250,-100 };
+	UIBase::Init();
+	m_pos = { -250,-50 };
 	m_scale = { 2.0f };
 	m_tex.Load("Asset/Textures/UI/Rank/d.png");
 	m_color = { 1,1,1,1 };
-}
-
-void D::DrawSprite()
-{
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-		65 * m_scale.x, 72 * m_scale.y, nullptr, &m_color);
+	m_texSize = { 65,72 };
 }
 
 void D::Update()

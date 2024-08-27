@@ -2,6 +2,7 @@
 
 void Head::Init()
 {
+	CharacterBase::Init();
 	m_model = std::make_shared<KdModelData>();
 	m_model->Load("Asset/Models/Robot/Head/head1.gltf");
 	m_pos = {0,13,0};
@@ -10,7 +11,7 @@ void Head::Init()
 
 void Head::Update()
 {
-	if (m_flg)
+	if (m_moveFlg)
 	{
 		m_pos.y -= 1;
 	}
@@ -20,7 +21,7 @@ void Head::Update()
 	}
 
 	Math::Matrix trans = Math::Matrix::CreateTranslation(m_pos);
-	Math::Matrix rot = Math::Matrix::CreateRotationY(DirectX::XMConvertToRadians(90	));
+	Math::Matrix rot = Math::Matrix::CreateRotationY(DirectX::XMConvertToRadians(90));
 	m_mWorld = rot * trans;
 
 }

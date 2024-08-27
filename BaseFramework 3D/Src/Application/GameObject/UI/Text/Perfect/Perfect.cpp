@@ -3,17 +3,13 @@
 
 void Perfect::Init()
 {
+	UIBase::Init();
 	m_pos = { 300,0 };
 	m_scale = { 0.3f };
 	m_tex.Load("Asset/Textures/UI/Text/perfect.png");
 	m_color = { 1,1,1,1 };
 	m_time = 60;
-}
-
-void Perfect::DrawSprite()
-{
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-		236 * m_scale.x, 79 * m_scale.y, nullptr, &m_color);
+	m_texSize = { 236,79 };
 }
 
 void Perfect::Update()

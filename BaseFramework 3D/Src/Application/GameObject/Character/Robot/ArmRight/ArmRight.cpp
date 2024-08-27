@@ -2,6 +2,7 @@
 
 void ArmRight::Init()
 {
+	CharacterBase::Init();
 	m_model = std::make_shared<KdModelData>();
 	m_model->Load("Asset/Models/Robot/Arm/armRight.gltf");
 	m_pos = { -15,3,0 };
@@ -10,7 +11,7 @@ void ArmRight::Init()
 
 void ArmRight::Update()
 {
-	if (m_flg)
+	if (m_moveFlg)
 	{
 		m_pos.x += 1;
 	}

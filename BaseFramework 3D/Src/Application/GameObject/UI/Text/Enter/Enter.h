@@ -1,6 +1,6 @@
 ﻿#pragma once
-
-class Enter :public KdGameObject
+#include"../../UIBase.h"
+class Enter :public UIBase
 {
 public:
 	Enter() {}
@@ -11,14 +11,9 @@ public:
 	void Update()override;
 
 private:
-	KdTexture m_tex;
-	Math::Vector2 m_pos;
-	Math::Color m_color;
-	Math::Vector2 m_scale;
-	Math::Vector2 m_texSize;
-	bool m_keyFlg = false;//キー制御
-	float m_alpha;
-	float m_alphaMax;
-	float m_alphaMin;
-	float m_alphaSpeed;
+	float m_alpha = 1.0f;
+	float m_alphaMax = 360.0f;
+	float m_alphaMin = 0.3f;
+	float m_alphaSpeed = 2.0f;
+	bool m_keyFlg = false;
 };
