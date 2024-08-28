@@ -145,9 +145,6 @@
     <Filter Include="Src\Application\GameObject\Character\Robot\ArmLeft">
       <UniqueIdentifier>{9a83451b-c684-4f32-8166-9c3f376dba0f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\DevelopBar">
-      <UniqueIdentifier>{20ca6b31-cedc-4659-ab82-0aee7ba25281}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI">
       <UniqueIdentifier>{9d3011a6-349b-43d5-9b84-61c876dd7a16}</UniqueIdentifier>
     </Filter>
@@ -259,11 +256,17 @@
     <Filter Include="Src\Application\CSV\Rank">
       <UniqueIdentifier>{6aca295c-fdb3-4f94-b374-f4a630a852f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\CSV\Exp">
-      <UniqueIdentifier>{5faffba3-36f7-465e-b08b-19cb89c44066}</UniqueIdentifier>
+    <Filter Include="Src\Application\GameObject\GUI\Bar">
+      <UniqueIdentifier>{8c1e967b-8bcb-474e-8386-859a57dbdf00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\ExpBar">
+    <Filter Include="Src\Application\GameObject\GUI\Bar\DevelopBar">
+      <UniqueIdentifier>{20ca6b31-cedc-4659-ab82-0aee7ba25281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\GUI\Bar\ExpBar">
       <UniqueIdentifier>{53c63399-fbe7-4a73-8b13-5c00a7574c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Exp">
+      <UniqueIdentifier>{98825128-c8b7-4ea3-b328-bf805874e60d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -495,12 +498,6 @@
     <ClInclude Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.h">
       <Filter>Src\Application\GameObject\Character\Robot\ArmLeft</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.h">
-      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.h">
-      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Bad\Bad.h">
       <Filter>Src\Application\GameObject\UI\Text\Bad</Filter>
     </ClInclude>
@@ -600,11 +597,17 @@
     <ClInclude Include="Src\Application\CSV\Rank\RankCalc.h">
       <Filter>Src\Application\CSV\Rank</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\CSV\Exp\ExpCalc.h">
-      <Filter>Src\Application\CSV\Exp</Filter>
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\DevelopBar\DevelopBar.h">
+      <Filter>Src\Application\GameObject\GUI\Bar\DevelopBar</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.h">
-      <Filter>Src\Application\GameObject\GUI\ExpBar</Filter>
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\DevelopBar\StopBar.h">
+      <Filter>Src\Application\GameObject\GUI\Bar\DevelopBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h">
+      <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Exp\Exp.h">
+      <Filter>Src\Application\GameObject\UI\Text\Exp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -809,12 +812,6 @@
     <ClCompile Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.cpp">
       <Filter>Src\Application\GameObject\Character\Robot\ArmLeft</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.cpp">
-      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.cpp">
-      <Filter>Src\Application\GameObject\GUI\DevelopBar</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Bad\Bad.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Bad</Filter>
     </ClCompile>
@@ -914,11 +911,17 @@
     <ClCompile Include="Src\Application\CSV\Rank\RankCalc.cpp">
       <Filter>Src\Application\CSV\Rank</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\CSV\Exp\ExpCalc.cpp">
-      <Filter>Src\Application\CSV\Exp</Filter>
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\DevelopBar\DevelopBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\Bar\DevelopBar</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.cpp">
-      <Filter>Src\Application\GameObject\GUI\ExpBar</Filter>
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\DevelopBar\StopBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\Bar\DevelopBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp">
+      <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Exp\Exp.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Exp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

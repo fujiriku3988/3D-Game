@@ -1,11 +1,11 @@
 ﻿#include "DevelopBar.h"
-#include"../../../main.h"
+#include"../../../../main.h"
 
 void DevelopBar::Init()
 {
 	m_pos = { 0,-240 };
 	m_scale = { 1.0f,1.0f };
-	m_tex.Load("Asset/Textures/UI/Bar/bar.png");
+	m_tex.Load("Asset/Textures/GUI/Bar/Develop/developBar.png");
 	m_alpha = 1.0f;
 	m_color = { 1,1,1,m_alpha };
 	m_aliveFlg = true;

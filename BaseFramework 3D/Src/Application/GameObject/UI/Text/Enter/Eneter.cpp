@@ -1,6 +1,7 @@
 ﻿#include "Enter.h"
 #include"../../../../Fade/Fade.h"
 #include"../../../../Scene/SceneManager.h"
+#include"../../../GUI/Bar/ExpBar/ExpBar.h"
 
 void Enter::Init()
 {
@@ -25,12 +26,14 @@ void Enter::DrawSprite()
 
 void Enter::Update()
 {
+	std::shared_ptr<ExpBar>spExpBar = m_wpExpBar.lock();
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		//キー制御
 		if (!m_keyFlg)
 		{
 			m_keyFlg = true;
+			spExpBar->WriteFlgOff();
 			Fade::Instance().BootBlackFade(SceneManager::SceneType::Game);
 		}
 	}

@@ -9,8 +9,8 @@
 #include"../../GameObject/Character/Robot/LegRight/LegRight.h"
 #include"../../GameObject/Terrains/Desk/Desk.h"
 #include"../../GameObject/Terrains/WhiteBoad/WhiteBoad.h"
-#include"../../GameObject/GUI/DevelopBar/DevelopBar.h"
-#include"../../GameObject/GUI/DevelopBar/StopBar.h"
+#include"../../GameObject/GUI/Bar/DevelopBar/DevelopBar.h"
+#include"../../GameObject/GUI/Bar/DevelopBar/StopBar.h"
 #include"../../GameObject/UI/Text/Bad/Bad.h"
 #include"../../GameObject/Terrains/Wall/Wall.h"
 #include"../../GameObject/Terrains/Light/Light.h"
@@ -20,7 +20,7 @@
 #include"../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
 #include"../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
 #include"../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
-#include"../../CSV/RankCalc.h"
+#include"../../CSV/Rank/RankCalc.h"
 
 void GameDevelop::Event()
 {
@@ -75,27 +75,27 @@ void GameDevelop::Init()
 	legRight->Init();
 	AddObject(legRight);
 
-	//ロボGUI
+	//ロボGUI体
 	std::shared_ptr<BodyGUI> bodyGUI = std::make_shared<BodyGUI>();
 	bodyGUI->Init();
 	AddObject(bodyGUI);
-
+	//ロボGUI頭
 	std::shared_ptr<HeadGUI> headGUI = std::make_shared<HeadGUI>();
 	headGUI->Init();
 	AddObject(headGUI);
-
+	//ロボGUI腕
 	std::shared_ptr<ArmLeftGUI> armLeftGUI = std::make_shared<ArmLeftGUI>();
 	armLeftGUI->Init();
 	AddObject(armLeftGUI);
-
+	//ロボGUI腕
 	std::shared_ptr<ArmRightGUI> armRightGUI = std::make_shared<ArmRightGUI>();
 	armRightGUI->Init();
 	AddObject(armRightGUI);
-
+	//ロボGUI足
 	std::shared_ptr<LegLeftGUI> legLeftGUI = std::make_shared<LegLeftGUI>();
 	legLeftGUI->Init();
 	AddObject(legLeftGUI);
-
+	//ロボGUI足
 	std::shared_ptr<LegRightGUI> legRightGUI = std::make_shared<LegRightGUI>();
 	legRightGUI->Init();
 	AddObject(legRightGUI);

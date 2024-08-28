@@ -6,7 +6,7 @@ void BodyGUI::Init()
 	RobotGUIBase::Init();
 	m_pos = { 500,200 };
 	m_scale = { 1.0f };
-	m_tex1.Load("Asset/Textures/UI/Robot/body.png");
+	m_tex1.Load("Asset/Textures/GUI/Robot/body.png");
 	m_color = { 1,1,1,1 };
 	m_texSize = { 36,50 };
 }

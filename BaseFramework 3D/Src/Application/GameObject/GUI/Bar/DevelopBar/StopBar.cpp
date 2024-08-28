@@ -1,25 +1,25 @@
 ﻿#include "StopBar.h"
-#include"../../../main.h"
-#include"../../../Fade/Fade.h"
-#include"../../../Scene/SceneManager.h"
-#include"../../../GameObject/Character/Robot/Head/Head.h"
-#include"../../../GameObject/Character/Robot/ArmLeft/ArmLeft.h"
-#include"../../../GameObject/Character/Robot/ArmRight/ArmRight.h"
-#include"../../../GameObject/Character/Robot/LegLeft/LegLeft.h"
-#include"../../../GameObject/Character/Robot/LegRight/LegRight.h"
-#include"../../../GameObject/GUI/DevelopBar/DevelopBar.h"
-#include"../../../GameObject/UI/Text/Bad/Bad.h"
-#include"../../../GameObject/UI/Text/Good/Good.h"
-#include"../../../GameObject/UI/Text/Great/Great.h"
-#include"../../../GameObject/UI/Text/Perfect/Perfect.h"
-#include"../../../GameObject/Camera/CameraBase.h"
-#include"../../../GameObject/GUI/Robot/ArmLeft/ArmLeftGUI.h"
-#include"../../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
-#include"../../../GameObject/GUI/Robot/Body/BodyGUI.h"
-#include"../../../GameObject/GUI/Robot/Head/HeadGUI.h"
-#include"../../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
-#include"../../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
-#include"../../../GameObject/GUI/Robot/RobotGUIBase.h"
+#include"../../../../main.h"
+#include"../../../../Fade/Fade.h"
+#include"../../../../Scene/SceneManager.h"
+#include"../../../../GameObject/Character/Robot/Head/Head.h"
+#include"../../../../GameObject/Character/Robot/ArmLeft/ArmLeft.h"
+#include"../../../../GameObject/Character/Robot/ArmRight/ArmRight.h"
+#include"../../../../GameObject/Character/Robot/LegLeft/LegLeft.h"
+#include"../../../../GameObject/Character/Robot/LegRight/LegRight.h"
+#include"../../../..//GameObject/GUI/Bar/DevelopBar/DevelopBar.h"
+#include"../../../../GameObject/UI/Text/Bad/Bad.h"
+#include"../../../../GameObject/UI/Text/Good/Good.h"
+#include"../../../../GameObject/UI/Text/Great/Great.h"
+#include"../../../../GameObject/UI/Text/Perfect/Perfect.h"
+#include"../../../../GameObject/Camera/CameraBase.h"
+#include"../../../../GameObject/GUI/Robot/ArmLeft/ArmLeftGUI.h"
+#include"../../../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
+#include"../../../../GameObject/GUI/Robot/Body/BodyGUI.h"
+#include"../../../../GameObject/GUI/Robot/Head/HeadGUI.h"
+#include"../../../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
+#include"../../../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
+#include"../../../../GameObject/GUI/Robot/RobotGUIBase.h"
 #include<iostream>
 #include<string>
 #include<fstream>
@@ -35,7 +35,7 @@ void StopBar::Init()
 	m_step = 0;
 	m_wait = 90;
 	m_alpha = 1.0f;
-	m_tex.Load("Asset/Textures/UI/Bar/stopBar.png");
+	m_tex.Load("Asset/Textures/GUI/Bar/Develop/stopBar.png");
 	m_color = { 1,1,1,m_alpha };
 	m_stepFlg = false;
 	m_resetFlg = false;
@@ -89,6 +89,7 @@ void StopBar::Update()
 		m_speed = {};
 		m_alpha -= 0.1f;
 		m_wait--;
+		//表示してるUI消す
 		spDevelopBar->aliveFlgOff();
 		spHeadGUI->AliveFlgOff();
 		spBodyGUI->AliveFlgOff();
@@ -100,7 +101,7 @@ void StopBar::Update()
 
 	if (m_resultFlg == true)
 	{
-		CSVLoad();
+		RankingCSV();
 		spCamera->SetControlPos({ -5.0f,5.0f,0.0f });
 		Fade::Instance().BootWhiteFade(SceneManager::SceneType::ResultDevelop);
 	}
@@ -302,7 +303,7 @@ void StopBar::MoveParts()
 	}
 }
 
-void StopBar::CSVLoad()
+void StopBar::RankingCSV()
 {
 	std::ifstream ifs("Asset/Data/a.csv");
 
@@ -353,7 +354,21 @@ void StopBar::CSVLoad()
 	ofs.close();
 }
 
-void StopBar::RankWrite(std::vector<std::string>& _data, std::vector<std::string>_dataName, std::string _rankName, int& _i,int _rankNum, int _rank)
+void StopBar::ExpCSV()
+{
+	std::ofstream ofs("Asset/Data/Exp.csv");
+
+	/*RankWrite(data, dataName, "perfect", i, m_rank.pefectNum, m_rank.perfect);
+	RankWrite(data, dataName, "great", i, m_rank.greatNum, m_rank.great);
+	RankWrite(data, dataName, "good", i, m_rank.goodNum, m_rank.good);
+	RankWrite(data, dataName, "bad", i, m_rank.badNum, m_rank.bad);*/
+
+	//ofs << data[i] << ',';
+
+	ofs.close();
+}
+
+void StopBar::RankWrite(std::vector<std::string>& _data, std::vector<std::string>_dataName, std::string _rankName, int& _i, int _rankNum, int _rank)
 {
 	if (_dataName[_i] == _rankName)
 	{

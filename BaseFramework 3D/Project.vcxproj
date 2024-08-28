@@ -157,7 +157,6 @@
     <ClInclude Include="..\Library\tinygltf\stb_image_write.h" />
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
     <ClInclude Include="Src\Application\CSV\CSVLoad.h" />
-    <ClInclude Include="Src\Application\CSV\Exp\ExpCalc.h" />
     <ClInclude Include="Src\Application\CSV\Rank\RankCalc.h" />
     <ClInclude Include="Src\Application\Fade\Fade.h" />
     <ClInclude Include="Src\Application\GameObject\Camera\CameraBase.h" />
@@ -172,13 +171,13 @@
     <ClInclude Include="Src\Application\GameObject\Character\Robot\Head\Head.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Robot\LegLeft\LegLeft.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Robot\LegRight\LegRight.h" />
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\DevelopBar\DevelopBar.h" />
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\DevelopBar\StopBar.h" />
+    <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Development\DevelopButton.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Sales\SalesButton.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\ArmLeft\ArmLeftGUI.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\ArmRight\ArmRightGUI.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\Body\BodyGUI.h" />
@@ -197,6 +196,7 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\Bad\Bad.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Develop\Develop.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Exp\Exp.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Good\Good.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Great\Great.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Perfect\Perfect.h" />
@@ -265,7 +265,6 @@
     <ClCompile Include="..\Library\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Library\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Src\Application\CSV\CSVLoad.cpp" />
-    <ClCompile Include="Src\Application\CSV\Exp\ExpCalc.cpp" />
     <ClCompile Include="Src\Application\CSV\Rank\RankCalc.cpp" />
     <ClCompile Include="Src\Application\Fade\Fade.cpp" />
     <ClCompile Include="Src\Application\GameObject\Camera\CameraBase.cpp" />
@@ -280,13 +279,13 @@
     <ClCompile Include="Src\Application\GameObject\Character\Robot\Head\Head.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Robot\LegLeft\LegLeft.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Robot\LegRight\LegRight.cpp" />
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\DevelopBar\DevelopBar.cpp" />
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\DevelopBar\StopBar.cpp" />
+    <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Development\DevelopButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Sales\SalesButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\DevelopBar.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\DevelopBar\StopBar.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\ExpBar\ExpBar.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\ArmLeft\ArmLefttGUI.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\ArmRight\ArmRightGUI.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\Body\BodyGUI.cpp" />
@@ -305,6 +304,7 @@
     <ClCompile Include="Src\Application\GameObject\UI\Text\Bad\Bad.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Develop\Develop.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Eneter.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Exp\Exp.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Good\Good.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Great\Great.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Perfect\Perfect.cpp" />

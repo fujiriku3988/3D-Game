@@ -3,9 +3,11 @@
 #include"../../../GameObject/Terrains/Tile/Stone/Stone.h"
 #include"../../../GameObject/Terrains/Wall/Wall.h"
 #include"../../../GameObject/Character/Robot/Full/Full.h"
-#include"../../../CSV/RankCalc.h"
+#include"../../../CSV/Rank/RankCalc.h"
 #include"../../../GameObject/UI/Text/Enter/Enter.h"
 #include"../../../GameObject/Terrains/Light/Light.h"
+#include"../../../GameObject/GUI/Bar/ExpBar/ExpBar.h"
+#include"../../../GameObject/UI/Text/Exp/Exp.h"
 
 void ResultDevelop::Event()
 {
@@ -38,14 +40,24 @@ void ResultDevelop::Init()
 	full->Init();
 	AddObject(full);
 
-	//calc
-	std::shared_ptr<RankCalc> calc = std::make_shared<RankCalc>();
-	calc->Init();
-	AddObject(calc);
+	//ランク計算
+	std::shared_ptr<RankCalc> rankCalc = std::make_shared<RankCalc>();
+	rankCalc->Init();
+	AddObject(rankCalc);
+
+	//Expバー
+	std::shared_ptr<ExpBar> expBar = std::make_shared<ExpBar>();
+	expBar->Init();
+	AddObject(expBar);
+	//Expテキスト
+	std::shared_ptr<Exp> expText = std::make_shared<Exp>();
+	expText->Init();
+	AddObject(expText);
 
 	//enter
 	std::shared_ptr<Enter> enter = std::make_shared<Enter>();
 	enter->Init();
+	enter->SetExpBar(expBar);
 	AddObject(enter);
 
 	//カメラ

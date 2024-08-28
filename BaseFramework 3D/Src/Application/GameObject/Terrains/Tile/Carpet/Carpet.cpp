@@ -3,7 +3,7 @@
 void Carpet::Init()
 {
 	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Tile/tile1.gltf");
+	m_model->Load("Asset/Models/Tile/tile2.gltf");
 	m_pos = {};
 	m_scale = { 0.7f };
 	//m_color = { 1,1,1,1 };

@@ -42,7 +42,8 @@ public:
 	//ロボのパーツうごかす
 	void MoveParts();
 	//CSV読み込み
-	void CSVLoad();
+	void RankingCSV();
+	void ExpCSV();
 	//ランクの書き込み
 	void RankWrite(std::vector<std::string>& _data, std::vector<std::string>_dataName,
 		std::string _rankName, int& _i, int _rankNum, int _rank);
