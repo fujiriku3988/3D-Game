@@ -305,7 +305,7 @@ void StopBar::MoveParts()
 
 void StopBar::RankingCSV()
 {
-	std::ifstream ifs("Asset/Data/a.csv");
+	std::ifstream ifs("Asset/Data/RankCalc.csv");
 
 	if (!ifs.is_open())
 	{
@@ -336,7 +336,7 @@ void StopBar::RankingCSV()
 
 	ifs.close();
 
-	std::ofstream ofs("Asset/Data/a.csv");
+	std::ofstream ofs("Asset/Data/RankCalc.csv");
 	if (headerFlg)
 	{
 		dataName = data;

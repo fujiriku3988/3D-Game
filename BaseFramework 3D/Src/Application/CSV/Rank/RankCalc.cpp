@@ -120,7 +120,7 @@ void RankCalc::Ranking()
 
 void RankCalc::CSVLoad()
 {
-	std::ifstream ifs("Asset/Data/a.csv");
+	std::ifstream ifs("Asset/Data/RankCalc.csv");
 
 	if (!ifs.is_open())
 	{

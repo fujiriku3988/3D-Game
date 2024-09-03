@@ -65,4 +65,11 @@ void ResultDevelop::Init()
 	camera->Init();
 	camera->SetCameraPos({ -5.0f,5.0f,-6.0f });
 	AddObject(camera);
+
+	Math::Viewport viewPort;
+	KdDirect3D::Instance().CopyViewportInfo(viewPort);
+	const int width = viewPort.width;
+	const int height = viewPort.height;
+	KdEffekseerManager::GetInstance().Create(width, height);
+	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());
 }
