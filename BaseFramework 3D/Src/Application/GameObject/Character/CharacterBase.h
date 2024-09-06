@@ -27,7 +27,7 @@ public:
 
 protected:
 	std::shared_ptr<KdSquarePolygon>m_poly = nullptr;
-	std::shared_ptr<KdModelData>m_model = nullptr;
+	std::shared_ptr<KdModelWork>m_model = nullptr;
 	std::weak_ptr<CharacterBase>m_wpPoly;
 	std::weak_ptr<CharacterBase>m_wpModel;
 	KdTexture m_tex;

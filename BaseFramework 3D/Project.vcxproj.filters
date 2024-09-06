@@ -268,6 +268,12 @@
     <Filter Include="Src\Application\GameObject\UI\Text\Exp">
       <UniqueIdentifier>{98825128-c8b7-4ea3-b328-bf805874e60d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage">
+      <UniqueIdentifier>{e00fada8-3913-4bf1-ace3-44d68116a18e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Character\CleanRobot">
+      <UniqueIdentifier>{9047bd6a-4f62-4799-983e-ce0cc08f2d39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -609,6 +615,12 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\Exp\Exp.h">
       <Filter>Src\Application\GameObject\UI\Text\Exp</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.h">
+      <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -922,6 +934,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Exp\Exp.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Exp</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.cpp">
+      <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
