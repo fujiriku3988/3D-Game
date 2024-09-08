@@ -3,8 +3,8 @@
 void Head::Init()
 {
 	CharacterBase::Init();
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Robot/Head/head1.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Robot/Head/head1.gltf");
 	m_pos = {0,13,0};
 	m_color = { 1,1,1,1 };
 }

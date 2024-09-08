@@ -37,7 +37,7 @@ public:
 
 	GLTFBufferGetter(const tinygltf::Model* model, int accessor)
 	{
-		m_model = model;
+		m_modelData = model;
 
 		m_accessor = &model->accessors[accessor];
 		// バッファビュー
@@ -122,7 +122,7 @@ private:
 
 	const BYTE* m_address = nullptr;
 
-	const tinygltf::Model*		m_model = nullptr;
+	const tinygltf::Model*		m_modelData = nullptr;
 	const tinygltf::Accessor*	m_accessor = nullptr;
 	const tinygltf::BufferView*	m_bufferView = nullptr;
 	const tinygltf::Buffer*		m_buffer = nullptr;

@@ -2,14 +2,14 @@
 
 void Wall::Init()
 {
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Wall/Wall2.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Wall/Wall2.gltf");
 	m_pos = {0,0,0};
 }
 
 void Wall::DrawLit()
 {
-	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld);
+	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld);
 }
 
 void Wall::Update()

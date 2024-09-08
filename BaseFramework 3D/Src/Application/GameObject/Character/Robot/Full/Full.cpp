@@ -2,8 +2,8 @@
 
 void Full::Init()
 {
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Robot/Full/Full.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Robot/Full/Full.gltf");
 	m_pos = { 0,3,0 };
 	m_color = { 1,1,1,1 };
 	m_rot.x = 90;

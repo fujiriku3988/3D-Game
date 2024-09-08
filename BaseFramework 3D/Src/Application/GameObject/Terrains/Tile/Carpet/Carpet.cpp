@@ -2,8 +2,8 @@
 
 void Carpet::Init()
 {
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Tile/tile2.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Tile/tile2.gltf");
 	m_pos = {};
 	m_scale = { 0.7f };
 	//m_color = { 1,1,1,1 };
@@ -12,7 +12,7 @@ void Carpet::Init()
 
 void Carpet::DrawLit()
 {
-	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld, m_color);
+	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld, m_color);
 }
 
 void Carpet::Update()

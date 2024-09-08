@@ -23,19 +23,32 @@ void FPSCamera::Init()
 
 void FPSCamera::Update()
 {
+	/*Math::Vector3 dir = Math::Vector3::Zero;
+
+	if (GetAsyncKeyState('W') & 0x8000) { dir.z += 1.0f; }
+	if (GetAsyncKeyState('S') & 0x8000) { dir.z -= 1.0f; }
+	if (GetAsyncKeyState('A') & 0x8000) { dir.x -= 1.0f; }
+	if (GetAsyncKeyState('D') & 0x8000) { dir.x += 1.0f; }
+
+	dir = dir.TransformNormal(dir, GetRotationMatrix());
+	dir.Normalize();
+
+	m_camPos += dir * 0.1f;*/
+
 	// ターゲットの行列(有効な場合利用する)
 	Math::Matrix targetMat = Math::Matrix::Identity;
 	const std::shared_ptr<const KdGameObject>spTarget = m_wpTarget.lock();
 	if (spTarget)
 	{
-		targetMat = Math::Matrix::CreateTranslation(spTarget->GetPos());
+		targetMat = spTarget->GetMatrix();
 	}
 	m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);
+	
 
 	// カメラの回転
 	//UpdateRotateByMouse();
-	m_mRotation = GetRotationMatrix();
-	m_mWorld = m_mRotation * m_mLocalPos;
+	//m_mRotation = GetRotationMatrix();
+	m_mWorld = targetMat;
 
 	CameraBase::Update();
 }

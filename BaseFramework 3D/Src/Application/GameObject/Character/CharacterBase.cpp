@@ -1,4 +1,5 @@
 ﻿#include "CharacterBase.h"
+#include"../../Scene/SceneManager.h"
 
 void CharacterBase::Init()
 {
@@ -6,7 +7,7 @@ void CharacterBase::Init()
 	m_scale = { 1 };
 	m_spritePos = {};
 	m_poly = nullptr;
-	m_model = nullptr;
+	m_modelData = nullptr;
 	m_hitFlg = false;
 	m_texSize = {};
 	scaleMat = Math::Matrix::Identity;
@@ -14,7 +15,9 @@ void CharacterBase::Init()
 	rotMatX = Math::Matrix::Identity;
 	rotMatY = Math::Matrix::Identity;
 	rotMatZ = Math::Matrix::Identity;
+	m_adjustHeight = 0.0f;
 	m_gravity = 0.0f;
+	m_gravityPow = 0.0f;
 	m_speed = 0.0f;
 	m_animeCnt = 0;
 	m_animeCntMAX = 0;
@@ -24,6 +27,11 @@ void CharacterBase::Init()
 	m_vol.damage = 1.0f;
 	//デバッグ用
 	m_pDebugWire = std::make_unique<KdDebugWireFrame>();
+	//画面中央座標
+	m_FixMousePos.x = 640;
+	m_FixMousePos.y = 360;
+	//カメラ変数
+	m_degAng = {};
 }
 
 void CharacterBase::PreUpdate()
@@ -40,9 +48,13 @@ void CharacterBase::PostUpdate()
 
 void CharacterBase::DrawLit()
 {
-	if (m_model)
+	if (m_modelData)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld,m_color);
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld,m_color);
+	}
+	if (m_modelWork)
+	{
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 	if (m_poly)
 	{
@@ -56,12 +68,58 @@ void CharacterBase::DrawSprite()
 
 void CharacterBase::GenerateDepthMapFromLight()
 {
-	if (m_model)
+	if (m_modelData)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld, m_color);
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld, m_color);
+	}
+	if (m_modelWork)
+	{
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 	if (m_poly)
 	{
 		KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_poly, m_mWorld, m_color);
+	}
+}
+
+void CharacterBase::CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type,float _adjust)
+{
+	//レイ判定
+	KdCollider::RayInfo ray;
+	//飛ばす位置
+	ray.m_pos = _pos + Math::Vector3{0,-(_adjust-0.1f),0};
+	//長さ
+	static const float enableStepHeight = 0.1f;
+	ray.m_range = m_gravity + enableStepHeight;
+	//方向
+	ray.m_dir = _dir;
+	//タイプ
+	ray.m_type = _type;
+	//当たったOBJの情報を格納するリスト
+	std::list<KdCollider::CollisionResult>retRayList;
+	for (auto& obj : SceneManager::Instance().GetObjList())
+	{
+		obj->Intersects(ray, &retRayList);
+	}
+
+	bool hit = false;
+	float maxOverLap = 0;
+	Math::Vector3 hitPos = {};
+
+	for (auto& ret : retRayList)
+	{
+		if (maxOverLap < ret.m_overlapDistance)
+		{
+			maxOverLap = ret.m_overlapDistance;
+			hitPos = ret.m_hitPos;
+			hit = true;
+		}
+	}
+
+	if (hit)
+	{
+		m_pos = hitPos + Math::Vector3{ 0,_adjust,0 };
+		//_gravity = 0;
+		m_gravity = 0;
 	}
 }

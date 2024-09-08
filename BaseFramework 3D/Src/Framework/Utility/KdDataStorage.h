@@ -93,7 +93,7 @@ public:
 
 	// それぞれのアセット
 	KdDataStorage<KdTexture>	m_textures;
-	KdDataStorage<KdModelData>	m_modeldatas;
+	KdDataStorage<KdModelData>	m_modelDatadatas;
 
 	static KdAssets& Instance()
 	{
@@ -104,7 +104,7 @@ public:
 	void ClearData(bool force)
 	{
 		m_textures.ClearData(force);
-		m_modeldatas.ClearData(force);
+		m_modelDatadatas.ClearData(force);
 	}
 
 private:

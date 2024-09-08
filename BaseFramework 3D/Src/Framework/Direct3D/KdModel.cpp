@@ -276,7 +276,7 @@ void KdModelWork::SetModelData(const std::shared_ptr<KdModelData>& rModel)
 void KdModelWork::SetModelData(std::string_view fileName)
 {
 	// モデルのセット
-	SetModelData(KdAssets::Instance().m_modeldatas.GetData(fileName));
+	SetModelData(KdAssets::Instance().m_modelDatadatas.GetData(fileName));
 }
 
 // ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== ===== =====

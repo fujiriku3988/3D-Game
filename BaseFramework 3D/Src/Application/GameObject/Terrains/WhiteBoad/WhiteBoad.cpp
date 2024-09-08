@@ -3,8 +3,8 @@
 
 void WhiteBoad::Init()
 {
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Boad/Boad2.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Boad/Boad2.gltf");
 	m_pos = {0,0,15};
 	m_rot = {};
 	m_key = false;
@@ -12,7 +12,7 @@ void WhiteBoad::Init()
 
 void WhiteBoad::DrawLit()
 {
-	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld);
+	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld);
 }
 
 void WhiteBoad::Update()

@@ -2,8 +2,8 @@
 
 void Light::Init()
 {
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Light/Light.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Light/Light.gltf");
 	m_pos = {};
 	m_scale = { 0.5f };
 	//m_color = { 1,1,1,1 };
@@ -12,7 +12,7 @@ void Light::Init()
 
 void Light::DrawBright()
 {
-	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_model, m_mWorld, m_color);
+	KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld, m_color);
 }
 
 void Light::Update()

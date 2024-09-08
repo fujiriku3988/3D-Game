@@ -3,8 +3,8 @@
 void ArmLeft::Init()
 {
 	CharacterBase::Init();
-	m_model = std::make_shared<KdModelData>();
-	m_model->Load("Asset/Models/Robot/Arm/armLeft.gltf");
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelData->Load("Asset/Models/Robot/Arm/armLeft.gltf");
 	m_pos = { 15,3,0 };
 	m_color = { 1,1,1,1 };
 }

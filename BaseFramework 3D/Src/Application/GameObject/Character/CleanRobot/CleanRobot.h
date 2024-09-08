@@ -1,5 +1,6 @@
 ﻿#pragma once
-class CleanRobot:public KdGameObject
+#include"../CharacterBase.h"
+class CleanRobot:public CharacterBase
 {
 public:
 	CleanRobot() {}
@@ -7,8 +8,9 @@ public:
 	
 	void Init()override;
 	void Update()override;
-	void DrawLit()override;
-	void GenerateDepthMapFromLight()override;
+	//キャラベースで読んでる
+	//void DrawLit()override;
+	//void GenerateDepthMapFromLight()override;
 
 private:
 
