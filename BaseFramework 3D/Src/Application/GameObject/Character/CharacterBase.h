@@ -25,6 +25,7 @@ public:
 	void SetCamera(std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
 	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
 	void MoveFlgOn() { m_moveFlg = true; }
+	void HitFlgOn() { m_hitFlg = true; }
 
 	const Math::Matrix GetRotationMatrix()const
 	{
@@ -54,28 +55,28 @@ protected:
 	std::shared_ptr<CameraBase>m_spCamera;
 	//２D描画するよう
 	KdTexture m_tex;
-	Math::Vector2 m_texSize;
-	Math::Rectangle m_rect;
+	Math::Vector2 m_texSize;//画像サイズ
+	Math::Rectangle m_rect;//切り取り範囲
 	//モデル用の変数
-	Math::Vector3 m_pos;
-	Math::Vector2 m_spritePos;
-	Math::Vector3 m_dir;
-	Math::Vector3 m_rot;
-	Math::Vector3 m_scale;
-	Math::Color m_color;
-	float m_speed;
-	float m_gravity;
-	float m_gravityPow;
-	float m_adjustHeight;
-	bool m_hitFlg = false;
-	bool m_moveFlg = false;
+	Math::Vector3 m_pos;//座標
+	Math::Vector2 m_spritePos;//2D座標
+	Math::Vector3 m_dir;//向き
+	Math::Vector3 m_rot;//回転値
+	Math::Vector3 m_scale;//拡縮値
+	Math::Color m_color;//色
+	float m_speed;//キャラのスピード
+	float m_gravity;//重力
+	float m_gravityPow;//重力の力
+	float m_adjustHeight;//当たり判定で許容できる段差の高さ
+	bool m_hitFlg = false;//当たり判定
+	bool m_moveFlg = false;//動いてるかどうか
 	//行列
-	Math::Matrix scaleMat;
-	Math::Matrix transMat;
-	Math::Matrix rotationMat;
-	Math::Matrix rotMatX;
-	Math::Matrix rotMatY;
-	Math::Matrix rotMatZ;
+	Math::Matrix scaleMat;//拡縮
+	Math::Matrix transMat;//移動
+	Math::Matrix rotationMat;//回転
+	Math::Matrix rotMatX;//回転X
+	Math::Matrix rotMatY;//回転Y
+	Math::Matrix rotMatZ;//回転Z
 	//アニメーション
 	AnimetionInfo m_anime;
 	int m_animeCnt;

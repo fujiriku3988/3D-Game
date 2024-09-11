@@ -191,6 +191,7 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Ground\Ground.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Light\Light.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h" />
+    <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Tile\Carpet\Carpet.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Tile\Stone\Stone.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Wall\Wall.h" />
@@ -301,6 +302,7 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Ground\Ground.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Light\Light.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Tile\Carpet\Carpet.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Tile\Stone\Stone.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Wall\Wall.cpp" />

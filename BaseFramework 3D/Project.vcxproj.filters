@@ -621,6 +621,9 @@
     <ClInclude Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.h">
       <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h">
+      <Filter>Src\Application\GameObject\Terrains</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -940,6 +943,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.cpp">
       <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp">
+      <Filter>Src\Application\GameObject\Terrains</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -53,16 +53,16 @@ void GameDevelop::Init()
 	stage->Init();
 	AddObject(stage);
 
-	//cleanRobot
-	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
-	cRobo->Init();
-	AddObject(cRobo);
-
 	//プレイヤー
 	std::shared_ptr<Player> player = std::make_shared<Player>();
 	player->Init();
 	AddObject(player);
 
+	//cleanRobot
+	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
+	cRobo->Init();
+	cRobo->SetPlayer(player);
+	AddObject(cRobo);
 
 	//カメラ
 	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();

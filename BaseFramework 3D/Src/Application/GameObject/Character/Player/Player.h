@@ -8,7 +8,7 @@ public:
 
 	void Init()override;
 	void Update()override;
-
+	void Action();
 private:
 	void UpdateRotateByMouse();
 };

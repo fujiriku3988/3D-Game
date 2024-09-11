@@ -5,6 +5,12 @@ class KdGameObject : public std::enable_shared_from_this<KdGameObject>
 {
 public:
 
+	//オブジェクトのタイプ宣言
+	enum ObjectType
+	{
+		eCleanRobot,
+	};
+
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
 	enum
 	{
@@ -66,6 +72,11 @@ public:
 	bool Intersects(const KdCollider::BoxInfo& targetBox, std::list<KdCollider::CollisionResult>* pResults);
 	bool Intersects(const KdCollider::RayInfo& targetShape, std::list<KdCollider::CollisionResult>* pResults);
 
+	//追加
+	void HoldFlgOn() { m_holdFlg = true; }
+	void HoldFlgOff() { m_holdFlg = false; }
+	ObjectType GetObjType() { return m_objType; }
+
 protected:
 
 	void Release() {}
@@ -87,4 +98,8 @@ protected:
 
 	// デバッグ情報クラス
 	std::unique_ptr<KdDebugWireFrame> m_pDebugWire = nullptr;
+
+	//追加変数
+	bool m_holdFlg = false;
+	ObjectType m_objType;
 };

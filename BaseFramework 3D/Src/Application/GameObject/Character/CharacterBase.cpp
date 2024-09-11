@@ -8,7 +8,6 @@ void CharacterBase::Init()
 	m_spritePos = {};
 	m_poly = nullptr;
 	m_modelData = nullptr;
-	m_hitFlg = false;
 	m_texSize = {};
 	scaleMat = Math::Matrix::Identity;
 	transMat = Math::Matrix::Identity;
@@ -32,6 +31,9 @@ void CharacterBase::Init()
 	m_FixMousePos.y = 360;
 	//カメラ変数
 	m_degAng = {};
+	//フラグ
+	m_hitFlg = false;
+	m_holdFlg = false;
 }
 
 void CharacterBase::PreUpdate()
