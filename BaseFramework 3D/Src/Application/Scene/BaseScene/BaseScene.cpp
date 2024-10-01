@@ -26,6 +26,8 @@ void BaseScene::PreUpdate()
 	{
 		obj->PreUpdate();
 	}
+
+	
 }
 
 void BaseScene::Update()

@@ -1,7 +1,6 @@
 ﻿#pragma once
 class CameraBase;
-class ObjectBase;
-class CharacterBase :public KdGameObject
+class ObjectBase :public KdGameObject
 {
 public:
 	//アニメーション情報
@@ -11,8 +10,8 @@ public:
 		float speed;//アニメーションの速度
 	};
 
-	CharacterBase() {}
-	~CharacterBase()override {};
+	ObjectBase() {}
+	~ObjectBase()override {};
 
 	void Init()override;
 	void PreUpdate()override;
@@ -21,11 +20,13 @@ public:
 	void DrawLit()override;
 	void DrawSprite()override;
 	void GenerateDepthMapFromLight()override;
+
+	virtual void AddNode();
+	//地面当たり判定
 	void CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust);
 
 	void SetCamera(std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
 	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
-	void MoveFlgOn() { m_moveFlg = true; }
 	void HitFlgOn() { m_hitFlg = true; }
 
 	const Math::Matrix GetRotationMatrix()const
@@ -42,11 +43,6 @@ public:
 			DirectX::XMConvertToRadians(m_degAng.y));
 	}
 
-	const Math::Matrix GetNodeMatrix()const
-	{
-		return m_nodeMat;
-	}
-
 protected:
 	// カメラ回転用マウス座標の差分
 	POINT m_FixMousePos{};
@@ -59,13 +55,9 @@ protected:
 	//カメラの情報取るよう
 	std::weak_ptr<CameraBase>m_wpCamera;
 	std::shared_ptr<CameraBase>m_spCamera;
-	//オブジェクトの情報とるよう
-	std::weak_ptr<ObjectBase>m_wpObj;
-	std::shared_ptr<ObjectBase>m_spObj;
-	//２D描画するよう
-	KdTexture m_tex;
-	Math::Vector2 m_texSize;//画像サイズ
-	Math::Rectangle m_rect;//切り取り範囲
+	//ノード用
+	const KdModelWork::Node* m_pNode;
+	bool m_addNodeFlg = true;//trueで追加後falseに変換
 	//モデル用の変数
 	Math::Vector3 m_pos;//座標
 	Math::Vector2 m_spritePos;//2D座標
@@ -78,12 +70,10 @@ protected:
 	float m_gravityPow;//重力の力
 	float m_adjustHeight;//当たり判定で許容できる段差の高さ
 	bool m_hitFlg = false;//当たり判定
-	bool m_moveFlg = false;//動いてるかどうか
 	//行列
 	Math::Matrix m_scaleMat;//拡縮
 	Math::Matrix m_transMat;//移動
 	Math::Matrix m_rotationMat;//回転
-	Math::Matrix m_nodeMat;//ノード情報格納
 	Math::Matrix m_rotMatX;//回転X
 	Math::Matrix m_rotMatY;//回転Y
 	Math::Matrix m_rotMatZ;//回転Z

@@ -45,11 +45,22 @@ public:
 	// 現在のシーンにオブジェクトを追加
 	void AddObject(const std::shared_ptr<KdGameObject>& obj);
 
-	//追加
-	ModeType GetModeType() { return m_nowModeType; }
-	void SetNextMode(ModeType nextMode) { m_nowModeType = nextMode; }
 	SceneType GetSceneType() { return m_currentSceneType; }
+	//==========追加===============//
 
+	//モード取ってくるやつ
+	ModeType GetModeType() { return m_nowModeType; }
+	//モード切り替える奴
+	void SetNextMode(ModeType nextMode) { m_nowModeType = nextMode; }
+
+	//ノードリスト追加するやつ
+	//void AddNode(const std::shared_ptr<KdModelWork::Node>& node);
+	void AddNode(const KdModelWork::Node*& node);
+
+	//const std::list<std::shared_ptr<KdModelWork::Node>>& GetNodeList();
+	const std::list<const KdModelWork::Node*>& GetNodeList();
+
+	//==========追加===============//
 private:
 
 	// マネージャーの初期化

@@ -1,14 +1,13 @@
-﻿#include "CharacterBase.h"
+﻿#include "ObjectBase.h"
 #include"../../Scene/SceneManager.h"
 
-void CharacterBase::Init()
+void ObjectBase::Init()
 {
 	m_pos = { };
 	m_scale = { 1 };
 	m_spritePos = {};
 	m_poly = nullptr;
 	m_modelData = nullptr;
-	m_texSize = {};
 	m_scaleMat = Math::Matrix::Identity;
 	m_transMat = Math::Matrix::Identity;
 	m_nodeMat = Math::Matrix::Identity;
@@ -36,41 +35,23 @@ void CharacterBase::Init()
 	m_hitFlg = false;
 	m_holdFlg = false;
 	m_throwFlg = false;
+	m_attachFlg = false;
+	m_addNodeFlg = true;
 }
 
-void CharacterBase::PreUpdate()
+void ObjectBase::PreUpdate()
 {
 }
 
-void CharacterBase::Update()
+void ObjectBase::Update()
 {
 }
 
-void CharacterBase::PostUpdate()
+void ObjectBase::PostUpdate()
 {
 }
 
-void CharacterBase::DrawLit()
-{
-	if (m_modelData)
-	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld,m_color);
-	}
-	if (m_modelWork)
-	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
-	}
-	if (m_poly)
-	{
-		KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_poly, m_mWorld,m_color);
-	}
-}
-
-void CharacterBase::DrawSprite()
-{
-}
-
-void CharacterBase::GenerateDepthMapFromLight()
+void ObjectBase::DrawLit()
 {
 	if (m_modelData)
 	{
@@ -86,12 +67,24 @@ void CharacterBase::GenerateDepthMapFromLight()
 	}
 }
 
-void CharacterBase::CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust = {})
+void ObjectBase::DrawSprite()
+{
+}
+
+void ObjectBase::GenerateDepthMapFromLight()
+{
+}
+
+void ObjectBase::AddNode()
+{
+}
+
+void ObjectBase::CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust)
 {
 	//レイ判定
 	KdCollider::RayInfo ray;
 	//飛ばす位置
-	ray.m_pos = _pos + Math::Vector3{0,-(_adjust-0.1f),0};
+	ray.m_pos = _pos + Math::Vector3{ 0,-(_adjust - 0.1f),0 };
 	//長さ
 	static const float enableStepHeight = 0.1f;
 	ray.m_range = m_gravity + enableStepHeight;

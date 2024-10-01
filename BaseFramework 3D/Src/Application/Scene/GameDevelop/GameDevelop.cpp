@@ -20,7 +20,8 @@
 //#include"../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
 //#include"../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
 #include"../../CSV/Rank/RankCalc.h"
-#include"../../GameObject/Character/CleanRobot/CleanRobot.h"
+#include"../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
+#include"../../GameObject/Object/Parts/Missile/Missile.h"
 #include"../../GameObject/Terrains/Stage/Stage.h"
 
 void GameDevelop::Event()
@@ -35,34 +36,40 @@ void GameDevelop::Init()
 	//AddObject(wall);
 
 	//光
-	for (int i = 0; i < 3; i++)
+	/*for (int i = 0; i < 3; i++)
 	{
 		std::shared_ptr<Light> light = std::make_shared<Light>();
 		light->Init();
 		light->SetPos({ -5+(i*5.0f),15,5});
 		AddObject(light);
-	}
+	}*/
 
 	//地面
 	std::shared_ptr<Stone> tile = std::make_shared<Stone>();
 	tile->Init();
 	//AddObject(tile);
 
-	//stage
+	//ステージ
 	std::shared_ptr<Stage> stage = std::make_shared<Stage>();
 	stage->Init();
 	AddObject(stage);
+
+
+	//クリーンロボ
+	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
+	cRobo->Init();
+	AddObject(cRobo);
+
+	//ミサイル
+	std::shared_ptr<Missile> missile = std::make_shared<Missile>();
+	missile->Init();
+	missile->SetCharaBody(cRobo);
+	AddObject(missile);
 
 	//プレイヤー
 	std::shared_ptr<Player> player = std::make_shared<Player>();
 	player->Init();
 	AddObject(player);
-
-	//cleanRobot
-	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
-	cRobo->Init();
-	cRobo->SetPlayer(player);
-	AddObject(cRobo);
 
 	//カメラ
 	std::shared_ptr<FPSCamera> camera = std::make_shared<FPSCamera>();
@@ -71,6 +78,8 @@ void GameDevelop::Init()
 	camera->SetTarget(player);
 	AddObject(camera);
 
-	//カメラセット
+	//セット
 	player->SetCamera(camera);
+	cRobo->SetPlayer(player);
+	missile->SetPlayer(player);
 }

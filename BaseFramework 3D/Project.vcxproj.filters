@@ -271,8 +271,20 @@
     <Filter Include="Src\Application\GameObject\Terrains\Stage">
       <UniqueIdentifier>{e00fada8-3913-4bf1-ace3-44d68116a18e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\Character\CleanRobot">
+    <Filter Include="Src\Application\GameObject\Object">
+      <UniqueIdentifier>{47c82682-a09e-476d-98ca-e85a4f6168e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Body">
+      <UniqueIdentifier>{bcffe7c6-1234-4e85-a0a3-92a3fa90cb87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Body\CleanRobot">
       <UniqueIdentifier>{9047bd6a-4f62-4799-983e-ce0cc08f2d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Parts">
+      <UniqueIdentifier>{f51d2573-46c2-4af9-a836-8e100390548e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Parts\Missile">
+      <UniqueIdentifier>{e64d08c0-3ef8-41c5-a7b6-d9f88be02672}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -618,11 +630,17 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h">
       <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.h">
-      <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h">
       <Filter>Src\Application\GameObject\Terrains</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h">
+      <Filter>Src\Application\GameObject\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.h">
+      <Filter>Src\Application\GameObject\Object\Body\CleanRobot</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Parts\Missile\Missile.h">
+      <Filter>Src\Application\GameObject\Object\Parts\Missile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -941,11 +959,17 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp">
       <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.cpp">
-      <Filter>Src\Application\GameObject\Character\CleanRobot</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp">
       <Filter>Src\Application\GameObject\Terrains</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp">
+      <Filter>Src\Application\GameObject\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.cpp">
+      <Filter>Src\Application\GameObject\Object\Body\CleanRobot</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Parts\Missile\Missile.cpp">
+      <Filter>Src\Application\GameObject\Object\Parts\Missile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

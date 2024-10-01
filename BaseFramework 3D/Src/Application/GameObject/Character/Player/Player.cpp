@@ -2,19 +2,22 @@
 #include"../../../GameObject/Camera/CameraBase.h"
 #include"../../../Scene/SceneManager.h"
 #include"../../../GameObject/Terrains/TerrainBase.h"
+#include"../../../GameObject/Object/ObjectBase.h"
+#include"../../../main.h"
 
 void Player::Init()
 {
 	CharacterBase::Init();
 	m_modelData = std::make_shared<KdModelData>();
 	m_modelData->Load("Asset/Models/Tank/Tank.gltf");
-	m_adjustHeight = 2.0f;
-	m_pos = {0,m_adjustHeight ,0};
+	m_adjustHeight = 1.7f;
+	m_pos = { 0,m_adjustHeight ,0 };
 	m_gravity = 0.0f;
 	m_gravityPow = 0.004f;
 	m_dir = {};
 	m_speed = 0.1f;
 	m_color = { 1,1,1,1 };
+	m_keyFlg = false;
 }
 
 void Player::Update()
@@ -26,7 +29,7 @@ void Player::Update()
 
 	//後で消す
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000) { m_pos.y += 1.0f; }
-	
+
 	Action();
 
 	//移動
@@ -46,9 +49,11 @@ void Player::Update()
 
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
 
-	rotationMat = GetRotationMatrix();
-	transMat = Math::Matrix::CreateTranslation(m_pos);
-	m_mWorld = rotationMat * transMat;
+	m_rotationMat = GetRotationMatrix();
+	m_transMat = Math::Matrix::CreateTranslation(m_pos);
+	m_mWorld = m_rotationMat * m_transMat;
+
+	//Application::Instance().m_log.AddLog("LengthXXXXXX%f\n", m_pos.x);
 }
 
 void Player::Action()
@@ -60,12 +65,13 @@ void Player::Action()
 		Math::Vector3 camPos;
 		Math::Vector3 dir;
 		float range = 0;//ただの入れ物
+		//ここでどこからどの方向に例を飛ばすのか情報を確立
 		if (m_wpCamera.expired() == false)
 		{
 			camPos = m_wpCamera.lock()->GetPos();
 			m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
 		}
-		//ここまででどこからどの方向に例を飛ばすのか情報を確立
+		Math::Vector3 structLeng = camPos;
 
 		//レイを飛ばす
 		KdCollider::RayInfo ray;
@@ -76,17 +82,17 @@ void Player::Action()
 
 		//m_pDebugWire->AddDebugLine(ray.m_pos, ray.m_dir, ray.m_range, kGreenColor);
 
-		
+
 		for (auto& obj : SceneManager::Instance().GetObjList())
 		{
 			//これがレイとオブジェクトの当たり判定
 			if (obj->Intersects(ray, &rayRetList))
 			{
-				obj->HoldFlgOn();
+				obj->ChangeAttachFlg(false);
+				obj->ChangeHoldFlg(true);
 				m_objType = obj->GetObjType();
 			}
 		}
-
 		//一番近くの位置を探す
 		float overlap = 0;
 		Math::Vector3 hitPos;
@@ -99,8 +105,127 @@ void Player::Action()
 				//当たった座標を保存
 				hitPos = ret.m_hitPos;
 			}
+
 		}
 	}
+
+	Application::Instance().m_log.Clear();
+
+	Math::Vector3 aho;//後で消す
+	//Math::Matrix aho;//後で消す
+	Math::Vector3 aho2;//後で消す
+	Math::Vector3 aho3;//後で消す
+	std::shared_ptr<KdGameObject> m = std::make_shared<ObjectBase>();
+	std::shared_ptr<KdGameObject> o = std::make_shared<ObjectBase>();
+	const KdModelWork::Node* closestNode = nullptr; // 最も近いノードを保持するポインタ
+	if (GetAsyncKeyState('F') & 0x8000)
+	{
+		//if (m_keyFlg)return;
+
+		Math::Vector3 camPos;
+		Math::Vector3 dir;
+		float range = 0;//ただの入れ物
+		if (m_wpCamera.expired() == false)
+		{
+			//m_wpCamera.lock()->WorkCamera()->ConvertWorldToScreenDetail();
+			camPos = m_wpCamera.lock()->GetPos();
+			m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+		}
+
+		//レイを飛ばす
+		KdCollider::RayInfo ray;
+		ray.m_pos = camPos;
+		ray.m_dir = dir;
+		ray.m_range = range;
+		ray.m_type = KdCollider::TypeDamage;
+
+
+		for (auto& obj : SceneManager::Instance().GetObjList())
+		{
+			if (obj->GetObjType() == KdGameObject::eCleanRobot)
+			{
+				//これがレイとオブジェクトの当たり判定
+				if (obj->Intersects(ray, &rayRetList))
+				{
+					//aho = obj->GetNodeMatrix().Translation();
+					//obj->AddNode();
+					o = obj;
+				}
+			}
+		}
+
+		//一番近くの位置を探す
+		float overlap = 0;
+		Math::Vector3 hitPos;
+		bool hitFlg = false;
+		for (auto& ret : rayRetList)
+		{
+			if (overlap < ret.m_overlapDistance)
+			{
+				//データ更新
+				overlap = ret.m_overlapDistance;
+				//当たった座標を保存
+				hitPos = ret.m_hitPos;
+				hitFlg = true;
+			}
+		}
+
+		if (hitFlg)
+		{
+			for (auto& node : SceneManager::Instance().GetNodeList())
+			{
+				aho = (node->m_worldTransform * o->GetMatrix()).Translation();
+				//aho = node->m_worldTransform.Translation();
+				//aho = node->m_localTransform.Translation();
+				//aho = node->m_localTransform.Translation();
+				aho2 = hitPos - aho;//後で消す（ノードからの距離）
+				aho3 = hitPos - camPos;//後で消す（オブジェクトとの距離）
+				if (aho3.Length() <= 2.0f)
+				{
+					if (aho2.Length() <= 1.0f)
+					{
+						closestNode = node;
+						m_pDebugWire->AddDebugSphere(aho, 0.5f, kRedColor);
+					}
+				}
+			}
+		}
+
+		
+		//最も近いノードが見つかった場合
+		if (closestNode)
+		{
+			//持ってるオブジェクトの処理
+			for (auto& obj : SceneManager::Instance().GetObjList())
+			{
+				if (obj->GetObjType() == m_objType)
+				{
+					obj->ChangeHoldFlg(false);
+					obj->ChangeAttachFlg(true);
+					obj->ReciveOBJ(o);
+					obj->ReciveNode(closestNode);
+				}	
+			}
+			m_objType = eNone;
+			closestNode = nullptr;
+		}
+
+		m_keyFlg = true;
+	}
+	else
+	{
+		m_keyFlg = false;
+	}
+
+	Application::Instance().m_log.AddLog("X:%f\n", aho.x);//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("Y:%f\n", aho.y);//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("Z:%f\n", aho.z);//うまい事距離は取れてそう
+
+	Application::Instance().m_log.AddLog("LengthNode%f\n", aho2.Length());//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("LengthRobo%f\n", aho3.Length());//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("NODE:%d\n", SceneManager::Instance().GetNodeList().size());//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("OBJ:%d\n", SceneManager::Instance().GetObjList().size());//うまい事距離は取れてそう
+	//Application::Instance().m_log.AddLog("LengthXXXXXX%f\n", m_pos.x);
 
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 	{
@@ -108,9 +233,11 @@ void Player::Action()
 		{
 			if (obj->GetObjType() == m_objType)
 			{
-				obj->HoldFlgOff();
+				obj->ChangeHoldFlg(false);
+				obj->ChangeThrowFlg(true);
 			}
 		}
+		m_objType = eNone;
 	}
 }
 

@@ -59,6 +59,26 @@ void SceneManager::AddObject(const std::shared_ptr<KdGameObject>& obj)
 	m_currentScene->AddObject(obj);
 }
 
+//void SceneManager::AddNode(const std::shared_ptr<KdModelWork::Node>& node)
+//{
+//	m_currentScene->AddNode(node);
+//}
+
+void SceneManager::AddNode(const KdModelWork::Node*& node)
+{
+	m_currentScene->AddNode(node);
+}
+
+//const std::list<std::shared_ptr<KdModelWork::Node>>& SceneManager::GetNodeList()
+//{
+//	return m_currentScene->GetNodeList();
+//}
+
+const std::list<const KdModelWork::Node*>& SceneManager::GetNodeList()
+{
+	return m_currentScene->GetNodeList();
+}
+
 void SceneManager::ChangeScene(SceneType sceneType)
 {
 	// 次のシーンを作成し、現在のシーンにする

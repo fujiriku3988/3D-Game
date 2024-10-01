@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include"../CharacterBase.h"
+#include"../../ObjectBase.h"
 class Player;
-class CleanRobot:public CharacterBase
+class CleanRobot:public ObjectBase
 {
 public:
 	CleanRobot() {}
@@ -9,6 +9,8 @@ public:
 	
 	void Init()override;
 	void Update()override;
+
+	void AddNode()override;
 	//キャラベースで読んでる
 	//void DrawLit()override;
 	//void GenerateDepthMapFromLight()override;

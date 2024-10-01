@@ -3,7 +3,7 @@
 void Ground::Init()
 {
 	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Tile/tile1.gltf");
+	m_modelData->Load("Asset/Models/Terrain/Tile/tile1.gltf");
 	m_pos = {};
 	m_scale = { 0.7f };
 	//m_color = { 1,1,1,1 };

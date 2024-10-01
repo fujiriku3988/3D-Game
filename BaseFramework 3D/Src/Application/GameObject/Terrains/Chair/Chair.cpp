@@ -3,7 +3,7 @@
 void Chair::Init()
 {
 	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Chair/Chair2.gltf");
+	m_modelData->Load("Asset/Models/Structure/Chair/Chair2.gltf");
 	m_pos = { -2.0f,-1.5f,-1 };
 }
 

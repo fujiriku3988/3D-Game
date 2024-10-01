@@ -163,7 +163,6 @@
     <ClInclude Include="Src\Application\GameObject\Camera\FPSCamera\FPSCamera.h" />
     <ClInclude Include="Src\Application\GameObject\Camera\TPSCamera\TPSCamera.h" />
     <ClInclude Include="Src\Application\GameObject\Character\CharacterBase.h" />
-    <ClInclude Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Player\Player.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Robot\ArmRight\ArmRight.h" />
@@ -186,6 +185,9 @@
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\LegLeft\LegLeftGUI.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\LegRight\LegRightGUI.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Robot\RobotGUIBase.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\Parts\Missile\Missile.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Chair\Chair.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Desk\Desk.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Ground\Ground.h" />
@@ -274,7 +276,6 @@
     <ClCompile Include="Src\Application\GameObject\Camera\FPSCamera\FPSCamera.cpp" />
     <ClCompile Include="Src\Application\GameObject\Camera\TPSCamera\TPSCamera.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\CharacterBase.cpp" />
-    <ClCompile Include="Src\Application\GameObject\Character\CleanRobot\CleanRobot.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Player\Player.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Robot\ArmLeft\ArmLeft.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Robot\ArmRight\ArmRight.cpp" />
@@ -297,6 +298,9 @@
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\LegLeft\LegLeftGUI.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\LegRight\LegRightGUI.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Robot\RobotGUIBase.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\Parts\Missile\Missile.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Chair\Chair.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Desk\Desk.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Ground\Ground.cpp" />

@@ -11,4 +11,5 @@ public:
 	void Action();
 private:
 	void UpdateRotateByMouse();
+	bool m_keyFlg = false;
 };
