@@ -11,5 +11,8 @@ public:
 	void Action();
 private:
 	void UpdateRotateByMouse();
-	bool m_keyFlg = false;
+	//キー制御用フラグ
+	bool keyLbuuton_Flg = false;
+	bool keyRbutton_Flg = false;
+	bool keyF_Flg = false;
 };
