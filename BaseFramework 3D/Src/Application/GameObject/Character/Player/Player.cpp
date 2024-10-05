@@ -17,6 +17,10 @@ void Player::Init()
 	m_dir = {};
 	m_speed = 0.1f;
 	m_color = { 1,1,1,1 };
+	m_tex = std::make_shared<KdTexture>();
+	m_tex->Load("Asset/Textures/UI/Reticle/Reticle.png");
+	m_spritePos = {};
+	m_texSize = { 64,64 };
 }
 
 void Player::Update()
@@ -55,15 +59,21 @@ void Player::Update()
 	//Application::Instance().m_log.AddLog("LengthXXXXXX%f\n", m_pos.x);
 }
 
+void Player::DrawSprite()
+{
+	m_rect = { 0,0,(long)m_texSize.x,(long)m_texSize.y };
+	m_color = { 1,1,1,1 };
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y,64,64,&m_rect,&m_color);
+}
+
 void Player::Action()
 {
 	//当たり判定のリスト
 	std::list<KdCollider::CollisionResult> rayRetList;
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 	{
-		if (keyLbuuton_Flg == false)
+		if (keyFlg.Lbuuton == false && m_holdFlg == false)
 		{
-
 			Math::Vector3 camPos;
 			Math::Vector3 dir;
 			float range = 0;//ただの入れ物
@@ -73,7 +83,6 @@ void Player::Action()
 				camPos = m_wpCamera.lock()->GetPos();
 				m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
 			}
-			Math::Vector3 structLeng = camPos;
 
 			//レイを飛ばす
 			KdCollider::RayInfo ray;
@@ -81,9 +90,6 @@ void Player::Action()
 			ray.m_dir = dir;
 			ray.m_range = range;
 			ray.m_type = KdCollider::TypeDamage;
-
-			//m_pDebugWire->AddDebugLine(ray.m_pos, ray.m_dir, ray.m_range, kGreenColor);
-
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
@@ -108,25 +114,17 @@ void Player::Action()
 					hitPos = ret.m_hitPos;
 				}
 			}
-		keyLbuuton_Flg = true;
+			keyFlg.Lbuuton = true;
 		}
 	}
 	else
 	{
-		keyLbuuton_Flg = false;
+		keyFlg.Lbuuton = false;
 	}
 
-	Application::Instance().m_log.Clear();
-
-	Math::Vector3 aho;//後で消す
-	Math::Vector3 aho2;//後で消す
-	Math::Vector3 aho3;//後で消す
-	std::shared_ptr<KdGameObject> m = std::make_shared<ObjectBase>();
-	std::shared_ptr<KdGameObject> o = std::make_shared<ObjectBase>();
-	const KdModelWork::Node* closestNode = nullptr; // 最も近いノードを保持するポインタ
 	if (GetAsyncKeyState('F') & 0x8000)
 	{
-		if (keyF_Flg == false)
+		if (keyFlg.F == false)
 		{
 			Math::Vector3 camPos;
 			Math::Vector3 dir;
@@ -144,23 +142,20 @@ void Player::Action()
 			ray.m_dir = dir;
 			ray.m_range = range;
 			ray.m_type = KdCollider::TypeDamage;
-
+			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
-				if (obj->GetObjType() == KdGameObject::eCleanRobot)
+				if (obj->GetObjType() == KdGameObject::eBody)
 				{
 					//これがレイとオブジェクトの当たり判定
 					if (obj->Intersects(ray, &rayRetList))
 					{
-						//aho = obj->GetNodeMatrix().Translation();
-						//obj->AddNode();
-						o = obj;
+						HitObj = obj;
 					}
 				}
 			}
 
-			//一番近くの位置を探す
 			float overlap = 0;
 			Math::Vector3 hitPos;
 			bool hitFlg = false;
@@ -176,22 +171,24 @@ void Player::Action()
 				}
 			}
 
+			//当たり判定
+			Math::Vector3 nodePos;//ノードの座標
+			Math::Vector3 nodeDis;//ノードからの距離
+			Math::Vector3 objDis;//オブジェクトとの距離
+			const KdModelWork::Node* closestNode = nullptr; // 最も近いノードを保持するポインタ
 			if (hitFlg)
 			{
 				for (auto& node : SceneManager::Instance().GetNodeList())
 				{
-					aho = (node->m_worldTransform * o->GetMatrix()).Translation();
-					//aho = node->m_worldTransform.Translation();
-					//aho = node->m_localTransform.Translation();
-					//aho = node->m_localTransform.Translation();
-					aho2 = hitPos - aho;//後で消す（ノードからの距離）
-					aho3 = hitPos - camPos;//後で消す（オブジェクトとの距離）
-					if (aho3.Length() <= 2.0f)
+					nodePos = (node->m_worldTransform * HitObj->GetMatrix()).Translation();
+					nodeDis = hitPos - nodePos;//後で消す（ノードからの距離）
+					objDis = hitPos - camPos;//後で消す（オブジェクトとの距離）
+					if (objDis.Length() <= 2.0f)
 					{
-						if (aho2.Length() <= 1.0f)
+						if (nodeDis.Length() <= 1.0f)
 						{
 							closestNode = node;
-							m_pDebugWire->AddDebugSphere(aho, 0.5f, kRedColor);
+							m_pDebugWire->AddDebugSphere(nodePos, 0.5f, kRedColor);
 						}
 					}
 				}
@@ -207,35 +204,29 @@ void Player::Action()
 					{
 						obj->ChangeHoldFlg(false);
 						obj->ChangeAttachFlg(true);
-						obj->ReciveOBJ(o);
+						obj->ReciveOBJ(HitObj);
 						obj->ReciveNode(closestNode);
 					}
 				}
 				m_objType = eNone;
 				closestNode = nullptr;
 			}
-
-			keyF_Flg = true;
+			keyFlg.F = true;
 		}
 	}
 	else
 	{
-		keyF_Flg = false;
+		keyFlg.F = false;
 	}
-
-	Application::Instance().m_log.AddLog("X:%f\n", aho.x);//うまい事距離は取れてそう
-	Application::Instance().m_log.AddLog("Y:%f\n", aho.y);//うまい事距離は取れてそう
-	Application::Instance().m_log.AddLog("Z:%f\n", aho.z);//うまい事距離は取れてそう
-
-	Application::Instance().m_log.AddLog("LengthNode%f\n", aho2.Length());//うまい事距離は取れてそう
-	Application::Instance().m_log.AddLog("LengthRobo%f\n", aho3.Length());//うまい事距離は取れてそう
-	Application::Instance().m_log.AddLog("NODE:%d\n", SceneManager::Instance().GetNodeList().size());//うまい事距離は取れてそう
-	Application::Instance().m_log.AddLog("OBJ:%d\n", SceneManager::Instance().GetObjList().size());//うまい事距離は取れてそう
-	//Application::Instance().m_log.AddLog("LengthXXXXXX%f\n", m_pos.x);
+	Application::Instance().m_log.Clear();
+	Application::Instance().m_log.AddLog("NODE:%d\n", SceneManager::Instance().GetNodeList().size());
+	Application::Instance().m_log.AddLog("OBJ:%d\n", SceneManager::Instance().GetObjList().size());
+	Application::Instance().m_log.AddLog("lenNode:%f\n", nodeDis.Length());//うまい事距離は取れてそう
+	Application::Instance().m_log.AddLog("lenObj:%f\n", objDis.Length());//うまい事距離は取れてそう
 
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 	{
-		if (keyRbutton_Flg == false)
+		if (keyFlg.Rbutton == false && m_holdFlg == true)
 		{
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
@@ -246,12 +237,12 @@ void Player::Action()
 				}
 			}
 			m_objType = eNone;
-			keyRbutton_Flg = true;
+			keyFlg.Rbutton = true;
 		}
 	}
 	else
 	{
-		keyRbutton_Flg = false;
+		keyFlg.Rbutton = false;
 	}
 }
 
@@ -272,5 +263,5 @@ void Player::UpdateRotateByMouse()
 	m_degAng.y += _mouseMove.x * 0.15f;
 
 	// 回転制御
-	m_degAng.x = std::clamp(m_degAng.x, -45.f, 45.f);
+	m_degAng.x = std::clamp(m_degAng.x, -65.f, 65.f);
 }

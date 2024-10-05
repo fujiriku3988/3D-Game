@@ -4,18 +4,13 @@
 class KdGameObject : public std::enable_shared_from_this<KdGameObject>
 {
 public:
-	//ノード情報
-	struct NodeInfo
-	{
-		Math::Vector3 m_nodePos;
-	};
 
 	//オブジェクトのタイプ宣言
 	enum ObjectType
 	{
 		eNone,
-		eCleanRobot,
-		eMissile
+		eBody,
+		eParts
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
