@@ -177,8 +177,10 @@
     <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\Conver\Conver.h" />
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Parts\Missile\Missile.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Light\Light.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
@@ -260,8 +262,10 @@
     <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\Conver\Conver.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Parts\Missile\Missile.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Light\Light.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />

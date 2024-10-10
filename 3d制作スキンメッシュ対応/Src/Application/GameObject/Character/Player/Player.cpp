@@ -74,10 +74,11 @@ void Player::Action()
 	{
 		if (keyFlg.Lbuuton == false && m_holdFlg == false)
 		{
+			//レイ情報用
 			Math::Vector3 camPos;
 			Math::Vector3 dir;
-			float range = 0;//ただの入れ物
-			//ここでどこからどの方向に例を飛ばすのか情報を確立
+			float range = 0;
+			//ここでどこからどの方向にレイを飛ばすのか情報を確立
 			if (m_wpCamera.expired() == false)
 			{
 				camPos = m_wpCamera.lock()->GetPos();
@@ -99,6 +100,7 @@ void Player::Action()
 					obj->ChangeAttachFlg(false);
 					obj->ChangeHoldFlg(true);
 					m_objType = obj->GetObjType();
+					m_holdObj = obj;
 				}
 			}
 			//一番近くの位置を探す
@@ -115,6 +117,7 @@ void Player::Action()
 				}
 			}
 			keyFlg.Lbuuton = true;
+			m_holdFlg = true;
 		}
 	}
 	else
@@ -122,16 +125,36 @@ void Player::Action()
 		keyFlg.Lbuuton = false;
 	}
 
+	//持ってるものを投げる
+	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
+	{
+		if (keyFlg.Rbutton == false && m_holdFlg == true)
+		{
+			for (auto& obj : SceneManager::Instance().GetObjList())
+			{
+				m_holdObj->ChangeHoldFlg(false);
+				m_holdObj->ChangeThrowFlg(true);
+			}
+			m_objType = eNone;
+			keyFlg.Rbutton = true;
+			m_holdFlg = false;
+		}
+	}
+	else
+	{
+		keyFlg.Rbutton = false;
+	}
+
 	if (GetAsyncKeyState('F') & 0x8000)
 	{
 		if (keyFlg.F == false)
 		{
+			//レイ情報用
 			Math::Vector3 camPos;
 			Math::Vector3 dir;
 			float range = 0;//ただの入れ物
 			if (m_wpCamera.expired() == false)
 			{
-				//m_wpCamera.lock()->WorkCamera()->ConvertWorldToScreenDetail();
 				camPos = m_wpCamera.lock()->GetPos();
 				m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
 			}
@@ -197,18 +220,17 @@ void Player::Action()
 			//最も近いノードが見つかった場合
 			if (closestNode)
 			{
+				
 				//持ってるオブジェクトの処理
 				for (auto& obj : SceneManager::Instance().GetObjList())
 				{
-					if (obj->GetObjType() == m_objType)
-					{
-						obj->ChangeHoldFlg(false);
-						obj->ChangeAttachFlg(true);
-						obj->ReciveOBJ(HitObj);
-						obj->ReciveNode(closestNode);
-					}
+					m_holdObj->ChangeHoldFlg(false);
+					m_holdObj->ChangeAttachFlg(true);
+					m_holdObj->ReciveOBJ(HitObj);
+					m_holdObj->ReciveNode(closestNode);
 				}
 				m_objType = eNone;
+				m_holdFlg = false;
 				closestNode = nullptr;
 			}
 			keyFlg.F = true;
@@ -218,31 +240,44 @@ void Player::Action()
 	{
 		keyFlg.F = false;
 	}
-	Application::Instance().m_log.Clear();
-	Application::Instance().m_log.AddLog("NODE:%d\n", SceneManager::Instance().GetNodeList().size());
-	Application::Instance().m_log.AddLog("OBJ:%d\n", SceneManager::Instance().GetObjList().size());
-	//Application::Instance().m_log.AddLog("lenNode:%f\n", nodeDis.Length());//うまい事距離は取れてそう
-	//Application::Instance().m_log.AddLog("lenObj:%f\n", objDis.Length());//うまい事距離は取れてそう
 
-	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
+	//常にレイを飛ばしてレイが当たってるOBJのポインター保持してやればうまくいくんじゃね
+	if (GetAsyncKeyState('E') & 0x8000)
 	{
-		if (keyFlg.Rbutton == false && m_holdFlg == true)
+		if (keyFlg.E == false && m_holdFlg == false)
 		{
+			//レイ情報用
+			Math::Vector3 camPos;
+			Math::Vector3 dir;
+			float range = 0;//ただの入れ物
+			if (m_wpCamera.expired() == false)
+			{
+				camPos = m_wpCamera.lock()->GetPos();
+				m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+			}
+
+			//レイを飛ばす
+			KdCollider::RayInfo ray;
+			ray.m_pos = camPos;
+			ray.m_dir = dir;
+			ray.m_range = range;
+			ray.m_type = KdCollider::TypeDamage;
+			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
+
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
-				if (obj->GetObjType() == m_objType)
+				if (obj->GetObjType() == eProduceParts)
 				{
-					obj->ChangeHoldFlg(false);
-					obj->ChangeThrowFlg(true);
+					obj->ChangeProdFlg(true);
 				}
 			}
 			m_objType = eNone;
-			keyFlg.Rbutton = true;
+			keyFlg.E = true;
 		}
 	}
 	else
 	{
-		keyFlg.Rbutton = false;
+		keyFlg.E = false;
 	}
 }
 

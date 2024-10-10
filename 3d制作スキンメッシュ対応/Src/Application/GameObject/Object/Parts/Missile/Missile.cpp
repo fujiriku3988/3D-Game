@@ -28,6 +28,7 @@ void Missile::Update()
 
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
 
+	//手に持つ処理
 	if (m_holdFlg)
 	{
 		m_gravity = 0;
@@ -40,15 +41,9 @@ void Missile::Update()
 		}
 	}
 
-	//仮でクリーンロボに付ける（修正が必要）
+	//Bodyに着ける
 	if (m_attachFlg)
 	{
-		/*if (m_wpCharaBody.expired() == false)
-		{
-			std::shared_ptr<ObjectBase>spRobo = m_wpCharaBody.lock();
-			m_pos = spRobo->GetNodeMatrix().Translation();
-		}*/
-		//m_pos = { 0,5,0 };
 		if (m_reciveNode)
 		{
 			if (m_wpReciveObj.expired() == false)
@@ -59,9 +54,9 @@ void Missile::Update()
 		}
 	}
 
+	//投げる処理
 	if (m_throwFlg)
 	{
-		//m_dir = 
 		m_speed = 1.0f;
 		m_throwFlg = false;
 	}

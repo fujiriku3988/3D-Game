@@ -187,6 +187,12 @@
     <Filter Include="Src\Application\GameObject\Character\Robot\Full">
       <UniqueIdentifier>{556ee330-ef79-4dd7-b44b-84734884369f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Conver">
+      <UniqueIdentifier>{56e172b5-062c-465b-83ad-590be4141a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\ProduceParts">
+      <UniqueIdentifier>{2f4b7621-f353-4eda-ab3a-5100c156c6a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -453,6 +459,12 @@
     <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h">
       <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Conver\Conver.h">
+      <Filter>Src\Application\GameObject\Object\Conver</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.h">
+      <Filter>Src\Application\GameObject\Object\ProduceParts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -691,6 +703,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp">
       <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Conver\Conver.cpp">
+      <Filter>Src\Application\GameObject\Object\Conver</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.cpp">
+      <Filter>Src\Application\GameObject\Object\ProduceParts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

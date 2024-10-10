@@ -40,12 +40,6 @@ void CleanRobot::Update()
 			m_dir = spPlayer->GetMatrix().Backward();
 			m_dir.Normalize();
 		}
-		//m_mWorld = transMat * playerMat;
-		//m_mWorld = m_transMat;
-	}
-	else
-	{
-		//m_mWorld = m_transMat;
 	}
 
 	if (m_throwFlg)
@@ -57,20 +51,11 @@ void CleanRobot::Update()
 	if (m_speed <= 0)
 	{
 		m_speed = 0;
-		//m_dir = {};
 	}
 
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = m_transMat;
 	AddNode();
-	Application::Instance().m_log.Clear();
-	//Application::Instance().m_log.AddLog("m_speed%f\n", m_speed);
-	//Application::Instance().m_log.AddLog("m_dir%f\n", m_dir);
-	//Application::Instance().m_log.AddLog("m_posX%f\n", m_pos.x);
-	//Application::Instance().m_log.AddLog("m_posY%f\n", m_pos.y);
-	//Application::Instance().m_log.AddLog("m_posZ%f\n", m_pos.z);
-	//Application::Instance().m_log.AddLog("NODE%d\n", SceneManager::Instance().GetNodeList().size());//うまい事距離は取れてそう
-
 }
 
 void CleanRobot::AddNode()

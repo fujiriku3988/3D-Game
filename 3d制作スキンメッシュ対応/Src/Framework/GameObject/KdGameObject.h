@@ -10,7 +10,8 @@ public:
 	{
 		eNone,
 		eBody,
-		eParts
+		eParts,
+		eProduceParts
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
@@ -81,6 +82,8 @@ public:
 	void ChangeThrowFlg(bool _flg) { m_throwFlg = _flg; }
 	//オブジェクトを付けるか（true:付ける 付けたあと自動でfalse）
 	void ChangeAttachFlg(bool _flg) { m_attachFlg = _flg; }
+	//（true:付ける 付けたあと自動でfalse）
+	void ChangeProdFlg(bool _flg) { m_prodFlg = _flg; }
 	//オブジェクトのタイプ
 	ObjectType GetObjType() { return m_objType; }
 	//ノードの受け取り
@@ -118,7 +121,8 @@ protected:
 	//追加変数
 	bool m_holdFlg = false;								//手に持ってるか
 	bool m_throwFlg = false;							//なげるか
-	bool m_attachFlg = false;							//なげるか
+	bool m_attachFlg = false;							//つけるか
+	bool m_prodFlg = false;								//生産するか
 	ObjectType m_objType;								//オブジェクトタイプ
 	const KdModelWork::Node* m_reciveNode = nullptr;	//ノードの情報を受け取るよう
 	std::weak_ptr<KdGameObject>m_wpReciveObj;			//オブジェクトの情報受け取るよう

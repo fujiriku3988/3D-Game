@@ -22,6 +22,8 @@
 #include"../../GameObject/Object/Parts/Missile/Missile.h"
 #include"../../GameObject/Terrains/Stage/Stage.h"
 #include"../../GameObject/Character/Character.h"
+#include"../../GameObject/Object/Conver/Conver.h"
+#include"../../GameObject/Object/ProduceParts/ProduceParts.h"
 
 void GameDevelop::Event()
 {
@@ -49,6 +51,16 @@ void GameDevelop::Init()
 	stage->Init();
 	AddObject(stage);
 
+	//コンベアー
+	std::shared_ptr<Conver> conver = std::make_shared<Conver>();
+	conver->Init();
+	AddObject(conver);
+
+	//パーツ出す箱
+	std::shared_ptr<ProduceParts> prodParts = std::make_shared<ProduceParts>();
+	prodParts->Init();
+	AddObject(prodParts);
+
 
 	//クリーンロボ
 	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
@@ -58,8 +70,7 @@ void GameDevelop::Init()
 	//ミサイル
 	std::shared_ptr<Missile> missile = std::make_shared<Missile>();
 	missile->Init();
-	missile->SetCharaBody(cRobo);
-	AddObject(missile);
+	//AddObject(missile);
 
 	//プレイヤー
 	std::shared_ptr<Player> player = std::make_shared<Player>();
@@ -82,4 +93,5 @@ void GameDevelop::Init()
 	player->SetCamera(camera);
 	cRobo->SetPlayer(player);
 	missile->SetPlayer(player);
+	prodParts->SetPlayer(player);
 }
