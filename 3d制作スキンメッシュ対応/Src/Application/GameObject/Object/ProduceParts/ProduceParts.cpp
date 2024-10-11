@@ -14,7 +14,7 @@ void ProduceParts::Init()
 	m_gravityPow = 0.004f;
 	m_color = { 1,1,1,1 };
 	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("PartsBox", m_modelWork, KdCollider::TypeDamage);
+	m_pCollider->RegisterCollisionShape("PartsBox", m_modelWork, KdCollider::TypeEvent);
 	m_objType = eProduceParts;
 }
 

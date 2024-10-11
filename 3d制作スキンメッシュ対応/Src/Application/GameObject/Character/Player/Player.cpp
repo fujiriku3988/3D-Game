@@ -18,9 +18,9 @@ void Player::Init()
 	m_speed = 0.1f;
 	m_color = { 1,1,1,1 };
 	m_tex = std::make_shared<KdTexture>();
-	m_tex->Load("Asset/Textures/UI/Reticle/Reticle.png");
+	m_tex->Load("Asset/Textures/UI/Reticle/Dot.png");
 	m_spritePos = {};
-	m_texSize = { 64,64 };
+	m_texSize = { 16,16 };
 }
 
 void Player::Update()
@@ -63,7 +63,7 @@ void Player::DrawSprite()
 {
 	m_rect = { 0,0,(long)m_texSize.x,(long)m_texSize.y };
 	m_color = { 1,1,1,1 };
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y,64,64,&m_rect,&m_color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y,16,16,&m_rect,&m_color);
 }
 
 void Player::Action()
@@ -220,7 +220,6 @@ void Player::Action()
 			//最も近いノードが見つかった場合
 			if (closestNode)
 			{
-				
 				//持ってるオブジェクトの処理
 				for (auto& obj : SceneManager::Instance().GetObjList())
 				{
@@ -261,16 +260,40 @@ void Player::Action()
 			ray.m_pos = camPos;
 			ray.m_dir = dir;
 			ray.m_range = range;
-			ray.m_type = KdCollider::TypeDamage;
+			ray.m_type = KdCollider::TypeEvent;
 			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
 				if (obj->GetObjType() == eProduceParts)
 				{
-					obj->ChangeProdFlg(true);
+					//これがレイとオブジェクトの当たり判定
+					if (obj->Intersects(ray, &rayRetList))
+					{
+						HitObj = obj;
+					}
 				}
 			}
+
+			//レイが当たった場合数値の更新
+			float overlap = 0;
+			bool hitFlg = false;
+			for (auto& ret : rayRetList)
+			{
+				if (overlap < ret.m_overlapDistance)
+				{
+					//データ更新
+					overlap = ret.m_overlapDistance;
+					hitFlg = true;
+				}
+			}
+
+			//当たっているなら
+			if (hitFlg)
+			{
+				HitObj->ChangeProdFlg(true);
+			}
+
 			m_objType = eNone;
 			keyFlg.E = true;
 		}
