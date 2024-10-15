@@ -54,10 +54,8 @@ public:
 	void SetNextMode(ModeType nextMode) { m_nowModeType = nextMode; }
 
 	//ノードリスト追加するやつ
-	//void AddNode(const std::shared_ptr<KdModelWork::Node>& node);
 	void AddNode(const KdModelWork::Node*& node);
 
-	//const std::list<std::shared_ptr<KdModelWork::Node>>& GetNodeList();
 	const std::list<const KdModelWork::Node*>& GetNodeList();
 
 	//==========追加===============//

@@ -5,13 +5,21 @@ class KdGameObject : public std::enable_shared_from_this<KdGameObject>
 {
 public:
 
+	enum ContainerType
+	{
+		eNoneCont,
+		eMissile,
+	};
+
 	//オブジェクトのタイプ宣言
 	enum ObjectType
 	{
 		eNone,
 		eBody,
 		eParts,
-		eProduceParts
+		eProduceParts,
+		eConver,
+		eContainer,
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
@@ -90,6 +98,10 @@ public:
 	void ReciveNode(const KdModelWork::Node* _node) { m_reciveNode = _node; }
 	//オブジェクトの情報受け取り
 	void ReciveOBJ(std::shared_ptr<KdGameObject> _obj) { m_wpReciveObj = _obj; }
+	//コンテナのタイプ
+	ContainerType GetContType() { return m_contType; }
+	//コンテナにしまわれてる数miss→KdGameObject
+	int PartsHoldNumber() { return m_storeParts; }
 
 	const Math::Matrix GetNodeMatrix()const
 	{
@@ -127,4 +139,6 @@ protected:
 	const KdModelWork::Node* m_reciveNode = nullptr;	//ノードの情報を受け取るよう
 	std::weak_ptr<KdGameObject>m_wpReciveObj;			//オブジェクトの情報受け取るよう
 	Math::Matrix m_nodeMat;								//ノード情報格納用
+	int m_storeParts;									//コンテナにあるパーツ数
+	ContainerType m_contType;							//コンテナに入ってるパーツ
 };

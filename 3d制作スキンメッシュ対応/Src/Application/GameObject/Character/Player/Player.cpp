@@ -3,6 +3,7 @@
 #include"../../../Scene/SceneManager.h"
 #include"../../../GameObject/Terrains/TerrainBase.h"
 #include"../../../GameObject/Object/ObjectBase.h"
+#include"../../../GameObject/Object/Parts/Missile/Missile.h"
 #include"../../../main.h"
 
 void Player::Init()
@@ -63,7 +64,7 @@ void Player::DrawSprite()
 {
 	m_rect = { 0,0,(long)m_texSize.x,(long)m_texSize.y };
 	m_color = { 1,1,1,1 };
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y,16,16,&m_rect,&m_color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y, 16, 16, &m_rect, &m_color);
 }
 
 void Player::Action()
@@ -97,6 +98,10 @@ void Player::Action()
 				//これがレイとオブジェクトの当たり判定
 				if (obj->Intersects(ray, &rayRetList))
 				{
+					//＝＝＝＝＝＝＝＝＝＝//
+					//ここ改善必要あり
+					// OBJがeNoneならFlgとか変えない
+					//＝＝＝＝＝＝＝＝＝＝//
 					obj->ChangeAttachFlg(false);
 					obj->ChangeHoldFlg(true);
 					m_objType = obj->GetObjType();
@@ -132,12 +137,16 @@ void Player::Action()
 		{
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
-				m_holdObj->ChangeHoldFlg(false);
-				m_holdObj->ChangeThrowFlg(true);
+				if (m_holdObj)
+				{
+					m_holdObj->ChangeHoldFlg(false);
+					m_holdObj->ChangeThrowFlg(true);
+				}
 			}
 			m_objType = eNone;
-			keyFlg.Rbutton = true;
 			m_holdFlg = false;
+			m_holdObj = nullptr;
+			keyFlg.Rbutton = true;
 		}
 	}
 	else
@@ -147,7 +156,7 @@ void Player::Action()
 
 	if (GetAsyncKeyState('F') & 0x8000)
 	{
-		if (keyFlg.F == false)
+		if (keyFlg.F == false && m_holdFlg == true)
 		{
 			//レイ情報用
 			Math::Vector3 camPos;
@@ -231,6 +240,85 @@ void Player::Action()
 				m_objType = eNone;
 				m_holdFlg = false;
 				closestNode = nullptr;
+			}
+			keyFlg.F = true;
+		}
+
+		//コンテナからパーツ取りだし
+		if (keyFlg.F == false && m_holdFlg == false)
+		{
+			//レイ情報用
+			Math::Vector3 camPos;
+			Math::Vector3 dir;
+			float range = 0;//ただの入れ物
+			if (m_wpCamera.expired() == false)
+			{
+				camPos = m_wpCamera.lock()->GetPos();
+				m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+			}
+
+			//レイを飛ばす
+			KdCollider::RayInfo ray;
+			ray.m_pos = camPos;
+			ray.m_dir = dir;
+			ray.m_range = range;
+			ray.m_type = KdCollider::TypeDamage;
+			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
+
+			for (auto& obj : SceneManager::Instance().GetObjList())
+			{
+				if (obj->GetObjType() == KdGameObject::eContainer)
+				{
+					//これがレイとオブジェクトの当たり判定
+					if (obj->Intersects(ray, &rayRetList))
+					{
+						HitObj = obj;
+					}
+				}
+			}
+
+			float overlap = 0;
+			Math::Vector3 hitPos;
+			bool hitFlg = false;
+			for (auto& ret : rayRetList)
+			{
+				if (overlap < ret.m_overlapDistance)
+				{
+					//データ更新
+					overlap = ret.m_overlapDistance;
+					//当たった座標を保存
+					hitPos = ret.m_hitPos;
+					hitFlg = true;
+				}
+			}
+
+			int holdNumber = 0;
+			ContainerType nowType = eNoneCont;
+			if (hitFlg)
+			{
+				holdNumber = HitObj->PartsHoldNumber();
+				nowType = HitObj->GetContType();
+			}
+
+			if (holdNumber > 0)
+			{
+				std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(shared_from_this());
+				switch (nowType)
+				{
+				case eMissile:
+					std::shared_ptr<ObjectBase> parts = std::make_shared<Missile>();
+					parts->Init();
+					parts->SetPos({ 0,2,0 });
+					parts->SetScale({ 0.2f,0.2f,0.2f });
+					parts->SetRotZ(DirectX::XMConvertToRadians(270));
+					parts->SetPlayer(player);
+					parts->ChangeHoldFlg(true);
+					SceneManager::Instance().AddObject(parts);
+					m_holdFlg = true;
+					m_holdObj = parts;
+					//m_objType = HitObj->GetObjType();
+					break;
+				}
 			}
 			keyFlg.F = true;
 		}

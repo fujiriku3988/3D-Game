@@ -193,6 +193,9 @@
     <Filter Include="Src\Application\GameObject\Object\ProduceParts">
       <UniqueIdentifier>{2f4b7621-f353-4eda-ab3a-5100c156c6a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Container">
+      <UniqueIdentifier>{6eb34e2b-1344-4142-95a0-65449da50244}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -465,6 +468,9 @@
     <ClInclude Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.h">
       <Filter>Src\Application\GameObject\Object\ProduceParts</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Container\Container.h">
+      <Filter>Src\Application\GameObject\Object\Container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -709,6 +715,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\ProduceParts\ProduceParts.cpp">
       <Filter>Src\Application\GameObject\Object\ProduceParts</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Container\Container.cpp">
+      <Filter>Src\Application\GameObject\Object\Container</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

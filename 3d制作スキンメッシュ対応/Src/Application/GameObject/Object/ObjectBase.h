@@ -1,5 +1,8 @@
 ﻿#pragma once
 class CameraBase;
+class Player;
+class ProduceParts;//いらんかも
+class Container;
 class ObjectBase :public KdGameObject
 {
 public:
@@ -25,36 +28,40 @@ public:
 	//地面当たり判定
 	void CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust);
 
-	void SetCamera(std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
-	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
+	//カメラのポインタセット
+	void SetCamera(const std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
+	//プレイヤーのポインタセット
+	void SetPlayer(std::shared_ptr<Player>_player) { m_wpPlayer = _player; }
+	//生成器ポインタセット
+	void SetProdParts(std::shared_ptr<ProduceParts>_parts) { m_wpProdParts = _parts; }//いらんかも
+	//コンテナポインタセット
+	void SetContainer(std::shared_ptr<Container>_container) { m_wpContainer = _container; }
+	//座標のセット
+	void SetPos(const Math::Vector3& _pos) { m_pos = _pos; }
+	//拡縮値セット
+	void SetScale(const Math::Vector3& _scale) { m_scale = _scale; }
+	//回転値セット（X軸）
+	void SetRotX(const float& _rot) { m_rot.x = _rot; }
+	//回転値セット（Z軸）
+	void SetRotZ(const float& _rot) { m_rot.z = _rot; }
+	//HitFlgをTrueに
 	void HitFlgOn() { m_hitFlg = true; }
-
-	const Math::Matrix GetRotationMatrix()const
-	{
-		return Math::Matrix::CreateFromYawPitchRoll(
-			DirectX::XMConvertToRadians(m_degAng.y),
-			DirectX::XMConvertToRadians(m_degAng.x),
-			DirectX::XMConvertToRadians(m_degAng.z));
-	}
-
-	const Math::Matrix GetRotationYMatrix() const
-	{
-		return Math::Matrix::CreateRotationY(
-			DirectX::XMConvertToRadians(m_degAng.y));
-	}
-
 protected:
-	// カメラ回転用マウス座標の差分
-	POINT m_FixMousePos{};
-	// カメラ回転用角度
-	Math::Vector3 m_degAng = Math::Vector3::Zero;
 	//モデル用
 	std::shared_ptr<KdSquarePolygon>m_poly = nullptr;
 	std::shared_ptr<KdModelWork>m_modelWork = nullptr;
-	std::shared_ptr<KdModelData>m_modelData = nullptr;
 	//カメラの情報取るよう
 	std::weak_ptr<CameraBase>m_wpCamera;
 	std::shared_ptr<CameraBase>m_spCamera;
+	//プレイヤーの情報
+	std::weak_ptr<Player>m_wpPlayer;
+	std::shared_ptr<Player>m_spPlayer;
+	//パーツ生成器の情報
+	std::weak_ptr<ProduceParts>m_wpProdParts;//いらんかも
+	std::shared_ptr<ProduceParts>m_spProdParts;//いらんかも
+	//コンテナの情報
+	std::weak_ptr<Container>m_wpContainer;
+	std::shared_ptr<Container>m_spContainer;
 	//ノード用
 	const KdModelWork::Node* m_pNode;
 	bool m_addNodeFlg = true;//trueで追加後falseに変換

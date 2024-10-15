@@ -24,6 +24,7 @@
 #include"../../GameObject/Character/Character.h"
 #include"../../GameObject/Object/Conver/Conver.h"
 #include"../../GameObject/Object/ProduceParts/ProduceParts.h"
+#include"../../GameObject/Object/Container/Container.h"
 
 void GameDevelop::Event()
 {
@@ -61,6 +62,10 @@ void GameDevelop::Init()
 	prodParts->Init();
 	AddObject(prodParts);
 
+	//パーツを格納する箱
+	std::shared_ptr<Container> container = std::make_shared<Container>();
+	container->Init();
+	AddObject(container);
 
 	//クリーンロボ
 	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
@@ -93,5 +98,7 @@ void GameDevelop::Init()
 	player->SetCamera(camera);
 	cRobo->SetPlayer(player);
 	missile->SetPlayer(player);
+	prodParts->SetContainer(container);
+	//missile->SetProdParts(prodParts);
 	prodParts->SetPlayer(player);
 }

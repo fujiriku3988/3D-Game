@@ -3,11 +3,11 @@
 
 void ObjectBase::Init()
 {
+	//基本変数
 	m_pos = { };
 	m_scale = { 1 };
 	m_spritePos = {};
 	m_poly = nullptr;
-	m_modelData = nullptr;
 	m_scaleMat = Math::Matrix::Identity;
 	m_transMat = Math::Matrix::Identity;
 	m_nodeMat = Math::Matrix::Identity;
@@ -18,6 +18,7 @@ void ObjectBase::Init()
 	m_gravity = 0.0f;
 	m_gravityPow = 0.0f;
 	m_speed = 0.0f;
+	//アニメーション関連
 	m_animeCnt = 0;
 	m_animeCntMAX = 0;
 	m_anime.count = 0;
@@ -26,17 +27,14 @@ void ObjectBase::Init()
 	m_vol.damage = 1.0f;
 	//デバッグ用
 	m_pDebugWire = std::make_unique<KdDebugWireFrame>();
-	//画面中央座標
-	m_FixMousePos.x = 640;
-	m_FixMousePos.y = 360;
-	//カメラ変数
-	m_degAng = {};
 	//フラグ
 	m_hitFlg = false;
 	m_holdFlg = false;
 	m_throwFlg = false;
 	m_attachFlg = false;
 	m_addNodeFlg = true;
+	//コンテナ
+	m_storeParts = 0;
 }
 
 void ObjectBase::PreUpdate()
@@ -53,10 +51,6 @@ void ObjectBase::PostUpdate()
 
 void ObjectBase::DrawLit()
 {
-	if (m_modelData)
-	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelData, m_mWorld, m_color);
-	}
 	if (m_modelWork)
 	{
 		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);

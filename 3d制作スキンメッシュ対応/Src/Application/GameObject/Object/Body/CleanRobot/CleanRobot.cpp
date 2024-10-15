@@ -7,7 +7,7 @@ void CleanRobot::Init()
 {
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Structure/CleanRobot/cleanRobot.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/Body/CleanRobot/cleanRobot.gltf");
 	m_pos = { 2,1,0 };
 	m_adjustHeight = -0.8f;
 	m_gravity = 0.0f;
@@ -20,6 +20,10 @@ void CleanRobot::Init()
 
 void CleanRobot::Update()
 {
+	//ノード追加
+	{
+		AddNode();
+	}
 	m_pos += m_dir * m_speed;
 	//m_gravity += m_gravityPow;
 	m_speed -= 0.1f;
@@ -34,10 +38,10 @@ void CleanRobot::Update()
 		m_gravity = 0;
 		if (m_wpPlayer.expired() == false)
 		{
-			std::shared_ptr<Player>spPlayer = m_wpPlayer.lock();
-			playerMat = Math::Matrix::CreateTranslation(spPlayer->GetPos());
-			m_pos = spPlayer->GetPos();
-			m_dir = spPlayer->GetMatrix().Backward();
+			m_spPlayer = m_wpPlayer.lock();
+			playerMat = Math::Matrix::CreateTranslation(m_spPlayer->GetPos());
+			m_pos = m_spPlayer->GetPos();
+			m_dir = m_spPlayer->GetMatrix().Backward();
 			m_dir.Normalize();
 		}
 	}
@@ -55,21 +59,16 @@ void CleanRobot::Update()
 
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = m_transMat;
-	AddNode();
 }
 
 void CleanRobot::AddNode()
 {
+	//引数で値渡して使いやすくしてもいい
 	if (m_modelWork)
 	{
-		//blenderで作成したNULLポイントノードを探して取得
-		//const KdModelWork::Node* pNode = m_modelWork->FindNode("Right");
-
-		//指定ノードができたら
-		//m_nodeMat = node->m_worldTransform * m_transMat;
-		//node = m_modelWork->FindNode("Right");
 		if (m_addNodeFlg)
 		{
+			//ノード追加
 			m_pNode = m_modelWork->FindNode("Right");
 			if (m_pNode) { SceneManager::Instance().AddNode(m_pNode); }
 			m_pNode = m_modelWork->FindNode("Left");

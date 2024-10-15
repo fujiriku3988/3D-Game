@@ -4,7 +4,7 @@ void Conver::Init()
 {
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Structure/Conver/Conver.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/Structure/Conver/Conver.gltf");
 	m_pos = { -5,0,5 };
 	m_adjustHeight = -0.0f;
 	m_gravity = 0.0f;
@@ -12,7 +12,7 @@ void Conver::Init()
 	m_color = { 1,1,1,1 };
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("Conver", m_modelWork, KdCollider::TypeDamage);
-	m_objType = eNone;
+	m_objType = eConver;
 }
 
 void Conver::Update()
