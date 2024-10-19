@@ -60,3 +60,11 @@ bool KdGameObject::Intersects(const KdCollider::RayInfo& targetShape, std::list<
 
 	return m_pCollider->Intersects(targetShape, m_mWorld, pResults);
 }
+
+void KdGameObject::AddConnectedPart(std::shared_ptr<KdGameObject> part)
+{
+	if (part && std::find(m_connectedParts.begin(), m_connectedParts.end(), part) == m_connectedParts.end())
+	{
+		m_connectedParts.push_back(part);
+	}
+}

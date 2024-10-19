@@ -18,13 +18,16 @@
 //#include"../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
 //#include"../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
 #include"../../CSV/Rank/RankCalc.h"
-#include"../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
-#include"../../GameObject/Object/Parts/Missile/Missile.h"
+
 #include"../../GameObject/Terrains/Stage/Stage.h"
 #include"../../GameObject/Character/Character.h"
+
+#include"../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
+#include"../../GameObject/Object/Parts/Missile/Missile.h"
 #include"../../GameObject/Object/Conver/Conver.h"
 #include"../../GameObject/Object/ProduceParts/ProduceParts.h"
 #include"../../GameObject/Object/Container/Container.h"
+#include"../../GameObject/Object/CardBoard/CardBoard.h"
 
 void GameDevelop::Event()
 {
@@ -67,20 +70,26 @@ void GameDevelop::Init()
 	container->Init();
 	AddObject(container);
 
+	//段ボール
+	std::shared_ptr<CardBoard> cardBoard = std::make_shared<CardBoard>();
+	cardBoard->Init();
+	AddObject(cardBoard);
+
 	//クリーンロボ
 	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
 	cRobo->Init();
 	AddObject(cRobo);
+
+	//プレイヤー
+	std::shared_ptr<Player> player = std::make_shared<Player>();
+	player->Init();
+	AddObject(player);
 
 	//ミサイル
 	std::shared_ptr<Missile> missile = std::make_shared<Missile>();
 	missile->Init();
 	//AddObject(missile);
 
-	//プレイヤー
-	std::shared_ptr<Player> player = std::make_shared<Player>();
-	player->Init();
-	AddObject(player);
 
 	//宝箱（アニメーションテスト用）
 	//std::shared_ptr<Character> cha = std::make_shared<Character>();

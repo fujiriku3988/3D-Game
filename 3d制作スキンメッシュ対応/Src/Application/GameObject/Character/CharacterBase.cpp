@@ -36,6 +36,7 @@ void CharacterBase::Init()
 	m_hitFlg = false;
 	m_holdFlg = false;
 	m_throwFlg = false;
+	m_addNodeFlg = true;
 }
 
 void CharacterBase::PreUpdate()
@@ -127,3 +128,9 @@ void CharacterBase::CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCo
 		m_gravity = 0;
 	}
 }
+
+void CharacterBase::AddNode()
+{
+	
+}
+

@@ -9,8 +9,9 @@ public:
 	void Init()override;
 	void Update()override;
 	void DrawSprite()override;
-	void Action();
+	void AddNode()override;
 private:
+	void Action();
 	void UpdateRotateByMouse();
 	//キー制御用フラグ
 	struct KeyFlgControl

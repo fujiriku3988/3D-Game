@@ -1,12 +1,12 @@
 ﻿#pragma once
 #include"../ObjectBase.h"
 class Player;
-class Container :public ObjectBase
+class CardBoard :public ObjectBase
 {
 public:
 
-	Container() {}
-	~Container() override {}
+	CardBoard() {}
+	~CardBoard() override {}
 
 	void Init()override;
 	void Update()override;

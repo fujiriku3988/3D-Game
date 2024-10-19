@@ -9,8 +9,8 @@
 void Player::Init()
 {
 	CharacterBase::Init();
-	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Tank/Tank.gltf");
+	m_modelWork = std::make_shared<KdModelWork>();
+	m_modelWork->SetModelData("Asset/Models/Character/Player/Player.gltf");
 	m_adjustHeight = 1.7f;
 	m_pos = { 0,m_adjustHeight ,0 };
 	m_gravity = 0.0f;
@@ -26,6 +26,11 @@ void Player::Init()
 
 void Player::Update()
 {
+	//ノード追加
+	{
+		AddNode();
+	}
+
 	if (m_wpCamera.expired() == false)
 	{
 		m_spCamera = m_wpCamera.lock();
@@ -34,6 +39,7 @@ void Player::Update()
 	//後で消す
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000) { m_pos.y += 1.0f; }
 
+	//プレイヤーの各操作
 	Action();
 
 	//移動
@@ -57,7 +63,6 @@ void Player::Update()
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = m_rotationMat * m_transMat;
 
-	//Application::Instance().m_log.AddLog("LengthXXXXXX%f\n", m_pos.x);
 }
 
 void Player::DrawSprite()
@@ -102,15 +107,18 @@ void Player::Action()
 					//ここ改善必要あり
 					// OBJがeNoneならFlgとか変えない
 					//＝＝＝＝＝＝＝＝＝＝//
-					obj->ChangeAttachFlg(false);
-					obj->ChangeHoldFlg(true);
-					m_objType = obj->GetObjType();
+					//m_objType = obj->GetObjType();
+					//obj->ChangeAttachFlg(false);
+					//obj->ChangeHoldFlg(true);
 					m_holdObj = obj;
+					m_objType = obj->GetObjType();
 				}
 			}
+
 			//一番近くの位置を探す
 			float overlap = 0;
 			Math::Vector3 hitPos;
+			bool hitFlg = false;
 			for (auto& ret : rayRetList)
 			{
 				if (overlap < ret.m_overlapDistance)
@@ -119,10 +127,24 @@ void Player::Action()
 					overlap = ret.m_overlapDistance;
 					//当たった座標を保存
 					hitPos = ret.m_hitPos;
+					hitFlg = true;
+				}
+			}
+
+			//当たっていたら
+			if (hitFlg)
+			{
+				//m_objType = m_holdObj->GetObjType();
+				if (m_objType != eNone && m_objType != eContainer &&
+					m_objType != eConver && m_objType != eProduceParts &&
+					m_objType != eCardBoard)
+				{
+					m_holdObj->ChangeAttachFlg(false);
+					m_holdObj->ChangeHoldFlg(true);
+					m_holdFlg = true;
 				}
 			}
 			keyFlg.Lbuuton = true;
-			m_holdFlg = true;
 		}
 	}
 	else
@@ -229,14 +251,15 @@ void Player::Action()
 			//最も近いノードが見つかった場合
 			if (closestNode)
 			{
-				//持ってるオブジェクトの処理
-				for (auto& obj : SceneManager::Instance().GetObjList())
-				{
-					m_holdObj->ChangeHoldFlg(false);
-					m_holdObj->ChangeAttachFlg(true);
-					m_holdObj->ReciveOBJ(HitObj);
-					m_holdObj->ReciveNode(closestNode);
-				}
+				//各OBJのフラグやポインタの処理
+				m_holdObj->ChangeHoldFlg(false);
+				m_holdObj->ChangeAttachFlg(true);
+				m_holdObj->ReciveOBJ(HitObj);
+				m_holdObj->ReciveNode(closestNode);
+				//接続してるならお互いにリストに追加する
+				HitObj->AddConnectedPart(m_holdObj);
+				m_holdObj->AddConnectedPart(HitObj);
+
 				m_objType = eNone;
 				m_holdFlg = false;
 				closestNode = nullptr;
@@ -389,6 +412,72 @@ void Player::Action()
 	else
 	{
 		keyFlg.E = false;
+	}
+
+	if (GetAsyncKeyState('R') & 0x8000)
+	{
+		//レイ情報用
+		Math::Vector3 camPos;
+		Math::Vector3 dir;
+		float range = 0;//ただの入れ物
+		if (m_wpCamera.expired() == false)
+		{
+			camPos = m_wpCamera.lock()->GetPos();
+			m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+		}
+
+		//レイを飛ばす
+		KdCollider::RayInfo ray;
+		ray.m_pos = camPos;
+		ray.m_dir = dir;
+		ray.m_range = range;
+		ray.m_type = KdCollider::TypeEvent;
+		std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持//レイ情報用
+
+		for (auto& obj : SceneManager::Instance().GetObjList())
+		{
+			if (obj->GetObjType() == eCardBoard)
+			{
+				//これがレイとオブジェクトの当たり判定
+				if (obj->Intersects(ray, &rayRetList))
+				{
+					HitObj = obj;
+				}
+			}
+		}
+
+		//レイが当たった場合数値の更新
+		float overlap = 0;
+		bool hitFlg = false;
+		for (auto& ret : rayRetList)
+		{
+			if (overlap < ret.m_overlapDistance)
+			{
+				//データ更新
+				overlap = ret.m_overlapDistance;
+				hitFlg = true;
+			}
+		}
+
+		//当たっているなら
+		if (hitFlg)
+		{
+			HitObj->ChangeProdFlg(true);
+		}
+	}
+}
+
+void Player::AddNode()
+{
+	if (m_modelWork)
+	{
+		if (m_addNodeFlg)
+		{
+			//ノード追加
+			m_pNode = m_modelWork->FindNode("hold");
+			if (m_pNode) { SceneManager::Instance().AddNode(m_pNode); }
+			m_addNodeFlg = false;
+		}
 	}
 }
 

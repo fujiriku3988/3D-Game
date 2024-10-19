@@ -6,6 +6,7 @@
 #include"../../../Object/Container/Container.h"
 
 #include"../../../../main.h"
+#include"../../../../Scene/SceneManager.h"
 
 void Missile::Init()
 {
@@ -13,7 +14,7 @@ void Missile::Init()
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_modelWork->SetModelData("Asset/Models/Object/Parts/Missile/missile.gltf");
 	m_pos = { 0,0,0 };
-	m_adjustHeight = -0.0f;
+	m_adjustHeight = 0.5f;
 	m_gravity = 0.0f;
 	m_gravityPow = 0.004f;
 	m_color = { 1,1,1,1 };
@@ -25,25 +26,30 @@ void Missile::Init()
 void Missile::Update()
 {
 	m_pos += m_dir * m_speed;
-	//m_gravity += m_gravityPow;
+	m_gravity += m_gravityPow;
 	m_pos.y += -m_gravity;
 	//スピード計算
 	m_speed -= 0.1f;
 
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
-	Math::Matrix playerMat;
+	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeDamage, m_adjustHeight);
+
+	Math::Matrix playerRotMat;
 	//手に持つ処理
 	if (m_holdFlg)
 	{
-		Math::Vector3 adjust = { 0,0,1 };
-		//Math::Matrix adjust = Math::Matrix::CreateTranslation({ 0,0,2 });
 		m_gravity = 0;
 		if (m_wpPlayer.expired() == false)
 		{
-			//プレイヤーの前にノード持たせればいいなじゃね？
 			m_spPlayer = m_wpPlayer.lock();
-			m_pos = m_spPlayer->GetPos() + adjust;
-			//playerMat = m_spPlayer->GetMatrix();//* adjust;
+			for (auto& node : SceneManager::Instance().GetNodeList())
+			{
+				if (node->m_name == "hold")
+				{
+					m_pos = (node->m_worldTransform * m_spPlayer->GetMatrix()).Translation();
+					m_rotationMat = m_spPlayer->GetRotationMatrix();
+				}
+			}
 			m_dir = m_spPlayer->GetMatrix().Backward();
 			m_dir.Normalize();
 		}
@@ -96,14 +102,40 @@ void Missile::Update()
 		}
 	}
 
+	//UpdateRotateByMouse();
+
 	if (m_speed <= 0) { m_speed = 0; }
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_scaleMat = Math::Matrix::CreateScale(m_scale);
 	m_rotMatZ = Math::Matrix::CreateRotationZ(m_rot.z);
-	m_mWorld = m_scaleMat * m_rotMatZ * m_transMat;
+	//m_mWorld = m_scaleMat * m_rotMatZ * playerRotMat * m_transMat;
+	m_mWorld = m_scaleMat * m_rotMatZ * m_rotationMat * m_transMat;
+
+	//Application::Instance().m_log.Clear();
+	//Application::Instance().m_log.AddLog("ConnectMissile:%d\n", m_connectedParts.size());
 }
 
 void Missile::PostUpdate()
 {
 
+}
+
+void Missile::UpdateRotateByMouse()
+{
+	// マウスでカメラを回転させる処理
+	POINT _nowPos;
+	GetCursorPos(&_nowPos);
+
+	POINT _mouseMove{};
+	_mouseMove.x = _nowPos.x - m_FixMousePos.x;
+	_mouseMove.y = _nowPos.y - m_FixMousePos.y;
+
+	SetCursorPos(m_FixMousePos.x, m_FixMousePos.y);
+
+	// 実際にカメラを回転させる処理(0.15はただの補正値)
+	m_degAng.x += _mouseMove.y * 0.15f;
+	m_degAng.y += _mouseMove.x * 0.15f;
+
+	// 回転制御
+	m_degAng.x = std::clamp(m_degAng.x, -65.f, 65.f);
 }

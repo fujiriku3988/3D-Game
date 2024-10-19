@@ -196,6 +196,9 @@
     <Filter Include="Src\Application\GameObject\Object\Container">
       <UniqueIdentifier>{6eb34e2b-1344-4142-95a0-65449da50244}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\Object\CardBoard">
+      <UniqueIdentifier>{759282d9-ad9e-41b7-bc93-2725f203bafa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -471,6 +474,9 @@
     <ClInclude Include="Src\Application\GameObject\Object\Container\Container.h">
       <Filter>Src\Application\GameObject\Object\Container</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\CardBoard\CardBoard.h">
+      <Filter>Src\Application\GameObject\Object\CardBoard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -718,6 +724,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\Container\Container.cpp">
       <Filter>Src\Application\GameObject\Object\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\CardBoard\CardBoard.cpp">
+      <Filter>Src\Application\GameObject\Object\CardBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

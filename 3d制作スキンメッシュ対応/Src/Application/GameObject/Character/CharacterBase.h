@@ -23,6 +23,8 @@ public:
 	void GenerateDepthMapFromLight()override;
 	void CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust);
 
+	virtual void AddNode();//ノード追加用
+
 	void SetCamera(std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
 	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
 	void MoveFlgOn() { m_moveFlg = true; }
@@ -62,6 +64,9 @@ protected:
 	//オブジェクトの情報とるよう
 	std::weak_ptr<ObjectBase>m_wpObj;
 	std::shared_ptr<ObjectBase>m_spObj;
+	//ノード用
+	const KdModelWork::Node* m_pNode;
+	bool m_addNodeFlg = true;//trueで追加後falseに変換
 	//２D描画するよう
 	std::shared_ptr<KdTexture> m_tex;
 	Math::Vector2 m_texSize;//画像サイズ

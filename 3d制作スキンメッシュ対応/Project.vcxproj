@@ -177,6 +177,7 @@
     <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\CardBoard\CardBoard.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Container\Container.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Conver\Conver.h" />
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
@@ -263,6 +264,7 @@
     <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Body\CleanRobot\CleanRobot.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\CardBoard\CardBoard.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Container\Container.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Conver\Conver.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />

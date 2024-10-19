@@ -10,7 +10,7 @@ void ObjectBase::Init()
 	m_poly = nullptr;
 	m_scaleMat = Math::Matrix::Identity;
 	m_transMat = Math::Matrix::Identity;
-	m_nodeMat = Math::Matrix::Identity;
+	//m_nodeMat = Math::Matrix::Identity;
 	m_rotMatX = Math::Matrix::Identity;
 	m_rotMatY = Math::Matrix::Identity;
 	m_rotMatZ = Math::Matrix::Identity;

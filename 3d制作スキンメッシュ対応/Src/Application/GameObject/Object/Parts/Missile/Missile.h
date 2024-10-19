@@ -11,4 +11,5 @@ public:
 	void Update()override;
 	void PostUpdate()override;
 private:
+	void UpdateRotateByMouse();
 };

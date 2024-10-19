@@ -42,7 +42,6 @@ public :
 	void AddNode(const KdModelWork::Node* node)
 	{
 		m_nodeList.push_back(node);
-		//m_nodeList.push_back(node);
 	}
 
 	//const std::list<std::shared_ptr<KdGameObject>>& GetNodeList()const { return m_nodeList; }

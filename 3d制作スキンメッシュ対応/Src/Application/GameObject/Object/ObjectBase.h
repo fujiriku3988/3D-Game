@@ -28,6 +28,14 @@ public:
 	//地面当たり判定
 	void CollisionGround(Math::Vector3 _pos, Math::Vector3 _dir, KdCollider::Type _type, float _adjust);
 
+	const Math::Matrix GetRotationMatrix()const
+	{
+		return Math::Matrix::CreateFromYawPitchRoll(
+			DirectX::XMConvertToRadians(m_degAng.y),
+			DirectX::XMConvertToRadians(m_degAng.x),
+			DirectX::XMConvertToRadians(m_degAng.z));
+	}
+
 	//カメラのポインタセット
 	void SetCamera(const std::shared_ptr<CameraBase>_camera) { m_wpCamera = _camera; }
 	//プレイヤーのポインタセット
@@ -47,6 +55,10 @@ public:
 	//HitFlgをTrueに
 	void HitFlgOn() { m_hitFlg = true; }
 protected:
+	//カメラ回転用マウス座標の差分
+	POINT m_FixMousePos{};
+	// カメラ回転用角度
+	Math::Vector3 m_degAng = Math::Vector3::Zero;
 	//モデル用
 	std::shared_ptr<KdSquarePolygon>m_poly = nullptr;
 	std::shared_ptr<KdModelWork>m_modelWork = nullptr;

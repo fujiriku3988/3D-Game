@@ -9,4 +9,5 @@ void Stage::Init()
 	m_color = { 1,1,1,1 };
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("Ground", m_modelData, KdCollider::TypeGround);
+	m_objType = eNone;
 }
