@@ -75,6 +75,12 @@ void Missile::Update()
 		m_throwFlg = false;
 	}
 
+	if (m_rotationFlg)
+	{
+		m_rot.z += 90;
+		m_rotationFlg = false;
+	}
+
 	//生産された時の処理
 	if (m_prodFlg)
 	{
@@ -105,9 +111,11 @@ void Missile::Update()
 	//UpdateRotateByMouse();
 
 	if (m_speed <= 0) { m_speed = 0; }
+	if (m_rot.z >= 360.0f) { m_rot.z -= 360.0f; }
+
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_scaleMat = Math::Matrix::CreateScale(m_scale);
-	m_rotMatZ = Math::Matrix::CreateRotationZ(m_rot.z);
+	m_rotMatZ = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_rot.z));
 	//m_mWorld = m_scaleMat * m_rotMatZ * playerRotMat * m_transMat;
 	m_mWorld = m_scaleMat * m_rotMatZ * m_rotationMat * m_transMat;
 

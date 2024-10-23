@@ -78,7 +78,7 @@ void Player::Action()
 	std::list<KdCollider::CollisionResult> rayRetList;
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 	{
-		if (keyFlg.Lbuuton == false && m_holdFlg == false)
+		if (m_keyFlg.Lbuuton == false && m_holdFlg == false)
 		{
 			//レイ情報用
 			Math::Vector3 camPos;
@@ -103,13 +103,6 @@ void Player::Action()
 				//これがレイとオブジェクトの当たり判定
 				if (obj->Intersects(ray, &rayRetList))
 				{
-					//＝＝＝＝＝＝＝＝＝＝//
-					//ここ改善必要あり
-					// OBJがeNoneならFlgとか変えない
-					//＝＝＝＝＝＝＝＝＝＝//
-					//m_objType = obj->GetObjType();
-					//obj->ChangeAttachFlg(false);
-					//obj->ChangeHoldFlg(true);
 					m_holdObj = obj;
 					m_objType = obj->GetObjType();
 				}
@@ -134,28 +127,39 @@ void Player::Action()
 			//当たっていたら
 			if (hitFlg)
 			{
-				//m_objType = m_holdObj->GetObjType();
 				if (m_objType != eNone && m_objType != eContainer &&
 					m_objType != eConver && m_objType != eProduceParts &&
 					m_objType != eCardBoard)
 				{
 					m_holdObj->ChangeAttachFlg(false);
 					m_holdObj->ChangeHoldFlg(true);
+
 					m_holdFlg = true;
 				}
+
+				if (m_objType == eParts)
+				{
+					std::shared_ptr<KdGameObject> connectionObj = m_holdObj->GetRecieveObj().lock();
+					if (connectionObj)
+					{
+						m_holdObj->RemoveConnectedPart(connectionObj);
+						m_holdObj->RemoveConnectedPart(m_holdObj);
+						connectionObj->RemoveConnectedPart(m_holdObj);
+					}
+				}
 			}
-			keyFlg.Lbuuton = true;
+			m_keyFlg.Lbuuton = true;
 		}
 	}
 	else
 	{
-		keyFlg.Lbuuton = false;
+		m_keyFlg.Lbuuton = false;
 	}
 
 	//持ってるものを投げる
 	if (GetAsyncKeyState(VK_RBUTTON) & 0x8000)
 	{
-		if (keyFlg.Rbutton == false && m_holdFlg == true)
+		if (m_keyFlg.Rbutton == false && m_holdFlg == true)
 		{
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
@@ -168,17 +172,17 @@ void Player::Action()
 			m_objType = eNone;
 			m_holdFlg = false;
 			m_holdObj = nullptr;
-			keyFlg.Rbutton = true;
+			m_keyFlg.Rbutton = true;
 		}
 	}
 	else
 	{
-		keyFlg.Rbutton = false;
+		m_keyFlg.Rbutton = false;
 	}
 
 	if (GetAsyncKeyState('F') & 0x8000)
 	{
-		if (keyFlg.F == false && m_holdFlg == true)
+		if (m_keyFlg.F == false && m_holdFlg == true)
 		{
 			//レイ情報用
 			Math::Vector3 camPos;
@@ -264,11 +268,11 @@ void Player::Action()
 				m_holdFlg = false;
 				closestNode = nullptr;
 			}
-			keyFlg.F = true;
+			m_keyFlg.F = true;
 		}
 
 		//コンテナからパーツ取りだし
-		if (keyFlg.F == false && m_holdFlg == false)
+		if (m_keyFlg.F == false && m_holdFlg == false)
 		{
 			//レイ情報用
 			Math::Vector3 camPos;
@@ -333,7 +337,7 @@ void Player::Action()
 					parts->Init();
 					parts->SetPos({ 0,2,0 });
 					parts->SetScale({ 0.2f,0.2f,0.2f });
-					parts->SetRotZ(DirectX::XMConvertToRadians(270));
+					parts->SetRotZ(270);
 					parts->SetPlayer(player);
 					parts->ChangeHoldFlg(true);
 					SceneManager::Instance().AddObject(parts);
@@ -343,18 +347,18 @@ void Player::Action()
 					break;
 				}
 			}
-			keyFlg.F = true;
+			m_keyFlg.F = true;
 		}
 	}
 	else
 	{
-		keyFlg.F = false;
+		m_keyFlg.F = false;
 	}
 
 	//常にレイを飛ばしてレイが当たってるOBJのポインター保持してやればうまくいくんじゃね
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
-		if (keyFlg.E == false && m_holdFlg == false)
+		if (m_keyFlg.E == false && m_holdFlg == false)
 		{
 			//レイ情報用
 			Math::Vector3 camPos;
@@ -376,13 +380,19 @@ void Player::Action()
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
-				if (obj->GetObjType() == eProduceParts)
+				//if (obj->GetObjType() == eProduceParts)
+				//{
+				//	//これがレイとオブジェクトの当たり判定
+				//	if (obj->Intersects(ray, &rayRetList))
+				//	{
+				//		HitObj = obj;
+				//	}
+				//}
+				
+				//これがレイとオブジェクトの当たり判定
+				if (obj->Intersects(ray, &rayRetList))
 				{
-					//これがレイとオブジェクトの当たり判定
-					if (obj->Intersects(ray, &rayRetList))
-					{
-						HitObj = obj;
-					}
+					HitObj = obj;
 				}
 			}
 
@@ -402,41 +412,38 @@ void Player::Action()
 			//当たっているなら
 			if (hitFlg)
 			{
-				HitObj->ChangeProdFlg(true);
+				//生産
+				if (HitObj->GetObjType() == eProduceParts)
+				{
+					HitObj->ChangeProdFlg(true);
+				}
 			}
 
 			m_objType = eNone;
-			keyFlg.E = true;
-		}
-	}
-	else
-	{
-		keyFlg.E = false;
-	}
-
-	if (GetAsyncKeyState('R') & 0x8000)
-	{
-		//レイ情報用
-		Math::Vector3 camPos;
-		Math::Vector3 dir;
-		float range = 0;//ただの入れ物
-		if (m_wpCamera.expired() == false)
-		{
-			camPos = m_wpCamera.lock()->GetPos();
-			m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+			m_keyFlg.E = true;
 		}
 
-		//レイを飛ばす
-		KdCollider::RayInfo ray;
-		ray.m_pos = camPos;
-		ray.m_dir = dir;
-		ray.m_range = range;
-		ray.m_type = KdCollider::TypeEvent;
-		std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持//レイ情報用
-
-		for (auto& obj : SceneManager::Instance().GetObjList())
+		if (m_keyFlg.E == false && m_holdFlg == true)
 		{
-			if (obj->GetObjType() == eCardBoard)
+			//レイ情報用
+			Math::Vector3 camPos;
+			Math::Vector3 dir;
+			float range = 0;//ただの入れ物
+			if (m_wpCamera.expired() == false)
+			{
+				camPos = m_wpCamera.lock()->GetPos();
+				m_wpCamera.lock()->WorkCamera()->GenerateRayInfoFromClientPos({ 640,360 }, camPos, dir, range);
+			}
+
+			//レイを飛ばす
+			KdCollider::RayInfo ray;
+			ray.m_pos = camPos;
+			ray.m_dir = dir;
+			ray.m_range = range;
+			ray.m_type = KdCollider::TypeEvent;
+			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
+
+			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
 				//これがレイとオブジェクトの当たり判定
 				if (obj->Intersects(ray, &rayRetList))
@@ -444,26 +451,62 @@ void Player::Action()
 					HitObj = obj;
 				}
 			}
-		}
 
-		//レイが当たった場合数値の更新
-		float overlap = 0;
-		bool hitFlg = false;
-		for (auto& ret : rayRetList)
-		{
-			if (overlap < ret.m_overlapDistance)
+			//レイが当たった場合数値の更新
+			float overlap = 0;
+			bool hitFlg = false;
+			for (auto& ret : rayRetList)
 			{
-				//データ更新
-				overlap = ret.m_overlapDistance;
-				hitFlg = true;
+				if (overlap < ret.m_overlapDistance)
+				{
+					//データ更新
+					overlap = ret.m_overlapDistance;
+					hitFlg = true;
+				}
 			}
-		}
 
-		//当たっているなら
-		if (hitFlg)
-		{
-			HitObj->ChangeProdFlg(true);
+			//当たっているなら
+			if (hitFlg)
+			{
+				// すべての接続されたオブジェクトを保持するセット
+				std::set<std::shared_ptr<KdGameObject>> connectedParts;
+				// 再帰的にすべての接続されたパーツを取得
+				GetAllConnectedParts(m_holdObj, connectedParts);
+
+				for (auto& part : connectedParts)
+				{
+					part->IsExpiredTrue();
+				}
+
+				//納品
+				/*if (HitObj->GetObjType() == eCardBoard)
+				{
+					if (m_holdObj->GetConnectedPartsCount() == m_holdObj->GetTermsNum())
+					{
+						m_holdObj->IsExpiredTrue();
+					}
+				}*/
+			}
+			m_objType = eNone;
+			m_keyFlg.E = true;
 		}
+	}
+	else
+	{
+		m_keyFlg.E = false;
+	}
+
+	if (GetAsyncKeyState('R') & 0x8000)
+	{
+		if (m_keyFlg.R == false && m_holdFlg == true)
+		{
+			m_holdObj->ChangeRotFlg(true);
+			m_keyFlg.R = true;
+		}
+	}
+	else
+	{
+		m_keyFlg.R = false;
 	}
 }
 

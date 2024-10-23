@@ -16,6 +16,7 @@ void CleanRobot::Init()
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("robot", m_modelWork, KdCollider::TypeDamage);
 	m_objType = eBody;
+	m_termsNum = 2;
 }
 
 void CleanRobot::Update()

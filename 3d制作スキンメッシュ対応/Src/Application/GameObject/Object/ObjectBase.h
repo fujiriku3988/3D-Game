@@ -52,8 +52,6 @@ public:
 	void SetRotX(const float& _rot) { m_rot.x = _rot; }
 	//回転値セット（Z軸）
 	void SetRotZ(const float& _rot) { m_rot.z = _rot; }
-	//HitFlgをTrueに
-	void HitFlgOn() { m_hitFlg = true; }
 protected:
 	//カメラ回転用マウス座標の差分
 	POINT m_FixMousePos{};
@@ -88,7 +86,6 @@ protected:
 	float m_gravity;//重力
 	float m_gravityPow;//重力の力
 	float m_adjustHeight;//当たり判定で許容できる段差の高さ
-	bool m_hitFlg = false;//当たり判定
 	//行列
 	Math::Matrix m_scaleMat;//拡縮
 	Math::Matrix m_transMat;//移動

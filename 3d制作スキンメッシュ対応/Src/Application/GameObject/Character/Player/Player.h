@@ -20,7 +20,8 @@ private:
 		bool Rbutton = false;
 		bool F = false;
 		bool E = false;
+		bool R = false;
 	};
-	KeyFlgControl keyFlg;
+	KeyFlgControl m_keyFlg;
 	std::shared_ptr<KdGameObject> m_holdObj = nullptr;//当たったOBJの情報を保持
 };

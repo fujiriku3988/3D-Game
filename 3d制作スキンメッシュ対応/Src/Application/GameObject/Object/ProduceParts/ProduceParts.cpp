@@ -51,7 +51,8 @@ void ProduceParts::Action()
 		missile->Init();
 		missile->SetPos(m_pos+Math::Vector3(0,2.0f,0));
 		missile->SetScale({ 0.2f,0.2f,0.2f });
-		missile->SetRotZ(DirectX::XMConvertToRadians(270));
+		//missile->SetRotZ(DirectX::XMConvertToRadians(270));
+		missile->SetRotZ(270);
 		missile->ChangeProdFlg(true);
 		missile->SetContainer(m_spContainer);
 		missile->SetPlayer(m_spPlayer);

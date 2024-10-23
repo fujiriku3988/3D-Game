@@ -37,6 +37,7 @@ void CharacterBase::Init()
 	m_holdFlg = false;
 	m_throwFlg = false;
 	m_addNodeFlg = true;
+	m_rotationFlg = false;
 }
 
 void CharacterBase::PreUpdate()

@@ -28,11 +28,11 @@ void ObjectBase::Init()
 	//デバッグ用
 	m_pDebugWire = std::make_unique<KdDebugWireFrame>();
 	//フラグ
-	m_hitFlg = false;
 	m_holdFlg = false;
 	m_throwFlg = false;
 	m_attachFlg = false;
 	m_addNodeFlg = true;
+	m_rotationFlg = false;
 	//コンテナ
 	m_storeParts = 0;
 }

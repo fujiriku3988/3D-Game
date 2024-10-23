@@ -66,6 +66,7 @@ public:
 	const Math::Matrix& GetMatrix() const { return m_mWorld; }
 
 	virtual bool IsExpired() const { return m_isExpired; }
+	virtual void IsExpiredTrue() { m_isExpired = true; }
 
 	virtual bool IsVisible()	const { return false; }
 	virtual bool IsRideable()	const { return false; }
@@ -84,7 +85,9 @@ public:
 	bool Intersects(const KdCollider::BoxInfo& targetBox, std::list<KdCollider::CollisionResult>* pResults);
 	bool Intersects(const KdCollider::RayInfo& targetShape, std::list<KdCollider::CollisionResult>* pResults);
 
-	//追加
+	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
+	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
+	
 	//オブジェクトを手に持っているか（true:持ってる false:持ってない）
 	void ChangeHoldFlg(bool _flg) { m_holdFlg = _flg; }
 	//オブジェクトを投げるか（true:投げる 投げた後自動でfalse）
@@ -93,6 +96,8 @@ public:
 	void ChangeAttachFlg(bool _flg) { m_attachFlg = _flg; }
 	//（true:付ける 付けたあと自動でfalse）
 	void ChangeProdFlg(bool _flg) { m_prodFlg = _flg; }
+	//（true:付ける 付けたあと自動でfalse）
+	void ChangeRotFlg(bool _flg) { m_rotationFlg = _flg; }
 	//ノードの受け取り
 	void ReciveNode(const KdModelWork::Node* _node) { m_reciveNode = _node; }
 	//オブジェクトの情報受け取り
@@ -106,16 +111,28 @@ public:
 	int PartsHoldNumber() { return m_storeParts; }
 	//接続状態を管理するリスト
 	const std::list<std::shared_ptr<KdGameObject>>& GetConnectList()const { return m_connectedParts; }
-	// 接続されたパーツの数を取得する関数
-	int GetConnectedPartsCount() const { return m_connectedParts.size(); }
+	//接続されたパーツの数を取得する
+	const int GetConnectedPartsCount() const { return m_connectedParts.size(); }
+	//納品条件の個数
+	const int GetTermsNum() const { return m_termsNum; }
+	//オブジェクトの情報をもらってくる
+	const std::weak_ptr<KdGameObject> GetRecieveObj()const { return m_wpReciveObj; }
 
-	// 接続されたパーツを追加する関数
-	void AddConnectedPart(std::shared_ptr<KdGameObject> part);
+	//接続されたパーツを追加する関数
+	void AddConnectedPart(std::shared_ptr<KdGameObject> _part);
+	//接続されたパーツを解除する関数
+	void RemoveConnectedPart(std::shared_ptr<KdGameObject> _part);
+	//接続されたパーツ全削除
+	void RemoveAllConnectedParts() { m_connectedParts.clear(); } // リストの中身を全てクリア
+	//接続されたパーツ全てのポインタ取得
+	void GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std::set<std::shared_ptr<KdGameObject>>& _visited);
 
 	const Math::Matrix GetNodeMatrix()const
 	{
 		//return m_nodeMat;
 	}
+
+	//＝＝＝＝＝＝＝＝＝＝ここまで＝＝＝＝＝＝＝＝＝＝＝＝//
 
 protected:
 
@@ -140,15 +157,18 @@ protected:
 	std::unique_ptr<KdDebugWireFrame> m_pDebugWire = nullptr;
 
 	//追加変数
+	//これはステートに置き換える
 	bool m_holdFlg = false;								//手に持ってるか
 	bool m_throwFlg = false;							//なげるか
 	bool m_attachFlg = false;							//つけるか
 	bool m_prodFlg = false;								//生産するか
+	bool m_rotationFlg = false;							//回転させる
 
 	const KdModelWork::Node* m_reciveNode = nullptr;	//ノードの情報を受け取るよう
 	std::weak_ptr<KdGameObject>m_wpReciveObj;			//オブジェクトの情報受け取るよう
 
-	std::list<std::shared_ptr<KdGameObject>>m_connectedParts;
+	std::list<std::shared_ptr<KdGameObject>>m_connectedParts;//接続状態を管理する方法
+	int m_termsNum;											//納品の条件の個数
 
 	//Math::Matrix m_nodeMat;								//ノード情報格納用(いらんかも消す？)
 
