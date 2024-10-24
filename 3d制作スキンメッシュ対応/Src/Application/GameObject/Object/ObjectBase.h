@@ -60,6 +60,7 @@ protected:
 	//モデル用
 	std::shared_ptr<KdSquarePolygon>m_poly = nullptr;
 	std::shared_ptr<KdModelWork>m_modelWork = nullptr;
+	std::shared_ptr<KdAnimator>m_spAnimator = nullptr;
 	//カメラの情報取るよう
 	std::weak_ptr<CameraBase>m_wpCamera;
 	std::shared_ptr<CameraBase>m_spCamera;

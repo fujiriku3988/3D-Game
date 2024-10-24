@@ -11,6 +11,7 @@ void CleanRobot::Init()
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_modelWork->SetModelData("Asset/Models/Object/Body/CleanRobot/cleanRobot.gltf");
+	m_spAnimator = std::make_shared<KdAnimator>();
 	m_pos = { 2,1,0 };
 	m_scale = { 0.7f };
 	m_adjustHeight = 0.5f;
@@ -25,6 +26,8 @@ void CleanRobot::Init()
 
 void CleanRobot::Update()
 {
+	//m_spAnimator->SetAnimation(m_modelWork->GetData()->GetAnimation("Act"));
+
 	//ノード追加
 	{
 		AddNode();
@@ -104,6 +107,13 @@ void CleanRobot::Update()
 	//m_mWorld = m_rotationMat * m_transMat;
 	//Application::Instance().m_log.Clear();
 	//Application::Instance().m_log.AddLog("ConnectCleanRobot:%d\n", m_connectedParts.size());
+}
+
+void CleanRobot::PostUpdate()
+{
+	// アニメーションの更新
+	m_spAnimator->AdvanceTime(m_modelWork->WorkNodes());
+	m_modelWork->CalcNodeMatrices();
 }
 
 void CleanRobot::AddNode()
