@@ -151,9 +151,6 @@
     <Filter Include="Src\Application\GameObject\Terrains\Stage">
       <UniqueIdentifier>{dbf0a049-289a-493c-9df0-62424b52cb85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\Wall">
-      <UniqueIdentifier>{80b309e0-daf7-40ec-88a8-9037ce59bf02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\CSV">
       <UniqueIdentifier>{579f5bd6-49b3-449c-b13b-40d7f7fc3abd}</UniqueIdentifier>
     </Filter>
@@ -198,6 +195,21 @@
     </Filter>
     <Filter Include="Src\Application\GameObject\Object\CardBoard">
       <UniqueIdentifier>{759282d9-ad9e-41b7-bc93-2725f203bafa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage\Tile">
+      <UniqueIdentifier>{006070d9-e9c9-47ec-87fa-c5d8dcdfbfe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage\Wall">
+      <UniqueIdentifier>{d989154c-64dc-4ec9-82f1-7257cba71e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage\Ceiling">
+      <UniqueIdentifier>{e3822ccd-e792-494e-b5b7-cd96516988f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage\WorkBench">
+      <UniqueIdentifier>{193ee119-1c69-4ff4-9639-3a287774aa64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Terrains\Stage\Sphere">
+      <UniqueIdentifier>{bec64758-a0c6-4859-b00e-faa6ed35f70d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -420,9 +432,6 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Light\Light.h">
       <Filter>Src\Application\GameObject\Terrains\Light</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Terrains\Wall\Wall.h">
-      <Filter>Src\Application\GameObject\Terrains\Wall</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h">
       <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
     </ClInclude>
@@ -476,6 +485,21 @@
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Object\CardBoard\CardBoard.h">
       <Filter>Src\Application\GameObject\Object\CardBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Wall\Wall.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Ceiling\Ceiling.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Ceiling</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Tile\Tile.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\WorkBench\WorkBench.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage\WorkBench</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Sphere\Sphere.h">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Sphere</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -671,9 +695,6 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Light\Light.cpp">
       <Filter>Src\Application\GameObject\Terrains\Light</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Terrains\Wall\Wall.cpp">
-      <Filter>Src\Application\GameObject\Terrains\Wall</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp">
       <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
     </ClCompile>
@@ -727,6 +748,21 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\CardBoard\CardBoard.cpp">
       <Filter>Src\Application\GameObject\Object\CardBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Wall\Wall.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Ceiling\Ceiling.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Ceiling</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Tile\Tile.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\WorkBench\WorkBench.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage\WorkBench</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Sphere\Sphere.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Stage\Sphere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

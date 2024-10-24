@@ -13,4 +13,7 @@ private:
 
 	void Event() override;
 	void Init() override;
+
+	//仮
+	bool m_key = false;
 };

@@ -12,7 +12,5 @@ public:
 
 	void AddNode()override;
 
-	void SetPlayer(std::shared_ptr<Player>_player) { m_wpPlayer = _player; }
 private:
-	std::weak_ptr<Player>m_wpPlayer;
 };

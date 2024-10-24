@@ -18,7 +18,6 @@ void RankCalc::Init()
 	m_rank.D = 20;
 	m_rank.E = 0;
 	CSVLoad();
-
 }
 
 void RankCalc::Update()

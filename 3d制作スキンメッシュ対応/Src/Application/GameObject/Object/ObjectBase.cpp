@@ -35,6 +35,10 @@ void ObjectBase::Init()
 	m_rotationFlg = false;
 	//コンテナ
 	m_storeParts = 0;
+	//納品個数
+	m_deliveredNum = 0;
+	//納品する接続数条件の個数
+	m_deliveredTermsNum = 0;
 }
 
 void ObjectBase::PreUpdate()

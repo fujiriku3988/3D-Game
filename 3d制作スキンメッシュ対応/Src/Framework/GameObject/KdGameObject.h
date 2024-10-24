@@ -5,10 +5,11 @@ class KdGameObject : public std::enable_shared_from_this<KdGameObject>
 {
 public:
 
-	enum ContainerType
+	enum ProductionType
 	{
 		eNoneCont,
 		eMissile,
+		eCleanRobot,
 	};
 
 	//オブジェクトのタイプ宣言
@@ -106,7 +107,7 @@ public:
 	//オブジェクトのタイプ
 	const ObjectType GetObjType()const { return m_objType; }
 	//コンテナのタイプ
-	const ContainerType GetContType()const { return m_contType; }
+	const ProductionType GetProdType()const { return m_prodType; }
 	//コンテナにしまわれてる数miss→KdGameObject
 	int PartsHoldNumber() { return m_storeParts; }
 	//接続状態を管理するリスト
@@ -114,7 +115,9 @@ public:
 	//接続されたパーツの数を取得する
 	const int GetConnectedPartsCount() const { return m_connectedParts.size(); }
 	//納品条件の個数
-	const int GetTermsNum() const { return m_termsNum; }
+	const int GetTermsNum() const { return m_deliveredTermsNum; }
+	//納品した個数の追加
+	void IncrementDeliverd() { m_deliveredNum++; }
 	//オブジェクトの情報をもらってくる
 	const std::weak_ptr<KdGameObject> GetRecieveObj()const { return m_wpReciveObj; }
 
@@ -157,7 +160,7 @@ protected:
 	std::unique_ptr<KdDebugWireFrame> m_pDebugWire = nullptr;
 
 	//追加変数
-	//これはステートに置き換える
+	//これはステートに置き換えたほうがいい？
 	bool m_holdFlg = false;								//手に持ってるか
 	bool m_throwFlg = false;							//なげるか
 	bool m_attachFlg = false;							//つけるか
@@ -168,12 +171,14 @@ protected:
 	std::weak_ptr<KdGameObject>m_wpReciveObj;			//オブジェクトの情報受け取るよう
 
 	std::list<std::shared_ptr<KdGameObject>>m_connectedParts;//接続状態を管理する方法
-	int m_termsNum;											//納品の条件の個数
+	//int m_termsNum;											//納品の条件の個数
+	int m_deliveredTermsNum;								//納品する接続数条件の個数
+	int m_deliveredNum;										//納品している個数
 
 	//Math::Matrix m_nodeMat;								//ノード情報格納用(いらんかも消す？)
 
 	int m_storeParts;									//コンテナにあるパーツ数
 
 	ObjectType m_objType;								//オブジェクトタイプ
-	ContainerType m_contType;							//コンテナに入ってるパーツ
+	ProductionType m_prodType;							//生産するオブジェクトのタイプ
 };

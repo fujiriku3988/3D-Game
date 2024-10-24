@@ -4,17 +4,17 @@ void Container::Init()
 {
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Object/Structure/Container/Container.gltf");
-	m_pos = { 1.0f,1.0f,5.0f };
+	m_modelWork->SetModelData("Asset/Models/Object/Structure/Container/Container2.gltf");
+	m_pos = { 1.7f,0.0f,5.0f };
 	m_scale = { 0.8f };
 	m_adjustHeight = -0.0f;
 	m_gravity = 0.0f;
 	m_gravityPow = 0.004f;
 	m_color = { 1,1,1,1 };
 	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("Container", m_modelWork, KdCollider::TypeDamage);
+	m_pCollider->RegisterCollisionShape("Container", m_modelWork, KdCollider::TypeEvent | KdCollider::TypeBump);
 	m_objType = eContainer;
-	m_contType = eNoneCont;
+	m_prodType = eNoneCont;
 }
 
 void Container::Update()

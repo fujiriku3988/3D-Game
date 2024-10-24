@@ -3,12 +3,16 @@
 #include"../../../../Scene/SceneManager.h"
 #include"../../../../main.h"
 
+#include"../../../Object/ProduceParts/ProduceParts.h"
+#include"../../../Object/Container/Container.h"
+
 void CleanRobot::Init()
 {
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_modelWork->SetModelData("Asset/Models/Object/Body/CleanRobot/cleanRobot.gltf");
 	m_pos = { 2,1,0 };
+	m_scale = { 0.7f };
 	m_adjustHeight = 0.5f;
 	m_gravity = 0.0f;
 	m_gravityPow = 0.004f;
@@ -16,7 +20,7 @@ void CleanRobot::Init()
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("robot", m_modelWork, KdCollider::TypeDamage);
 	m_objType = eBody;
-	m_termsNum = 2;
+	m_deliveredTermsNum = 2;
 }
 
 void CleanRobot::Update()
@@ -31,15 +35,17 @@ void CleanRobot::Update()
 	m_pos.y += -m_gravity;
 
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
+	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeBump, m_adjustHeight);
 
 	if (m_holdFlg)
 	{
 		m_gravity = 0;
 		if (m_wpPlayer.expired() == false)
 		{
+			m_spPlayer = m_wpPlayer.lock();
 			for (auto& node : SceneManager::Instance().GetNodeList())
 			{
-				m_spPlayer = m_wpPlayer.lock();
+				//m_spPlayer = m_wpPlayer.lock();
 				if (node->m_name == "hold")
 				{
 					m_pos = (node->m_worldTransform * m_spPlayer->GetMatrix()).Translation() + Math::Vector3(0,-1,0);
@@ -54,8 +60,35 @@ void CleanRobot::Update()
 
 	if (m_throwFlg)
 	{
-		m_speed = 1.0f;
+		m_speed = 0.2f;
 		m_throwFlg = false;
+	}
+
+	//生産された時の処理
+	if (m_prodFlg)
+	{
+		//生成時の移動処理
+		m_dir = GetMatrix().Right();
+		m_dir.Normalize();
+		m_speed = 0.02f;
+
+		//コンテナの座標
+		Math::Vector3 containerPos;
+		//コンテナの距離
+		Math::Vector3 containerDis;
+		//ポインタロック
+		m_spContainer = m_wpContainer.lock();
+		if (m_spContainer)
+		{
+			containerPos = m_spContainer->GetPos();
+			containerDis = containerPos - m_pos;
+			if (containerDis.Length() < 2.2f)
+			{
+				m_spContainer->IncrementParts();
+				m_spContainer->SetProdType(eCleanRobot);
+				m_isExpired = true;
+			}
+		}
 	}
 
 	if (m_speed <= 0)
@@ -64,10 +97,13 @@ void CleanRobot::Update()
 	}
 
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
-	m_mWorld =  m_transMat;
+	m_scaleMat = Math::Matrix::CreateScale(m_scale);
+	m_rotMatZ = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_rot.z));
+	//m_mWorld =  m_transMat;
+	m_mWorld = m_scaleMat * m_rotMatZ * m_transMat;
 	//m_mWorld = m_rotationMat * m_transMat;
-	Application::Instance().m_log.Clear();
-	Application::Instance().m_log.AddLog("ConnectCleanRobot:%d\n", m_connectedParts.size());
+	//Application::Instance().m_log.Clear();
+	//Application::Instance().m_log.AddLog("ConnectCleanRobot:%d\n", m_connectedParts.size());
 }
 
 void CleanRobot::AddNode()

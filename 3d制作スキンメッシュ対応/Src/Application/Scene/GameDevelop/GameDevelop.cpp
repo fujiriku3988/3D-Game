@@ -1,25 +1,20 @@
 ﻿#include "GameDevelop.h"
 #include"../../GameObject/Camera/FPSCamera/FPSCamera.h"
 #include"../../GameObject/Character/Player/Player.h"
-//#include"../../GameObject/Character/Robot/Head/Head.h"
-//#include"../../GameObject/Character/Robot/Body/Body.h"
-//#include"../../GameObject/Character/Robot/ArmLeft/ArmLeft.h"
-//#include"../../GameObject/Character/Robot/ArmRight/ArmRight.h"
-//#include"../../GameObject/Character/Robot/LegLeft/LegLeft.h"
-//#include"../../GameObject/Character/Robot/LegRight/LegRight.h"
-//#include"../../GameObject/GUI/Bar/DevelopBar/DevelopBar.h"
-//#include"../../GameObject/GUI/Bar/DevelopBar/StopBar.h"
-#include"../../GameObject/Terrains/Wall/Wall.h"
-#include"../../GameObject/Terrains/Light/Light.h"
-//#include"../../GameObject/GUI/Robot/Body/BodyGUI.h"
-//#include"../../GameObject/GUI/Robot/Head/HeadGUI.h"
-//#include"../../GameObject/GUI/Robot/ArmLeft/ArmLeftGUI.h"
-//#include"../../GameObject/GUI/Robot/ArmRight/ArmRightGUI.h"
-//#include"../../GameObject/GUI/Robot/LegLeft/LegLeftGUI.h"
-//#include"../../GameObject/GUI/Robot/LegRight/LegRightGUI.h"
+
 #include"../../CSV/Rank/RankCalc.h"
 
+#include"../../Scene/SceneManager.h"
+#include"../../Fade/Fade.h"
+
+#include"../../GameObject/Terrains/Light/Light.h"
 #include"../../GameObject/Terrains/Stage/Stage.h"
+#include"../../GameObject/Terrains/Stage/Tile/Tile.h"
+#include"../../GameObject/Terrains/Stage/Wall/Wall.h"
+#include"../../GameObject/Terrains/Stage/Ceiling/Ceiling.h"
+#include"../../GameObject/Terrains/Stage/WorkBench/WorkBench.h"
+#include"../../GameObject/Terrains/Stage/Sphere/Sphere.h"
+
 #include"../../GameObject/Character/Character.h"
 
 #include"../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
@@ -31,14 +26,11 @@
 
 void GameDevelop::Event()
 {
+
 }
 
 void GameDevelop::Init()
 {
-	//壁（仮）
-	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
-	wall->Init();
-	//AddObject(wall);
 
 	//光
 	/*for (int i = 0; i < 3; i++)
@@ -49,26 +41,93 @@ void GameDevelop::Init()
 		AddObject(light);
 	}*/
 
-
+	
 	//ステージ
 	std::shared_ptr<Stage> stage = std::make_shared<Stage>();
 	stage->Init();
-	AddObject(stage);
+	//AddObject(stage);
 
-	//コンベアー
-	std::shared_ptr<Conver> conver = std::make_shared<Conver>();
-	conver->Init();
-	AddObject(conver);
+	std::shared_ptr<Sphere> sphere = std::make_shared<Sphere>();
+	sphere->Init();
+	AddObject(sphere);
 
-	//パーツ出す箱
-	std::shared_ptr<ProduceParts> prodParts = std::make_shared<ProduceParts>();
-	prodParts->Init();
-	AddObject(prodParts);
+	//壁
+	std::shared_ptr<Wall> wall = std::make_shared<Wall>();
+	wall->Init();
+	AddObject(wall);
 
-	//パーツを格納する箱
-	std::shared_ptr<Container> container = std::make_shared<Container>();
-	container->Init();
-	AddObject(container);
+	//床
+	std::shared_ptr<Tile> tile = std::make_shared<Tile>();
+	tile->Init();
+	AddObject(tile);
+
+	//天井
+	std::shared_ptr<Ceiling> ceiling = std::make_shared<Ceiling>();
+	ceiling->Init();
+	AddObject(ceiling);
+
+	//作業台
+	std::shared_ptr<WorkBench> workBench = std::make_shared<WorkBench>();
+	workBench->Init();
+	AddObject(workBench);
+
+	//プレイヤー
+	std::shared_ptr<Player> player = std::make_shared<Player>();
+	player->Init();
+	AddObject(player);
+
+	for (int i = 0; i < 2; i++)
+	{
+		switch (i)
+		{
+		case 0:
+		{
+			//一つの生産ライン
+			//コンベアー
+			std::shared_ptr<Conver> conver = std::make_shared<Conver>();
+			conver->Init();
+			AddObject(conver);
+			//パーツ出す箱
+			std::shared_ptr<ProduceParts> prodParts = std::make_shared<ProduceParts>();
+			prodParts->Init();
+			prodParts->SetProdType(KdGameObject::eMissile);
+			AddObject(prodParts);
+			//パーツを格納する箱
+			std::shared_ptr<Container> container = std::make_shared<Container>();
+			container->Init();
+			AddObject(container);
+			prodParts->SetContainer(container);
+			prodParts->SetPlayer(player);
+			break;
+		}
+		case 1:
+		{
+			//一つの生産ライン
+			//コンベアー
+			std::shared_ptr<Conver> conver = std::make_shared<Conver>();
+			conver->Init();
+			conver->SetPos({ -5.0f,0,2.0f });
+			AddObject(conver);
+			//パーツ出す箱
+			std::shared_ptr<ProduceParts> prodParts = std::make_shared<ProduceParts>();
+			prodParts->Init();
+			prodParts->SetPos({ -5.7f,0,2.0f });
+			prodParts->SetProdType(KdGameObject::eCleanRobot);
+			AddObject(prodParts);
+			//パーツを格納する箱
+			std::shared_ptr<Container> container = std::make_shared<Container>();
+			container->Init();
+			container->SetPos({ 1.7f,0.0f,2.0f });
+			AddObject(container);
+			prodParts->SetContainer(container);
+			prodParts->SetPlayer(player);
+			break;
+		}
+		}
+
+	}
+
+
 
 	//段ボール
 	std::shared_ptr<CardBoard> cardBoard = std::make_shared<CardBoard>();
@@ -78,12 +137,7 @@ void GameDevelop::Init()
 	//クリーンロボ
 	std::shared_ptr<CleanRobot> cRobo = std::make_shared<CleanRobot>();
 	cRobo->Init();
-	AddObject(cRobo);
-
-	//プレイヤー
-	std::shared_ptr<Player> player = std::make_shared<Player>();
-	player->Init();
-	AddObject(player);
+	//AddObject(cRobo);
 
 	//ミサイル
 	std::shared_ptr<Missile> missile = std::make_shared<Missile>();
@@ -107,7 +161,7 @@ void GameDevelop::Init()
 	player->SetCamera(camera);
 	cRobo->SetPlayer(player);
 	missile->SetPlayer(player);
-	prodParts->SetContainer(container);
+
 	//missile->SetProdParts(prodParts);
-	prodParts->SetPlayer(player);
+
 }

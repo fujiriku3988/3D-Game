@@ -15,8 +15,8 @@ void FPSCamera::Init()
 	//GameDevelop
 	{
 		// 基準点(ターゲット)の目線
-		m_camPos = { 0, 6.0f, 8.0f };
-		//m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);//ホワイトボードの位置（最初の定位置）
+		m_camPos = { 0, 5.0f, 0.0f };
+		m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);//ホワイトボードの位置（最初の定位置）
 	}
 	SetCursorPos(m_FixMousePos.x, m_FixMousePos.y);
 }
@@ -41,14 +41,21 @@ void FPSCamera::Update()
 	if (spTarget)
 	{
 		targetMat = spTarget->GetMatrix();
+		m_mLocalPos = targetMat;
 	}
-	m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);
-	
+	else
+	{
+		m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);
+	}
+	//m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);
+
 
 	// カメラの回転
 	//UpdateRotateByMouse();
 	//m_mRotation = GetRotationMatrix();
-	m_mWorld = targetMat;
+	m_mWorld = m_mLocalPos;
+	//m_mWorld =  m_mLocalPos * targetMat;
+	//m_mWorld =  targetMat;
 
 	CameraBase::Update();
 }

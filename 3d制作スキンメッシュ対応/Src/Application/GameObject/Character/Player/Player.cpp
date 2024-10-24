@@ -2,15 +2,19 @@
 #include"../../../GameObject/Camera/CameraBase.h"
 #include"../../../Scene/SceneManager.h"
 #include"../../../GameObject/Terrains/TerrainBase.h"
+
 #include"../../../GameObject/Object/ObjectBase.h"
 #include"../../../GameObject/Object/Parts/Missile/Missile.h"
+#include"../../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
+#include"../../../GameObject/Object/CardBoard/CardBoard.h"
+
 #include"../../../main.h"
 
 void Player::Init()
 {
 	CharacterBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Character/Player/Player.gltf");
+	m_modelWork->SetModelData("Asset/Models/Character/Player/Player2.gltf");
 	m_adjustHeight = 1.7f;
 	m_pos = { 0,m_adjustHeight ,0 };
 	m_gravity = 0.0f;
@@ -50,19 +54,23 @@ void Player::Update()
 	if (GetAsyncKeyState('D') & 0x8000) { m_dir.x += 1.0f; }
 	m_dir = m_dir.TransformNormal(m_dir, GetRotationYMatrix());
 	m_dir.Normalize();
+
 	//回転
 	UpdateRotateByMouse();
 
 	m_pos += m_dir * m_speed;
 	m_gravity += m_gravityPow;
 	m_pos.y += -m_gravity;
+}
 
+void Player::PostUpdate()
+{
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
+	CollisionSphere();
 
 	m_rotationMat = GetRotationMatrix();
 	m_transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = m_rotationMat * m_transMat;
-
 }
 
 void Player::DrawSprite()
@@ -289,7 +297,7 @@ void Player::Action()
 			ray.m_pos = camPos;
 			ray.m_dir = dir;
 			ray.m_range = range;
-			ray.m_type = KdCollider::TypeDamage;
+			ray.m_type = KdCollider::TypeEvent;
 			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
@@ -320,11 +328,11 @@ void Player::Action()
 			}
 
 			int holdNumber = 0;
-			ContainerType nowType = eNoneCont;
+			ProductionType nowType = eNoneCont;
 			if (hitFlg)
 			{
 				holdNumber = HitObj->PartsHoldNumber();
-				nowType = HitObj->GetContType();
+				nowType = HitObj->GetProdType();
 			}
 
 			if (holdNumber > 0)
@@ -332,19 +340,30 @@ void Player::Action()
 				std::shared_ptr<Player> player = std::dynamic_pointer_cast<Player>(shared_from_this());
 				switch (nowType)
 				{
-				case eMissile:
-					std::shared_ptr<ObjectBase> parts = std::make_shared<Missile>();
-					parts->Init();
-					parts->SetPos({ 0,2,0 });
-					parts->SetScale({ 0.2f,0.2f,0.2f });
-					parts->SetRotZ(270);
-					parts->SetPlayer(player);
-					parts->ChangeHoldFlg(true);
-					SceneManager::Instance().AddObject(parts);
-					m_holdFlg = true;
-					m_holdObj = parts;
-					//m_objType = HitObj->GetObjType();
-					break;
+					case eMissile:
+					{
+						std::shared_ptr<ObjectBase> parts = std::make_shared<Missile>();
+						parts->Init();
+						parts->SetPos({ 0,2,0 });
+						parts->SetPlayer(player);
+						parts->ChangeHoldFlg(true);
+						SceneManager::Instance().AddObject(parts);
+						m_holdFlg = true;
+						m_holdObj = parts;
+						break;
+					}
+					case eCleanRobot:
+					{
+						std::shared_ptr<ObjectBase> body = std::make_shared<CleanRobot>();
+						body->Init();
+						body->SetPos({ 0,2,-2 });
+						body->SetPlayer(player);
+						body->ChangeHoldFlg(true);
+						SceneManager::Instance().AddObject(body);
+						m_holdFlg = true;
+						m_holdObj = body;
+						break;
+					}
 				}
 			}
 			m_keyFlg.F = true;
@@ -355,7 +374,7 @@ void Player::Action()
 		m_keyFlg.F = false;
 	}
 
-	//常にレイを飛ばしてレイが当たってるOBJのポインター保持してやればうまくいくんじゃね
+
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
 		if (m_keyFlg.E == false && m_holdFlg == false)
@@ -380,15 +399,6 @@ void Player::Action()
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
-				//if (obj->GetObjType() == eProduceParts)
-				//{
-				//	//これがレイとオブジェクトの当たり判定
-				//	if (obj->Intersects(ray, &rayRetList))
-				//	{
-				//		HitObj = obj;
-				//	}
-				//}
-				
 				//これがレイとオブジェクトの当たり判定
 				if (obj->Intersects(ray, &rayRetList))
 				{
@@ -448,7 +458,12 @@ void Player::Action()
 				//これがレイとオブジェクトの当たり判定
 				if (obj->Intersects(ray, &rayRetList))
 				{
+					// obj が ObjectBase かどうかを確認してキャスト
+					//std::shared_ptr<ObjectBase> baseObj = std::dynamic_pointer_cast<ObjectBase>(obj);
+					//std::shared_ptr<CardBoard> baseObj = std::dynamic_pointer_cast<CardBoard>(obj);
+
 					HitObj = obj;
+					//HitObj = baseObj;
 				}
 			}
 
@@ -468,26 +483,23 @@ void Player::Action()
 			//当たっているなら
 			if (hitFlg)
 			{
-				// すべての接続されたオブジェクトを保持するセット
-				std::set<std::shared_ptr<KdGameObject>> connectedParts;
-				// 再帰的にすべての接続されたパーツを取得
-				GetAllConnectedParts(m_holdObj, connectedParts);
-
-				for (auto& part : connectedParts)
+				if (m_holdObj->GetConnectedPartsCount() == m_holdObj->GetTermsNum())
 				{
-					part->IsExpiredTrue();
-				}
+					//すべての接続されたオブジェクトを保持
+					std::set<std::shared_ptr<KdGameObject>> connectedParts;
+					//すべての接続されたパーツを取得
+					GetAllConnectedParts(m_holdObj, connectedParts);
 
-				//納品
-				/*if (HitObj->GetObjType() == eCardBoard)
-				{
-					if (m_holdObj->GetConnectedPartsCount() == m_holdObj->GetTermsNum())
+					for (auto& part : connectedParts)
 					{
-						m_holdObj->IsExpiredTrue();
+						part->IsExpiredTrue();
 					}
-				}*/
+					HitObj->IncrementDeliverd();
+				}
 			}
 			m_objType = eNone;
+			m_holdFlg = false;
+			m_holdObj = nullptr;
 			m_keyFlg.E = true;
 		}
 	}
@@ -542,4 +554,48 @@ void Player::UpdateRotateByMouse()
 
 	// 回転制御
 	m_degAng.x = std::clamp(m_degAng.x, -65.f, 65.f);
+}
+
+void Player::CollisionSphere()
+{
+	////////////////////////////////////
+	//球判定用の変数を作成
+	KdCollider::SphereInfo sphere;//スフィア
+	//球の中心位置を設定
+	sphere.m_sphere.Center = m_pos + Math::Vector3{ 0,-0.6,0 };
+	//球の半径を設定
+	sphere.m_sphere.Radius = 0.3f;
+	//当たり判定をしたいタイプを設定
+	sphere.m_type = KdCollider::TypeGround | KdCollider::TypeBump;
+	m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
+	//球が当たったオブジェクトの情報を格納するリスト
+	std::list<KdCollider::CollisionResult> retSphereList;
+	//球と当たり判定！！！！！！
+	for (auto& obj : SceneManager::Instance().GetObjList())
+	{
+		if (obj->Intersects(sphere, &retSphereList))
+		{
+		}
+	}
+	//球リストから一番近いオブジェクトを検出
+	float maxOverLap = 0;
+	Math::Vector3 hitDir = {};
+	bool ishit = false;
+	for (auto& ret : retSphereList)
+	{
+		if (maxOverLap < ret.m_overlapDistance)
+		{
+			maxOverLap = ret.m_overlapDistance;
+			hitDir = ret.m_hitDir;//当たった方向
+			ishit = true;
+		}
+
+	}
+	if (ishit)
+	{
+		//方向ベクトルは長さ１にする必要がある 
+		hitDir.Normalize();
+		//押し戻し
+		m_pos += hitDir * maxOverLap;
+	}
 }

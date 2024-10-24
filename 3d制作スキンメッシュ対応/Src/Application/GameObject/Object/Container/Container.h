@@ -14,7 +14,11 @@ public:
 
 	//コンテナにしまわれたら増やす
 	void IncrementParts() { m_storeParts++; }
+	//取り出したら減らす
+	void DecreaseParts() { m_storeParts--; }
 	//コンテナが何をしまう物なのか
-	void SetContainerType(ContainerType _type) { m_contType = _type; }
+	void SetProdType(ProductionType _type) { m_prodType = _type; }
+	//座標位置
+	void SetPos(Math::Vector3 _pos) { m_pos = _pos; }
 private:
 };

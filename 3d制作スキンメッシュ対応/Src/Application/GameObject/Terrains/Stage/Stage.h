@@ -8,6 +8,7 @@ public:
 	~Stage() override {}
 
 	void Init()override;
+	void DrawLit()override;
 	
 private:
 };

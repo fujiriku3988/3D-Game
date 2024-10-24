@@ -8,7 +8,8 @@
 		{
 			"name":"Scene",
 			"nodes":[
-				0
+				0,
+				1
 			]
 		}
 	],
@@ -26,6 +27,20 @@
 				0.009999999776482582,
 				0.009999999776482582,
 				0.009999999776482582
+			]
+		},
+		{
+			"mesh":1,
+			"name":"COL",
+			"scale":[
+				0.550000011920929,
+				0.30000001192092896,
+				0.550000011920929
+			],
+			"translation":[
+				0,
+				0.26054322719573975,
+				0
 			]
 		}
 	],
@@ -54,6 +69,19 @@
 					},
 					"indices":3,
 					"material":0
+				}
+			]
+		},
+		{
+			"name":"\u7acb\u65b9\u4f53",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":7
 				}
 			]
 		}
@@ -105,6 +133,40 @@
 			"componentType":5123,
 			"count":84,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":24,
+			"max":[
+				1,
+				1,
+				1
+			],
+			"min":[
+				-1,
+				-1,
+				-1
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":5,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":6,
+			"componentType":5126,
+			"count":24,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":7,
+			"componentType":5123,
+			"count":36,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -131,6 +193,30 @@
 			"byteLength":168,
 			"byteOffset":1536,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":1704,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":288,
+			"byteOffset":1992,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":2280,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":72,
+			"byteOffset":2472,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -141,7 +227,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":1704,
+			"byteLength":2544,
 			"uri":"CardBoard.bin"
 		}
 	]

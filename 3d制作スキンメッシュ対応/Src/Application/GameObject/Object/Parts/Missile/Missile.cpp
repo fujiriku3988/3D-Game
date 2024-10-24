@@ -12,12 +12,14 @@ void Missile::Init()
 {
 	ObjectBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Object/Parts/Missile/missile.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/Parts/Missile/missile2.gltf");
 	m_pos = { 0,0,0 };
 	m_adjustHeight = 0.5f;
 	m_gravity = 0.0f;
 	m_gravityPow = 0.004f;
 	m_color = { 1,1,1,1 };
+	m_scale = { 0.2f,0.2f,0.2f };
+	m_rot.z = 270;
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("missile", m_modelWork, KdCollider::TypeDamage);
 	m_objType = eParts;
@@ -32,7 +34,7 @@ void Missile::Update()
 	m_speed -= 0.1f;
 
 	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeGround, m_adjustHeight);
-	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeDamage, m_adjustHeight);
+	CollisionGround(m_pos, Math::Vector3::Down, KdCollider::TypeBump, m_adjustHeight);
 
 	Math::Matrix playerRotMat;
 	//手に持つ処理
@@ -47,7 +49,8 @@ void Missile::Update()
 				if (node->m_name == "hold")
 				{
 					m_pos = (node->m_worldTransform * m_spPlayer->GetMatrix()).Translation();
-					m_rotationMat = m_spPlayer->GetRotationMatrix();
+					//m_rotationMat = m_spPlayer->GetRotationMatrix();
+					m_rotationMat = m_spPlayer->GetRotationYMatrix();
 				}
 			}
 			m_dir = m_spPlayer->GetMatrix().Backward();
@@ -71,7 +74,7 @@ void Missile::Update()
 	//投げる処理
 	if (m_throwFlg)
 	{
-		m_speed = 1.0f;
+		m_speed = 0.2f;
 		m_throwFlg = false;
 	}
 
@@ -99,10 +102,10 @@ void Missile::Update()
 		{
 			containerPos = m_spContainer->GetPos();
 			containerDis = containerPos - m_pos;
-			if (containerDis.Length() < 2.f)
+			if (containerDis.Length() < 2.2f)
 			{
 				m_spContainer->IncrementParts();
-				m_spContainer->SetContainerType(eMissile);
+				m_spContainer->SetProdType(eMissile);
 				m_isExpired = true;
 			}
 		}
@@ -118,6 +121,7 @@ void Missile::Update()
 	m_rotMatZ = Math::Matrix::CreateRotationZ(DirectX::XMConvertToRadians(m_rot.z));
 	//m_mWorld = m_scaleMat * m_rotMatZ * playerRotMat * m_transMat;
 	m_mWorld = m_scaleMat * m_rotMatZ * m_rotationMat * m_transMat;
+	//m_mWorld = m_scaleMat * m_rotMatZ * m_transMat;
 
 	//Application::Instance().m_log.Clear();
 	//Application::Instance().m_log.AddLog("ConnectMissile:%d\n", m_connectedParts.size());
