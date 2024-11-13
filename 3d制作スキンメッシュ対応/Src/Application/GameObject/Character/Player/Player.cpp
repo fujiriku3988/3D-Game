@@ -41,7 +41,7 @@ void Player::Update()
 	}
 
 	//後で消す
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) { m_pos.y += 1.0f; }
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000) { m_pos.y += 0.5f; }
 
 	//プレイヤーの各操作
 	Action();
@@ -254,7 +254,7 @@ void Player::Action()
 						if (nodeDis.Length() <= 1.0f)
 						{
 							closestNode = node;
-							m_pDebugWire->AddDebugSphere(nodePos, 0.5f, kRedColor);
+							//m_pDebugWire->AddDebugSphere(nodePos, 0.5f, kRedColor);
 						}
 					}
 				}
@@ -299,6 +299,7 @@ void Player::Action()
 			ray.m_range = range;
 			ray.m_type = KdCollider::TypeEvent;
 			std::shared_ptr<KdGameObject> HitObj = std::make_shared<ObjectBase>();//当たったOBJの情報を保持
+			//std::shared_ptr<Container> container = std::dynamic_pointer_cast<Container>(shared_from_this());
 
 			for (auto& obj : SceneManager::Instance().GetObjList())
 			{
@@ -308,6 +309,7 @@ void Player::Action()
 					if (obj->Intersects(ray, &rayRetList))
 					{
 						HitObj = obj;
+						//container = HitObj;
 					}
 				}
 			}
@@ -567,7 +569,7 @@ void Player::CollisionSphere()
 	sphere.m_sphere.Radius = 0.3f;
 	//当たり判定をしたいタイプを設定
 	sphere.m_type = KdCollider::TypeGround | KdCollider::TypeBump;
-	m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
+	//m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
 	//球が当たったオブジェクトの情報を格納するリスト
 	std::list<KdCollider::CollisionResult> retSphereList;
 	//球と当たり判定！！！！！！

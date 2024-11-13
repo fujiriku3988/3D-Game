@@ -191,6 +191,8 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Wall\Wall.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\WorkBench\WorkBench.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Title\Title.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Work\Work.h" />
     <ClInclude Include="Src\Application\GameObject\UI\UIBase.h" />
     <ClInclude Include="Src\Application\main.h" />
@@ -282,6 +284,8 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Wall\Wall.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\WorkBench\WorkBench.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Title\Title.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Work\Work.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\UIBase.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />

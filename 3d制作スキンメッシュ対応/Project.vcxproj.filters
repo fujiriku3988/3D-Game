@@ -211,6 +211,12 @@
     <Filter Include="Src\Application\GameObject\Terrains\Stage\Sphere">
       <UniqueIdentifier>{bec64758-a0c6-4859-b00e-faa6ed35f70d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Title">
+      <UniqueIdentifier>{08c4be87-9187-4914-a64a-f9ed19d093ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Enter">
+      <UniqueIdentifier>{85808510-dbfb-4874-96cb-9768e18ff39b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -501,6 +507,12 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Sphere\Sphere.h">
       <Filter>Src\Application\GameObject\Terrains\Stage\Sphere</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h">
+      <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Title\Title.h">
+      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -763,6 +775,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Sphere\Sphere.cpp">
       <Filter>Src\Application\GameObject\Terrains\Stage\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Title\Title.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
