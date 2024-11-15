@@ -8,96 +8,32 @@
 #include<json.hpp>
 using json = nlohmann::json;
 
-class JsonManager :public KdGameObject
+class JsonManager 
 {
 public:
 
 	//テンプレート型でデータ型を自動的に解釈する
 	template<typename T>
+	//変数 = GetParam()の形で使う
+	T GetParam(const std::string _filePath, const std::string _name, const std::string _key);
 
-	//変数 = GetParamの形で使う
-	T GetParam(std::string _filePath, std::string _name, std::string _key)
-	{
-		// ファイルの読み込み
-		std::ifstream file(_filePath);
-		if (file.is_open())
-		{
-			std::stringstream ss;
+	//Math::Vector3用のGetParam()の特殊化はcppに定義
+	template <>
+	Math::Vector3 GetParam<Math::Vector3>(const std::string _filePath, const std::string _name, const std::string _key);
 
-			ss << file.rdbuf();
-
-			file.close();
-
-			json jsonData;
-
-			//エラーが発生する可能性がある箇所
-			try
-			{
-				//JSON形式の文字列を変換
-				jsonData = json::parse(ss.str());
-
-				//jsonDataに指定のキーがあるか
-				if (jsonData.contains(_name) && jsonData[_name].contains(_key)) {
-					return jsonData[_name][_key].get<T>();
-				}
-				else
-				{
-					//指定したキーがないなら
-					throw std::runtime_error("Error: Key '" + _key + "' not found in JSON data.");
-				}
-			}
-			catch (const json::parse_error& e)
-			{
-				//エラーが発生した場合の処理
-				std::cerr << "JSON parse error: " << e.what() << std::endl;
-				throw;
-			}
-		}
-	}
-
-	//テンプレート型でデータ型を自動的に解釈す
+	//テンプレート型でデータ型を自動的に解釈する
 	template <typename T>
+	//変数をJSONファイルに書き込む関数
+	T AddParam(const std::string& filePath, const std::string& name, const std::string& key, const T& value);
 
-	//引数に変数を入れて使う形のやつ
-	T SetParam(const std::string _filePath,const std::string _name,const std::string _key, T& _value)
-	{
-		// ファイルの読み込み
-		std::ifstream file(_filePath);
-		if (file.is_open())
-		{
-			std::stringstream ss;
+	//Math::Vector3用のJSONに書き込む関数
+	void AddParam(const std::string& filePath, const std::string& name, const std::string& key, const Math::Vector3& value);
 
-			ss << file.rdbuf();
+	//テンプレート型でデータ型を自動的に解釈する
+	template <typename T>
+	//引数に変数を入れて使う形のやつ_valueが値を入れたい変数
+	T SetParam(const std::string _filePath, const std::string _name, const std::string _key, T& _value);
 
-			file.close();
-
-			json jsonData;
-
-			//エラーが発生する可能性がある箇所
-			try
-			{
-				//JSON形式の文字列を変換
-				jsonData = json::parse(ss.str());
-
-				//jsonDataに指定のキーがあるか
-				if (jsonData.contains(_name) && jsonData[_name].contains(_key)) 
-				{
-					_value = jsonData[_name][_key].get<T>();
-				}
-				else
-				{
-					//指定したキーがないなら例外発生
-					throw std::runtime_error("Error: Key '" + _key + "' not found in JSON data.");
-				}
-			}
-			catch (const json::parse_error& e)
-			{
-				//エラーが発生した場合の処理
-				std::cerr << "JSON parse error: " << e.what() << std::endl;
-				throw;
-			}
-		}
-	}
 private:
 	//なにか変数いるならここに追加
 private:
@@ -112,4 +48,111 @@ public:
 	}
 };
 
+template<typename T>
+inline T JsonManager::GetParam(std::string _filePath, std::string _name, std::string _key)
+{
+	// ファイルの読み込み
+	std::ifstream file(_filePath);
+	if (file.is_open())
+	{
+		std::stringstream ss;
 
+		ss << file.rdbuf();
+
+		file.close();
+
+		json jsonData;
+
+		//エラーが発生する可能性がある箇所
+		try
+		{
+			//JSON形式の文字列を変換
+			jsonData = json::parse(ss.str());
+
+			//jsonDataに指定のキーがあるか
+			if (jsonData.contains(_name) && jsonData[_name].contains(_key)) {
+				return jsonData[_name][_key].get<T>();
+			}
+			else
+			{
+				//指定したキーがないなら
+				throw std::runtime_error("Error: Key '" + _key + "' not found in JSON data.");
+			}
+		}
+		catch (const json::parse_error& e)
+		{
+			//エラーが発生した場合の処理
+			std::cerr << "JSON parse error: " << e.what() << std::endl;
+			throw;
+		}
+	}
+}
+
+template<typename T>
+inline T JsonManager::SetParam(const std::string _filePath, const std::string _name, const std::string _key, T& _value)
+{
+	//ファイルの読み込み
+	std::ifstream file(_filePath);
+	if (file.is_open())
+	{
+		std::stringstream ss;
+
+		ss << file.rdbuf();
+
+		file.close();
+
+		json jsonData;
+
+		//エラーが発生する可能性がある箇所
+		try
+		{
+			//JSON形式の文字列を変換
+			jsonData = json::parse(ss.str());
+
+			//jsonDataに指定のキーがあるか
+			if (jsonData.contains(_name) && jsonData[_name].contains(_key))
+			{
+				_value = jsonData[_name][_key].get<T>();
+			}
+			else
+			{
+				//指定したキーがないなら例外発生
+				throw std::runtime_error("Error: Key '" + _key + "' not found in JSON data.");
+			}
+		}
+		catch (const json::parse_error& e)
+		{
+			//エラーが発生した場合の処理
+			std::cerr << "JSON parse error: " << e.what() << std::endl;
+			throw;
+		}
+	}
+}
+
+template <typename T>
+inline T JsonManager::AddParam(const std::string& filePath, const std::string& name, const std::string& key, const T& value)
+{
+	std::ifstream file(filePath);
+	json jsonData;
+
+	if (file.is_open()) 
+	{
+		file >> jsonData;
+		file.close();
+	}
+
+	//新しいデータを追加
+	jsonData[name][key] = value;
+
+	//ファイルに書き戻し
+	std::ofstream outFile(filePath);
+	if (outFile.is_open()) 
+	{
+		outFile << jsonData.dump(4); //インデントを設定して保存
+		outFile.close();
+	}
+	else 
+	{
+		throw std::runtime_error("Error: Could not open file for writing: " + filePath);
+	}
+}

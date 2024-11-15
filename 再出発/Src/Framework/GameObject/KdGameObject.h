@@ -9,6 +9,7 @@ public:
 	{
 		eNone,
 		ePressurePlate,
+		eFence,
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
@@ -128,7 +129,7 @@ protected:
 	std::unique_ptr<KdDebugWireFrame> m_pDebugWire = nullptr;
 
 	const KdModelWork::Node* m_reciveNode = nullptr;//ノードの情報を受け取るよう
-	std::weak_ptr<KdGameObject>m_wpReciveObj;//オブジェクトの情報受け取るよう
+	std::weak_ptr<KdGameObject>m_wpReciveObj;//オブジェクトの情報受け取るよう（大体当たり判定で使う）
 
 	std::list<std::shared_ptr<KdGameObject>>m_connectedParts;//接続状態を管理する方法
 

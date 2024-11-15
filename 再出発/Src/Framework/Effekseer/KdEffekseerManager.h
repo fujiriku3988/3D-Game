@@ -26,7 +26,7 @@ public:
 
 	void StopAllEffect();
 	void StopEffect(const std::string& name);
-	void StopEffectOne(const std::string& name);
+	void StopEffectOne(const Effekseer::Handle& handle);
 
 	void OnPauseEfkUpdate()
 	{
@@ -134,6 +134,11 @@ public:
 
 	// ループ設定
 	void SetLoop(const bool isLoop = false) { m_info.IsLoop = isLoop; }
+	void StopEffect()
+	{ 
+		SetLoop(false);
+		KdEffekseerManager::GetInstance().StopEffectOne(GetHandle());
+	}
 
 	// 再生するエフェクトの各種情報設定
 	void SetPlayEfkInfo(const KdEffekseerManager::PlayEfkInfo& info) { m_info = info; }

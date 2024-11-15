@@ -1,8 +1,10 @@
 ﻿#include "PressurePlate.h"
+#include "../Fence/Fence.h"
+
 void PressurePlate::Init()
 {
 	TerrainBase::Init();
-	m_modelWork->SetModelData("Asset/Models/Stage/PressurePlate/PressurePlate.gltf");
+	m_modelWork->SetModelData("Asset/Models/Terrain/PressurePlate/PressurePlate.gltf");
 	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"));
 
 	m_pos = { -5,5.8f,6 };
@@ -50,14 +52,15 @@ void PressurePlate::PostUpdate()
 
 void PressurePlate::PlayAnimation()
 {
+	std::shared_ptr<Fence>spFence = m_wpFence.lock();
 	if (m_hitFlg)
 	{
 		if (m_plateDown == false)
 		{
 			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"), false);
-			if (m_animator->IsAnimationEnd() == true)
+			if (spFence)
 			{
-				m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("downStand"), false);
+				spFence->ToggleRaise();
 			}
 			m_plateDown = true;
 		}
@@ -66,17 +69,13 @@ void PressurePlate::PlayAnimation()
 	if (m_plateUp == false)
 	{
 		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);
-		if (m_animator->IsAnimationEnd() == true)
-		{
-			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"), false);
-		}
 		m_plateUp = true;
 	}
 
 	if (m_plateDown == true)
 	{
 		m_plateCT++;
-		if (m_plateCT >= 60)
+		if (m_plateCT >= 180)
 		{
 			m_hitFlg = false;
 			m_plateUp = false;

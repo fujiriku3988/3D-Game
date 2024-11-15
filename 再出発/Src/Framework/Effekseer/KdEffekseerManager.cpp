@@ -92,41 +92,14 @@ void KdEffekseerManager::StopEffect(const std::string& name)
 	if (foundItr->second->IsLoop())
 	{
 		foundItr->second->SetLoop(false);
-		return;
 	}
 
 	m_efkManager->StopEffect(foundItr->second->GetHandle());
 }
 
-void KdEffekseerManager::StopEffectOne(const std::string& name)
+void KdEffekseerManager::StopEffectOne(const Effekseer::Handle& handle)
 {
-	auto foundItr = m_effectMap.find(name);
-
-	if (foundItr == m_effectMap.end())
-	{
-		std::cout << "Effect not found: " << name << std::endl;
-		return;
-	}
-
-	// 取得したエフェクトオブジェクト
-	auto& effectObject = foundItr->second;
-
-	// ループ設定を解除
-	if (effectObject->IsLoop())
-	{
-		effectObject->SetLoop(false);
-		std::cout << "Loop disabled for effect: " << name << std::endl;
-	}
-
-	// エフェクトの停止
-	m_efkManager->StopEffect(effectObject->GetHandle());
-	std::cout << "Effect stopped: " << name << std::endl;
-
-	// 再生リストからも削除（必要であれば）
-	/*m_nowEffectPlayList.remove_if([&](const std::shared_ptr<KdEffekseerObject>& obj)
-		{
-			return obj->GetHandle() == effectObject->GetHandle();
-		});*/
+	m_efkManager->StopEffect(handle);
 }
 
 void KdEffekseerManager::Release()

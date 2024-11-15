@@ -1,5 +1,16 @@
 ﻿#include "TerrainBase.h"
 
+void TerrainBase::Init(const std::string _string)
+{
+	m_pos = {};
+	m_scale = { 1.0f };
+	m_color = { 1,1,1,1 };
+
+	m_animator = std::make_shared<KdAnimator>();
+	m_modelData = std::make_shared<KdModelData>();
+	m_modelWork = std::make_shared<KdModelWork>();
+}
+
 void TerrainBase::Init()
 {
 	m_pos = {};

@@ -8,7 +8,7 @@ void TPSCamera::Init()
 	m_spCamera->SetProjectionMatrix(90);
 
 	// 注視点
-	m_camPos = { 0, 3.0f, -5.0f };
+	m_camPos = { 0, 4.0f, -8.0f };
 	//m_mLocalPos = Math::Matrix::CreateTranslation(0, 4.0f, -10.0f);//机の位置
 	//m_mLocalPos = Math::Matrix::CreateTranslation(0, 6.0f, 8.0f);//ホワイトボードの位置（最初の定位置）
 	m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);//ホワイトボードの位置（最初の定位置）

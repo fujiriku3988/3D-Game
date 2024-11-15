@@ -26,7 +26,7 @@ private:
 	// テレポート
 	void TeleportToMagicCircle();
 
-	//キー制御用フラグ
+	//フラグ制御用
 	struct flgControl
 	{
 		bool Lbuuton = false;
@@ -36,11 +36,16 @@ private:
 		bool R = false;
 		bool Q = false;
 		bool space = false;
+		bool collision = false;
+		bool jump = false;
+		bool mgcCircle = false;
 	};
-	bool m_isjump = false;
 	Math::Vector3 m_magicCirclePos;
 	//納品した数
-	flgControl m_keyFlg;
+	flgControl m_ctrlFlg;
 	std::shared_ptr<KdGameObject> m_holdObj = nullptr;//当たったOBJの情報を保持
 	Effekseer::Handle m_magicCircleEffectHandle = -1; // エフェクトのハンド
+
+	// 改造してね
+	std::weak_ptr<KdEffekseerObject> m_Eff;
 };

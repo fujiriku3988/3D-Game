@@ -5,8 +5,9 @@
 
 #include"../../GameObject/Character/Player/Player.h"
 
-#include"../../GameObject/Terrains/Stage/PressurePlate/PressurePlate.h"
 #include"../../GameObject/Terrains/Stage/Stage.h"
+#include"../../GameObject/Terrains/PressurePlate/PressurePlate.h"
+#include"../../GameObject/Terrains/Fence/Fence.h"
 
 void GameScene::Event()
 {
@@ -18,8 +19,13 @@ void GameScene::Init()
 	stage->Init();
 	AddObject(stage);
 
+	std::shared_ptr<Fence> fence = std::make_shared<Fence>();
+	fence->Init();
+	AddObject(fence);
+
 	std::shared_ptr<PressurePlate> plate  = std::make_shared<PressurePlate>();
 	plate->Init();
+	plate->SetFence(fence);
 	AddObject(plate);
 
 	std::shared_ptr<Player> player = std::make_shared<Player>();

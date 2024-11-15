@@ -22,7 +22,7 @@ void Player::Init()
 	m_stepHeight = 0.6f;
 	m_pos = { 5,5,0 };
 	m_scale = { 0.8f,0.8f,0.8f };
-	m_jumpPow = 0.3f;
+	m_jumpPow = 0.25f;
 	m_jumpVelocity = 0;
 	m_gravity = 0;
 	m_gravityPow = 0.01f;
@@ -51,22 +51,21 @@ void Player::Update()
 	//ジャンプ
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
-		if (m_keyFlg.space == false)
+		if (m_ctrlFlg.space == false)
 		{
 			m_jumpVelocity = m_jumpPow;
-			m_isjump = true;
+			m_ctrlFlg.jump = true;
 		}
-		m_keyFlg.space = true;
+		m_ctrlFlg.space = true;
 	}
 	else
 	{
-		m_keyFlg.space = false;
+		m_ctrlFlg.space = false;
 	}
 
-	if (m_isjump == true)
+	if (m_ctrlFlg.jump == true)
 	{
 		m_pos.y += m_jumpVelocity;
-		//m_jumpVelocity -= m_gravity;
 	}
 
 	//移動
@@ -167,7 +166,7 @@ void Player::Update()
 void Player::PostUpdate()
 {
 	CollisionDetection();
-	//CollisionSphere();
+	CollisionSphere();
 
 	m_scaleMat = Math::Matrix::CreateScale(m_scale);
 	m_rotationMat = GetRotationYMatrix();
@@ -179,39 +178,52 @@ void Player::DrawSprite()
 {
 	m_rect = { 0,0,(long)m_texSize.x,(long)m_texSize.y };
 	m_color = { 1,1,1,1 };
-	KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y, 16, 16, &m_rect, &m_color);
+	//KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y, 16, 16, &m_rect, &m_color);
 }
 
 void Player::Action()
 {
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
-		if (m_keyFlg.E == false)
+		if (m_ctrlFlg.E == false)
 		{
+			std::shared_ptr<KdEffekseerObject> _eff = m_Eff.lock();
+			if (_eff)
+			{
+				_eff->StopEffect();
+			}	
+
 			SetMagicCircle();
-			KdEffekseerManager::GetInstance().Play("mahoujin.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1, 1, true);
+			
+			m_Eff = KdEffekseerManager::GetInstance().Play("mahoujin.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1, 1, true);
 		}
-		m_keyFlg.E = true;
+		m_ctrlFlg.E = true;
 	}
 	else
 	{
-		m_keyFlg.E = false;
+		m_ctrlFlg.E = false;
 	}
 	if (GetAsyncKeyState('Q') & 0x8000)
 	{
-		if (m_keyFlg.Q == false)
+		if (m_ctrlFlg.Q == false)
 		{
 			TeleportToMagicCircle();
-			KdEffekseerManager::GetInstance().StopEffectOne("mahoujin.efkefc");
+			//KdEffekseerManager::GetInstance().StopEffectOne("mahoujin.efkefc");
+			std::shared_ptr<KdEffekseerObject> _eff = m_Eff.lock();
+			if (_eff)
+			{
+				_eff->StopEffect();
+			}
+			
 			//KdEffekseerManager::GetInstance().StopAllEffect();
 
 		}
-		m_keyFlg.Q = true;
+		m_ctrlFlg.Q = true;
 
 	}
 	else
 	{
-		m_keyFlg.Q = false;
+		m_ctrlFlg.Q = false;
 	}
 }
 
@@ -224,7 +236,6 @@ void Player::CollisionDetection()
 	//長さ
 	static const float enableStepHeight = m_stepHeight;
 	ray.m_range = enableStepHeight;
-	//ray.m_range = m_gravity + enableStepHeight;
 	//方向
 	ray.m_dir = Math::Vector3::Down;
 	//タイプ
@@ -235,11 +246,19 @@ void Player::CollisionDetection()
 	{
 		if (obj->Intersects(ray, &retRayList))
 		{
-			if (obj->GetObjType() == KdGameObject::ePressurePlate)
+			if (obj->GetObjType() == ePressurePlate)
 			{
-				obj->HitFlg(true);
+				if (m_ctrlFlg.collision == false)
+				{
+					obj->HitFlg(true);
+				}
+				m_ctrlFlg.collision = true;
 			}
-			
+			//フラグをずっと更新しないように制御
+			if (obj->GetObjType() != ePressurePlate)
+			{
+				m_ctrlFlg.collision = false;
+			}
 		}
 	}
 
@@ -263,7 +282,7 @@ void Player::CollisionDetection()
 	{
 		m_pos = hitPos;
 		m_gravity = 0;
-		m_isjump = false;
+		m_ctrlFlg.jump = false;
 		m_jumpVelocity = 0;
 	}
 }
@@ -288,12 +307,12 @@ void Player::CollisionSphere()
 	//球判定用の変数を作成
 	KdCollider::SphereInfo sphere;//スフィア
 	//球の中心位置を設定
-	sphere.m_sphere.Center = m_pos + Math::Vector3{ 0,-0.6,0 };
+	sphere.m_sphere.Center = m_pos + Math::Vector3{ 0,0.8,0 };
 	//球の半径を設定
-	sphere.m_sphere.Radius = 0.3f;
+	sphere.m_sphere.Radius = 0.7f;
 	//当たり判定をしたいタイプを設定
 	sphere.m_type = KdCollider::TypeGround | KdCollider::TypeBump;
-	//m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
+	m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
 	//球が当たったオブジェクトの情報を格納するリスト
 	std::list<KdCollider::CollisionResult> retSphereList;
 	//球と当たり判定！！！！！！
@@ -331,11 +350,16 @@ void Player::SetMagicCircle()
 {
 	// プレイヤーの現在位置を魔法陣の位置として記録
 	m_magicCirclePos = GetPos();
+	m_ctrlFlg.mgcCircle = true;
 	//ShowMagicCircleEffect();
 }
 
 void Player::TeleportToMagicCircle()
 {
-	SetPos(m_magicCirclePos);
+	if (m_ctrlFlg.mgcCircle == true)
+	{
+		SetPos(m_magicCirclePos);
+		m_ctrlFlg.mgcCircle = false;
+	}
 	//ShowTeleportEffect();
 }

@@ -5,6 +5,7 @@ public:
 	TerrainBase() {};
 	~TerrainBase() override{};
 
+	virtual void Init(const std::string _string);
 	void Init()override;
 	void DrawLit()override;
 	void Update()override;

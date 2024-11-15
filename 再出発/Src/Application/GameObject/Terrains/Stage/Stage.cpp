@@ -3,7 +3,7 @@ void Stage::Init()
 {
 	TerrainBase::Init();
 	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Stage/Stage3.gltf");
+	m_modelData->Load("Asset/Models/Terrain/Stage/Stage3.gltf");
 	m_pos = {};
 	m_scale = { 1.0f };
 	m_color = { 1,1,1,1 };
