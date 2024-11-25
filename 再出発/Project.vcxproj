@@ -156,8 +156,6 @@
     <ClInclude Include="..\Library\tinygltf\stb_image.h" />
     <ClInclude Include="..\Library\tinygltf\stb_image_write.h" />
     <ClInclude Include="..\Library\tinygltf\tiny_gltf.h" />
-    <ClInclude Include="Src\Application\CSV\CSVLoad.h" />
-    <ClInclude Include="Src\Application\CSV\Rank\RankCalc.h" />
     <ClInclude Include="Src\Application\Fade\Fade.h" />
     <ClInclude Include="Src\Application\GameObject\Camera\CameraBase.h" />
     <ClInclude Include="Src\Application\GameObject\Camera\CCTVCamera\CCTVCamera.h" />
@@ -169,9 +167,11 @@
     <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h" />
     <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\Fence\Fence.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.h" />
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
-    <ClInclude Include="Src\Application\GameObject\Terrains\Fence\Fence.h" />
-    <ClInclude Include="Src\Application\GameObject\Terrains\PressurePlate\PressurePlate.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.h" />
+    <ClInclude Include="Src\Application\GameObject\Terrains\Sphere\Sphere.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h" />
@@ -233,8 +233,6 @@
     <ClCompile Include="..\Library\imgui\imgui_stdlib.cpp" />
     <ClCompile Include="..\Library\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Library\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Src\Application\CSV\CSVLoad.cpp" />
-    <ClCompile Include="Src\Application\CSV\Rank\RankCalc.cpp" />
     <ClCompile Include="Src\Application\Fade\Fade.cpp" />
     <ClCompile Include="Src\Application\GameObject\Camera\CameraBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Camera\CCTVCamera\CCTVCamera.cpp" />
@@ -246,9 +244,11 @@
     <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\Fence\Fence.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />
-    <ClCompile Include="Src\Application\GameObject\Terrains\Fence\Fence.cpp" />
-    <ClCompile Include="Src\Application\GameObject\Terrains\PressurePlate\PressurePlate.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Terrains\Sphere\Sphere.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp" />

@@ -16,6 +16,8 @@ public:
 		unsigned int  color = 0xFFFFFFFF;
 		Math::Vector3 normal = Math::Vector3::Backward;
 		Math::Vector3 tangent = Math::Vector3::Left;
+
+		float blank[6] = {};
 	};
 
 	KdPolygon() {}

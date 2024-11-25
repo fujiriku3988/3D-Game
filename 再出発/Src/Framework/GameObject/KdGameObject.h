@@ -10,6 +10,7 @@ public:
 		eNone,
 		ePressurePlate,
 		eFence,
+		eGoalPoint
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能
@@ -76,8 +77,6 @@ public:
 
 	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
-
-	virtual void PlayAnimation() {};
 
 	void HitFlg(bool _flg) { m_hitFlg = _flg; }
 	

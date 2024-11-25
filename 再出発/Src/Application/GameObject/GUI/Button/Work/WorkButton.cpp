@@ -57,7 +57,6 @@ void WorkButton::Update()
 		if (m_rotFlg)
 		{
 			spCamera->SetDegAngX(45);
-			spCamera->SetControlPos({ 0, 8.0f, -4.5f });
 			if (spCamera->GetDegAngXFlg() && spCamera->GetCamPosFlg())
 			{
 				SceneManager::Instance().SetNextMode(SceneManager::ModeType::GameWork);

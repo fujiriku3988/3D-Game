@@ -15,19 +15,31 @@ public:
 	//テンプレート型でデータ型を自動的に解釈する
 	template<typename T>
 	//変数 = GetParam()の形で使う
+	//JSONファイルからデータを取ってくる関数
 	T GetParam(const std::string _filePath, const std::string _name, const std::string _key);
 
-	//Math::Vector3用のGetParam()の特殊化はcppに定義
-	template <>
-	Math::Vector3 GetParam<Math::Vector3>(const std::string _filePath, const std::string _name, const std::string _key);
+	//Math::Vector2用のGetParam()
+	Math::Vector2 GetParamVec2(const std::string _filePath, const std::string _name, const std::string _key);
+
+	//Math::Vector3用のGetParam()
+	Math::Vector3 GetParamVec3(const std::string _filePath, const std::string _name, const std::string _key);
+
+	//Math::Vector4用のGetParam()
+	Math::Vector4 GetParamVec4(const std::string& _filePath, const std::string& _name, const std::string& _key);
 
 	//テンプレート型でデータ型を自動的に解釈する
 	template <typename T>
 	//変数をJSONファイルに書き込む関数
-	T AddParam(const std::string& filePath, const std::string& name, const std::string& key, const T& value);
+	T AddParam(const std::string& _filePath, const std::string& _name, const std::string& _key, const T& _value);
+
+	//Math::Vector2用のJSONに書き込む関数
+	void AddParamVec2(const std::string& _filePath, const std::string& _name, const std::string& _key, const Math::Vector2& _value);
 
 	//Math::Vector3用のJSONに書き込む関数
-	void AddParam(const std::string& filePath, const std::string& name, const std::string& key, const Math::Vector3& value);
+	void AddParamVec3(const std::string& _filePath, const std::string& _name, const std::string& _key, const Math::Vector3& _value);
+
+	//Math::Vector4用のJSONに書き込む関数
+	void AddParamVec4(const std::string& _filePath, const std::string& _name, const std::string& _key, const Math::Vector4& _value);
 
 	//テンプレート型でデータ型を自動的に解釈する
 	template <typename T>

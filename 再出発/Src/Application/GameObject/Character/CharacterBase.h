@@ -14,6 +14,7 @@ public:
 	CharacterBase() {}
 	~CharacterBase()override {};
 
+	virtual void Init(const std::string _string);
 	void Init()override;
 	void PreUpdate()override;
 	void Update()override;
@@ -82,13 +83,13 @@ protected:
 	Math::Vector3 m_rot;//回転値
 	Math::Vector3 m_scale;//拡縮値
 	Math::Color m_color;//色
+	Math::Vector3 m_adjustHeight;//当たり判定の高さとかの調整
+	float m_stepHeight;//当たり判定で許容できる段差の高さ
 	float m_speed;//スピード
 	float m_jumpPow;//ジャンプ力
 	float m_jumpVelocity;//現在のジャンプ速度
 	float m_gravity;//重力
 	float m_gravityPow;//重力の力
-	float m_adjustHeight;//当たり判定の高さとかの調整
-	float m_stepHeight;//当たり判定で許容できる段差の高さ
 	bool m_hitFlg = false;//当たり判定
 	bool m_moveFlg = false;//動いてるかどうか
 	//行列

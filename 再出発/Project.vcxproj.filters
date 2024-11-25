@@ -136,12 +136,6 @@
     <Filter Include="Src\Application\GameObject\Terrains\Stage">
       <UniqueIdentifier>{dbf0a049-289a-493c-9df0-62424b52cb85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\CSV">
-      <UniqueIdentifier>{579f5bd6-49b3-449c-b13b-40d7f7fc3abd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\CSV\Rank">
-      <UniqueIdentifier>{c890aa13-c812-4de9-8506-68657babcc85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\Character\Player">
       <UniqueIdentifier>{3c20c8ca-1475-4c2a-b346-2f84c4ccd645}</UniqueIdentifier>
     </Filter>
@@ -154,14 +148,17 @@
     <Filter Include="Src\Application\JSON">
       <UniqueIdentifier>{30985909-75c5-4ccf-ae06-4a0cd842e63b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\Fence">
-      <UniqueIdentifier>{fffce7ec-6b9b-4ff4-b999-98b4e4faac25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\PressurePlate">
-      <UniqueIdentifier>{a4eff901-f881-44a8-be5a-fa09c7c48d6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\Terrains\Sphere">
       <UniqueIdentifier>{bec64758-a0c6-4859-b00e-faa6ed35f70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Fence">
+      <UniqueIdentifier>{fffce7ec-6b9b-4ff4-b999-98b4e4faac25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\GoalPoint">
+      <UniqueIdentifier>{ce1663d4-9a8a-4a46-9357-4ebd2be86d59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\PressurePlate">
+      <UniqueIdentifier>{a4eff901-f881-44a8-be5a-fa09c7c48d6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -381,12 +378,6 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h">
       <Filter>Src\Application\GameObject\Terrains</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\CSV\CSVLoad.h">
-      <Filter>Src\Application\CSV</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\CSV\Rank\RankCalc.h">
-      <Filter>Src\Application\CSV\Rank</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Character\CharacterBase.h">
       <Filter>Src\Application\GameObject\Character</Filter>
     </ClInclude>
@@ -402,14 +393,20 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\Title\Title.h">
       <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Terrains\Fence\Fence.h">
-      <Filter>Src\Application\GameObject\Terrains\Fence</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Terrains\PressurePlate\PressurePlate.h">
-      <Filter>Src\Application\GameObject\Terrains\PressurePlate</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Json\JsonManager.h">
       <Filter>Src\Application\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Terrains\Sphere\Sphere.h">
+      <Filter>Src\Application\GameObject\Terrains\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Fence\Fence.h">
+      <Filter>Src\Application\GameObject\Object\Fence</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.h">
+      <Filter>Src\Application\GameObject\Object\GoalPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.h">
+      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -602,12 +599,6 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp">
       <Filter>Src\Application\GameObject\Terrains</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\CSV\CSVLoad.cpp">
-      <Filter>Src\Application\CSV</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\CSV\Rank\RankCalc.cpp">
-      <Filter>Src\Application\CSV\Rank</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Character\CharacterBase.cpp">
       <Filter>Src\Application\GameObject\Character</Filter>
     </ClCompile>
@@ -623,14 +614,20 @@
     <ClCompile Include="Src\Application\GameObject\UI\Text\Title\Title.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Terrains\Fence\Fence.cpp">
-      <Filter>Src\Application\GameObject\Terrains\Fence</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Terrains\PressurePlate\PressurePlate.cpp">
-      <Filter>Src\Application\GameObject\Terrains\PressurePlate</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Json\JsonManager.cpp">
       <Filter>Src\Application\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Terrains\Sphere\Sphere.cpp">
+      <Filter>Src\Application\GameObject\Terrains\Sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Fence\Fence.cpp">
+      <Filter>Src\Application\GameObject\Object\Fence</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.cpp">
+      <Filter>Src\Application\GameObject\Object\GoalPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.cpp">
+      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

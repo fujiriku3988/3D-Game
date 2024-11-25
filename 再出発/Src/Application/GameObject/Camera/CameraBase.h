@@ -12,9 +12,8 @@ public:
 
 	//追加
 	void SetTarget(const std::shared_ptr<KdGameObject>& target);
-	void SetDegAngY(float _degY);
-	void SetDegAngX(float _degX);
-	void SetControlPos(Math::Vector3 _pos);
+	void SetDegAngY(float _degY) { m_DegAng.y = _degY; }
+	void SetDegAngX(float _degX) { m_DegAng.x = _degX; }
 	void SetCameraPos(Math::Vector3 _pos) { m_camPos = _pos; }
 	bool GetDegAngYFlg() { return m_degFlgY; }
 	bool GetDegAngXFlg() { return m_degFlgX; }
@@ -63,9 +62,9 @@ protected:
 	bool m_degFlgY = false;//回転終わったか
 	bool m_camFlg = false;//カメラの移動終わったか
 
-	Math::Matrix				m_mLocalPos = Math::Matrix::Identity;
-	Math::Matrix				m_mRotation = Math::Matrix::Identity;
+	Math::Matrix m_mLocalPos = Math::Matrix::Identity;
+	Math::Matrix m_mRotation = Math::Matrix::Identity;
 
 	// カメラ回転用マウス座標の差分
-	POINT						m_FixMousePos{};
+	POINT m_FixMousePos{};
 };

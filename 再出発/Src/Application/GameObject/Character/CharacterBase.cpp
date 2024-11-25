@@ -1,8 +1,14 @@
 ﻿#include "CharacterBase.h"
 #include"../../Scene/SceneManager.h"
 
+void CharacterBase::Init(const std::string _string)
+{
+}
+
 void CharacterBase::Init()
 {
+	m_modelWork = std::make_shared<KdModelWork>();
+	m_poly = std::make_shared<KdSquarePolygon>();
 	m_pos = { };
 	m_scale = { 1 };
 	m_spritePos = {};
@@ -16,7 +22,7 @@ void CharacterBase::Init()
 	m_rotMatX = Math::Matrix::Identity;
 	m_rotMatY = Math::Matrix::Identity;
 	m_rotMatZ = Math::Matrix::Identity;
-	m_adjustHeight = 0.0f;
+	m_adjustHeight = {};
 	m_jumpPow = 0.0f;
 	m_jumpVelocity = 0.0f;
 	m_gravity = 0.0f;

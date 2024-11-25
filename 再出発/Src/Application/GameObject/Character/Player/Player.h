@@ -6,10 +6,10 @@ public:
 	Player() {}
 	~Player() override{}
 
+	void Init(const std::string _string);
 	void Init()override;
 	void Update()override;
 	void PostUpdate()override;
-	void DrawSprite()override;
 	void AddNode()override;
 
 	void CollisionDetection()override;

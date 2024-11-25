@@ -134,6 +134,7 @@ public:
 
 	// ループ設定
 	void SetLoop(const bool isLoop = false) { m_info.IsLoop = isLoop; }
+	//エフェクトを止める
 	void StopEffect()
 	{ 
 		SetLoop(false);

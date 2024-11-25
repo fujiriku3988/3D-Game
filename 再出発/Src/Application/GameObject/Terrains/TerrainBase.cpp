@@ -5,6 +5,7 @@ void TerrainBase::Init(const std::string _string)
 	m_pos = {};
 	m_scale = { 1.0f };
 	m_color = { 1,1,1,1 };
+	m_animState = "NONE";
 
 	m_animator = std::make_shared<KdAnimator>();
 	m_modelData = std::make_shared<KdModelData>();

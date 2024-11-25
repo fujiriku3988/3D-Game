@@ -3,37 +3,52 @@
 
 #include"../../../Scene/SceneManager.h"
 #include"../../../../Framework/Effekseer/KdEffekseerManager.h"
+#include"../../../Json/JsonManager.h"
 
 #include"../../../GameObject/Terrains/TerrainBase.h"
 
 #include"../../../GameObject/Object/ObjectBase.h"
-#include"../../../GameObject/Object/Parts/Missile/Missile.h"
-#include"../../../GameObject/Object/Body/CleanRobot/CleanRobot.h"
-#include"../../../GameObject/Object/CardBoard/CardBoard.h"
 
 #include"../../../main.h"
+
+void Player::Init(const std::string _string)
+{
+	CharacterBase::Init();
+
+	m_modelWork = std::make_shared<KdModelWork>();
+	m_modelWork->SetModelData("Asset/Models/Character/wizard/Player1.gltf");
+
+	m_pos = JsonManager::Instance().GetParamVec3(_string, "player", "pos");
+	m_dir = JsonManager::Instance().GetParamVec3(_string, "player", "dir");
+	m_scale = JsonManager::Instance().GetParamVec3(_string, "player", "scale");
+	m_adjustHeight = JsonManager::Instance().GetParamVec3(_string, "player", "adjustHeight");
+	m_color = JsonManager::Instance().GetParamVec4(_string, "player", "color");
+	m_stepHeight = JsonManager::Instance().GetParam<float>(_string, "player", "stepHeight");
+	m_jumpPow = JsonManager::Instance().GetParam<float>(_string, "player", "jumpPow");
+	m_jumpVelocity  = JsonManager::Instance().GetParam<float>(_string, "player", "jumpVelocity");
+	m_gravity = JsonManager::Instance().GetParam<float>(_string, "player", "gravity");
+	m_gravityPow = JsonManager::Instance().GetParam<float>(_string, "player", "gravityPow");
+	m_speed = JsonManager::Instance().GetParam<float>(_string, "player", "speed");
+	m_tex = std::make_shared<KdTexture>();
+}
 
 void Player::Init()
 {
 	CharacterBase::Init();
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_modelWork->SetModelData("Asset/Models/Character/wizard/Player1.gltf");
-	m_adjustHeight = 0.6f;
-	m_stepHeight = 0.6f;
 	m_pos = { 5,5,0 };
+	m_dir = {};
 	m_scale = { 0.8f,0.8f,0.8f };
+	m_adjustHeight = { 0,0.6f,0 };
+	m_color = { 1,1,1,1 };
+	m_stepHeight = 0.6f;
 	m_jumpPow = 0.25f;
 	m_jumpVelocity = 0;
 	m_gravity = 0;
 	m_gravityPow = 0.01f;
-	m_dir = {};
 	m_speed = 0.1f;
-	m_color = { 1,1,1,1 };
 	m_tex = std::make_shared<KdTexture>();
-	m_tex->Load("Asset/Textures/UI/Reticle/Dot.png");
-	m_spritePos = {};
-	m_texSize = { 16,16 };
-	m_magicCirclePos = {};
 }
 
 void Player::Update()
@@ -174,13 +189,6 @@ void Player::PostUpdate()
 	m_mWorld = m_scaleMat * m_rotationMat * m_transMat;
 }
 
-void Player::DrawSprite()
-{
-	m_rect = { 0,0,(long)m_texSize.x,(long)m_texSize.y };
-	m_color = { 1,1,1,1 };
-	//KdShaderManager::Instance().m_spriteShader.DrawTex(m_tex, m_spritePos.x, m_spritePos.y, 16, 16, &m_rect, &m_color);
-}
-
 void Player::Action()
 {
 	if (GetAsyncKeyState('E') & 0x8000)
@@ -191,10 +199,10 @@ void Player::Action()
 			if (_eff)
 			{
 				_eff->StopEffect();
-			}	
+			}
 
 			SetMagicCircle();
-			
+
 			m_Eff = KdEffekseerManager::GetInstance().Play("mahoujin.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1, 1, true);
 		}
 		m_ctrlFlg.E = true;
@@ -214,7 +222,7 @@ void Player::Action()
 			{
 				_eff->StopEffect();
 			}
-			
+
 			//KdEffekseerManager::GetInstance().StopAllEffect();
 
 		}
@@ -232,9 +240,9 @@ void Player::CollisionDetection()
 	//レイ判定
 	KdCollider::RayInfo ray;
 	//飛ばす位置
-	ray.m_pos = m_pos + Math::Vector3{ 0,(m_adjustHeight),0 };
+	ray.m_pos = m_pos + m_adjustHeight;
 	//長さ
-	static const float enableStepHeight = m_stepHeight;
+	static const float enableStepHeight = m_stepHeight;	
 	ray.m_range = enableStepHeight;
 	//方向
 	ray.m_dir = Math::Vector3::Down;
@@ -246,7 +254,7 @@ void Player::CollisionDetection()
 	{
 		if (obj->Intersects(ray, &retRayList))
 		{
-			if (obj->GetObjType() == ePressurePlate)
+			if (obj->GetObjType() == ePressurePlate || obj->GetObjType() == eGoalPoint)
 			{
 				if (m_ctrlFlg.collision == false)
 				{
@@ -255,7 +263,7 @@ void Player::CollisionDetection()
 				m_ctrlFlg.collision = true;
 			}
 			//フラグをずっと更新しないように制御
-			if (obj->GetObjType() != ePressurePlate)
+			if (obj->GetObjType() != ePressurePlate || obj->GetObjType() == eGoalPoint)
 			{
 				m_ctrlFlg.collision = false;
 			}
