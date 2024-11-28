@@ -567,6 +567,8 @@ void KdStandardShader::WriteMaterial(const KdMaterial& material, const Math::Vec
 	// マテリアル情報を定数バッファへ書き込む
 	//-----------------------
 	m_cb2_Material.Work().BaseColor = material.m_baseColorRate * colRate;
+	//m_cb2_Material.Work().Emissive = material.m_emissiveRate * Math::Vector3(10,10,10);
+	//m_cb2_Material.Work().Emissive = material.m_emissiveRate * Math::Vector3::One;
 	m_cb2_Material.Work().Emissive = material.m_emissiveRate * emiRate;
 	m_cb2_Material.Work().Metallic = material.m_metallicRate;
 	m_cb2_Material.Work().Roughness = material.m_roughnessRate;
