@@ -6,7 +6,7 @@ public:
 	ObjectBase() {}
 	~ObjectBase()override {};
 
-	virtual void Init(const std::string _string);
+	virtual void Init(const std::string _filePath);
 	void Init()override;
 	void PreUpdate()override;
 	void Update()override;

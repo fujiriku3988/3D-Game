@@ -4,7 +4,10 @@
 class Play :public UIBase
 {
 public:
-	void Init(const std::string _string)override;
+	Play() {};
+	~Play() {};
+
+	void Init(const std::string _filePath)override;
 	void Init()override;
 	void DrawSprite()override;
 	void Update()override;

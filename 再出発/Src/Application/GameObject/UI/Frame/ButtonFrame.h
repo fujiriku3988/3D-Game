@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include"../../UIBase.h"
+#include"../UIBase.h"
 
-class Restart :public UIBase
+class ButtonFrame :public UIBase
 {
 public:
-	Restart() {};
-	~Restart() {};
+	ButtonFrame() {};
+	~ButtonFrame() {};
 
 	void Init(const std::string _filePath)override;
 	void Init()override;

@@ -172,14 +172,14 @@
     <Filter Include="Src\Application\GameObject\UI\Button\Restart">
       <UniqueIdentifier>{06cda1d4-b1b3-4982-bc66-83c02a35146b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Button\Frame">
-      <UniqueIdentifier>{ac23deae-233c-4b69-ad82-66e6e21c4c29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back\BlueBack">
-      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Back\Star">
       <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Back\WhiteBack">
+      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Frame">
+      <UniqueIdentifier>{ac23deae-233c-4b69-ad82-66e6e21c4c29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -435,14 +435,14 @@
     <ClInclude Include="Src\Application\GameObject\UI\Button\Restart\Restart.h">
       <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Button\Frame\Frame.h">
-      <Filter>Src\Application\GameObject\UI\Button\Frame</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Back\BlueBack\BlueBack.h">
-      <Filter>Src\Application\GameObject\UI\Back\BlueBack</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Back\Star\Star.h">
       <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.h">
+      <Filter>Src\Application\GameObject\UI\Back\WhiteBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame.h">
+      <Filter>Src\Application\GameObject\UI\Frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -671,14 +671,14 @@
     <ClCompile Include="Src\Application\GameObject\UI\Button\Restart\Restart.cpp">
       <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Button\Frame\Frame.cpp">
-      <Filter>Src\Application\GameObject\UI\Button\Frame</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Back\BlueBack\BlueBack.cpp">
-      <Filter>Src\Application\GameObject\UI\Back\BlueBack</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Back\Star\Star.cpp">
       <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.cpp">
+      <Filter>Src\Application\GameObject\UI\Back\WhiteBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame.cpp">
+      <Filter>Src\Application\GameObject\UI\Frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

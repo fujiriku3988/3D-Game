@@ -1,15 +1,15 @@
 ﻿#include "Restart.h"
 #include"../../../../main.h"
 
-void Restart::Init(const std::string _string)
+void Restart::Init(const std::string _filePath)
 {
 }
 
 void Restart::Init()
 {
 	UIBase::Init();
-	m_pos = { -50,-80 };
-	m_scale = { 0.9f };
+	m_pos = { -50,-150 };
+	m_scale = { 1.0f };
 	m_tex.Load("Asset/Textures/UI/Result/restart.png");
 	m_color = { 1,1,1,1 };
 	m_time = 60;

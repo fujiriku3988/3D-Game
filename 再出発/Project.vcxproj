@@ -174,11 +174,11 @@
     <ClInclude Include="Src\Application\GameObject\Terrains\Sphere\Sphere.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
-    <ClInclude Include="Src\Application\GameObject\UI\Back\BlueBack\BlueBack.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Back\Star\Star.h" />
-    <ClInclude Include="Src\Application\GameObject\UI\Button\Frame\Frame.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Button\Play\Play.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Button\Restart\Restart.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Title\Title.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Work\Work.h" />
@@ -256,11 +256,11 @@
     <ClCompile Include="Src\Application\GameObject\Terrains\Sphere\Sphere.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />
-    <ClCompile Include="Src\Application\GameObject\UI\Back\BlueBack\BlueBack.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Back\Star\Star.cpp" />
-    <ClCompile Include="Src\Application\GameObject\UI\Button\Frame\Frame.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Button\Play\Play.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Button\Restart\Restart.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Title\Title.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Work\Work.cpp" />

@@ -1,22 +1,22 @@
-﻿#include "Frame.h"
+﻿#include "WhiteBack.h"
 
-void Frame::Init(const std::string _string)
+void WhiteBack::Init(const std::string _string)
 {
 }
 
-void Frame::Init()
+void WhiteBack::Init()
 {
 	UIBase::Init();
 	m_pos = { 0,0 };
-	m_scale = { 1.0f };
-	m_tex.Load("Asset/Textures/UI/Result/buttonFrame1.png");
-	m_color = { 1,1,1,1 };
+	m_scale = { 0.6f,0.6f };
+	m_tex.Load("Asset/Textures/UI/Result/back.png");
+	m_color = { 1,1,1,0.9 };
 	m_time = 60;
 	m_drawFlg = true;
-	m_texSize = { 64,64 };
+	m_texSize = { 500,800 };
 }
 
-void Frame::DrawSprite()
+void WhiteBack::DrawSprite()
 {
 	//m_color = { 1,1,1,m_alpha };
 	if (m_drawFlg)
@@ -26,7 +26,7 @@ void Frame::DrawSprite()
 	}
 }
 
-void Frame::Update()
+void WhiteBack::Update()
 {
 	//α値変更
 	//m_alpha += m_speed;

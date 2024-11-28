@@ -5,7 +5,7 @@ public:
 	UIBase() {}
 	~UIBase()override {}
 
-	virtual void Init(const std::string _string);
+	virtual void Init(const std::string _filePath);
 	void Init()override;
 	void DrawSprite()override;
 	void Update()override;

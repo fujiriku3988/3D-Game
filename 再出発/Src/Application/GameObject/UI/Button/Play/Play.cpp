@@ -1,14 +1,14 @@
 ﻿#include "Play.h"
 #include"../../../../main.h"
 
-void Play::Init(const std::string _string)
+void Play::Init(const std::string _filePath)
 {
 }
 
 void Play::Init()
 {
 	UIBase::Init();
-	m_pos = { 40,-80 };
+	m_pos = { 40,-150 };
 	m_scale = { 1.0f };
 	m_tex.Load("Asset/Textures/UI/Result/Play.png");
 	m_color = { 1,1,1,1 };

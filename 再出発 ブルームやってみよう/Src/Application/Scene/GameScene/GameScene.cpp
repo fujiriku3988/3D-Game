@@ -25,7 +25,7 @@ void GameScene::Init()
 {	
 	//環境光（アンビエントライト）
 	//デフォルトは0.3
-	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.5,0.5,0.5,1 });
+	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.3,0.3,0.3,1 });
 
 	//フォグ（霧）													距離	高さ
 	KdShaderManager::Instance().WorkAmbientController().SetFogEnable(true, true);

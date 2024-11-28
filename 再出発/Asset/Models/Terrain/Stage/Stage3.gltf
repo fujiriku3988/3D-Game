@@ -881,9 +881,12 @@
 		{
 			"doubleSided":true,
 			"name":"\u5730\u9762\u4eee",
+			"normalTexture":{
+				"index":2
+			},
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
-					"index":2
+					"index":3
 				},
 				"metallicFactor":0,
 				"roughnessFactor":0.5
@@ -904,6 +907,9 @@
 		},
 		{
 			"name":"Stone.001",
+			"normalTexture":{
+				"index":4
+			},
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0.4662296772003174,
@@ -917,6 +923,9 @@
 		},
 		{
 			"name":"StoneDark.001",
+			"normalTexture":{
+				"index":5
+			},
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
 					0.10092172026634216,
@@ -2131,19 +2140,36 @@
 		},
 		{
 			"sampler":0,
+			"source":0
+		},
+		{
+			"sampler":0,
 			"source":1
+		},
+		{
+			"sampler":0,
+			"source":2
+		},
+		{
+			"sampler":0,
+			"source":2
 		}
 	],
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"PavingStones077_1K-PNG_NormalDX",
-			"uri":"PavingStones077_1K-PNG_NormalDX.png"
+			"name":"stone_moss2",
+			"uri":"stone_moss2.png"
 		},
 		{
 			"mimeType":"image/png",
 			"name":"stone_with_moss",
 			"uri":"stone_with_moss.png"
+		},
+		{
+			"mimeType":"image/png",
+			"name":"PavingStones077_1K-PNG_NormalDX",
+			"uri":"PavingStones077_1K-PNG_NormalDX.png"
 		}
 	],
 	"accessors":[

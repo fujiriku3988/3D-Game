@@ -40,7 +40,7 @@ void GoalPoint::DrawLit()
 	KdShaderManager::Instance().m_StandardShader.SetEmissiveEnable(true);
 	if (m_modelWork)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color,{1,1,1});
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color,{100,100,100});
 		//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 	//KdShaderManager::Instance().m_StandardShader.SetEmissiveEnable(false);

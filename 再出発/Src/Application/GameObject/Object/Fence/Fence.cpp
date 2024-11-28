@@ -18,17 +18,17 @@ void Fence::Init()
 	m_objType = eFence;*/
 }
 
-void Fence::Init(const std::string _filepath)
+void Fence::Init(const std::string _filePath)
 {
 	ObjectBase::Init();
 
 	m_modelWork->SetModelData("Asset/Models/Terrain/Fence/Fence2.gltf");
 
-	m_pos = JsonManager::Instance().GetParamVec3(_filepath, "Fence", "pos");
-	m_scale = JsonManager::Instance().GetParamVec3(_filepath, "Fence", "scale");
-	m_color = JsonManager::Instance().GetParamVec4(_filepath, "Fence", "color");
-	m_raise = JsonManager::Instance().GetParam<bool>(_filepath, "Fence", "raise");
-	m_animState = JsonManager::Instance().GetParam<std::string>(_filepath, "Fence", "animation");
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "Fence", "pos");
+	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "Fence", "scale");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Fence", "color");
+	m_raise = JsonManager::Instance().GetParam<bool>(_filePath, "Fence", "raise");
+	m_animState = JsonManager::Instance().GetParam<std::string>(_filePath, "Fence", "animation");
 	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation(m_animState));
 
 	m_pCollider = std::make_unique<KdCollider>();

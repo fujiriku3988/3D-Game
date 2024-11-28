@@ -310,7 +310,7 @@ bool KdTexture::Load(std::string_view filename, bool renderTarget, bool depthSte
 	tex2D->GetDesc(&m_desc);
 	tex2D->Release();
 
-	m_filepath = filename;
+	m_filePath = filename;
 
 	return true;
 }
@@ -329,7 +329,7 @@ bool KdTexture::Create(ID3D11Texture2D* pTexture2D)
 	}
 
 	// ファイル名記憶
-	m_filepath = "";
+	m_filePath = "";
 
 	// 画像情報取得
 	pTexture2D->GetDesc(&m_desc);
@@ -464,6 +464,6 @@ void KdTexture::Release()
 	KdSafeRelease(m_rtv);
 	KdSafeRelease(m_dsv);
 
-	m_filepath = "";
+	m_filePath = "";
 }
 

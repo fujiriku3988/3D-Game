@@ -1,7 +1,7 @@
 ﻿#include "ObjectBase.h"
 #include"../../Scene/SceneManager.h"
 
-void ObjectBase::Init(const std::string _string)
+void ObjectBase::Init(const std::string _filePath)
 {
 	m_pos = {};
 	m_scale = { 1.0f };

@@ -9,7 +9,7 @@ public:
 	~PressurePlate() override {}
 
 	void Init()override;
-	void Init(const std::string _filepath)override;
+	void Init(const std::string _filePath)override;
 	void DrawLit()override;
 	void Update()override;
 	void PostUpdate()override;

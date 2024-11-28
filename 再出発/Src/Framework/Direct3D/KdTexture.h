@@ -24,7 +24,7 @@ public:
 	// 画像の全情報を取得
 	const D3D11_TEXTURE2D_DESC&			GetInfo() const { return m_desc; }
 	// ファイルパス取得(Load時のみ)
-	const std::string&					GetFilepath() const { return m_filepath; }
+	const std::string&					GetFilepath() const { return m_filePath; }
 
 	// 画像リソースを取得
 	const ID3D11Texture2D*				GetResource() const;
@@ -150,7 +150,7 @@ private:
 	D3D11_TEXTURE2D_DESC		m_desc = {};
 
 	// 画像ファイル名(Load時専用)
-	std::string					m_filepath;
+	std::string					m_filePath;
 
 private:
 	// コピー禁止用
