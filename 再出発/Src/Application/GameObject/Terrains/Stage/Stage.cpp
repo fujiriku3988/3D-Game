@@ -1,4 +1,5 @@
 ﻿#include "Stage.h"
+
 void Stage::Init()
 {
 	TerrainBase::Init();

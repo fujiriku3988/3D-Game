@@ -1,10 +1,10 @@
 ﻿#include "ButtonFrame.h"
-#include"../../../Json/JsonManager.h"
 
 void ButtonFrame::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/buttonFrame1.png");
+	m_tex.Load("Asset/Textures/UI/Result/buttonFrame.png");
+
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "ButtonFrame", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "ButtonFrame", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "ButtonFrame", "texSize");
@@ -15,12 +15,12 @@ void ButtonFrame::Init(const std::string _filePath)
 void ButtonFrame::Init()
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/buttonFrame1.png");
+	m_tex.Load("Asset/Textures/UI/Result/buttonFrame.png");
 	m_pos = { 40,-150 };
 	m_scale = { 1.0f };
 	m_color = { 1,1,1,1 };
 	m_drawFlg = true;
-	m_texSize = { 64,64 };
+	m_texSize = { 192,64 };
 
 	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/ButtonFrame1.json", "ButtonFrame", "pos", m_pos);
 	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/ButtonFrame1.json", "ButtonFrame", "scale", m_scale);
@@ -35,7 +35,7 @@ void ButtonFrame::DrawSprite()
 	if (m_drawFlg)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y,nullptr, &m_color);
 	}
 }
 

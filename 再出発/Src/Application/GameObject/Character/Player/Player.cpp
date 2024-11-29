@@ -3,7 +3,6 @@
 
 #include"../../../Scene/SceneManager.h"
 #include"../../../../Framework/Effekseer/KdEffekseerManager.h"
-#include"../../../Json/JsonManager.h"
 
 #include"../../../GameObject/Terrains/TerrainBase.h"
 
@@ -16,7 +15,7 @@ void Player::Init(const std::string _string)
 	CharacterBase::Init();
 
 	m_modelWork = std::make_shared<KdModelWork>();
-	m_modelWork->SetModelData("Asset/Models/Character/wizard/Player1.gltf");
+	m_modelWork->SetModelData("Asset/Models/Character/wizard/Player.gltf");
 
 	m_pos = JsonManager::Instance().GetParamVec3(_string, "player", "pos");
 	m_dir = JsonManager::Instance().GetParamVec3(_string, "player", "dir");

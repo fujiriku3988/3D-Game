@@ -8,7 +8,7 @@ void TPSCamera::Init()
 	m_spCamera->SetProjectionMatrix(90);
 
 	//注視点
-	m_camPos = { 0, 4.0f, -12.0f };
+	m_camPos = { 0, 4.0f, -8.0f };
 	SetDegAngX(DirectX::XMConvertToRadians(120));
 	
 	m_mLocalPos = Math::Matrix::CreateTranslation(m_camPos);//ホワイトボードの位置（最初の定位置）

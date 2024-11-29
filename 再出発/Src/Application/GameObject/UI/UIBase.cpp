@@ -1,21 +1,21 @@
 ﻿#include "UIBase.h"
 
-void UIBase::Init(const std::string _string)
+void UIBase::Init(const std::string _filePath)
 {
 
 }
 
 void UIBase::Init()
 {
-	m_pos = {};
-	m_scale = {};
-	m_texSize = {};
-	m_color = { 1,1,1,1 };
-	m_drawFlg = true;
-	m_time = 0;
-	m_alpha = 1;
-	m_alphaMAX = 1.0f;
-	m_alphaMIN = 0.3f;
+	m_pos = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "pos");
+	m_scale = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "scale");
+	m_texSize = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "texSize");
+	m_color = JsonManager::Instance().GetParamVec4("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "color");
+	m_drawFlg = JsonManager::Instance().GetParam<bool>("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "drawFlg");
+	m_time = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "time");
+	m_alpha = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "alpha");
+	m_alphaMAX = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "alphaMAX");
+	m_alphaMIN = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/UIBase.json", "UIBase", "alphaMIN");
 }
 
 void UIBase::DrawSprite()

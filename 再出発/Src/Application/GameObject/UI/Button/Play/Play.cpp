@@ -3,23 +3,17 @@
 
 void Play::Init(const std::string _filePath)
 {
-}
-
-void Play::Init()
-{
 	UIBase::Init();
-	m_pos = { 40,-150 };
-	m_scale = { 1.0f };
 	m_tex.Load("Asset/Textures/UI/Result/Play.png");
-	m_color = { 1,1,1,1 };
-	m_time = 60;
-	m_drawFlg = true;
-	m_texSize = { 30,34 };
+	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "Play", "pos");
+	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "Play", "scale");
+	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "Play", "texSize");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Play", "color");
+	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "Play", "drawFlg");
 }
 
 void Play::DrawSprite()
 {
-	//m_color = { 1,1,1,m_alpha };
 	if (m_drawFlg)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
@@ -29,17 +23,6 @@ void Play::DrawSprite()
 
 void Play::Update()
 {
-	//α値変更
-	//m_alpha += m_speed;
-	if (m_alpha < m_alphaMIN)
-	{
-		//m_speed *= -1;
-	}
-	if (m_alpha > m_alphaMAX)
-	{
-		//m_speed *= -1;
-	}
-
 	{
 		POINT nowPos;
 		GetCursorPos(&nowPos);
@@ -54,15 +37,14 @@ void Play::Update()
 		if (nowLength.y <= -m_pos.y + 34 && nowLength.y >= -m_pos.y - 34
 			&& nowLength.x >= m_pos.x - 30 && nowLength.x <= m_pos.x + 30)
 		{
-			m_color = { 1,1,1,0.1f };
-			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-			{
-				m_drawFlg = false;
-			}
+			m_scale.x += 0.05f;
+			m_scale.y += 0.05f;
+			if (m_scale.x >= 1.2f) { m_scale.x = 1.2f; }
+			if (m_scale.y >= 1.2f) { m_scale.y = 1.2f; }
 		}
 		else
 		{
-			m_color = { 1,1,1,1 };
+			m_scale = { 1.0f };
 		}
 	}
 }

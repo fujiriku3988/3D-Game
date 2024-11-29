@@ -1,9 +1,10 @@
 ﻿#include "Sphere.h"
+
 void Sphere::Init()
 {
 	TerrainBase::Init();
 	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Terrain/Sphere/Sphere2.gltf");
+	m_modelData->Load("Asset/Models/Terrain/SkyBox/skybox.gltf");
 	m_pos = {};
 	m_scale = { 3.0f };
 	m_color = { 2,2,2,2 };

@@ -175,11 +175,26 @@
     <Filter Include="Src\Application\GameObject\UI\Back\Star">
       <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back\WhiteBack">
-      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Frame">
       <UniqueIdentifier>{ac23deae-233c-4b69-ad82-66e6e21c4c29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Button\keyR">
+      <UniqueIdentifier>{6afdbb68-37f9-4797-9ff6-534a47e7c9b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Button\KeyB">
+      <UniqueIdentifier>{5c491040-7ff3-4b93-a1cc-da0a29440314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\ImGUI">
+      <UniqueIdentifier>{72576ba0-b298-4acd-8032-36a443d50394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Button\KeyEnter">
+      <UniqueIdentifier>{1f757ec4-097c-4a93-9344-8c2d42b68a14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Button\Return">
+      <UniqueIdentifier>{669ce9e1-ac52-4813-ab07-be79bcf28912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Back\BlackBack">
+      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -357,9 +372,6 @@
     <ClInclude Include="Src\Application\GameObject\Camera\FPSCamera\FPSCamera.h">
       <Filter>Src\Application\GameObject\Camera\FPSCamera</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Character\Character.h">
-      <Filter>Src\Application\GameObject\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Camera\CCTVCamera\CCTVCamera.h">
       <Filter>Src\Application\GameObject\Camera\CCTVCamera</Filter>
     </ClInclude>
@@ -438,11 +450,26 @@
     <ClInclude Include="Src\Application\GameObject\UI\Back\Star\Star.h">
       <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.h">
-      <Filter>Src\Application\GameObject\UI\Back\WhiteBack</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame.h">
       <Filter>Src\Application\GameObject\UI\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.h">
+      <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\KeyR\KeyR.h">
+      <Filter>Src\Application\GameObject\UI\Button\keyR</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\ImGUI\ImGuiManager.h">
+      <Filter>Src\Application\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEnter.h">
+      <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\Return\Return.h">
+      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.h">
+      <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -593,9 +620,6 @@
     <ClCompile Include="Src\Application\GameObject\Camera\FPSCamera\FPSCamera.cpp">
       <Filter>Src\Application\GameObject\Camera\FPSCamera</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Character\Character.cpp">
-      <Filter>Src\Application\GameObject\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Camera\CCTVCamera\CCTVCamera.cpp">
       <Filter>Src\Application\GameObject\Camera\CCTVCamera</Filter>
     </ClCompile>
@@ -674,11 +698,26 @@
     <ClCompile Include="Src\Application\GameObject\UI\Back\Star\Star.cpp">
       <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Back\WhiteBack\WhiteBack.cpp">
-      <Filter>Src\Application\GameObject\UI\Back\WhiteBack</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame.cpp">
       <Filter>Src\Application\GameObject\UI\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\KeyR\KeyR.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\keyR</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\ImGUI\ImGuiManager.cpp">
+      <Filter>Src\Application\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEneter.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\Return\Return.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.cpp">
+      <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

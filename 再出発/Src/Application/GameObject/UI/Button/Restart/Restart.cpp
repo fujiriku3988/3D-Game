@@ -3,18 +3,13 @@
 
 void Restart::Init(const std::string _filePath)
 {
-}
-
-void Restart::Init()
-{
 	UIBase::Init();
-	m_pos = { -50,-150 };
-	m_scale = { 1.0f };
 	m_tex.Load("Asset/Textures/UI/Result/restart.png");
-	m_color = { 1,1,1,1 };
-	m_time = 60;
-	m_drawFlg = true;
-	m_texSize = { 45,40 };
+	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "pos");
+	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "scale");
+	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "texSize");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Restart", "color");
+	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "Restart", "drawFlg");
 }
 
 void Restart::DrawSprite()
@@ -51,18 +46,17 @@ void Restart::Update()
 		//マウス座標のPOINTは右がプラス左がマイナス
 		//nowLengthが上に行くとマイナス値が増えるからm_Sposもそれに合わせて考えてやる
 
-		if (nowLength.y <= -m_pos.y + 20 && nowLength.y >= -m_pos.y - 20
-			&& nowLength.x >= m_pos.x - 22 && nowLength.x <= m_pos.x + 22)
+		if (nowLength.y <= -m_pos.y + 40 && nowLength.y >= -m_pos.y - 40
+			&& nowLength.x >= m_pos.x - 45 && nowLength.x <= m_pos.x + 45)
 		{
-			m_color = { 1,1,1,0.1f };
-			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-			{
-				m_drawFlg = false;
-			}
+			m_scale.x += 0.05f;
+			m_scale.y += 0.05f;
+			if (m_scale.x >= 1.2f) { m_scale.x = 1.2f; }
+			if (m_scale.y >= 1.2f) { m_scale.y = 1.2f; }
 		}
 		else
 		{
-			m_color = { 1,1,1,1 };
+			m_scale = { 1.0f };
 		}
 	}
 }

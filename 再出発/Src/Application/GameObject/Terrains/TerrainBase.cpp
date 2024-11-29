@@ -5,9 +5,7 @@ void TerrainBase::Init(const std::string _string)
 	m_pos = {};
 	m_scale = { 1.0f };
 	m_color = { 1,1,1,1 };
-	m_animState = "NONE";
 
-	m_animator = std::make_shared<KdAnimator>();
 	m_modelData = std::make_shared<KdModelData>();
 	m_modelWork = std::make_shared<KdModelWork>();
 }
@@ -17,10 +15,15 @@ void TerrainBase::Init()
 	m_pos = {};
 	m_scale = { 1.0f };
 	m_color = { 1,1,1,1 };
+	m_transMat = Math::Matrix::Identity;
+	m_scaleMat = Math::Matrix::Identity;
 
-	m_animator = std::make_shared<KdAnimator>();
 	m_modelData = std::make_shared<KdModelData>();
 	m_modelWork = std::make_shared<KdModelWork>();
+
+	JsonManager::Instance().AddParamVec3("Asset/Data/Json/BaseFile/TerrainBase.json", "TerrainBase", "pos", m_pos);
+	JsonManager::Instance().AddParamVec3("Asset/Data/Json/BaseFile/TerrainBase.json", "TerrainBase", "scale", m_scale);
+	JsonManager::Instance().AddParamVec4("Asset/Data/Json/BaseFile/TerrainBase.json", "TerrainBase", "color", m_color);
 }
 
 void TerrainBase::DrawLit()

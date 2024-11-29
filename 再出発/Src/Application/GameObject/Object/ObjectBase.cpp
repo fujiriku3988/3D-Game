@@ -3,22 +3,17 @@
 
 void ObjectBase::Init(const std::string _filePath)
 {
-	m_pos = {};
-	m_scale = { 1.0f };
-	m_color = { 1,1,1,1 };
-	m_animState = "NONE";
 
-	m_animator = std::make_shared<KdAnimator>();
-	m_modelData = std::make_shared<KdModelData>();
-	m_modelWork = std::make_shared<KdModelWork>();
 }
 
 void ObjectBase::Init()
 {
-	m_pos = {};
-	m_scale = { 1.0f };
-	m_color = { 1,1,1,1 };
+	m_pos = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "pos");
+	m_scale = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "scale");
+	m_color = JsonManager::Instance().GetParamVec4("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "color");
 	m_animState = "NONE";
+	m_transMat = Math::Matrix::Identity;
+	m_scaleMat = Math::Matrix::Identity;
 
 	m_animator = std::make_shared<KdAnimator>();
 	m_modelData = std::make_shared<KdModelData>();

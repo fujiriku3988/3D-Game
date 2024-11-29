@@ -10,8 +10,12 @@
 
 #include"../../GameObject/UI/Button/Play/Play.h"
 #include"../../GameObject/UI/Button/Restart/Restart.h"
+#include"../../GameObject/UI/Button/Return/Return.h"
+#include"../../GameObject/UI/Button/KeyB/KeyB.h"
+#include"../../GameObject/UI/Button/KeyR/KeyR.h"
+#include"../../GameObject/UI/Button/KeyEnter/KeyEnter.h"
 #include"../../GameObject/UI/Frame/ButtonFrame.h"
-#include"../../GameObject/UI/Back/WhiteBack/WhiteBack.h"
+#include"../../GameObject/UI/Back/BlackBack/BlackBack.h"
 #include"../../GameObject/UI/Back/Star/Star.h"
 
 #include"../../GameObject/Object/PressurePlate/PressurePlate.h"
@@ -26,7 +30,7 @@ void GameScene::Init()
 {
 	//環境光（アンビエントライト）
 	//デフォルトは0.3
-	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.4,0.4,0.4,1 });
+	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.3,0.3,0.3,1 });
 
 	//フォグ（霧）													距離	高さ
 	KdShaderManager::Instance().WorkAmbientController().SetFogEnable(true, true);
@@ -58,18 +62,15 @@ void GameScene::Init()
 
 	std::shared_ptr<GoalPoint> goalpoint = std::make_shared<GoalPoint>();
 	goalpoint->Init("Asset/Data/Json/Stage1/GoalPoint/GoalPoint.json");
-	//goalpoint->Init();
 	AddObject(goalpoint);
 
 	std::shared_ptr<Player> player = std::make_shared<Player>();
-	//player->Init();
 	player->Init("Asset/Data/Json/Player/Player.json");
 	AddObject(player);
 
-	std::shared_ptr<WhiteBack> wBack = std::make_shared<WhiteBack>();
-	wBack->Init();
-	//player->Init("Asset/Data/Json/Player/Player.json");
-	AddObject(wBack);
+	std::shared_ptr<BlackBack> bBack = std::make_shared<BlackBack>();
+	bBack->Init("Asset/Data/Json/UI/Back/BlackBack.json");
+	AddObject(bBack);
 
 	std::shared_ptr<Star> star = std::make_shared<Star>();
 	star->Init();
@@ -77,19 +78,32 @@ void GameScene::Init()
 	AddObject(star);
 
 	std::shared_ptr<ButtonFrame> bFrame = std::make_shared<ButtonFrame>();
-	bFrame->Init();
-	bFrame->Init("Asset/Data/Json/UI/Frame/ButtonFrame1.json");
+	bFrame->Init("Asset/Data/Json/UI/Frame/ButtonFrame.json");
 	AddObject(bFrame);
 
-	std::shared_ptr<Play> play = std::make_shared<Play>();
-	play->Init();
-	//player->Init("Asset/Data/Json/Player/Player.json");
-	AddObject(play);
+	std::shared_ptr<Play> bPlay = std::make_shared<Play>();
+	bPlay->Init("Asset/Data/Json/UI/Button/Play.json");
+	AddObject(bPlay);
 
-	std::shared_ptr<Restart> restart = std::make_shared<Restart>();
-	restart->Init();
-	//player->Init("Asset/Data/Json/Player/Player.json");
-	AddObject(restart);
+	std::shared_ptr<Restart> bRestart = std::make_shared<Restart>();
+	bRestart->Init("Asset/Data/Json/UI/Button/Restart.json");
+	AddObject(bRestart);
+
+	std::shared_ptr<Return> bReturn = std::make_shared<Return>();
+	bReturn->Init("Asset/Data/Json/UI/Button/Return.json");
+	AddObject(bReturn);
+
+	std::shared_ptr<KeyR> keyR = std::make_shared<KeyR>();
+	keyR->Init("Asset/Data/Json/UI/Button/KeyR.json");
+	AddObject(keyR);
+
+	std::shared_ptr<KeyB> keyB = std::make_shared<KeyB>();
+	keyB->Init("Asset/Data/Json/UI/Button/KeyB.json");
+	AddObject(keyB);
+
+	std::shared_ptr<KeyEnter> keyEnter = std::make_shared<KeyEnter>();
+	keyEnter->Init("Asset/Data/Json/UI/Button/KeyEnter.json");
+	AddObject(keyEnter);
 
 	//カメラ
 	std::shared_ptr<TPSCamera> camera = std::make_shared<TPSCamera>();

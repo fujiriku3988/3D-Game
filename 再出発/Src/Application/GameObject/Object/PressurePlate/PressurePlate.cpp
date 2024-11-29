@@ -1,6 +1,5 @@
 ﻿#include "PressurePlate.h"
 #include "../Fence/Fence.h"
-#include"../../../Json/JsonManager.h"
 
 void PressurePlate::Init()
 {
@@ -21,25 +20,6 @@ void PressurePlate::Init()
 	JsonManager::Instance().AddParam<int>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateCT", m_plateCT);
 	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateUp", m_plateUp);
 	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateDown", m_plateDown);
-
-	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("PressurePlate", m_modelWork, KdCollider::TypeEvent);
-	m_objType = ePressurePlate;
-}
-
-void PressurePlate::Init(const std::string _filePath)
-{
-	ObjectBase::Init();
-	m_modelWork->SetModelData("Asset/Models/Terrain/PressurePlate/PressurePlate.gltf");
-
-	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "Plate", "pos");
-	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "Plate", "scale");
-	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Plate", "color");
-	m_plateCT = JsonManager::Instance().GetParam<int>(_filePath, "Plate", "plateCT");
-	m_plateUp = JsonManager::Instance().GetParam<bool>(_filePath, "Plate", "plateUp");
-	m_plateDown = JsonManager::Instance().GetParam<bool>(_filePath, "Plate", "plateDown");
-	m_animState = JsonManager::Instance().GetParam<std::string>(_filePath, "Plate", "animation");
-	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation(m_animState));
 
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("PressurePlate", m_modelWork, KdCollider::TypeEvent);

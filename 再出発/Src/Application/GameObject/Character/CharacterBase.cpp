@@ -9,40 +9,37 @@ void CharacterBase::Init()
 {
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_poly = std::make_shared<KdSquarePolygon>();
-	m_pos = { };
-	m_scale = { 1 };
-	m_spritePos = {};
 	m_poly = nullptr;
 	m_modelWork = nullptr;
 	m_animator = nullptr;
-	m_texSize = {};
+	m_pos = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "pos");
+	m_scale = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "scale");
+	m_spritePos = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "sprPos");
+	m_texSize = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "texSize");
+	m_adjustHeight = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "adjHeight");
+	m_jumpPow = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "jumpPow");
+	m_jumpVelocity = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "jumpVelocity");
+	m_gravity = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "gravity");
+	m_gravityPow = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "gravityPow");
+	m_speed = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "speed");
+	m_vol.walk = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "volWalk");
+	m_vol.damage = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "volDamage");
+	m_vol.jump = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "volJump");
 	m_scaleMat = Math::Matrix::Identity;
 	m_transMat = Math::Matrix::Identity;
 	m_nodeMat = Math::Matrix::Identity;
 	m_rotMatX = Math::Matrix::Identity;
 	m_rotMatY = Math::Matrix::Identity;
 	m_rotMatZ = Math::Matrix::Identity;
-	m_adjustHeight = {};
-	m_jumpPow = 0.0f;
-	m_jumpVelocity = 0.0f;
-	m_gravity = 0.0f;
-	m_gravityPow = 0.0f;
-	m_speed = 0.0f;
-	m_animeCnt = 0;
-	m_animeCntMAX = 0;
-	m_anime.count = 0;
-	m_anime.speed = 0;
-	m_vol.walk = 1.0f;
-	m_vol.damage = 1.0f;
 	//デバッグ用
 	m_pDebugWire = std::make_unique<KdDebugWireFrame>();
 	//画面中央座標
-	m_FixMousePos.x = 640;
-	m_FixMousePos.y = 360;
+	m_FixMousePos.x = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosX");
+	m_FixMousePos.y = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosY");
 	//カメラ変数
-	m_degAng = {};
+	m_degAng = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "degAng");
 	//フラグ
-	m_hitFlg = false;
+	m_hitFlg = JsonManager::Instance().GetParam<bool>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "hitFlg");
 }
 
 void CharacterBase::PreUpdate()

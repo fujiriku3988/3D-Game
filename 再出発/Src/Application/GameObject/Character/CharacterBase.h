@@ -100,14 +100,11 @@ protected:
 	Math::Matrix m_rotMatX;//回転X
 	Math::Matrix m_rotMatY;//回転Y
 	Math::Matrix m_rotMatZ;//回転Z
-	//アニメーション
-	AnimetionInfo m_anime;
-	int m_animeCnt;
-	int m_animeCntMAX;
 	//音量
 	struct volume
 	{
 		float walk;
+		float jump;
 		float damage;
 	};
 	volume m_vol;

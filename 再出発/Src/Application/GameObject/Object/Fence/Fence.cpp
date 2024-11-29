@@ -1,22 +1,4 @@
 ﻿#include "Fence.h"
-#include"../../../Json/JsonManager.h"
-
-void Fence::Init()
-{
-	/*TerrainBase::Init();
-
-	m_modelWork->SetModelData("Asset/Models/Terrain/Fence/Fence2.gltf");
-
-	m_pos = JsonManager::Instance().GetParamVec3("Asset/Data/Json/Stage1/Fence1.json", "Fence1", "pos");
-	m_scale = JsonManager::Instance().GetParamVec3("Asset/Data/Json/Stage1/Fence1.json", "Fence1", "scale");
-	m_color = JsonManager::Instance().GetParamVec4("Asset/Data/Json/Stage1/Fence1.json", "Fence1", "color");
-	m_animState = JsonManager::Instance().GetParam<std::string>("Asset/Data/Json/Stage1/Fence1.json", "Fence1", "animation");
-	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation(m_animState));
-
-	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("Fence", m_modelWork, KdCollider::TypeBump);
-	m_objType = eFence;*/
-}
 
 void Fence::Init(const std::string _filePath)
 {
@@ -46,8 +28,6 @@ void Fence::DrawLit()
 
 void Fence::Update()
 {
-	//ToggleRaise();
-
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
 	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = scaleMat * transMat;
