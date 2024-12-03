@@ -28,17 +28,6 @@ public :
 		m_objList.push_back(obj);
 	}
 
-	//ノードリスト追加
-	/*void AddNode(const std::shared_ptr<KdGameObject>& node)
-	{
-		m_nodeList.push_back(node);
-	}*/
-
-	/*void AddNode(const std::shared_ptr<KdModelWork::Node>& node)
-	{
-		m_nodeList.push_back(node);
-	}*/
-
 	void AddNode(const KdModelWork::Node* node)
 	{
 		m_nodeList.push_back(node);

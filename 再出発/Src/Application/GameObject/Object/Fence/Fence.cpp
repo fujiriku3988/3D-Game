@@ -16,6 +16,8 @@ void Fence::Init(const std::string _filePath)
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("Fence", m_modelWork, KdCollider::TypeBump);
 	m_objType = eFence;
+
+	m_filePath = _filePath;
 }
 
 void Fence::DrawLit()
@@ -38,6 +40,11 @@ void Fence::PostUpdate()
 	//アニメーションの更新
 	m_animator->AdvanceTime(m_modelWork->WorkNodes());
 	m_modelWork->CalcNodeMatrices();
+}
+
+void Fence::Restart()
+{
+	Init(m_filePath);
 }
 
 void Fence::ToggleRaise()

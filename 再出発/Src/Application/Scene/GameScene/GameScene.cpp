@@ -24,27 +24,28 @@
 
 void GameScene::Event()
 {
+	
 }
 
 void GameScene::Init()
 {
 	//環境光（アンビエントライト）
 	//デフォルトは0.3
-	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.3,0.3,0.3,1 });
+	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.3f,0.3f,0.3f,1.0f });
 
 	//フォグ（霧）													距離	高さ
-	KdShaderManager::Instance().WorkAmbientController().SetFogEnable(true, true);
+	KdShaderManager::Instance().WorkAmbientController().SetFogEnable(false, false);
 	//距離フォグ														↓霧の色	↓密度
-	KdShaderManager::Instance().WorkAmbientController().SetDistanceFog({ 0.8,0.6,0.8 }, 0.008);
+	//KdShaderManager::Instance().WorkAmbientController().SetDistanceFog({ 1.0f,1.0f,1.0f }, 0.001f);
 	//高さフォグ														↓色	↓上↓下↓カメラとの距離
-	//KdShaderManager::Instance().WorkAmbientController().SetheightFog({ 0.8,0.5,0.8 }, 10, -2, 40);
+	//KdShaderManager::Instance().WorkAmbientController().SetheightFog({ 1.0f,1.0f,1.0f }, 10, -10, 20);
 
 	std::shared_ptr<Sphere> sphere = std::make_shared<Sphere>();
-	sphere->Init();
+	sphere->Init("Asset/Data/Json/Sphere/Sphere.json");
 	AddObject(sphere);
 
 	std::shared_ptr<Stage> stage = std::make_shared<Stage>();
-	stage->Init();
+	stage->Init("Asset/Data/Json/Stage1/Stage1.json");
 	AddObject(stage);
 
 	std::shared_ptr<Fence> fence1 = std::make_shared<Fence>();
@@ -55,7 +56,7 @@ void GameScene::Init()
 	AddObject(fence2);
 
 	std::shared_ptr<PressurePlate> plate = std::make_shared<PressurePlate>();
-	plate->Init("Asset/Data/Json/Stage1/PressurePlate/Plate.json");
+	plate->Init("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json");
 	plate->AddFence(fence1);
 	plate->AddFence(fence2);
 	AddObject(plate);
@@ -63,7 +64,7 @@ void GameScene::Init()
 	std::shared_ptr<GoalPoint> goalpoint = std::make_shared<GoalPoint>();
 	goalpoint->Init("Asset/Data/Json/Stage1/GoalPoint/GoalPoint.json");
 	AddObject(goalpoint);
-
+	
 	std::shared_ptr<Player> player = std::make_shared<Player>();
 	player->Init("Asset/Data/Json/Player/Player.json");
 	AddObject(player);
@@ -72,10 +73,12 @@ void GameScene::Init()
 	bBack->Init("Asset/Data/Json/UI/Back/BlackBack.json");
 	AddObject(bBack);
 
+	//==================================================//
 	std::shared_ptr<Star> star = std::make_shared<Star>();
 	star->Init();
-	//player->Init("Asset/Data/Json/Player/Player.json");
+	//star->Init("Asset/Data/Json/Player/Player.json");
 	AddObject(star);
+	//==================================================//
 
 	std::shared_ptr<ButtonFrame> bFrame = std::make_shared<ButtonFrame>();
 	bFrame->Init("Asset/Data/Json/UI/Frame/ButtonFrame.json");
@@ -111,12 +114,22 @@ void GameScene::Init()
 	camera->SetTarget(player);
 	AddObject(camera);
 
+	//セットする系
 	player->SetCamera(camera);
+	goalpoint->AddUI(bFrame);
+	goalpoint->AddUI(bPlay);
+	goalpoint->AddUI(bRestart);
+	goalpoint->AddUI(bReturn);
+	goalpoint->AddUI(keyR);
+	goalpoint->AddUI(keyB);
+	goalpoint->AddUI(keyEnter);
+	goalpoint->AddUI(star);
+	goalpoint->AddUI(bBack);
 
 	Math::Viewport viewPort;
 	KdDirect3D::Instance().CopyViewportInfo(viewPort);
-	const int width = viewPort.width;
-	const int height = viewPort.height;
-	KdEffekseerManager::GetInstance().Create(width, height);
+	float width = viewPort.width;
+	float height = viewPort.height;
+	KdEffekseerManager::GetInstance().Create((float)width, (float)height);
 	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());
 }

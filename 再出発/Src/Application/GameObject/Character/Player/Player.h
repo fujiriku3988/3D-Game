@@ -6,23 +6,28 @@ public:
 	Player() {}
 	~Player() override{}
 
-	void Init(const std::string _string);
+	void Init(const std::string _filePath);
 	void Update()override;
 	void PostUpdate()override;
+	void DrawLit()override;
+	void DrawUnLit()override;
 	void AddNode()override;
+	void Restart()override;
 
 	void CollisionDetection()override;
 private:
 	//プレイヤーの動き
 	void Action();
 	//プレイヤーが当たり判定をして行う処理
+	 
+	
 	//スフィアの当たり判定
 	void CollisionSphere();//後で関数をベースに書いて引数で使いまわせるようにする？
 
-	// 魔法陣の設置
+	//魔法陣の設置
 	void SetMagicCircle();
 
-	// テレポート
+	//魔法陣の位置へ移動
 	void TeleportToMagicCircle();
 
 	//フラグ制御用
@@ -38,11 +43,14 @@ private:
 		bool collision = false;
 		bool jump = false;
 		bool mgcCircle = false;
+		bool reset = false;
 	};
-	Math::Vector3 m_magicCirclePos;
-	//納品した数
 	flgControl m_ctrlFlg;
+	//魔法陣の座標
+	Math::Vector3 m_magicCirclePos;
 	std::shared_ptr<KdGameObject> m_holdObj = nullptr;//当たったOBJの情報を保持
+
+	std::string m_fileName;
 
 	//エフェクトの情報持つ用
 	std::weak_ptr<KdEffekseerObject> m_wpEffect;

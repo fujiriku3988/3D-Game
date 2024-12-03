@@ -11,8 +11,9 @@ public:
 	void DrawLit()override;
 	void Update()override;
 	void PostUpdate()override;
+	void Restart()override;
 
-	//状態を切り替えるメソッド
+	//m_raiseの状態を切り替える
 	void ToggleRaise();
 
 private:

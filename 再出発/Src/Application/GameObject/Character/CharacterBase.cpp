@@ -66,6 +66,10 @@ void CharacterBase::DrawLit()
 	}
 }
 
+void CharacterBase::DrawUnLit()
+{
+}
+
 void CharacterBase::DrawSprite()
 {
 }
@@ -74,11 +78,11 @@ void CharacterBase::GenerateDepthMapFromLight()
 {
 	if (m_modelWork)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
+		//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 	if (m_poly)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_poly, m_mWorld, m_color);
+		//KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_poly, m_mWorld, m_color);
 	}
 }
 

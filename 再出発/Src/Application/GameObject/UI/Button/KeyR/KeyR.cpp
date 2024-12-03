@@ -14,7 +14,6 @@ void KeyR::Init(const std::string _filePath)
 
 void KeyR::DrawSprite()
 {
-	//m_color = { 1,1,1,m_alpha };
 	if (m_drawFlg)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
@@ -24,5 +23,4 @@ void KeyR::DrawSprite()
 
 void KeyR::Update()
 {
-
 }

@@ -10,25 +10,27 @@
 
 #include"../../../main.h"
 
-void Player::Init(const std::string _string)
+void Player::Init(const std::string _filePath)
 {
 	CharacterBase::Init();
 
 	m_modelWork = std::make_shared<KdModelWork>();
 	m_modelWork->SetModelData("Asset/Models/Character/wizard/Player.gltf");
 
-	m_pos = JsonManager::Instance().GetParamVec3(_string, "player", "pos");
-	m_dir = JsonManager::Instance().GetParamVec3(_string, "player", "dir");
-	m_scale = JsonManager::Instance().GetParamVec3(_string, "player", "scale");
-	m_adjustHeight = JsonManager::Instance().GetParamVec3(_string, "player", "adjustHeight");
-	m_color = JsonManager::Instance().GetParamVec4(_string, "player", "color");
-	m_stepHeight = JsonManager::Instance().GetParam<float>(_string, "player", "stepHeight");
-	m_jumpPow = JsonManager::Instance().GetParam<float>(_string, "player", "jumpPow");
-	m_jumpVelocity  = JsonManager::Instance().GetParam<float>(_string, "player", "jumpVelocity");
-	m_gravity = JsonManager::Instance().GetParam<float>(_string, "player", "gravity");
-	m_gravityPow = JsonManager::Instance().GetParam<float>(_string, "player", "gravityPow");
-	m_speed = JsonManager::Instance().GetParam<float>(_string, "player", "speed");
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "Player", "pos");
+	m_dir = JsonManager::Instance().GetParamVec3(_filePath, "Player", "dir");
+	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "Player", "scale");
+	m_adjustHeight = JsonManager::Instance().GetParamVec3(_filePath, "Player", "adjustHeight");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Player", "color");
+	m_stepHeight = JsonManager::Instance().GetParam<float>(_filePath, "Player", "stepHeight");
+	m_jumpPow = JsonManager::Instance().GetParam<float>(_filePath, "Player", "jumpPow");
+	m_jumpVelocity = JsonManager::Instance().GetParam<float>(_filePath, "Player", "jumpVelocity");
+	m_gravity = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravity");
+	m_gravityPow = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravityPow");
+	m_speed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "speed");
 	m_tex = std::make_shared<KdTexture>();
+
+	m_filePath = _filePath;
 }
 
 void Player::Update()
@@ -169,6 +171,19 @@ void Player::PostUpdate()
 	m_mWorld = m_scaleMat * m_rotationMat * m_transMat;
 }
 
+void Player::DrawLit()
+{
+
+}
+
+void Player::DrawUnLit()
+{
+	if (m_modelWork)
+	{
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
+	}
+}
+
 void Player::Action()
 {
 	if (GetAsyncKeyState('E') & 0x8000)
@@ -221,7 +236,7 @@ void Player::CollisionDetection()
 	//飛ばす位置
 	ray.m_pos = m_pos + m_adjustHeight;
 	//長さ
-	static const float enableStepHeight = m_stepHeight;	
+	static const float enableStepHeight = m_stepHeight;
 	ray.m_range = enableStepHeight;
 	//方向
 	ray.m_dir = Math::Vector3::Down;
@@ -241,10 +256,9 @@ void Player::CollisionDetection()
 				}
 				m_ctrlFlg.collision = true;
 			}
-			//フラグをずっと更新しないように制御
-			if (obj->GetObjType() != ePressurePlate || obj->GetObjType() == eGoalPoint)
+			else
 			{
-				m_ctrlFlg.collision = false;
+				m_ctrlFlg.collision = false;						
 			}
 		}
 	}
@@ -286,6 +300,12 @@ void Player::AddNode()
 			m_addNodeFlg = false;
 		}
 	}
+}
+
+void Player::Restart()
+{
+	Init(m_filePath);
+	m_ctrlFlg.mgcCircle = false;
 }
 
 void Player::CollisionSphere()

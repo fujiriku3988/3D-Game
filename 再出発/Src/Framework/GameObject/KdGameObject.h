@@ -103,6 +103,9 @@ public:
 	//接続されたパーツ全てのポインタ取得
 	void GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std::set<std::shared_ptr<KdGameObject>>& _visited);
 
+	//オブジェクトの状態をリセット
+	virtual void Restart();
+
 	//＝＝＝＝＝＝＝＝＝＝ここまで＝＝＝＝＝＝＝＝＝＝＝＝//
 
 protected:
@@ -127,6 +130,9 @@ protected:
 	// デバッグ情報クラス
 	std::unique_ptr<KdDebugWireFrame> m_pDebugWire = nullptr;
 
+	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
+	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
+
 	const KdModelWork::Node* m_reciveNode = nullptr;//ノードの情報を受け取るよう
 	std::weak_ptr<KdGameObject>m_wpReciveObj;//オブジェクトの情報受け取るよう（大体当たり判定で使う）
 
@@ -135,4 +141,8 @@ protected:
 	ObjectType m_objType = eNone;//オブジェクトタイプ
 
 	bool m_hitFlg = false;//当たった時
+
+	std::string m_filePath = "";//
+
+	//＝＝＝＝＝＝＝＝＝＝ここまで＝＝＝＝＝＝＝＝＝＝＝＝//
 };

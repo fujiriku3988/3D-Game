@@ -20,12 +20,15 @@ public:
 	void Update()override;
 	void PostUpdate()override;
 	void DrawLit()override;
+	void DrawUnLit()override;
 	void DrawSprite()override;
 	void GenerateDepthMapFromLight()override;
 
-	//地面との当たり判定を作りたい時に使用
+	//レイで地面との当たり判定を作りたい時に使用
+	//地面との当たり判定をするだけなので
 	virtual void CollisionGround(const Math::Vector3 _pos, const Math::Vector3 _dir,
 						 const KdCollider::Type _type, const float _adjust, const float _stepHeight);
+	//
 	virtual void CollisionDetection();
 
 	virtual void AddNode();//ノード追加用
@@ -96,7 +99,7 @@ protected:
 	Math::Matrix m_scaleMat;//拡縮
 	Math::Matrix m_transMat;//移動
 	Math::Matrix m_rotationMat;//回転
-	Math::Matrix m_nodeMat;//ノード情報格納
+	Math::Matrix m_nodeMat;//ノード用
 	Math::Matrix m_rotMatX;//回転X
 	Math::Matrix m_rotMatY;//回転Y
 	Math::Matrix m_rotMatZ;//回転Z

@@ -10,7 +10,7 @@ void TitleScene::Event()
 	{
 		if (m_key == false)
 		{
-			Fade::Instance().BootBlackFade(SceneManager::SceneType::GameDevelop);
+			Fade::Instance().BootBlackFade(SceneManager::SceneType::Game);
 			m_key = true;
 		}
 	}

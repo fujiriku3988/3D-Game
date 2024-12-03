@@ -10,6 +10,7 @@ public:
 	void DrawSprite()override;
 	void Update()override;
 
+	void ToggleDraw();
 protected:
 	KdTexture m_tex;
 	Math::Vector2 m_pos;

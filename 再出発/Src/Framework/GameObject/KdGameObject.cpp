@@ -90,3 +90,7 @@ void KdGameObject::GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std:
 		GetAllConnectedParts(part, _visited);
 	}
 }
+
+void KdGameObject::Restart()
+{
+}

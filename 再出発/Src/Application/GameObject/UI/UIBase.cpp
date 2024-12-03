@@ -28,3 +28,8 @@ void UIBase::DrawSprite()
 void UIBase::Update()
 {
 }
+
+void UIBase::ToggleDraw()
+{
+	m_drawFlg = !m_drawFlg;
+}

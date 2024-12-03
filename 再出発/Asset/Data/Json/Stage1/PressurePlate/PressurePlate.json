@@ -1,6 +1,5 @@
 {
-    "Plate": {
-        "animation": "upStand",
+    "PressurePlate": {
         "color": {
             "w": 1.0,
             "x": 1.0,

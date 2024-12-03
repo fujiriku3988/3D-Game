@@ -14,7 +14,6 @@ void KeyEnter::Init(const std::string _filePath)
 
 void KeyEnter::DrawSprite()
 {
-	//m_color = { 1,1,1,m_alpha };
 	if (m_drawFlg)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,

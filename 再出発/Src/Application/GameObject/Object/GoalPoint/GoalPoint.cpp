@@ -1,4 +1,5 @@
 ﻿#include "GoalPoint.h"
+#include"../../UI/UIBase.h"
 
 void GoalPoint::Init(const std::string _filePath)
 {
@@ -13,6 +14,8 @@ void GoalPoint::Init(const std::string _filePath)
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("goal", m_modelWork, KdCollider::TypeEvent);
 	m_objType = eGoalPoint;
+
+	m_filePath = _filePath;
 }
 
 void GoalPoint::DrawLit()
@@ -21,7 +24,6 @@ void GoalPoint::DrawLit()
 	if (m_modelWork)
 	{
 		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color,{10,10,10});
-		//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 }
 
@@ -29,7 +31,14 @@ void GoalPoint::Update()
 {
 	if (m_hitFlg)
 	{
-		
+		for (auto& m_wpUI : m_UIList)
+		{
+			if (std::shared_ptr<UIBase>spUI = m_wpUI.lock())
+			{
+				spUI->ToggleDraw();
+			}
+		}
+		m_hitFlg = false;
 	}
 
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
@@ -39,4 +48,14 @@ void GoalPoint::Update()
 
 void GoalPoint::PostUpdate()
 {
+}
+
+void GoalPoint::Restart()
+{
+	Init(m_filePath);
+}
+
+void GoalPoint::AddUI(std::shared_ptr<UIBase> _ui)
+{
+	m_UIList.push_back(_ui);
 }

@@ -196,6 +196,9 @@
     <Filter Include="Src\Application\GameObject\UI\Back\BlackBack">
       <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\TitleObject">
+      <UniqueIdentifier>{aea4063c-2179-4e00-bad3-471434028a40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">

@@ -14,16 +14,37 @@ void PressurePlate::Init()
 	m_plateUp = true;
 	m_plateDown = false;
 
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "pos", m_pos);
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "scale", m_scale);
-	JsonManager::Instance().AddParamVec4("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "color", m_color);
-	JsonManager::Instance().AddParam<int>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateCT", m_plateCT);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateUp", m_plateUp);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/Plate.json", "Plate", "plateDown", m_plateDown);
+	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "pos", m_pos);
+	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "scale", m_scale);
+	JsonManager::Instance().AddParamVec4("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "color", m_color);
+	JsonManager::Instance().AddParam<int>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateCT", m_plateCT);
+	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateUp", m_plateUp);
+	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateDown", m_plateDown);
 
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("PressurePlate", m_modelWork, KdCollider::TypeEvent);
 	m_objType = ePressurePlate;
+}
+
+void PressurePlate::Init(const std::string _filePath)
+{
+	ObjectBase::Init();
+	m_modelWork->SetModelData("Asset/Models/Terrain/PressurePlate/PressurePlate.gltf");
+	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"));
+
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath,"PressurePlate","pos");
+	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "PressurePlate", "scale");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "PressurePlate", "color");
+	m_plateCT = JsonManager::Instance().GetParam<float>(_filePath, "PressurePlate", "plateCT");
+	m_plateUp = JsonManager::Instance().GetParam<bool>(_filePath, "PressurePlate", "plateUp");
+	m_plateDown = JsonManager::Instance().GetParam<bool>(_filePath, "PressurePlate", "plateDown");
+	m_hitFlg = false;
+
+	m_pCollider = std::make_unique<KdCollider>();
+	m_pCollider->RegisterCollisionShape("PressurePlate", m_modelWork, KdCollider::TypeEvent);
+	m_objType = ePressurePlate;
+
+	m_filePath = _filePath;
 }
 
 void PressurePlate::DrawLit()
@@ -60,6 +81,11 @@ void PressurePlate::PostUpdate()
 	m_modelWork->CalcNodeMatrices();
 }
 
+void PressurePlate::Restart()
+{
+	Init(m_filePath);
+}
+
 void PressurePlate::AddFence(std::shared_ptr<Fence> _fence)
 {
 	if (_fence)
@@ -70,7 +96,7 @@ void PressurePlate::AddFence(std::shared_ptr<Fence> _fence)
 
 void PressurePlate::PlayAnimation()
 {
-	std::shared_ptr<Fence>spFence = m_wpFence.lock();
+	//プレートが上に上がってるなら
 	if (m_hitFlg)
 	{
 		if (m_plateDown == false)
@@ -83,14 +109,11 @@ void PressurePlate::PlayAnimation()
 					spFence->ToggleRaise();
 				}
 			}
-			if (spFence)
-			{
-				//spFence->ToggleRaise();
-			}
 			m_plateDown = true;
 		}
 	}
 
+	//プレートが下に下りてるなら
 	if (m_plateUp == false)
 	{
 		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);

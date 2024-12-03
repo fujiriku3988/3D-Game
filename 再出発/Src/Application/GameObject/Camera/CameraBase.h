@@ -13,7 +13,7 @@ public:
 	//追加
 	void SetTarget(const std::shared_ptr<KdGameObject>& target);
 	void SetDegAngY(float _degY) { m_DegAng.y = _degY; }
-	void SetDegAngX(float _degX) { m_DegAng.x = _degX; }
+	void SetDegAngX(const float& _degX) { m_DegAng.x = _degX; }
 	void SetCameraPos(Math::Vector3 _pos) { m_camPos = _pos; }
 	bool GetDegAngYFlg() { return m_degFlgY; }
 	bool GetDegAngXFlg() { return m_degFlgX; }
