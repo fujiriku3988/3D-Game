@@ -13,5 +13,5 @@ private :
 
 	void Event() override;
 	void Init() override;
-	bool m_key = false;
+	bool m_key = false;//キー制御用
 };

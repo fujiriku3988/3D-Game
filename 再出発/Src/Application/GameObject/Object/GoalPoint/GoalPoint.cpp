@@ -1,5 +1,7 @@
 ﻿#include "GoalPoint.h"
 #include"../../UI/UIBase.h"
+#include"../../Camera/TPSCamera/TPSCamera.h"
+#include"../../Character/Player/Player.h"
 
 void GoalPoint::Init(const std::string _filePath)
 {
@@ -37,6 +39,14 @@ void GoalPoint::Update()
 			{
 				spUI->ToggleDraw();
 			}
+		}
+		if (std::shared_ptr<TPSCamera>spCamera = m_wpCamera.lock())
+		{
+			spCamera->RotateMouseOFF();
+		}
+		if (std::shared_ptr<Player>spPlayer = m_wpPlayer.lock())
+		{
+			spPlayer->PlayerStopON();
 		}
 		m_hitFlg = false;
 	}

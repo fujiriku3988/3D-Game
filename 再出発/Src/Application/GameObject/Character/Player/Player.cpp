@@ -69,30 +69,33 @@ void Player::Update()
 	Math::Vector3 m_dir = Math::Vector3::Zero;
 
 	bool moveFlg = false;
-
-	if (GetAsyncKeyState('W') & 0x8000)
+	if (m_ctrlFlg.stop == false)
 	{
-		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Backward, m_spCamera->GetRotationYMatrix());
-		moveFlg = true;
-	}
+		if (GetAsyncKeyState('W') & 0x8000)
+		{
+			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Backward, m_spCamera->GetRotationYMatrix());
+			moveFlg = true;
+		}
 
-	if (GetAsyncKeyState('S') & 0x8000)
-	{
-		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Forward, m_spCamera->GetRotationYMatrix());
-		moveFlg = true;
-	}
+		if (GetAsyncKeyState('S') & 0x8000)
+		{
+			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Forward, m_spCamera->GetRotationYMatrix());
+			moveFlg = true;
+		}
 
-	if (GetAsyncKeyState('A') & 0x8000)
-	{
-		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Left, m_spCamera->GetRotationYMatrix());
-		moveFlg = true;
+		if (GetAsyncKeyState('A') & 0x8000)
+		{
+			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Left, m_spCamera->GetRotationYMatrix());
+			moveFlg = true;
+		}
+		if (GetAsyncKeyState('D') & 0x8000)
+		{
+			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
+			moveFlg = true;
+		}
+		//プレイヤーの各操作
+		Action();
 	}
-	if (GetAsyncKeyState('D') & 0x8000)
-	{
-		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
-		moveFlg = true;
-	}
-
 	if (moveFlg == true)
 	{
 		//移動中（移動キーが押された）
@@ -152,8 +155,6 @@ void Player::Update()
 		m_dir.Normalize();
 	}
 
-	//プレイヤーの各操作
-	Action();
 
 	m_pos += m_dir * m_speed;
 	m_gravity += m_gravityPow;
@@ -173,7 +174,6 @@ void Player::PostUpdate()
 
 void Player::DrawLit()
 {
-
 }
 
 void Player::DrawUnLit()
@@ -306,6 +306,7 @@ void Player::Restart()
 {
 	Init(m_filePath);
 	m_ctrlFlg.mgcCircle = false;
+	m_ctrlFlg.stop = false;
 }
 
 void Player::CollisionSphere()

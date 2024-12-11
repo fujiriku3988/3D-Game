@@ -8,15 +8,16 @@
 #include"../../GameObject/Terrains/Stage/Stage.h"
 #include"../../GameObject/Terrains/Sphere/Sphere.h"
 
-#include"../../GameObject/UI/Button/Play/Play.h"
-#include"../../GameObject/UI/Button/Restart/Restart.h"
-#include"../../GameObject/UI/Button/Return/Return.h"
+#include"../../GameObject/UI/Button/Play/PlayButton.h"
+#include"../../GameObject/UI/Button/Restart/RestartButton.h"
+#include"../../GameObject/UI/Button/Return/ReturnButton.h"
 #include"../../GameObject/UI/Button/KeyB/KeyB.h"
 #include"../../GameObject/UI/Button/KeyR/KeyR.h"
 #include"../../GameObject/UI/Button/KeyEnter/KeyEnter.h"
-#include"../../GameObject/UI/Frame/ButtonFrame.h"
+#include"../../GameObject/UI/Frame/ButtonFrame/ButtonFrame.h"
 #include"../../GameObject/UI/Back/BlackBack/BlackBack.h"
-#include"../../GameObject/UI/Back/Star/Star.h"
+#include"../../GameObject/UI/Star/Star.h"
+#include"../../GameObject/UI/StarEmpty/StarEmpty.h"
 
 #include"../../GameObject/Object/PressurePlate/PressurePlate.h"
 #include"../../GameObject/Object/Fence/Fence.h"
@@ -74,6 +75,11 @@ void GameScene::Init()
 	AddObject(bBack);
 
 	//==================================================//
+	std::shared_ptr<StarEmpty> starEmp = std::make_shared<StarEmpty>();
+	starEmp->Init();
+	//star->Init("Asset/Data/Json/Player/Player.json");
+	AddObject(starEmp);
+
 	std::shared_ptr<Star> star = std::make_shared<Star>();
 	star->Init();
 	//star->Init("Asset/Data/Json/Player/Player.json");
@@ -82,17 +88,18 @@ void GameScene::Init()
 
 	std::shared_ptr<ButtonFrame> bFrame = std::make_shared<ButtonFrame>();
 	bFrame->Init("Asset/Data/Json/UI/Frame/ButtonFrame.json");
+	//bFrame->Init();
 	AddObject(bFrame);
 
-	std::shared_ptr<Play> bPlay = std::make_shared<Play>();
+	std::shared_ptr<PlayButton> bPlay = std::make_shared<PlayButton>();
 	bPlay->Init("Asset/Data/Json/UI/Button/Play.json");
 	AddObject(bPlay);
 
-	std::shared_ptr<Restart> bRestart = std::make_shared<Restart>();
+	std::shared_ptr<RestartButton> bRestart = std::make_shared<RestartButton>();
 	bRestart->Init("Asset/Data/Json/UI/Button/Restart.json");
 	AddObject(bRestart);
 
-	std::shared_ptr<Return> bReturn = std::make_shared<Return>();
+	std::shared_ptr<ReturnButton> bReturn = std::make_shared<ReturnButton>();
 	bReturn->Init("Asset/Data/Json/UI/Button/Return.json");
 	AddObject(bReturn);
 
@@ -116,6 +123,8 @@ void GameScene::Init()
 
 	//セットする系
 	player->SetCamera(camera);
+	goalpoint->SetCamera(camera);
+	goalpoint->SetPlayer(player);
 	goalpoint->AddUI(bFrame);
 	goalpoint->AddUI(bPlay);
 	goalpoint->AddUI(bRestart);

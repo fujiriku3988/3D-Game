@@ -15,6 +15,7 @@ public:
 	void Restart()override;
 
 	void CollisionDetection()override;
+	void PlayerStopON() { m_ctrlFlg.stop = true; }
 private:
 	//プレイヤーの動き
 	void Action();
@@ -44,13 +45,12 @@ private:
 		bool jump = false;
 		bool mgcCircle = false;
 		bool reset = false;
+		bool stop = false;
 	};
 	flgControl m_ctrlFlg;
 	//魔法陣の座標
 	Math::Vector3 m_magicCirclePos;
 	std::shared_ptr<KdGameObject> m_holdObj = nullptr;//当たったOBJの情報を保持
-
-	std::string m_fileName;
 
 	//エフェクトの情報持つ用
 	std::weak_ptr<KdEffekseerObject> m_wpEffect;

@@ -10,6 +10,7 @@ void KeyB::Init(const std::string _filePath)
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "KeyB", "texSize");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "KeyB", "color");
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "KeyB", "drawFlg");
+	m_filePath = _filePath;
 }
 
 void KeyB::DrawSprite()
@@ -24,4 +25,9 @@ void KeyB::DrawSprite()
 void KeyB::Update()
 {
 	
+}
+
+void KeyB::Restart()
+{
+	Init(m_filePath);
 }

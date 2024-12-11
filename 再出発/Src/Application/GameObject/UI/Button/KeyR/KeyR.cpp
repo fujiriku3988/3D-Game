@@ -10,6 +10,7 @@ void KeyR::Init(const std::string _filePath)
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "KeyR", "texSize");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "KeyR", "color");
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "KeyR", "drawFlg");
+	m_filePath = _filePath;
 }
 
 void KeyR::DrawSprite()
@@ -23,4 +24,9 @@ void KeyR::DrawSprite()
 
 void KeyR::Update()
 {
+}
+
+void KeyR::Restart()
+{
+	Init(m_filePath);
 }

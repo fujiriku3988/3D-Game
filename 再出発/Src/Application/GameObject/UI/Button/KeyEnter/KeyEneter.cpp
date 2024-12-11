@@ -10,6 +10,7 @@ void KeyEnter::Init(const std::string _filePath)
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "KeyEnter", "texSize");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "KeyEnter", "color");
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "KeyEnter", "drawFlg");
+	m_filePath = _filePath;
 }
 
 void KeyEnter::DrawSprite()
@@ -24,4 +25,9 @@ void KeyEnter::DrawSprite()
 void KeyEnter::Update()
 {
 
+}
+
+void KeyEnter::Restart()
+{
+	Init(m_filePath);
 }

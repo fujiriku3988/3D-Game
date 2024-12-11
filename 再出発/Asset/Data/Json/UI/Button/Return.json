@@ -6,7 +6,7 @@
 			"y": 1.0,
 			"z": 1.0
 		},
-        "drawFlg": true,
+        "drawFlg": false,
         "pos": {
             "x": -76.0,
             "y": -280.0

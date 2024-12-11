@@ -4,6 +4,7 @@ void TPSCamera::Init()
 {
 	//親クラスの初期化呼び出し
 	CameraBase::Init();
+	m_rotFlg = true;
 
 	m_spCamera->SetProjectionMatrix(90);
 
@@ -31,7 +32,7 @@ void TPSCamera::Update()
 	{
 		if (m_flg == false)
 		{
-			m_move = !m_move;
+			m_rotFlg = !m_rotFlg;
 		}
 		m_flg = true;
 	}
@@ -40,7 +41,7 @@ void TPSCamera::Update()
 		m_flg = false;
 	}
 	//カメラの回転
-	if (m_move) { UpdateRotateByMouse(); }
+	if (m_rotFlg) { UpdateRotateByMouse(); }
 	m_mRotation = GetRotationMatrix();
 	m_mWorld = m_mLocalPos * m_mRotation * _targetMat;
 

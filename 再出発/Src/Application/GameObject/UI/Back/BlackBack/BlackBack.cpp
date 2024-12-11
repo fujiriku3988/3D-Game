@@ -9,6 +9,7 @@ void BlackBack::Init(const std::string _filePath)
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "BlackBack", "texSize");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "BlackBack", "color");
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "BlackBack", "drawFlg");
+	m_filePath = _filePath;
 }
 
 void BlackBack::DrawSprite()
@@ -31,4 +32,9 @@ void BlackBack::Update()
 	{
 		m_drawFlg = false;
 	}
+}
+
+void BlackBack::Restart()
+{
+	Init(m_filePath);
 }

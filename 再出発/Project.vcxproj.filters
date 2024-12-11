@@ -94,9 +94,6 @@
     <Filter Include="Src\Application\Scene\GameDevelop">
       <UniqueIdentifier>{4013ca30-552e-483e-b8fa-ef8f96166123}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\Scene\GameSales">
-      <UniqueIdentifier>{81f58fb8-3070-4e37-af34-2110628514e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\Scene\ResultScene">
       <UniqueIdentifier>{b7e4ee67-6ec7-4a15-8856-eca95cb0a75f}</UniqueIdentifier>
     </Filter>
@@ -172,9 +169,6 @@
     <Filter Include="Src\Application\GameObject\UI\Button\Restart">
       <UniqueIdentifier>{06cda1d4-b1b3-4982-bc66-83c02a35146b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back\Star">
-      <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Frame">
       <UniqueIdentifier>{ac23deae-233c-4b69-ad82-66e6e21c4c29}</UniqueIdentifier>
     </Filter>
@@ -198,6 +192,33 @@
     </Filter>
     <Filter Include="Src\Application\TitleObject">
       <UniqueIdentifier>{aea4063c-2179-4e00-bad3-471434028a40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Star">
+      <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Back\TitleBack">
+      <UniqueIdentifier>{730aff95-e9aa-46b0-bf02-ae6f613c23e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Play">
+      <UniqueIdentifier>{8da1fced-0b01-4fb7-86ff-42f0f243a109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Frame\ButtonFrame">
+      <UniqueIdentifier>{ed67c703-e908-46b0-bb4e-7693c8259bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Frame\TextFrame">
+      <UniqueIdentifier>{ecdc2d21-254b-4d99-b9e5-0d3335ac21c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\StageSelectScene">
+      <UniqueIdentifier>{81f58fb8-3070-4e37-af34-2110628514e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\NumOne">
+      <UniqueIdentifier>{e29cad76-cb36-4569-92c4-f63d42561d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Frame\StageFrame">
+      <UniqueIdentifier>{41d91b4c-ef6c-4b0e-b602-fbf1d653a897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\StarEmpty">
+      <UniqueIdentifier>{bfde1284-3140-4da3-b8e4-926bcb69f6a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -387,9 +408,6 @@
     <ClInclude Include="Src\Application\Scene\GameDevelop\GameDevelop.h">
       <Filter>Src\Application\Scene\GameDevelop</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\Scene\GameSales\GameSales.h">
-      <Filter>Src\Application\Scene\GameSales</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.h">
       <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
     </ClInclude>
@@ -426,9 +444,6 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h">
       <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Text\Title\Title.h">
-      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\Json\JsonManager.h">
       <Filter>Src\Application\JSON</Filter>
     </ClInclude>
@@ -444,18 +459,6 @@
     <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.h">
       <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Button\Play\Play.h">
-      <Filter>Src\Application\GameObject\UI\Button\Play</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Button\Restart\Restart.h">
-      <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Back\Star\Star.h">
-      <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame.h">
-      <Filter>Src\Application\GameObject\UI\Frame</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.h">
       <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
     </ClInclude>
@@ -468,11 +471,47 @@
     <ClInclude Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEnter.h">
       <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Button\Return\Return.h">
-      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.h">
       <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Star\Star.h">
+      <Filter>Src\Application\GameObject\UI\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Back\TitleBack\TitleBack.h">
+      <Filter>Src\Application\GameObject\UI\Back\TitleBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame\ButtonFrame.h">
+      <Filter>Src\Application\GameObject\UI\Frame\ButtonFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Frame\TextFrame\TextFrame.h">
+      <Filter>Src\Application\GameObject\UI\Frame\TextFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\StageSelectScene\StageSelectScene.h">
+      <Filter>Src\Application\Scene\StageSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.h">
+      <Filter>Src\Application\GameObject\UI\Text\NumOne</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.h">
+      <Filter>Src\Application\GameObject\UI\Frame\StageFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Title\TitleTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\Return\ReturnButton.h">
+      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\Restart\RestartButton.h">
+      <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\Play\PlayButton.h">
+      <Filter>Src\Application\GameObject\UI\Button\Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.h">
+      <Filter>Src\Application\GameObject\UI\StarEmpty</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -635,9 +674,6 @@
     <ClCompile Include="Src\Application\Scene\GameDevelop\GameDevelop.cpp">
       <Filter>Src\Application\Scene\GameDevelop</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\Scene\GameSales\GameSales.cpp">
-      <Filter>Src\Application\Scene\GameSales</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.cpp">
       <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
     </ClCompile>
@@ -674,9 +710,6 @@
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Text\Title\Title.cpp">
-      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\Json\JsonManager.cpp">
       <Filter>Src\Application\JSON</Filter>
     </ClCompile>
@@ -692,18 +725,6 @@
     <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.cpp">
       <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Button\Play\Play.cpp">
-      <Filter>Src\Application\GameObject\UI\Button\Play</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Button\Restart\Restart.cpp">
-      <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Back\Star\Star.cpp">
-      <Filter>Src\Application\GameObject\UI\Back\Star</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame.cpp">
-      <Filter>Src\Application\GameObject\UI\Frame</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.cpp">
       <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
     </ClCompile>
@@ -716,11 +737,47 @@
     <ClCompile Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEneter.cpp">
       <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Button\Return\Return.cpp">
-      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.cpp">
       <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Star\Star.cpp">
+      <Filter>Src\Application\GameObject\UI\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Back\TitleBack\TitleBack.cpp">
+      <Filter>Src\Application\GameObject\UI\Back\TitleBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame\ButtonFrame.cpp">
+      <Filter>Src\Application\GameObject\UI\Frame\ButtonFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Frame\TextFrame\TextFrame.cpp">
+      <Filter>Src\Application\GameObject\UI\Frame\TextFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\StageSelectScene\StageSelectScene.cpp">
+      <Filter>Src\Application\Scene\StageSelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\NumOne</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.cpp">
+      <Filter>Src\Application\GameObject\UI\Frame\StageFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Title\TitleTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\Return\ReturnButton.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\Return</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\Restart\RestartButton.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\Restart</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\Play\PlayButton.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.cpp">
+      <Filter>Src\Application\GameObject\UI\StarEmpty</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

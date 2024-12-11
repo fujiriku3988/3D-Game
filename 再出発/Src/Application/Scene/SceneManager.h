@@ -11,8 +11,8 @@ public:
 	{
 		Title,
 		Game,
+		StageSelectScene,
 		GameDevelop,
-		GameSales,
 		ResultDevelop,
 		ResultSales,
 	};
@@ -61,24 +61,24 @@ public:
 	//==========追加===============//
 private:
 
-	// マネージャーの初期化
-	// インスタンス生成(アプリ起動)時にコンストラクタで自動実行
+	//マネージャーの初期化
+	//インスタンス生成(アプリ起動)時にコンストラクタで自動実行
 	void Init()
 	{
 		// 開始シーンに切り替え
 		ChangeScene(m_currentSceneType);
 	}
 
-	// シーン切り替え関数
+	//シーン切り替え関数
 	void ChangeScene(SceneType sceneType);
 
-	// 現在のシーンのインスタンスを保持しているポインタ
+	//現在のシーンのインスタンスを保持しているポインタ
 	std::shared_ptr<BaseScene> m_currentScene = nullptr;
 
-	// 現在のシーンの種類を保持している変数
+	//現在のシーンの種類を保持している変数
 	SceneType m_currentSceneType = SceneType::Game;
 
-	// 次のシーンの種類を保持している変数
+	//次のシーンの種類を保持している変数
 	SceneType m_nextSceneType = m_currentSceneType;
 
 	//追加
