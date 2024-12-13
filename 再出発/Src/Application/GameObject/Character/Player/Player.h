@@ -10,7 +10,6 @@ public:
 	void Update()override;
 	void PostUpdate()override;
 	void DrawLit()override;
-	void DrawUnLit()override;
 	void AddNode()override;
 	void Restart()override;
 
@@ -19,9 +18,6 @@ public:
 private:
 	//プレイヤーの動き
 	void Action();
-	//プレイヤーが当たり判定をして行う処理
-	 
-	
 	//スフィアの当たり判定
 	void CollisionSphere();//後で関数をベースに書いて引数で使いまわせるようにする？
 

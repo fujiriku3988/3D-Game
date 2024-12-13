@@ -7,7 +7,6 @@ public:
 	Sphere() {}
 	~Sphere() override {}
 
-	void Init()override;
 	void Init(const std::string _filePath)override;
 	void Update()override;
 	void DrawLit()override;

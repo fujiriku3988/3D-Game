@@ -13,23 +13,6 @@ void ButtonFrame::Init(const std::string _filePath)
 	m_filePath = _filePath;
 }
 
-void ButtonFrame::Init()
-{
-	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/buttonFrame.png");
-	m_pos = { 0,-280 };
-	m_scale = { 1.2f };
-	m_color = { 1,1,1,1 };
-	m_drawFlg = false;
-	m_texSize = { 192,64 };
-
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/ButtonFrame.json", "ButtonFrame", "pos", m_pos);
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/ButtonFrame.json", "ButtonFrame", "scale", m_scale);
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/ButtonFrame.json", "ButtonFrame", "texSize", m_texSize);
-	JsonManager::Instance().AddParamVec4("Asset/Data/Json/UI/Frame/ButtonFrame.json", "ButtonFrame", "color", m_color);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/UI/Frame/ButtonFrame.json", "ButtonFrame", "drawFlg", m_drawFlg);
-}
-
 void ButtonFrame::DrawSprite()
 {
 	//m_color = { 1,1,1,m_alpha };

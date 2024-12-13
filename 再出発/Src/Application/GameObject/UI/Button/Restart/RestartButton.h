@@ -12,4 +12,5 @@ public:
 	void Update()override;
 	void Restart()override;
 private:
+	bool m_keyFlg;
 };

@@ -12,9 +12,4 @@ public:
 	void Update()override;
 	void Restart()override;
 private:
-	KdTexture m_tex1;
-	Math::Vector2 m_pos1;
-	Math::Vector2 m_scale1;
-	Math::Vector2 m_texSize1;
-	Math::Color m_color1;
 };

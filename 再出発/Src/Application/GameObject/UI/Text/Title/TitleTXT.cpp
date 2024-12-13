@@ -1,10 +1,6 @@
 ﻿#include "TitleTXT.h"
 #include"../../../../main.h"
 
-void TitleTXT::Init()
-{
-}
-
 void TitleTXT::Init(const std::string _filePath)
 {
 	UIBase::Init();

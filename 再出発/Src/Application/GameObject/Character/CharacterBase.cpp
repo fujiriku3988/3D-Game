@@ -1,10 +1,6 @@
 ﻿#include "CharacterBase.h"
 #include"../../Scene/SceneManager.h"
 
-void CharacterBase::Init(const std::string _string)
-{
-}
-
 void CharacterBase::Init()
 {
 	m_modelWork = std::make_shared<KdModelWork>();
@@ -76,14 +72,6 @@ void CharacterBase::DrawSprite()
 
 void CharacterBase::GenerateDepthMapFromLight()
 {
-	if (m_modelWork)
-	{
-		//KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
-	}
-	if (m_poly)
-	{
-		//KdShaderManager::Instance().m_StandardShader.DrawPolygon(*m_poly, m_mWorld, m_color);
-	}
 }
 
 void CharacterBase::CollisionGround(const Math::Vector3 _pos, const Math::Vector3 _dir,
@@ -136,6 +124,5 @@ void CharacterBase::CollisionDetection()
 
 void CharacterBase::AddNode()
 {
-	
 }
 

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include"../UIBase.h"
 
+class GameTime;
+
 class Star :public UIBase
 {
 public:
@@ -8,18 +10,24 @@ public:
 	~Star() {};
 
 	void Init(const std::string _filePath)override;
-	void Init()override;
 	void DrawSprite()override;
 	void Update()override;
-private:
-	bool a = true;
+	void Restart()override;
 
-	KdTexture m_tex1;
-	Math::Vector2 m_pos1;
-	Math::Color m_color1;
-	Math::Vector2 m_scale1;
-	Math::Vector2 m_texSize1;
-	Math::Rectangle m_rect1;
-	Math::Vector2 m_anim;
-	float m_alpha1=1.0f;
+	void SetGameTime(const std::shared_ptr<GameTime> _time) { m_wpGameTime = _time; }
+private:
+	Math::Vector3 m_rgb;
+	bool m_clearFlg;
+	//エフェクト用
+	KdTexture m_effTex;
+	Math::Vector2 m_effPos;
+	Math::Color m_effColor;
+	Math::Vector2 m_effScale;
+	Math::Vector2 m_effTexSize;
+	Math::Rectangle m_effRect;
+	Math::Vector2 m_anim;//現在のアニメーション
+	int m_animDelay;//アニメーションのディレイ
+	int m_clearTime;//クリア時間
+	bool m_animFlg;//アニメーションを行うか
+	std::weak_ptr<GameTime>m_wpGameTime;
 };

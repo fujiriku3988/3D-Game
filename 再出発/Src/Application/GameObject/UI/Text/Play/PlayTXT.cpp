@@ -4,10 +4,6 @@
 #include "../../../../Scene/SceneManager.h"
 #include"../../../../Fade/Fade.h"
 
-void PlayTXT::Init()
-{
-}
-
 void PlayTXT::Init(const std::string _filePath)
 {
 	UIBase::Init();

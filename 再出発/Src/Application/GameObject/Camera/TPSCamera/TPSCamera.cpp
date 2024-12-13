@@ -28,22 +28,15 @@ void TPSCamera::Update()
 		_targetMat = Math::Matrix::CreateTranslation(_spTarget->GetPos());
 	}
 
-	if (GetAsyncKeyState('1') & 0x8000)
-	{
-		if (m_flg == false)
-		{
-			m_rotFlg = !m_rotFlg;
-		}
-		m_flg = true;
-	}
-	else
-	{
-		m_flg = false;
-	}
 	//カメラの回転
 	if (m_rotFlg) { UpdateRotateByMouse(); }
 	m_mRotation = GetRotationMatrix();
 	m_mWorld = m_mLocalPos * m_mRotation * _targetMat;
 
 	CameraBase::Update();
+}
+
+void TPSCamera::Restart()
+{
+	Init();
 }

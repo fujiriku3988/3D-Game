@@ -1,10 +1,6 @@
 ﻿#include "TextFrame.h"
 #include"../../../../main.h"
 
-void TextFrame::Init()
-{
-}
-
 void TextFrame::Init(const std::string _filePath)
 {
 	UIBase::Init();

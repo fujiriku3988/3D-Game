@@ -6,7 +6,6 @@ public:
 	TitleBack() {}
 	~TitleBack()override {}
 
-	void Init()override;
 	void Init(const std::string _filePath)override;
 	void DrawSprite()override;
 	void Update()override;

@@ -1,6 +1,6 @@
 {
     "Fence": {
-        "animation": "downStand",
+        "animation": "upStand",
 		"color": {
 			"w": 1.0,
 			"x": 1.0,

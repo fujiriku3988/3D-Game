@@ -1,22 +1,5 @@
 ﻿#include "Sphere.h"
 
-void Sphere::Init()
-{
-	TerrainBase::Init();
-	m_modelData = std::make_shared<KdModelData>();
-	m_modelData->Load("Asset/Models/Terrain/SkyBox/skybox.gltf");
-	m_pos = {};
-	m_scale = { 3.0f };
-	m_color = { 2,2,2,2 };
-	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("Sphere", m_modelData, KdCollider::TypeGround);
-	m_objType = eNone;
-
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Sphere/Sphere.json", "Sphere", "pos", m_pos);
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Sphere/Sphere.json", "Sphere", "scale", m_scale);
-	JsonManager::Instance().AddParamVec4("Asset/Data/Json/Sphere/Sphere.json", "Sphere", "color", m_color);
-}
-
 void Sphere::Init(const std::string _filePath)
 {
 	TerrainBase::Init();

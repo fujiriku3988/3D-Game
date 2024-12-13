@@ -1,24 +1,6 @@
 ﻿#include "StageFrame.h"
 #include"../../../../main.h"
 
-void StageFrame::Init()
-{
-	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/stageFrame.png");
-	m_pos = { -300,0 };
-	m_scale = { 1.0f };
-	m_texSize = { 128.0f,128.0f };
-	m_color = { 1,1,1,0.7f };
-	m_time = 60;
-	m_drawFlg = true;
-
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/StageFrame.json", "StageFrame", "pos", m_pos);
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/StageFrame.json", "StageFrame", "scale", m_scale);
-	JsonManager::Instance().AddParamVec2("Asset/Data/Json/UI/Frame/StageFrame.json", "StageFrame", "texSize", m_texSize);
-	JsonManager::Instance().AddParamVec4("Asset/Data/Json/UI/Frame/StageFrame.json", "StageFrame", "color", m_color);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/UI/Frame/StageFrame.json", "StageFrame", "drawFlg", m_drawFlg);
-}
-
 void StageFrame::Init(const std::string _filePath)
 {
 	m_tex.Load("Asset/Textures/UI/Result/stageFrame.png");

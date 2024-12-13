@@ -18,6 +18,9 @@
 #include"../../GameObject/UI/Back/BlackBack/BlackBack.h"
 #include"../../GameObject/UI/Star/Star.h"
 #include"../../GameObject/UI/StarEmpty/StarEmpty.h"
+#include"../../GameObject/UI/GameTime/GameTime.h"
+#include"../../GameObject/UI/ClearTime/ClearTime.h"
+#include"../../GameObject/UI/Text/StageClear/StageClearTXT.h"
 
 #include"../../GameObject/Object/PressurePlate/PressurePlate.h"
 #include"../../GameObject/Object/Fence/Fence.h"
@@ -30,17 +33,6 @@ void GameScene::Event()
 
 void GameScene::Init()
 {
-	//環境光（アンビエントライト）
-	//デフォルトは0.3
-	KdShaderManager::Instance().WorkAmbientController().SetAmbientLight({ 0.3f,0.3f,0.3f,1.0f });
-
-	//フォグ（霧）													距離	高さ
-	KdShaderManager::Instance().WorkAmbientController().SetFogEnable(false, false);
-	//距離フォグ														↓霧の色	↓密度
-	//KdShaderManager::Instance().WorkAmbientController().SetDistanceFog({ 1.0f,1.0f,1.0f }, 0.001f);
-	//高さフォグ														↓色	↓上↓下↓カメラとの距離
-	//KdShaderManager::Instance().WorkAmbientController().SetheightFog({ 1.0f,1.0f,1.0f }, 10, -10, 20);
-
 	std::shared_ptr<Sphere> sphere = std::make_shared<Sphere>();
 	sphere->Init("Asset/Data/Json/Sphere/Sphere.json");
 	AddObject(sphere);
@@ -76,19 +68,46 @@ void GameScene::Init()
 
 	//==================================================//
 	std::shared_ptr<StarEmpty> starEmp = std::make_shared<StarEmpty>();
-	starEmp->Init();
-	//star->Init("Asset/Data/Json/Player/Player.json");
+	starEmp->Init("Asset/Data/Json/UI/StarEmpty/StarEmpty.json");
 	AddObject(starEmp);
 
-	std::shared_ptr<Star> star = std::make_shared<Star>();
-	star->Init();
-	//star->Init("Asset/Data/Json/Player/Player.json");
-	AddObject(star);
+	std::shared_ptr<Star> star1 = std::make_shared<Star>();
+	star1->Init("Asset/Data/Json/UI/Star/Stage1/Star1.json");
+	AddObject(star1);
+
+	std::shared_ptr<Star> star2 = std::make_shared<Star>();
+	star2->Init("Asset/Data/Json/UI/Star/Stage1/Star2.json");
+	AddObject(star2);
+
+	std::shared_ptr<Star> star3 = std::make_shared<Star>();
+	star3->Init("Asset/Data/Json/UI/Star/Stage1/Star3.json");
+	AddObject(star3);
 	//==================================================//
+
+	//==================================================//
+	std::shared_ptr<GameTime> gameTime = std::make_shared<GameTime>();
+	gameTime->Init("Asset/Data/Json/UI/GameTime/GameTime.json");
+	AddObject(gameTime);
+
+	std::shared_ptr<ClearTime> clearTime1 = std::make_shared<ClearTime>();
+	clearTime1->Init("Asset/Data/Json/UI/ClearTime/Stage1/ClearTime1.json");
+	AddObject(clearTime1);
+
+	std::shared_ptr<ClearTime> clearTime2 = std::make_shared<ClearTime>();
+	clearTime2->Init("Asset/Data/Json/UI/ClearTime/Stage1/ClearTime2.json");
+	AddObject(clearTime2);
+
+	std::shared_ptr<ClearTime> clearTime3 = std::make_shared<ClearTime>();
+	clearTime3->Init("Asset/Data/Json/UI/ClearTime/Stage1/ClearTime3.json");
+	AddObject(clearTime3);
+	//==================================================//
+
+	std::shared_ptr<StageClearTXT> stageClearTXT = std::make_shared<StageClearTXT>();
+	stageClearTXT->Init("Asset/Data/Json/UI/Text/StageClearTXT.json");
+	AddObject(stageClearTXT);
 
 	std::shared_ptr<ButtonFrame> bFrame = std::make_shared<ButtonFrame>();
 	bFrame->Init("Asset/Data/Json/UI/Frame/ButtonFrame.json");
-	//bFrame->Init();
 	AddObject(bFrame);
 
 	std::shared_ptr<PlayButton> bPlay = std::make_shared<PlayButton>();
@@ -123,17 +142,29 @@ void GameScene::Init()
 
 	//セットする系
 	player->SetCamera(camera);
+	star1->SetGameTime(gameTime);
+	star2->SetGameTime(gameTime);
+	star3->SetGameTime(gameTime);
 	goalpoint->SetCamera(camera);
 	goalpoint->SetPlayer(player);
+	goalpoint->SetGameTime(gameTime);
 	goalpoint->AddUI(bFrame);
 	goalpoint->AddUI(bPlay);
 	goalpoint->AddUI(bRestart);
 	goalpoint->AddUI(bReturn);
+	goalpoint->AddUI(bBack);
 	goalpoint->AddUI(keyR);
 	goalpoint->AddUI(keyB);
 	goalpoint->AddUI(keyEnter);
-	goalpoint->AddUI(star);
-	goalpoint->AddUI(bBack);
+	goalpoint->AddUI(star1);
+	goalpoint->AddUI(star2);
+	goalpoint->AddUI(star3);
+	goalpoint->AddUI(starEmp);
+	goalpoint->AddUI(gameTime);
+	goalpoint->AddUI(clearTime1);
+	goalpoint->AddUI(clearTime2);
+	goalpoint->AddUI(clearTime3);
+	goalpoint->AddUI(stageClearTXT);
 
 	Math::Viewport viewPort;
 	KdDirect3D::Instance().CopyViewportInfo(viewPort);

@@ -1,10 +1,6 @@
 ﻿#include "TitleBack.h"
 #include"../../../../main.h"
 
-void TitleBack::Init()
-{
-}
-
 void TitleBack::Init(const std::string _filePath)
 {
 	UIBase::Init();

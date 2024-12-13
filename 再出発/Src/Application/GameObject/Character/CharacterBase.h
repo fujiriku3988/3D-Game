@@ -14,7 +14,6 @@ public:
 	CharacterBase() {}
 	~CharacterBase()override {};
 
-	virtual void Init(const std::string _string);
 	void Init()override;
 	void PreUpdate()override;
 	void Update()override;

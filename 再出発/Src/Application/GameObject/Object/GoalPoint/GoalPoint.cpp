@@ -1,10 +1,13 @@
 ﻿#include "GoalPoint.h"
 #include"../../UI/UIBase.h"
+#include"../../UI/GameTime/GameTime.h"
 #include"../../Camera/TPSCamera/TPSCamera.h"
 #include"../../Character/Player/Player.h"
 
 void GoalPoint::Init(const std::string _filePath)
 {
+	ShowCursor(false);
+
 	ObjectBase::Init();
 
 	m_modelWork->SetModelData("Asset/Models/Terrain/GoalPoint/GoalPoint.gltf");
@@ -25,7 +28,7 @@ void GoalPoint::DrawLit()
 	KdShaderManager::Instance().m_StandardShader.SetEmissiveEnable(false);
 	if (m_modelWork)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color,{10,10,10});
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color, { 10,10,10 });
 	}
 }
 
@@ -33,12 +36,18 @@ void GoalPoint::Update()
 {
 	if (m_hitFlg)
 	{
+		ShowCursor(true);
+
 		for (auto& m_wpUI : m_UIList)
 		{
 			if (std::shared_ptr<UIBase>spUI = m_wpUI.lock())
 			{
 				spUI->ToggleDraw();
 			}
+		}
+		if (std::shared_ptr<GameTime>spGameTime = m_wpGameTime.lock())
+		{
+			spGameTime->StopTime();
 		}
 		if (std::shared_ptr<TPSCamera>spCamera = m_wpCamera.lock())
 		{

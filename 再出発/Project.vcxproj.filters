@@ -220,6 +220,18 @@
     <Filter Include="Src\Application\GameObject\UI\StarEmpty">
       <UniqueIdentifier>{bfde1284-3140-4da3-b8e4-926bcb69f6a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\UI\GameTime">
+      <UniqueIdentifier>{83b94f29-6db7-4285-8308-87b8d4082d39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\ClearTime">
+      <UniqueIdentifier>{207d125e-b6e8-4c81-aad2-3d23b7b2bf21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\StageSelect">
+      <UniqueIdentifier>{e26344e0-c46e-408e-95e3-a27b9d9d9490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\StagaClear">
+      <UniqueIdentifier>{4424fc45-835d-45f7-a447-e1442368ea6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -513,6 +525,18 @@
     <ClInclude Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.h">
       <Filter>Src\Application\GameObject\UI\StarEmpty</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\ClearTime\ClearTime.h">
+      <Filter>Src\Application\GameObject\UI\ClearTime</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\GameTime\GameTime.h">
+      <Filter>Src\Application\GameObject\UI\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\StageSelect\StageSelectTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\StageSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\StageClear\StageClearTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\StagaClear</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -778,6 +802,18 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.cpp">
       <Filter>Src\Application\GameObject\UI\StarEmpty</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\ClearTime\ClearTime.cpp">
+      <Filter>Src\Application\GameObject\UI\ClearTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\GameTime\GameTime.cpp">
+      <Filter>Src\Application\GameObject\UI\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\StageSelect\StageSelectTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\StageSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\StageClear\StageClearTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\StagaClear</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

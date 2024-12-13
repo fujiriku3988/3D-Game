@@ -11,6 +11,7 @@ public:
 	void Update()override;
 
 	void RotateMouseOFF() { m_rotFlg = false; }
+	void Restart()override;
 private:
 	//消す
 	bool m_flg = false;

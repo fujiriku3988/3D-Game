@@ -1,0 +1,88 @@
+{
+    "ClearTime": {
+        "colonColor": {
+            "w": 1.0,
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+        },
+        "colonPos": {
+            "x": 180.0,
+            "y": -190.0
+        },
+        "colonScale": {
+            "x": 0.5,
+            "y": 0.5
+        },
+        "colonTexSize": {
+            "x": 33.0,
+            "y": 57.0
+        },
+        "drawFlg": false,
+        "minAnimL": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "minAnimR": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "minPosL": {
+            "x": 155.0,
+            "y": -200.0
+        },
+        "minPosR": {
+            "x": 170.0,
+            "y": -200.0
+        },
+        "secAnimL": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "secAnimR": {
+            "x": 7.0,
+            "y": 0.0
+        },
+        "secPosL": {
+            "x": 200.0,
+            "y": -200.0
+        },
+        "secPosR": {
+            "x": 215.0,
+            "y": -200.0
+        },
+        "starColor": {
+            "w": 1.0,
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+        },
+        "starFP": "Asset/Textures/UI/Star/Star3.png",
+        "starPos": {
+            "x": 180.0,
+            "y": -150.0
+        },
+        "starScale": {
+            "x": 0.5,
+            "y": 0.5
+        },
+        "starTexSize": {
+            "x": 192.0,
+            "y": 60.0
+        },
+        "timeColor": {
+            "w": 1.0,
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+        },
+        "timeScale": {
+            "x": 0.5,
+            "y": 0.5
+        },
+        "timeTexSize": {
+            "x": 64.0,
+            "y": 100.0
+        }
+    }
+}

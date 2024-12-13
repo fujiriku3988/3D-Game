@@ -174,10 +174,6 @@ void Player::PostUpdate()
 
 void Player::DrawLit()
 {
-}
-
-void Player::DrawUnLit()
-{
 	if (m_modelWork)
 	{
 		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
@@ -263,10 +259,8 @@ void Player::CollisionDetection()
 		}
 	}
 
-	m_pDebugWire->AddDebugLine(ray.m_pos, ray.m_dir, ray.m_range, kGreenColor);
-
 	bool hit = false;
-	float maxOverLap = 0;
+	float maxOverLap = {};
 	Math::Vector3 hitPos = {};
 
 	for (auto& ret : retRayList)
@@ -282,9 +276,9 @@ void Player::CollisionDetection()
 	if (hit)
 	{
 		m_pos = hitPos;
-		m_gravity = 0;
+		m_gravity = {};
 		m_ctrlFlg.jump = false;
-		m_jumpVelocity = 0;
+		m_jumpVelocity = {};
 	}
 }
 
@@ -320,7 +314,6 @@ void Player::CollisionSphere()
 	sphere.m_sphere.Radius = 0.7f;
 	//当たり判定をしたいタイプを設定
 	sphere.m_type = KdCollider::TypeGround | KdCollider::TypeBump;
-	m_pDebugWire->AddDebugSphere(sphere.m_sphere.Center, sphere.m_sphere.Radius);
 	//球が当たったオブジェクトの情報を格納するリスト
 	std::list<KdCollider::CollisionResult> retSphereList;
 	//球と当たり判定！！！！！！

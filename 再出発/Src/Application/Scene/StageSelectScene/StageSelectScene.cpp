@@ -5,6 +5,7 @@
 #include"../../Fade/Fade.h"
 
 #include"../../GameObject/UI/Text/Title/TitleTXT.h"
+#include"../../GameObject/UI/Text/StageSelect/StageSelectTXT.h"
 #include"../../GameObject/UI/Frame/StageFrame/StageFrame.h"
 #include"../../GameObject/UI/Text/NumOne/NumOne.h"
 
@@ -20,6 +21,10 @@ void StageSelectScene::Init()
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);
+
+	std::shared_ptr<StageSelectTXT> stageSelectTXT = std::make_shared<StageSelectTXT>();
+	stageSelectTXT->Init("Asset/Data/Json/UI/Text/StageSelectTXT.json");
+	AddObject(stageSelectTXT);
 
 	std::shared_ptr<StageFrame> stageFrame = std::make_shared<StageFrame>();
 	stageFrame->Init("Asset/Data/Json/UI/Frame/StageFrame.json");
