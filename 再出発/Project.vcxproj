@@ -163,9 +163,6 @@
     <ClInclude Include="Src\Application\GameObject\Camera\TPSCamera\TPSCamera.h" />
     <ClInclude Include="Src\Application\GameObject\Character\CharacterBase.h" />
     <ClInclude Include="Src\Application\GameObject\Character\Player\Player.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h" />
-    <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Fence\Fence.h" />
     <ClInclude Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.h" />
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
@@ -259,9 +256,6 @@
     <ClCompile Include="Src\Application\GameObject\Camera\TPSCamera\TPSCamera.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\CharacterBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Character\Player\Player.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp" />
-    <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Fence\Fence.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />

@@ -61,36 +61,6 @@ bool KdGameObject::Intersects(const KdCollider::RayInfo& targetShape, std::list<
 	return m_pCollider->Intersects(targetShape, m_mWorld, pResults);
 }
 
-void KdGameObject::AddConnectedPart(std::shared_ptr<KdGameObject> _part)
-{
-	if (_part && std::find(m_connectedParts.begin(), m_connectedParts.end(), _part) == m_connectedParts.end())
-	{
-		m_connectedParts.push_back(_part);
-	}
-}
-
-void KdGameObject::RemoveConnectedPart(std::shared_ptr<KdGameObject> _part)
-{
-	// リストから指定されたパーツを削除する
-	m_connectedParts.erase(std::remove(m_connectedParts.begin(), m_connectedParts.end(), _part),m_connectedParts.end());
-}
-
-void KdGameObject::GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std::set<std::shared_ptr<KdGameObject>>& _visited)
-{
-	// すでに訪れたオブジェクトなら処理しない
-	if (_visited.find(_obj) != _visited.end()) {
-		return;
-	}
-
-	// オブジェクトを訪問済みとしてセットに追加
-	_visited.insert(_obj);
-
-	// 接続されたすべてのパーツに対して再帰的に探索
-	for (auto& part : _obj->GetConnectList()) {
-		GetAllConnectedParts(part, _visited);
-	}
-}
-
 void KdGameObject::Restart()
 {
 }

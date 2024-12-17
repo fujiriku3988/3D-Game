@@ -29,4 +29,7 @@ private:
 	std::weak_ptr<TPSCamera>m_wpCamera;
 	std::weak_ptr<Player>m_wpPlayer;
 	std::list<std::weak_ptr<UIBase>>m_UIList; //関連付けられたUIのリスト
+
+	//エフェクトの情報持つ用
+	std::weak_ptr<KdEffekseerObject> m_wpEffect;
 };

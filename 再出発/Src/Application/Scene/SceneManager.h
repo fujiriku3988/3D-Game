@@ -12,16 +12,6 @@ public:
 		Title,
 		Game,
 		StageSelectScene,
-		GameDevelop,
-		ResultDevelop,
-		ResultSales,
-	};
-
-	//追加モード
-	enum class ModeType
-	{
-		GameHome,
-		GameWork,
 	};
 
 	void PreUpdate();
@@ -48,11 +38,6 @@ public:
 	SceneType GetSceneType() { return m_currentSceneType; }
 	//==========追加===============//
 
-	//モード取ってくるやつ
-	ModeType GetModeType() { return m_nowModeType; }
-	//モード切り替える奴
-	void SetNextMode(ModeType nextMode) { m_nowModeType = nextMode; }
-
 	//ノードリスト追加するやつ
 	void AddNode(const KdModelWork::Node*& node);
 
@@ -76,13 +61,10 @@ private:
 	std::shared_ptr<BaseScene> m_currentScene = nullptr;
 
 	//現在のシーンの種類を保持している変数
-	SceneType m_currentSceneType = SceneType::Title;
+	SceneType m_currentSceneType = SceneType::Game;
 
 	//次のシーンの種類を保持している変数
 	SceneType m_nextSceneType = m_currentSceneType;
-
-	//追加
-	ModeType m_nowModeType = ModeType::GameHome;
 
 private:
 

@@ -195,7 +195,7 @@ void Player::Action()
 			//魔法陣の位置を記憶
 			SetMagicCircle();
 			//再生
-			m_wpEffect = KdEffekseerManager::GetInstance().Play("mahoujin.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1, 1, true);
+			m_wpEffect = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1.3, 1, false);
 		}
 		m_ctrlFlg.E = true;
 	}

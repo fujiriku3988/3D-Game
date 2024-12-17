@@ -88,16 +88,9 @@ void SceneManager::ChangeScene(SceneType sceneType)
 		break;
 	case SceneType::Game:
 		m_currentScene = std::make_shared<GameScene>();
-		m_nowModeType = ModeType::GameHome;
-		break;
-	case SceneType::GameDevelop:
-		m_currentScene = std::make_shared<GameDevelop>();
 		break;
 	case SceneType::StageSelectScene:
 		m_currentScene = std::make_shared<StageSelectScene>();
-		break;
-	case SceneType::ResultDevelop:
-		m_currentScene = std::make_shared<ResultDevelop>();
 		break;
 	}
 

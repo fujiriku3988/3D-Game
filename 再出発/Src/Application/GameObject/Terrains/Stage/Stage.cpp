@@ -13,6 +13,8 @@ void Stage::Init(const std::string _filePath)
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("Stage", m_modelData, KdCollider::TypeGround);
 	m_objType = eNone;
+
+	KdEffekseerManager::GetInstance().Play("BackLight.efkefc", m_pos , 2, 1, true);
 }
 
 void Stage::DrawLit()

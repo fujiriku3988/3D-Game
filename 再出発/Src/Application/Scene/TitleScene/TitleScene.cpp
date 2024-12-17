@@ -28,6 +28,9 @@ void TitleScene::Event()
 
 void TitleScene::Init()
 {
+	KdAudioManager::Instance().StopAllSound();
+	KdAudioManager::Instance().Play("Asset/Sounds/BGM.wav", true, 0.1f);
+
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);

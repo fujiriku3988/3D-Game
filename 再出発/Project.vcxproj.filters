@@ -100,26 +100,11 @@
     <Filter Include="Src\Application\Scene\ResultScene\ResultDevelop">
       <UniqueIdentifier>{c50c0ecc-32d1-4a5b-8710-6b152132adac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\GUI">
-      <UniqueIdentifier>{4cd91341-41ff-4f12-8b49-bea2429a2c97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI">
       <UniqueIdentifier>{ac7f0438-c774-47bf-95a1-220c3fca9374}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\Object">
       <UniqueIdentifier>{c2b74060-d4db-4fc2-9e95-2d6fedca84f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\Bar">
-      <UniqueIdentifier>{2899c29d-fca1-405a-b590-0aa659e86708}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\Bar\ExpBar">
-      <UniqueIdentifier>{6b7a320e-0a60-45e6-8e04-0426fe08e382}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\Button">
-      <UniqueIdentifier>{fdebaa3a-92aa-427b-b10d-534f9c9035df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\GUI\Button\Work">
-      <UniqueIdentifier>{7be45596-3f53-4b0c-a918-c08e19fec790}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\Terrains">
       <UniqueIdentifier>{708cd46d-37e0-4430-8a29-e02fe2512348}</UniqueIdentifier>
@@ -189,9 +174,6 @@
     </Filter>
     <Filter Include="Src\Application\GameObject\UI\Back\BlackBack">
       <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\TitleObject">
-      <UniqueIdentifier>{aea4063c-2179-4e00-bad3-471434028a40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\UI\Star">
       <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
@@ -423,12 +405,6 @@
     <ClInclude Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.h">
       <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\Button\ButtonBase.h">
-      <Filter>Src\Application\GameObject\GUI\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.h">
-      <Filter>Src\Application\GameObject\GUI\Button\Work</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h">
       <Filter>Src\Application\GameObject\Object</Filter>
     </ClInclude>
@@ -449,9 +425,6 @@
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Character\Player\Player.h">
       <Filter>Src\Application\GameObject\Character\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.h">
-      <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Enter\Enter.h">
       <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>
@@ -701,12 +674,6 @@
     <ClCompile Include="Src\Application\Scene\ResultScene\ResultDevelop\ResultDevelop.cpp">
       <Filter>Src\Application\Scene\ResultScene\ResultDevelop</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\Button\ButtonBase.cpp">
-      <Filter>Src\Application\GameObject\GUI\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\Button\Work\WorkButton.cpp">
-      <Filter>Src\Application\GameObject\GUI\Button\Work</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp">
       <Filter>Src\Application\GameObject\Object</Filter>
     </ClCompile>
@@ -727,9 +694,6 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Character\Player\Player.cpp">
       <Filter>Src\Application\GameObject\Character\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\GUI\Bar\ExpBar\ExpBar.cpp">
-      <Filter>Src\Application\GameObject\GUI\Bar\ExpBar</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Enter\Enter.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Enter</Filter>

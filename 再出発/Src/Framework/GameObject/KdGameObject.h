@@ -79,27 +79,14 @@ public:
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
 
 	void HitFlg(bool _flg) { m_hitFlg = _flg; }
-	
-	//ノードの受け取り
-	void ReciveNode(const KdModelWork::Node* _node) { m_reciveNode = _node; }
-	//オブジェクトの情報受け渡し
-	void ReciveOBJ(std::shared_ptr<KdGameObject> _obj) { m_wpReciveObj = _obj; }
 
 	//オブジェクトのタイプ
 	const ObjectType GetObjType()const { return m_objType; }
-	//接続状態を管理するリスト
-	const std::list<std::shared_ptr<KdGameObject>>& GetConnectList()const { return m_connectedParts; }
-	//接続されたパーツの数を取得する
-	const int GetConnectedPartsCount() const { return m_connectedParts.size(); }
-	//オブジェクトの情報をもらってくる
-	const std::weak_ptr<KdGameObject> GetRecieveObj()const { return m_wpReciveObj; }
 
 	//接続されたパーツを追加する関数
 	void AddConnectedPart(std::shared_ptr<KdGameObject> _part);
 	//接続されたパーツを解除する関数
 	void RemoveConnectedPart(std::shared_ptr<KdGameObject> _part);
-	//接続されたパーツ全削除
-	void RemoveAllConnectedParts() { m_connectedParts.clear(); } // リストの中身を全てクリア
 	//接続されたパーツ全てのポインタ取得
 	void GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std::set<std::shared_ptr<KdGameObject>>& _visited);
 
@@ -133,15 +120,16 @@ protected:
 	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
 
-	const KdModelWork::Node* m_reciveNode = nullptr;//ノードの情報を受け取るよう
-	std::weak_ptr<KdGameObject>m_wpReciveObj;//オブジェクトの情報受け取るよう（大体当たり判定で使う）
+	//エフェクトの情報持つ用
+	//std::weak_ptr<KdEffekseerObject> m_wpEffect;
 
-	std::list<std::shared_ptr<KdGameObject>>m_connectedParts;//接続状態を管理する方法
+	//オブジェクトタイプ
+	ObjectType m_objType = eNone;
 
-	ObjectType m_objType = eNone;//オブジェクトタイプ
+	//当たり判定等で使うフラグ
+	bool m_hitFlg = false;
 
-	bool m_hitFlg = false;//当たった時
-
+	//ファイルのパスを記憶
 	std::string m_filePath = "";//
 
 	//＝＝＝＝＝＝＝＝＝＝ここまで＝＝＝＝＝＝＝＝＝＝＝＝//

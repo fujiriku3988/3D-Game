@@ -3,6 +3,8 @@
 #include"../../UI/GameTime/GameTime.h"
 #include"../../Camera/TPSCamera/TPSCamera.h"
 #include"../../Character/Player/Player.h"
+#include"../../../../Framework/Effekseer/KdEffekseerManager.h"
+#include"../../../main.h"
 
 void GoalPoint::Init(const std::string _filePath)
 {
@@ -21,6 +23,8 @@ void GoalPoint::Init(const std::string _filePath)
 	m_objType = eGoalPoint;
 
 	m_filePath = _filePath;
+
+	KdEffekseerManager::GetInstance().Play("GoalPoint.efkefc", m_pos , 2, 1, true);
 }
 
 void GoalPoint::DrawLit()
@@ -43,7 +47,7 @@ void GoalPoint::Update()
 			if (std::shared_ptr<UIBase>spUI = m_wpUI.lock())
 			{
 				spUI->ToggleDraw();
-			}
+			}	
 		}
 		if (std::shared_ptr<GameTime>spGameTime = m_wpGameTime.lock())
 		{
@@ -58,6 +62,13 @@ void GoalPoint::Update()
 			spPlayer->PlayerStopON();
 		}
 		m_hitFlg = false;
+	}
+
+	std::shared_ptr<KdEffekseerObject> spEffect = m_wpEffect.lock();
+	if (spEffect)
+	{
+		//エフェクトを止める
+		//spEffect->StopEffect();
 	}
 
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);

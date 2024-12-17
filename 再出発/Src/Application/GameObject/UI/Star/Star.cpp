@@ -14,7 +14,7 @@ void Star::Init(const std::string _filePath)
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "Star", "drawFlg");
 	m_rgb = JsonManager::Instance().GetParamVec3(_filePath, "Star", "rgb");
 
-	m_effTex.Load("Asset/Textures/UI/Effect/firework.png");
+	m_effTex.Load("Asset/Textures/Effect/firework.png");
 	m_effPos = JsonManager::Instance().GetParamVec2(_filePath, "Star", "effPos");
 	m_effScale = JsonManager::Instance().GetParamVec2(_filePath, "Star", "effScale");
 	m_effTexSize = JsonManager::Instance().GetParamVec2(_filePath, "Star", "effTexSize");

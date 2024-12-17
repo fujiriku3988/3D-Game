@@ -33,6 +33,12 @@ void GameScene::Event()
 
 void GameScene::Init()
 {
+	Math::Viewport viewPort;
+	KdDirect3D::Instance().CopyViewportInfo(viewPort);
+	float width = viewPort.width;
+	float height = viewPort.height;
+	KdEffekseerManager::GetInstance().Create((float)width, (float)height);
+
 	std::shared_ptr<Sphere> sphere = std::make_shared<Sphere>();
 	sphere->Init("Asset/Data/Json/Sphere/Sphere.json");
 	AddObject(sphere);
@@ -166,10 +172,5 @@ void GameScene::Init()
 	goalpoint->AddUI(clearTime3);
 	goalpoint->AddUI(stageClearTXT);
 
-	Math::Viewport viewPort;
-	KdDirect3D::Instance().CopyViewportInfo(viewPort);
-	float width = viewPort.width;
-	float height = viewPort.height;
-	KdEffekseerManager::GetInstance().Create((float)width, (float)height);
 	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());
 }
