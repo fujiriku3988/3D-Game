@@ -1,11 +1,12 @@
 ﻿#include "Player.h"
 #include"../../../GameObject/Camera/CameraBase.h"
+#include"../../../GameObject/Camera/TPSCamera/TPSCamera.h"
 
 #include"../../../Scene/SceneManager.h"
 #include"../../../../Framework/Effekseer/KdEffekseerManager.h"
 
 #include"../../../GameObject/Terrains/TerrainBase.h"
-
+#include"../../../GameObject/Effect/smoke/smoke.h"
 #include"../../../GameObject/Object/ObjectBase.h"
 
 #include"../../../main.h"
@@ -28,6 +29,8 @@ void Player::Init(const std::string _filePath)
 	m_gravity = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravity");
 	m_gravityPow = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravityPow");
 	m_speed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "speed");
+	m_effDelay = 30;
+
 	m_tex = std::make_shared<KdTexture>();
 
 	m_filePath = _filePath;
@@ -68,35 +71,36 @@ void Player::Update()
 	//移動
 	Math::Vector3 m_dir = Math::Vector3::Zero;
 
-	bool moveFlg = false;
+	m_ctrlFlg.move = false;
 	if (m_ctrlFlg.stop == false)
 	{
 		if (GetAsyncKeyState('W') & 0x8000)
 		{
 			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Backward, m_spCamera->GetRotationYMatrix());
-			moveFlg = true;
+			m_ctrlFlg.move = true;
 		}
 
 		if (GetAsyncKeyState('S') & 0x8000)
 		{
 			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Forward, m_spCamera->GetRotationYMatrix());
-			moveFlg = true;
+			m_ctrlFlg.move = true;
 		}
 
 		if (GetAsyncKeyState('A') & 0x8000)
 		{
 			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Left, m_spCamera->GetRotationYMatrix());
-			moveFlg = true;
+			m_ctrlFlg.move = true;
 		}
 		if (GetAsyncKeyState('D') & 0x8000)
 		{
 			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
-			moveFlg = true;
+			m_ctrlFlg.move = true;
 		}
 		//プレイヤーの各操作
 		Action();
 	}
-	if (moveFlg == true)
+
+	if (m_ctrlFlg.move == true)
 	{
 		//移動中（移動キーが押された）
 		//正規化
@@ -147,7 +151,7 @@ void Player::Update()
 				m_degAng.y += ang;
 			}
 
-			//１回転は３６０度だよ
+			//１回転は３６０度
 			if (m_degAng.y >= 360) { m_degAng.y -= 360.0f; }
 			if (m_degAng.y <= -360) { m_degAng.y += 360.0f; }
 		}
@@ -182,20 +186,26 @@ void Player::DrawLit()
 
 void Player::Action()
 {
+	m_spCamera = m_wpCamera.lock();
+	if (!m_spCamera)
+	{
+		return;
+	}
+
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
 		if (m_ctrlFlg.E == false)
 		{
-			std::shared_ptr<KdEffekseerObject> spEffect = m_wpEffect.lock();
-			if (spEffect)
+			std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
+			if (spEff)
 			{
 				//エフェクトを止める
-				spEffect->StopEffect();
+				spEff->StopEffect();
 			}
 			//魔法陣の位置を記憶
 			SetMagicCircle();
 			//再生
-			m_wpEffect = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1.3, 1, false);
+			m_wpEffekseer = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1.3, 1, false);
 		}
 		m_ctrlFlg.E = true;
 	}
@@ -209,11 +219,11 @@ void Player::Action()
 		{
 			//魔法陣に移動
 			TeleportToMagicCircle();
-			std::shared_ptr<KdEffekseerObject> spEffect = m_wpEffect.lock();
-			if (spEffect)
+			std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
+			if (spEff)
 			{
 				//エフェクトを止める
-				spEffect->StopEffect();
+				spEff->StopEffect();
 			}
 		}
 		m_ctrlFlg.Q = true;
@@ -222,6 +232,26 @@ void Player::Action()
 	else
 	{
 		m_ctrlFlg.Q = false;
+	}
+
+	//if (GetAsyncKeyState('C') & 0x8000)
+	{
+		if (m_ctrlFlg.jump == false)
+		{
+			if (m_ctrlFlg.move == true)
+			{
+				m_effDelay--;
+				if (m_effDelay < 0)
+				{
+					std::shared_ptr<smoke> smokeEff = std::make_shared<smoke>();
+					smokeEff->Init();
+					smokeEff->SetPos(m_pos);
+					smokeEff->SetCamera(m_spCamera);
+					SceneManager::Instance().AddObject(smokeEff);
+					m_effDelay = 20;
+				}
+			}
+		}
 	}
 }
 
@@ -254,7 +284,7 @@ void Player::CollisionDetection()
 			}
 			else
 			{
-				m_ctrlFlg.collision = false;						
+				m_ctrlFlg.collision = false;
 			}
 		}
 	}

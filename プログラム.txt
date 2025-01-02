@@ -1,0 +1,50 @@
+ヘッダー
+
+// 線形補間関数 (lerp)
+    Math::Vector3 Lerp(const Math::Vector3& _start, const Math::Vector3& _end, float _time)
+    {
+        return _start + _time * (_end - _start);
+    }
+
+    void updateCamera(Math::Vector3& _cameraPosition, const Math::Vector3& _targetPosition, float _deltaTime)
+    {
+        // 補間係数（追従速度）
+        time = followSpeed * _deltaTime;
+
+        // カメラ位置をターゲット（キャラクターの上）に向けて補間
+        _cameraPosition = Lerp(_cameraPosition, _targetPosition, time);
+    }
+
+private:
+
+    // カメラの視点オフセット用
+    Math::Vector3 cameraOffset;
+    // 補間係数（追従速度）
+    float followSpeed;  // 追従の速さ
+    float time;
+
+
+CPP
+
+const std::shared_ptr<const Player> player = m_wpPlayer.lock();
+    if (player)
+    {
+        Math::Vector3 playerPos = player->GetPos();
+        Math::Vector3 cameraPos = GetPos();
+
+        // 毎フレームの更新 (擬似的なフレームループ)
+        float deltaTime = 0.016f; // 60fps前提の1フレームの時間
+
+        // カメラが追従する目標位置はキャラクターの現在位置＋オフセット
+        Math::Vector3 targetCameraPosition = playerPos + cameraOffset;
+
+        // カメラをキャラクターの上に遅延追従させる
+        updateCamera(cameraPos, targetCameraPosition, deltaTime);
+
+        m_localPos = Math::Matrix::CreateTranslation(cameraPos);
+
+        m_mWorld = m_rotation * m_localPos;
+
+        // 擬似フレームの待機（60fps相当の速度でループさせるため）
+        std::this_thread::sleep_for(std::chrono::milliseconds(0)); // 16ms待機（約60fps）
+    }

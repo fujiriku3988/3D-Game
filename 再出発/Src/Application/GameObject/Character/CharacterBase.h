@@ -4,13 +4,6 @@ class ObjectBase;
 class CharacterBase :public KdGameObject
 {
 public:
-	//アニメーション情報
-	struct AnimetionInfo
-	{
-		float count;//現在のコマ数カウント
-		float speed;//アニメーションの速度
-	};
-
 	CharacterBase() {}
 	~CharacterBase()override {};
 
