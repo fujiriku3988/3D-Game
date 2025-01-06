@@ -37,16 +37,13 @@ void TitleScene::Init()
 
 	std::shared_ptr<TitleTXT> title = std::make_shared<TitleTXT>();
 	title->Init("Asset/Data/Json/UI/Text/TitleTXT.json");
-	//title->Init();
 	AddObject(title);
 
 	std::shared_ptr<TextFrame> txtFrame = std::make_shared<TextFrame>();
 	txtFrame->Init("Asset/Data/Json/UI/Frame/TextFrame.json");
-	//txtFrame->Init();
 	AddObject(txtFrame);
 
 	std::shared_ptr<PlayTXT> play = std::make_shared<PlayTXT>();
 	play->Init("Asset/Data/Json/UI/Text/PlayTXT.json");
-	//play->Init();
 	AddObject(play);
 }

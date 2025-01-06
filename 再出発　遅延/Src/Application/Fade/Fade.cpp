@@ -24,7 +24,7 @@ void Fade::Draw()
 void Fade::UpdateBlackFade()
 {
 	//多分これでFadeIN中にFade
-	// しなくなるからバグらない
+	//しなくなるからバグらない
 	//if (m_bFade)
 	{
 		if (m_bFadeOut)

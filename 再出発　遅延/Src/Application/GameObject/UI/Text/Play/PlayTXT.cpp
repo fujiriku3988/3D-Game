@@ -26,6 +26,15 @@ void PlayTXT::DrawSprite()
 
 void PlayTXT::Update()
 {
+	float a = Fade::Instance().GetBlackAlpha();
+	if (a > 0.0f)
+	{
+		//m_drawFlg = false;
+	}
+
+
+	//m_drawFlg = true;
+
 	{
 		POINT nowPos = {};
 		GetCursorPos(&nowPos);
@@ -37,27 +46,33 @@ void PlayTXT::Update()
 		//マウス座標のPOINTは右がプラス左がマイナス
 		//nowLengthが上に行くとマイナス値が増えるからm_Sposもそれに合わせて考えてやる
 
-		if (nowLength.y <= -m_pos.y + m_texSize.y / 2 && nowLength.y >= -m_pos.y - m_texSize.y / 2
-			&& nowLength.x >= m_pos.x - m_texSize.x / 2 && nowLength.x <= m_pos.x + m_texSize.x / 2)
+		if (a <= 0.0f)
 		{
-			m_color = { 1,1,1,0.5f };
-			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+			if (nowLength.y <= -m_pos.y + m_texSize.y / 2 && nowLength.y >= -m_pos.y - m_texSize.y / 2
+				&& nowLength.x >= m_pos.x - m_texSize.x / 2 && nowLength.x <= m_pos.x + m_texSize.x / 2)
 			{
-				if (m_key == false)
+
+				m_color = { 1,1,1,0.5f };
+				if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 				{
-					//Fade::Instance().BootBlackFade(SceneManager::SceneType::Game);
-					SceneManager::Instance().SetNextScene(SceneManager::SceneType::StageSelectScene);
-					m_key = true;
+					if (m_key == false)
+					{
+						SceneManager::Instance().SetNextScene(SceneManager::SceneType::StageSelectScene);
+						m_key = true;
+					}
+				}
+				else
+				{
+					m_key = false;
 				}
 			}
 			else
 			{
-				m_key = false;
+				m_color = { 1,1,1,1 };
 			}
 		}
-		else
-		{
-			m_color = { 1,1,1,1 };
-		}
 	}
+
+	Application::Instance().m_log.Clear();
+	Application::Instance().m_log.AddLog("m_alpha:%f", a);
 }

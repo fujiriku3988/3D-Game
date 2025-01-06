@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "../Scene/SceneManager.h"
 
@@ -16,24 +16,26 @@ public:
 	void BootWhiteFade(SceneManager::SceneType _type);
 
 	bool GetFade() { return m_bFade; }
+	const float GetBlackAlpha()const { return m_blackAlpha; }
+	const float GetWhiteAlpha()const { return m_whiteAlpha; }
 private:
 
 	void Init();
 
 	SceneManager::SceneType m_nextScene;
 
-	bool m_bFade;			// ƒtƒF[ƒh’†‚©‚Ç‚¤‚©H
-	bool m_bFadeOut;		// ƒtƒF[ƒhƒAƒEƒgH
-	bool m_bFadeIn;			// ƒtƒF[ƒhƒCƒ“H
-	bool m_bColor;			// •‚©”’‚©H(true ”’:false •)
+	bool m_bFade;			// ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã‹ã©ã†ã‹ï¼Ÿ
+	bool m_bFadeOut;		// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆï¼Ÿ
+	bool m_bFadeIn;			// ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼Ÿ
+	bool m_bColor;			// é»’ã‹ç™½ã‹ï¼Ÿ(true ç™½:false é»’)
 
-	// •(1280*720)
+	// é»’(1280*720)
 	KdTexture m_blackTex;
 	Math::Matrix m_blackMat;
 	Math::Color m_blackColor;
 	float m_blackAlpha;
 	
-	// ”’(1280*720)
+	// ç™½(1280*720)
 	KdTexture m_whiteTex;
 	Math::Matrix m_whiteMat;
 	Math::Color m_whiteColor;
