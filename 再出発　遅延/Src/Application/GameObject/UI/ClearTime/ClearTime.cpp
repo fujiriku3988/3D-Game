@@ -58,24 +58,24 @@ void ClearTime::DrawSprite()
 	{
 		//時間
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.secPosR.x, (int)m_time.secPosR.y,
-			(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.secRectR, &m_time.color);
+			(int)m_time.texSize.x * (float)m_time.scale.x, (int)m_time.texSize.y * (float)m_time.scale.y, &m_time.secRectR, &m_time.color);
 
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.secPosL.x, (int)m_time.secPosL.y,
-			(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.secRectL, &m_time.color);
+			(int)m_time.texSize.x * (float)m_time.scale.x, (int)m_time.texSize.y * (float)m_time.scale.y, &m_time.secRectL, &m_time.color);
 
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.minPosR.x, (int)m_time.minPosR.y,
-			(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.minRectR, &m_time.color);
+			(int)m_time.texSize.x * (float)m_time.scale.x, (int)m_time.texSize.y * (float)m_time.scale.y, &m_time.minRectR, &m_time.color);
 
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.minPosL.x, (int)m_time.minPosL.y,
-			(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.minRectL, &m_time.color);
+			(int)m_time.texSize.x * (float)m_time.scale.x, (int)m_time.texSize.y * (float)m_time.scale.y, &m_time.minRectL, &m_time.color);
 
 		//コロン
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_colonTex, (int)m_colonPos.x, (int)m_colonPos.y,
-			(int)m_colonTexSize.x * (int)m_colonScale.x, (int)m_colonTexSize.y * (int)m_colonScale.y, &m_colonRect, &m_colonColor);
+			(int)m_colonTexSize.x * (float)m_colonScale.x, (int)m_colonTexSize.y * (float)m_colonScale.y, &m_colonRect, &m_colonColor);
 
 		//スター
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_starTex, (int)m_starPos.x, (int)m_starPos.y,
-			(int)m_starTexSize.x * (int)m_starScale.x, (int)m_starTexSize.y * (int)m_starScale.y, nullptr, &m_starColor);
+			(int)m_starTexSize.x * (float)m_starScale.x, (int)m_starTexSize.y * (float)m_starScale.y, nullptr, &m_starColor);
 	}
 }
 
