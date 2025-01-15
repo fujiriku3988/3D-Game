@@ -12,4 +12,5 @@ public:
 	void Update()override;
 	void Restart()override;
 private:
+	float m_scaleMAX = 1.2f;
 };

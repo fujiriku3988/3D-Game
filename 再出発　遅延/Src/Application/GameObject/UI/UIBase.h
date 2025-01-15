@@ -1,4 +1,6 @@
 ﻿#pragma once
+
+
 class UIBase :public KdGameObject
 {
 public:
@@ -17,6 +19,7 @@ protected:
 	Math::Color m_color;
 	Math::Vector2 m_scale;
 	Math::Vector2 m_texSize;
+	Math::Vector2 m_texSizeHarf;
 	bool m_drawFlg = true;
 	int m_time = 0;
 	float m_alpha = 1.0f;

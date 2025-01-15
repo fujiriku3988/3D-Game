@@ -8,7 +8,6 @@ public:
 	PressurePlate() {};
 	~PressurePlate() override {}
 
-	void Init()override;
 	void Init(const std::string _filePath)override;
 	void DrawLit()override;
 	void Update()override;

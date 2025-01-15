@@ -8,6 +8,7 @@ void ObjectBase::Init(const std::string _filePath)
 
 void ObjectBase::Init()
 {
+	m_emissive = {};
 	m_pos = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "pos");
 	m_scale = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "scale");
 	m_color = JsonManager::Instance().GetParamVec4("Asset/Data/Json/BaseFile/ObjectBase.json", "ObjectBase", "color");

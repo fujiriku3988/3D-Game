@@ -1,0 +1,46 @@
+{
+    "EffectBase": {
+        "alpha": 0.0,
+        "alphaMAX": 0.0,
+        "alphaMIN": 0.0,
+        "animCnt": 0.0,
+        "animMAX": 0.0,
+        "animMIN": 0.0,
+        "animSpd": 0.0,
+		"color": {
+			"w": 1.0,
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0
+		},
+		"drawFlg": false,
+        "pos": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "rot": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "scale": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "sprPos": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "sprScale": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "texSize": {
+            "x": 0.0,
+            "y": 0.0
+        },
+        "time": 0
+    }
+}

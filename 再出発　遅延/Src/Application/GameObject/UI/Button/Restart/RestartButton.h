@@ -12,5 +12,7 @@ public:
 	void Update()override;
 	void Restart()override;
 private:
-	bool m_keyFlg;
+	//連打防止
+	bool m_keyFlg = false;
+	float m_scaleMAX = 1.2f;
 };

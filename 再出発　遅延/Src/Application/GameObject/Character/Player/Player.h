@@ -19,8 +19,10 @@ public:
 private:
 	//プレイヤーの動き
 	void Action();
+	//プレイヤーの回転処理
+	void Rotation();
 	//スフィアの当たり判定
-	void CollisionSphere();//後で関数をベースに書いて引数で使いまわせるようにする？
+	void CollisionSphere();
 
 	//魔法陣の設置
 	void SetMagicCircle();

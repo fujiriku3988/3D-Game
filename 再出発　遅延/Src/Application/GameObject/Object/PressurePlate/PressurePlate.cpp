@@ -1,31 +1,6 @@
 ﻿#include "PressurePlate.h"
 #include "../Fence/Fence.h"
 
-void PressurePlate::Init()
-{
-	ObjectBase::Init();
-	m_modelWork->SetModelData("Asset/Models/Terrain/PressurePlate/PressurePlate.gltf");
-	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"));
-
-	m_pos = { -5.0f,5.8f,8.0f };
-	m_scale = { 0.8f };
-	m_color = { 1.0f,1.0f,1.0f,1.0f };
-	m_plateCT = 0;
-	m_plateUp = true;
-	m_plateDown = false;
-
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "pos", m_pos);
-	JsonManager::Instance().AddParamVec3("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "scale", m_scale);
-	JsonManager::Instance().AddParamVec4("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "color", m_color);
-	JsonManager::Instance().AddParam<int>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateCT", m_plateCT);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateUp", m_plateUp);
-	JsonManager::Instance().AddParam<bool>("Asset/Data/Json/Stage1/PressurePlate/PressurePlate.json", "PressurePlate", "plateDown", m_plateDown);
-
-	m_pCollider = std::make_unique<KdCollider>();
-	m_pCollider->RegisterCollisionShape("PressurePlate", m_modelWork, KdCollider::TypeEvent);
-	m_objType = ePressurePlate;
-}
-
 void PressurePlate::Init(const std::string _filePath)
 {
 	ObjectBase::Init();
@@ -96,6 +71,8 @@ void PressurePlate::AddFence(std::shared_ptr<Fence> _fence)
 
 void PressurePlate::PlayAnimation()
 {
+	//定数
+	constexpr int PlateCoolTime = 180;
 	//プレートが上に上がってるなら
 	if (m_hitFlg)
 	{
@@ -119,11 +96,11 @@ void PressurePlate::PlayAnimation()
 		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);
 		m_plateUp = true;
 	}
-
+	
 	if (m_plateDown == true)
 	{
 		m_plateCT++;
-		if (m_plateCT >= 180)
+		if (m_plateCT >= PlateCoolTime)
 		{
 			m_hitFlg = false;
 			m_plateUp = false;
@@ -132,6 +109,6 @@ void PressurePlate::PlayAnimation()
 	}
 	else
 	{
-		m_plateCT = 0;
+		m_plateCT = NumberConstants::NumZero;
 	}
 }

@@ -11,29 +11,24 @@ void PlayTXT::Init(const std::string _filePath)
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "texSize");
+	m_texSizeHarf = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "texSizeHarf");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "PlayTXT", "color");
 	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "PlayTXT", "drawFlg");
+	m_fadeAlpha = JsonManager::Instance().GetParam<float>(_filePath, "PlayTXT", "fadeAlpha");
 }
 
 void PlayTXT::DrawSprite()
 {
 	if (m_drawFlg)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
-			(float)m_texSize.x * (float)m_scale.x, (float)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (float)m_pos.x, (float)m_pos.y,
+			(int)m_texSize.x * (float)m_scale.x, (int)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
 	}
 }
 
 void PlayTXT::Update()
 {
-	float a = Fade::Instance().GetBlackAlpha();
-	if (a > 0.0f)
-	{
-		//m_drawFlg = false;
-	}
-
-
-	//m_drawFlg = true;
+	float alpha = Fade::Instance().GetBlackAlpha();
 
 	{
 		POINT nowPos = {};
@@ -41,18 +36,15 @@ void PlayTXT::Update()
 		ScreenToClient(Application::Instance().GetWindowHandle(), &nowPos);
 		POINT nowLength = {};
 
-		nowLength.x = (nowPos.x - 640);//マウス座標の(0,0)の位置が画面左上の端だから補正
-		nowLength.y = (nowPos.y - 360);//マウス座標の(0,0)の位置が画面左上の端だから補正
-		//マウス座標のPOINTは右がプラス左がマイナス
-		//nowLengthが上に行くとマイナス値が増えるからm_Sposもそれに合わせて考えてやる
+		nowLength.x = (nowPos.x - NumberConstants::WindowSizeWidth);//マウス座標の(0,0)の位置が画面左上の端だから補正
+		nowLength.y = (nowPos.y - NumberConstants::WindowSizeHeight);//マウス座標の(0,0)の位置が画面左上の端だから補正
 
-		if (a <= 0.0f)
+		if (alpha <= m_fadeAlpha)
 		{
-			if (nowLength.y <= -m_pos.y + m_texSize.y / 2 && nowLength.y >= -m_pos.y - m_texSize.y / 2
-				&& nowLength.x >= m_pos.x - m_texSize.x / 2 && nowLength.x <= m_pos.x + m_texSize.x / 2)
+			if (nowLength.y <= -m_pos.y + m_texSizeHarf.y && nowLength.y >= -m_pos.y - m_texSizeHarf.y
+				&& nowLength.x >= m_pos.x - m_texSizeHarf.x && nowLength.x <= m_pos.x + m_texSizeHarf.x)
 			{
-
-				m_color = { 1,1,1,0.5f };
+				m_color.w = NumberConstants::AlphaSemiTransparent;
 				if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 				{
 					if (m_key == false)
@@ -68,11 +60,8 @@ void PlayTXT::Update()
 			}
 			else
 			{
-				m_color = { 1,1,1,1 };
+				m_color.w = NumberConstants::AlphaVisible;
 			}
 		}
 	}
-
-	Application::Instance().m_log.Clear();
-	Application::Instance().m_log.AddLog("m_alpha:%f", a);
 }

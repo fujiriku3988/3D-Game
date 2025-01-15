@@ -17,6 +17,7 @@ protected:
 	std::shared_ptr<KdModelWork>m_modelWork = nullptr;
 	Math::Vector3 m_pos;	//座標
 	Math::Vector3 m_scale;	//拡縮
+	Math::Vector3 m_emissive;//エミシブ
 	Math::Color m_color;	//色
 	Math::Matrix m_transMat;//移動行列
 	Math::Matrix m_scaleMat;//拡縮行列

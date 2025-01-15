@@ -12,7 +12,8 @@ void CharacterBase::Init()
 	m_scale = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "scale");
 	m_spritePos = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "sprPos");
 	m_texSize = JsonManager::Instance().GetParamVec2("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "texSize");
-	m_adjustHeight = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "adjHeight");
+	m_adjHeightRay = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "adjustHeightRay");
+	m_adjHeightSph = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "adjustHeightSph");
 	m_jumpPow = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "jumpPow");
 	m_jumpVelocity = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "jumpVelocity");
 	m_gravity = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "gravity");
@@ -30,8 +31,8 @@ void CharacterBase::Init()
 	//デバッグ用
 	m_pDebugWire = std::make_unique<KdDebugWireFrame>();
 	//画面中央座標
-	m_FixMousePos.x = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosX");
-	m_FixMousePos.y = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosY");
+	m_FixMousePos.x = JsonManager::Instance().GetParam<long>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosX");
+	m_FixMousePos.y = JsonManager::Instance().GetParam<long>("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "fixMouPosY");
 	//カメラ変数
 	m_degAng = JsonManager::Instance().GetParamVec3("Asset/Data/Json/BaseFile/CharacterBase.json", "CharacterBase", "degAng");
 	//フラグ

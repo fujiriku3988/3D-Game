@@ -16,7 +16,10 @@ void GoalPoint::Init(const std::string _filePath)
 
 	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "GoalPoint", "pos");
 	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "GoalPoint", "scale");
+	m_emissive = JsonManager::Instance().GetParamVec3(_filePath, "GoalPoint", "emissive");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "GoalPoint", "color");
+	m_effSize= JsonManager::Instance().GetParam<float>(_filePath, "GoalPoint", "effSize");
+	m_effSpeed= JsonManager::Instance().GetParam<float>(_filePath, "GoalPoint", "effSpeed");
 
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("goal", m_modelWork, KdCollider::TypeEvent);
@@ -24,7 +27,7 @@ void GoalPoint::Init(const std::string _filePath)
 
 	m_filePath = _filePath;
 
-	KdEffekseerManager::GetInstance().Play("GoalPoint.efkefc", m_pos , 2, 1, true);
+	KdEffekseerManager::GetInstance().Play("GoalPoint.efkefc", m_pos , m_effSize, m_effSpeed, true);
 }
 
 void GoalPoint::DrawLit()
@@ -32,7 +35,7 @@ void GoalPoint::DrawLit()
 	KdShaderManager::Instance().m_StandardShader.SetEmissiveEnable(false);
 	if (m_modelWork)
 	{
-		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color, { 10,10,10 });
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color, m_emissive);
 	}
 }
 

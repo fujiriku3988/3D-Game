@@ -22,6 +22,7 @@ protected:
 	std::shared_ptr<KdAnimator> m_animator = nullptr;
 	Math::Vector3 m_pos;	//座標
 	Math::Vector3 m_scale;	//拡縮
+	Math::Vector3 m_emissive;//エミシブ
 	Math::Color m_color;	//色
 	std::string m_animState;//アニメーションの状態
 	Math::Matrix m_transMat;//移動行列

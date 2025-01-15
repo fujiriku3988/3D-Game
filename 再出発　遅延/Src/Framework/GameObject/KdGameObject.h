@@ -1,5 +1,19 @@
 ﻿#pragma once
 
+namespace NumberConstants
+{
+	constexpr int NumZero = 0;
+	constexpr float NumOne = 1.0f;
+	constexpr int NumTwo = 2;
+	//60フレームを１秒
+	constexpr int MaxOneSecondFrame = 60;
+	constexpr int WindowSizeWidth = 640;
+	constexpr int WindowSizeHeight = 360;
+	//アルファ値の値の定数
+	constexpr float AlphaVisible = 1.0f;     //完全に表示
+	constexpr float AlphaSemiTransparent = 0.5f; //半透明
+}
+
 // ゲーム上に存在するすべてのオブジェクトの基底となるクラス
 class KdGameObject : public std::enable_shared_from_this<KdGameObject>
 {
@@ -79,17 +93,8 @@ public:
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
 
 	void HitFlg(bool _flg) { m_hitFlg = _flg; }
-
 	//オブジェクトのタイプ
 	const ObjectType GetObjType()const { return m_objType; }
-
-	//接続されたパーツを追加する関数
-	void AddConnectedPart(std::shared_ptr<KdGameObject> _part);
-	//接続されたパーツを解除する関数
-	void RemoveConnectedPart(std::shared_ptr<KdGameObject> _part);
-	//接続されたパーツ全てのポインタ取得
-	void GetAllConnectedParts(std::shared_ptr<KdGameObject> _obj, std::set<std::shared_ptr<KdGameObject>>& _visited);
-
 	//オブジェクトの状態をリセット
 	virtual void Restart();
 
@@ -120,8 +125,9 @@ protected:
 	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
 
-	//エフェクトの情報持つ用
-	//std::weak_ptr<KdEffekseerObject> m_wpEffect;
+	//エフェクト
+	float m_effSize = 1;
+	float m_effSpeed = 1;
 
 	//オブジェクトタイプ
 	ObjectType m_objType = eNone;
@@ -130,7 +136,7 @@ protected:
 	bool m_hitFlg = false;
 
 	//ファイルのパスを記憶
-	std::string m_filePath = "";//
+	std::string m_filePath = "";
 
 	//＝＝＝＝＝＝＝＝＝＝ここまで＝＝＝＝＝＝＝＝＝＝＝＝//
 };

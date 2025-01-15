@@ -17,10 +17,10 @@ public:
 	void GenerateDepthMapFromLight()override;
 
 	//レイで地面との当たり判定を作りたい時に使用
-	//地面との当たり判定をするだけなので
+	//地面との当たり判定をするだけ用
 	virtual void CollisionGround(const Math::Vector3 _pos, const Math::Vector3 _dir,
 						 const KdCollider::Type _type, const float _adjust, const float _stepHeight);
-	//
+
 	virtual void CollisionDetection();
 
 	virtual Math::Vector3 GetPos() const { return m_pos; }
@@ -80,13 +80,15 @@ protected:
 	Math::Vector3 m_rot;//回転値
 	Math::Vector3 m_scale;//拡縮値
 	Math::Color m_color;//色
-	Math::Vector3 m_adjustHeight;//当たり判定を出す位置の高さの調整
-	float m_stepHeight;//当たり判定で許容できる段差の高さ
-	float m_speed;//スピード
-	float m_jumpPow;//ジャンプ力
-	float m_jumpVelocity;//現在のジャンプ速度
-	float m_gravity;//重力
-	float m_gravityPow;//重力の力
+	Math::Vector3 m_adjHeightRay;//当たり判定を出す位置の高さの調整(レイ用
+	Math::Vector3 m_adjHeightSph;//当たり判定を出す位置の高さの調整(スフィア用
+	float m_stepHeight = {};//当たり判定で許容できる段差の高さ
+	float m_sphereRad = {};//スフィア用の半径の変数
+	float m_speed = {};//スピード
+	float m_jumpPow = {};//ジャンプ力
+	float m_jumpVelocity = {};//現在のジャンプ速度
+	float m_gravity = {};//重力
+	float m_gravityPow = {};//重力の力
 	bool m_hitFlg = false;//当たり判定
 	bool m_moveFlg = false;//動いてるかどうか
 	//行列

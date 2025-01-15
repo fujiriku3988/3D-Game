@@ -21,7 +21,8 @@ void Player::Init(const std::string _filePath)
 	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "Player", "pos");
 	m_dir = JsonManager::Instance().GetParamVec3(_filePath, "Player", "dir");
 	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "Player", "scale");
-	m_adjustHeight = JsonManager::Instance().GetParamVec3(_filePath, "Player", "adjustHeight");
+	m_adjHeightRay = JsonManager::Instance().GetParamVec3(_filePath, "Player", "adjustHeightRay");
+	m_adjHeightSph = JsonManager::Instance().GetParamVec3(_filePath, "Player", "adjustHeightSph");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "Player", "color");
 	m_stepHeight = JsonManager::Instance().GetParam<float>(_filePath, "Player", "stepHeight");
 	m_jumpPow = JsonManager::Instance().GetParam<float>(_filePath, "Player", "jumpPow");
@@ -29,7 +30,10 @@ void Player::Init(const std::string _filePath)
 	m_gravity = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravity");
 	m_gravityPow = JsonManager::Instance().GetParam<float>(_filePath, "Player", "gravityPow");
 	m_speed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "speed");
-	m_effDelay = 30;
+	m_sphereRad = JsonManager::Instance().GetParam<float>(_filePath, "Player", "sphereRadius");
+	m_effDelay = JsonManager::Instance().GetParam<int>(_filePath, "Player", "effDelay");
+	m_effSize = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSize");
+	m_effSpeed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSpeed");
 
 	m_tex = std::make_shared<KdTexture>();
 
@@ -69,7 +73,7 @@ void Player::Update()
 	}
 
 	//移動
-	Math::Vector3 m_dir = Math::Vector3::Zero;
+	m_dir = Math::Vector3::Zero;
 
 	m_ctrlFlg.move = false;
 	if (m_ctrlFlg.stop == false)
@@ -100,65 +104,7 @@ void Player::Update()
 		Action();
 	}
 
-	if (m_ctrlFlg.move == true)
-	{
-		//移動中（移動キーが押された）
-		//正規化
-		m_dir.Normalize();//長さを１にする
-
-		//今キャラが向いている方向
-		//①キャラの回転行列を作成
-		Math::Matrix nowRotMat = Math::Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_degAng.y));
-		//②現在の方向（ベクトル）を求める
-		Math::Vector3 nowVec = Math::Vector3::TransformNormal({ 0,0,1 }, nowRotMat);
-
-		//向きたい方向
-		Math::Vector3 toVec = m_dir;
-
-		//角度を求める
-		//内積…ベクトルA＊ベクトルB＊コサインなす角
-		//			１			１		θ
-		//結果、求まる値はコサインθになる
-		float d = nowVec.Dot(toVec);
-
-		//丸め誤差の都合上「１」を超える可能性があるのでクランプ（遮断）する
-		//丸め誤差…小数点以下を省略した際に生じる誤差
-		d = std::clamp(d, -1.0f, 1.0f);//(補正する値、最小値、最大値)
-
-		//角度を求める
-		float ang = DirectX::XMConvertToDegrees(acos(d));
-
-		//少しずつ回転するようにする
-		if (ang >= 0.1f)
-		{
-			if (ang > 5)
-			{
-				ang = 5.0f;
-			}
-
-			//どっちに回転するかを求める
-			//外積…２つのベクトルに対して垂直に伸びるベクトル
-			Math::Vector3 c = toVec.Cross(nowVec);
-			c.Normalize();
-
-			//
-			if (c.y > 0)
-			{
-				m_degAng.y -= ang;
-			}
-			else
-			{
-				m_degAng.y += ang;
-			}
-
-			//１回転は３６０度
-			if (m_degAng.y >= 360) { m_degAng.y -= 360.0f; }
-			if (m_degAng.y <= -360) { m_degAng.y += 360.0f; }
-		}
-
-		m_dir.Normalize();
-	}
-
+	Rotation();
 
 	m_pos += m_dir * m_speed;
 	m_gravity += m_gravityPow;
@@ -186,13 +132,16 @@ void Player::DrawLit()
 
 void Player::Action()
 {
+	//定数
+	constexpr int DelayConstant = 20;
+
 	m_spCamera = m_wpCamera.lock();
 	if (!m_spCamera)
 	{
 		return;
 	}
 
-	
+
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
 		if (m_ctrlFlg.E == false)
@@ -204,7 +153,8 @@ void Player::Action()
 				//魔法陣の位置を記憶
 				SetMagicCircle();
 				//再生
-				m_wpEffekseer = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3{ 0,1,0 }, 1.3, 1, false);
+				m_wpEffekseer = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3::Up,
+																		m_effSize, m_effSpeed, false);
 				m_ctrlFlg.mgcCircle = true;
 			}
 			else
@@ -227,23 +177,88 @@ void Player::Action()
 		m_ctrlFlg.E = false;
 	}
 
+	if (m_ctrlFlg.jump == false)
 	{
-		if (m_ctrlFlg.jump == false)
+		if (m_ctrlFlg.move == true)
 		{
-			if (m_ctrlFlg.move == true)
+			m_effDelay--;
+			if (m_effDelay < NumberConstants::NumZero)
 			{
-				m_effDelay--;
-				if (m_effDelay < 0)
-				{
-					std::shared_ptr<smoke> smokeEff = std::make_shared<smoke>();
-					smokeEff->Init();
-					smokeEff->SetPos(m_pos);
-					smokeEff->SetCamera(m_spCamera);
-					SceneManager::Instance().AddObject(smokeEff);
-					m_effDelay = 20;
-				}
+				std::shared_ptr<smoke> smokeEff = std::make_shared<smoke>();
+				smokeEff->Init("Asset/Data/Json/Effect/Smoke/Smoke.json");
+				smokeEff->SetPos(m_pos);
+				smokeEff->SetCamera(m_spCamera);
+				SceneManager::Instance().AddObject(smokeEff);
+				m_effDelay = DelayConstant;
 			}
 		}
+	}
+}
+
+void Player::Rotation()
+{
+	//定数
+	constexpr float AngleMAX = 5.0f;
+	constexpr float AngChangeAmount = 0.1f;
+	constexpr float DegAngMAX = 360.0f;
+
+	if (m_ctrlFlg.move == true)
+	{
+		//移動中（移動キーが押された）
+		//正規化
+		m_dir.Normalize();//長さを１にする
+
+		//今キャラが向いている方向
+		//①キャラの回転行列を作成
+		Math::Matrix nowRotMat = Math::Matrix::CreateRotationY(DirectX::XMConvertToRadians(m_degAng.y));
+		//②現在の方向（ベクトル）を求める
+		Math::Vector3 nowVec = Math::Vector3::TransformNormal(Math::Vector3::Backward, nowRotMat);
+
+		//向きたい方向
+		Math::Vector3 toVec = m_dir;
+
+		//角度を求める
+		//内積…ベクトルA＊ベクトルB＊コサインなす角
+		//			１			１		θ
+		//結果、求まる値はコサインθになる
+		float d = nowVec.Dot(toVec);
+
+		//丸め誤差の都合上「１」を超える可能性があるのでクランプ（遮断）する
+		//丸め誤差…小数点以下を省略した際に生じる誤差
+		d = std::clamp(d, -NumberConstants::NumOne, NumberConstants::NumOne);//(補正する値、最小値、最大値)
+
+		//角度を求める
+		float ang = DirectX::XMConvertToDegrees(acos(d));
+
+		//少しずつ回転するようにする
+		if (ang >= AngChangeAmount)
+		{
+			if (ang > AngleMAX)
+			{
+				ang = AngleMAX;
+			}
+
+			//どっちに回転するかを求める
+			//外積…２つのベクトルに対して垂直に伸びるベクトル
+			Math::Vector3 c = toVec.Cross(nowVec);
+			c.Normalize();
+
+			//
+			if (c.y > NumberConstants::NumZero)
+			{
+				m_degAng.y -= ang;
+			}
+			else
+			{
+				m_degAng.y += ang;
+			}
+
+			//１回転は３６０度
+			if (m_degAng.y >= DegAngMAX) { m_degAng.y -= DegAngMAX; }
+			if (m_degAng.y <= -DegAngMAX) { m_degAng.y += DegAngMAX; }
+		}
+
+		m_dir.Normalize();
 	}
 }
 
@@ -252,7 +267,7 @@ void Player::CollisionDetection()
 	//レイ判定
 	KdCollider::RayInfo ray;
 	//飛ばす位置
-	ray.m_pos = m_pos + m_adjustHeight;
+	ray.m_pos = m_pos + m_adjHeightRay;
 	//長さ
 	static const float enableStepHeight = m_stepHeight;
 	ray.m_range = enableStepHeight;
@@ -331,9 +346,9 @@ void Player::CollisionSphere()
 	//球判定用の変数を作成
 	KdCollider::SphereInfo sphere;//スフィア
 	//球の中心位置を設定
-	sphere.m_sphere.Center = m_pos + Math::Vector3{ 0,0.8,0 };
+	sphere.m_sphere.Center = m_pos + m_adjHeightSph;
 	//球の半径を設定
-	sphere.m_sphere.Radius = 0.7f;
+	sphere.m_sphere.Radius = m_sphereRad;
 	//当たり判定をしたいタイプを設定
 	sphere.m_type = KdCollider::TypeGround | KdCollider::TypeBump;
 	//球が当たったオブジェクトの情報を格納するリスト
@@ -346,7 +361,7 @@ void Player::CollisionSphere()
 		}
 	}
 	//球リストから一番近いオブジェクトを検出
-	float maxOverLap = 0;
+	float maxOverLap = NumberConstants::NumZero;
 	Math::Vector3 hitDir = {};
 	bool ishit = false;
 	for (auto& ret : retSphereList)
@@ -374,7 +389,6 @@ void Player::SetMagicCircle()
 	// プレイヤーの現在位置を魔法陣の位置として記録
 	m_magicCirclePos = GetPos();
 	m_ctrlFlg.mgcCircle = true;
-	//ShowMagicCircleEffect();
 }
 
 void Player::TeleportToMagicCircle()
@@ -384,5 +398,4 @@ void Player::TeleportToMagicCircle()
 		SetPos(m_magicCirclePos);
 		m_ctrlFlg.mgcCircle = false;
 	}
-	//ShowTeleportEffect();
 }

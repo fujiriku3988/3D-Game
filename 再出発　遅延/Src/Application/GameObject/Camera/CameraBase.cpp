@@ -1,5 +1,9 @@
 ﻿#include "CameraBase.h"
 
+void CameraBase::Init(const std::string _filePath)
+{
+}
+
 void CameraBase::Init()
 {
 	if (!m_spCamera)
@@ -7,8 +11,9 @@ void CameraBase::Init()
 		m_spCamera = std::make_shared<KdCamera>();
 	}
 	// ↓画面中央座標
-	m_FixMousePos.x = 640;
-	m_FixMousePos.y = 360;
+	m_FixMousePos = JsonManager::Instance().GetParamPOINT("Asset/Data/Json/BaseFile/CameraBase.json", "CameraBase", "mousePos");
+	//補正値
+	m_crrValue = JsonManager::Instance().GetParam<float>("Asset/Data/Json/BaseFile/CameraBase.json", "CameraBase", "crrValue");
 }
 
 void CameraBase::Update()
@@ -44,10 +49,7 @@ void CameraBase::UpdateRotateByMouse()
 
 	SetCursorPos(m_FixMousePos.x, m_FixMousePos.y);
 
-	// 実際にカメラを回転させる処理(0.15はただの補正値)
-	//m_DegAng.x += _mouseMove.y * 0.15f;
-	m_DegAng.y += _mouseMove.x * 0.15f;
+	// 実際にカメラを回転させる処理(m_crrValueはただの補正値)
+	m_DegAng.y += _mouseMove.x * m_crrValue;
 
-	// 回転制御
-	//m_DegAng.x = std::clamp(m_DegAng.x, 0.f, 45.f);
 }

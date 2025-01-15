@@ -37,12 +37,12 @@ void Star::DrawSprite()
 	{
 		if (m_clearFlg)
 		{
-			KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
-				m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
+			KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
+				(int)m_texSize.x * (float)m_scale.x, (int)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
 			if (m_animFlg)
 			{
-				KdShaderManager::Instance().m_spriteShader.DrawTex(&m_effTex, m_effPos.x, m_effPos.y,
-					m_effTexSize.x * m_effScale.x, m_effTexSize.y * m_effScale.y, &m_effRect, &m_effColor);
+				KdShaderManager::Instance().m_spriteShader.DrawTex(&m_effTex, (int)m_effPos.x, (int)m_effPos.y,
+					(int)m_effTexSize.x * (int)m_effScale.x, (int)m_effTexSize.y * (int)m_effScale.y, &m_effRect, &m_effColor);
 			}
 		}
 	}
@@ -50,6 +50,17 @@ void Star::DrawSprite()
 
 void Star::Update()
 {
+	//定数
+	constexpr float ScaleMAX = 1.5f;
+	constexpr float DegAngMAX = 360.0f;
+	//スプレッドシートX軸
+	constexpr int MaxAnimaSideX = 6;
+	//スプレッドシートY軸
+	constexpr int MaxAnimaSideY = 5;
+	//変化量
+	constexpr float AlphaChangeAmount = 0.1f;
+	constexpr float ScaleChangeAmount = 0.05f;
+
 	if (m_drawFlg)
 	{
 		if (std::shared_ptr<GameTime>spGameTime = m_wpGameTime.lock())
@@ -65,41 +76,41 @@ void Star::Update()
 	{
 		if (!m_animFlg)
 		{
-			m_scale.x -= 0.05f;
-			m_scale.y -= 0.05f;
-			m_alpha += 0.1f;
+			m_scale.x -= ScaleChangeAmount;
+			m_scale.y -= ScaleChangeAmount;
+			m_alpha += AlphaChangeAmount;
 		}
 
-		if (m_alpha >= 1.0f)
+		if (m_alpha >= NumberConstants::NumOne)
 		{
-			m_alpha = 1.0f;
+			m_alpha = NumberConstants::NumOne;
 		}
 
-		if (m_scale.x <= 1.5f && m_scale.y <= 1.5f)
+		if (m_scale.x <= ScaleMAX && m_scale.y <= ScaleMAX)
 		{
-			m_scale.x = 1.5f;
-			m_scale.y = 1.5f;
+			m_scale.x = ScaleMAX;
+			m_scale.y = ScaleMAX;
 			m_animFlg = true;
 		}
 
 		if (m_animFlg)
 		{
 			m_animDelay++;
-			if (m_animDelay > 1)
+			if (m_animDelay > NumberConstants::NumOne)
 			{
-				m_anim.x += 1;
-				m_animDelay = 0;
+				m_anim.x += NumberConstants::NumOne;
+				m_animDelay = NumberConstants::NumZero;
 			}
 
-			if (m_anim.x >= 6)
+			if (m_anim.x >= MaxAnimaSideX)
 			{
-				m_anim.y += 1;
-				m_anim.x = 0;
+				m_anim.y += NumberConstants::NumOne;
+				m_anim.x = NumberConstants::NumZero;
 			}
-			if (m_anim.y > 5)
+			if (m_anim.y > MaxAnimaSideY)
 			{
-				m_anim.x = 6;
-				m_animDelay = 0;
+				m_anim.x = MaxAnimaSideX;
+				m_animDelay = NumberConstants::NumZero;
 			}
 		}
 	}
