@@ -32,7 +32,13 @@ void ReturnButton::Update()
 	//変化量
 	constexpr float ScaleChangeAmount = 0.05f;
 
+	if (m_drawFlg)
 	{
+		if (GetAsyncKeyState('B') & 0x8000)
+		{
+			Fade::Instance().BootBlackFade(SceneManager::SceneType::Title);
+		}
+
 		POINT nowPos;
 		GetCursorPos(&nowPos);
 		ScreenToClient(Application::Instance().GetWindowHandle(), &nowPos);

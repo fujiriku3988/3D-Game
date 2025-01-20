@@ -199,6 +199,15 @@
     <Filter Include="Src\Application\GameObject\Effect\smoke">
       <UniqueIdentifier>{36d3da03-9396-49fd-92d2-83caa7ee8d54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Stage1">
+      <UniqueIdentifier>{d5d4174e-4bc3-416e-8ba6-0986ed018e01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Stage2">
+      <UniqueIdentifier>{89162316-5a2e-4170-aaf9-ecd9e16f1912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\NumTwo">
+      <UniqueIdentifier>{fa98d083-3d96-4fa6-a1da-63159c196e19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -483,6 +492,15 @@
     <ClInclude Include="Src\Application\GameObject\Effect\smoke\smoke.h">
       <Filter>Src\Application\GameObject\Effect\smoke</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage2\StageScene2.h">
+      <Filter>Src\Application\Scene\GameScene\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage1\StageScene1.h">
+      <Filter>Src\Application\Scene\GameScene\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.h">
+      <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -739,6 +757,15 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Effect\smoke\smoke.cpp">
       <Filter>Src\Application\GameObject\Effect\smoke</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage2\StageScene2.cpp">
+      <Filter>Src\Application\Scene\GameScene\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage1\StageScene1.cpp">
+      <Filter>Src\Application\Scene\GameScene\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

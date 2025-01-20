@@ -1,5 +1,7 @@
 ﻿#include "PlayButton.h"
 #include"../../../../main.h"
+#include"../../../../Scene/SceneManager.h"
+#include"../../../../Fade/Fade.h"
 
 void PlayButton::Init(const std::string _filePath)
 {
@@ -18,13 +20,19 @@ void PlayButton::DrawSprite()
 {
 	if (m_drawFlg)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
-			(int)m_texSize.x * (float)m_scale.x, (int)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 	}
 }
 
 void PlayButton::Update()
 {
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+	{
+		Fade::Instance().BootBlackFade(SceneManager::SceneType::Stage2);
+	}
+
+	if (m_drawFlg)
 	{
 		//定数
 		//変化量
@@ -41,6 +49,14 @@ void PlayButton::Update()
 		if (nowLength.y <= -m_pos.y + m_texSize.y && nowLength.y >= -m_pos.y - m_texSize.y
 			&& nowLength.x >= m_pos.x - m_texSize.x && nowLength.x <= m_pos.x + m_texSize.x)
 		{
+			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+			{
+				for (auto& obj : SceneManager::Instance().GetObjList())
+				{
+					Fade::Instance().BootBlackFade(SceneManager::SceneType::Stage2);
+				}
+			}
+
 			m_scale.x += ScaleChangeAmount;
 			m_scale.y += ScaleChangeAmount;
 			if (m_scale.x >= m_scaleMAX) { m_scale.x = m_scaleMAX; }

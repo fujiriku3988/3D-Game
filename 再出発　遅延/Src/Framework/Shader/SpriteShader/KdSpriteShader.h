@@ -61,6 +61,7 @@ public:
 	// ・color			… 色(RGBA) nullptrで色はセットしない(前回の描画時の色が使用される)
 	// ・pivot			… 基準点 0.0～1.0の範囲で指定する
 	void DrawTex(const KdTexture* tex, int x, int y, int w, int h, const Math::Rectangle* srcRect = nullptr, const Math::Color* color = &kWhiteColor, const Math::Vector2& pivot = { 0.5, 0.5f });
+	void DrawTex(const KdTexture* tex, float x, float y, float w, float h, const Math::Rectangle* srcRect = nullptr, const Math::Color* color = &kWhiteColor, const Math::Vector2& pivot = { 0.5, 0.5f });
 	void DrawTex(const std::weak_ptr<KdTexture> tex, int x, int y, int w, int h, const Math::Rectangle* srcRect = nullptr, const Math::Color* color = &kWhiteColor, const Math::Vector2& pivot = { 0.5, 0.5f })
 	{
 		if(tex.expired())return;

@@ -42,70 +42,30 @@ void Player::Init(const std::string _filePath)
 
 void Player::Update()
 {
-	//ノード追加
-	{
-		AddNode();
-	}
-
 	if (m_wpCamera.expired() == false)
 	{
 		m_spCamera = m_wpCamera.lock();
 	}
 
-	//ジャンプ
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
-	{
-		if (m_ctrlFlg.space == false)
-		{
-			m_jumpVelocity = m_jumpPow;
-			m_ctrlFlg.jump = true;
-		}
-		m_ctrlFlg.space = true;
-	}
-	else
-	{
-		m_ctrlFlg.space = false;
-	}
-
-	if (m_ctrlFlg.jump == true)
-	{
-		m_pos.y += m_jumpVelocity;
-	}
-
 	//移動
 	m_dir = Math::Vector3::Zero;
-
 	m_ctrlFlg.move = false;
 	if (m_ctrlFlg.stop == false)
 	{
-		if (GetAsyncKeyState('W') & 0x8000)
-		{
-			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Backward, m_spCamera->GetRotationYMatrix());
-			m_ctrlFlg.move = true;
-		}
+		//プレイヤーの移動操作
+		MovementControll();
 
-		if (GetAsyncKeyState('S') & 0x8000)
-		{
-			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Forward, m_spCamera->GetRotationYMatrix());
-			m_ctrlFlg.move = true;
-		}
-
-		if (GetAsyncKeyState('A') & 0x8000)
-		{
-			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Left, m_spCamera->GetRotationYMatrix());
-			m_ctrlFlg.move = true;
-		}
-		if (GetAsyncKeyState('D') & 0x8000)
-		{
-			m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
-			m_ctrlFlg.move = true;
-		}
-		//プレイヤーの各操作
+		//プレイヤーの特殊操作
 		Action();
 	}
 
 	Rotation();
 
+
+	if (m_ctrlFlg.jump == true)
+	{
+		m_pos.y += m_jumpVelocity;
+	}
 	m_pos += m_dir * m_speed;
 	m_gravity += m_gravityPow;
 	m_pos.y += -m_gravity;
@@ -141,7 +101,6 @@ void Player::Action()
 		return;
 	}
 
-
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
 		if (m_ctrlFlg.E == false)
@@ -149,12 +108,11 @@ void Player::Action()
 			//魔法陣がないなら
 			if (m_ctrlFlg.mgcCircle == false)
 			{
-
 				//魔法陣の位置を記憶
 				SetMagicCircle();
 				//再生
 				m_wpEffekseer = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3::Up,
-																		m_effSize, m_effSpeed, false);
+					m_effSize, m_effSpeed, false);
 				m_ctrlFlg.mgcCircle = true;
 			}
 			else
@@ -177,6 +135,7 @@ void Player::Action()
 		m_ctrlFlg.E = false;
 	}
 
+	//動いたときにでる足煙
 	if (m_ctrlFlg.jump == false)
 	{
 		if (m_ctrlFlg.move == true)
@@ -186,12 +145,56 @@ void Player::Action()
 			{
 				std::shared_ptr<smoke> smokeEff = std::make_shared<smoke>();
 				smokeEff->Init("Asset/Data/Json/Effect/Smoke/Smoke.json");
-				smokeEff->SetPos(m_pos);
+				smokeEff->SetPos(m_pos+Math::Vector3::TransformNormal(Math::Vector3::Forward, m_rotationMat));
 				smokeEff->SetCamera(m_spCamera);
 				SceneManager::Instance().AddObject(smokeEff);
 				m_effDelay = DelayConstant;
 			}
 		}
+	}
+}
+
+void Player::MovementControll()
+{
+	//ジャンプ
+	if (m_ctrlFlg.stop == false)
+	{
+		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		{
+			if (m_ctrlFlg.space == false)
+			{
+				m_jumpVelocity = m_jumpPow;
+				m_ctrlFlg.jump = true;
+			}
+			m_ctrlFlg.space = true;
+		}
+		else
+		{
+			m_ctrlFlg.space = false;
+		}
+	}
+
+	if (GetAsyncKeyState('W') & 0x8000)
+	{
+		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Backward, m_spCamera->GetRotationYMatrix());
+		m_ctrlFlg.move = true;
+	}
+
+	if (GetAsyncKeyState('S') & 0x8000)
+	{
+		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Forward, m_spCamera->GetRotationYMatrix());
+		m_ctrlFlg.move = true;
+	}
+
+	if (GetAsyncKeyState('A') & 0x8000)
+	{
+		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Left, m_spCamera->GetRotationYMatrix());
+		m_ctrlFlg.move = true;
+	}
+	if (GetAsyncKeyState('D') & 0x8000)
+	{
+		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
+		m_ctrlFlg.move = true;
 	}
 }
 
@@ -220,11 +223,9 @@ void Player::Rotation()
 		//角度を求める
 		//内積…ベクトルA＊ベクトルB＊コサインなす角
 		//			１			１		θ
-		//結果、求まる値はコサインθになる
 		float d = nowVec.Dot(toVec);
 
 		//丸め誤差の都合上「１」を超える可能性があるのでクランプ（遮断）する
-		//丸め誤差…小数点以下を省略した際に生じる誤差
 		d = std::clamp(d, -NumberConstants::NumOne, NumberConstants::NumOne);//(補正する値、最小値、最大値)
 
 		//角度を求める

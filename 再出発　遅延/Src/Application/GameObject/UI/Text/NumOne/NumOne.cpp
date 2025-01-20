@@ -48,7 +48,7 @@ void NumOne::Update()
 			{
 				if (m_key == false)
 				{
-					Fade::Instance().BootBlackFade(SceneManager::SceneType::Game);
+					Fade::Instance().BootBlackFade(SceneManager::SceneType::Stage1);
 					m_key = true;
 				}
 			}

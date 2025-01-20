@@ -30,16 +30,16 @@ void RestartButton::Update()
 	//変化量
 	constexpr float ScaleChangeAmount = 0.05f;
 
+	if (GetAsyncKeyState('R') & 0x8000)
+	{
+		for (auto& obj : SceneManager::Instance().GetObjList())
+		{
+			obj->Restart();
+		}
+	}
+
 	if (m_drawFlg)
 	{
-		if (GetAsyncKeyState('R') & 0x8000)
-		{
-			for (auto& obj : SceneManager::Instance().GetObjList())
-			{
-				obj->Restart();
-			}
-		}
-
 		POINT nowPos;
 		GetCursorPos(&nowPos);
 		ScreenToClient(Application::Instance().GetWindowHandle(), &nowPos);

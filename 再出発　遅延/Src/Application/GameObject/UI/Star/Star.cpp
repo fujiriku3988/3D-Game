@@ -37,12 +37,12 @@ void Star::DrawSprite()
 	{
 		if (m_clearFlg)
 		{
-			KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
-				(int)m_texSize.x * (float)m_scale.x, (int)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
+			KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
+				m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 			if (m_animFlg)
 			{
-				KdShaderManager::Instance().m_spriteShader.DrawTex(&m_effTex, (int)m_effPos.x, (int)m_effPos.y,
-					(int)m_effTexSize.x * (int)m_effScale.x, (int)m_effTexSize.y * (int)m_effScale.y, &m_effRect, &m_effColor);
+				KdShaderManager::Instance().m_spriteShader.DrawTex(&m_effTex, m_effPos.x, m_effPos.y,
+					m_effTexSize.x * m_effScale.x, m_effTexSize.y * m_effScale.y, &m_effRect, &m_effColor);
 			}
 		}
 	}
@@ -52,7 +52,6 @@ void Star::Update()
 {
 	//定数
 	constexpr float ScaleMAX = 1.5f;
-	constexpr float DegAngMAX = 360.0f;
 	//スプレッドシートX軸
 	constexpr int MaxAnimaSideX = 6;
 	//スプレッドシートY軸

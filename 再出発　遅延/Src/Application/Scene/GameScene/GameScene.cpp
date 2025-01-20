@@ -46,7 +46,7 @@ void GameScene::Init()
 	AddObject(sphere);
 
 	std::shared_ptr<Stage> stage = std::make_shared<Stage>();
-	stage->Init("Asset/Data/Json/Stage1/Stage1.json");
+	stage->Init("Asset/Data/Json/Stage1/Stage1.json","Stage2");
 	AddObject(stage);
 
 	std::shared_ptr<Fence> fence1 = std::make_shared<Fence>();

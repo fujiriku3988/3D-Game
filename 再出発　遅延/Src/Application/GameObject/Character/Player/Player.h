@@ -1,4 +1,5 @@
 ﻿#pragma once
+#pragma once
 #include"../../../GameObject/Character/CharacterBase.h"
 class smoke;
 class Player :public CharacterBase
@@ -19,6 +20,7 @@ public:
 private:
 	//プレイヤーの動き
 	void Action();
+	void MovementControll();
 	//プレイヤーの回転処理
 	void Rotation();
 	//スフィアの当たり判定

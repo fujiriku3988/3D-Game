@@ -2,8 +2,6 @@
 
 #include"../BaseScene/BaseScene.h"
 
-class CharacterBase;
-
 class GameScene : public BaseScene
 {
 public :
