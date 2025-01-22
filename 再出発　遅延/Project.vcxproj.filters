@@ -208,6 +208,12 @@
     <Filter Include="Src\Application\GameObject\UI\Text\NumTwo">
       <UniqueIdentifier>{fa98d083-3d96-4fa6-a1da-63159c196e19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Setting">
+      <UniqueIdentifier>{186302e2-3b0a-4b65-b9ad-f08fc82ad519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\SettingScene">
+      <UniqueIdentifier>{0ae5a631-50df-4303-8ae5-ae4a94a2fdb8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -501,6 +507,12 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.h">
       <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\SettingScene\SettingScene.h">
+      <Filter>Src\Application\Scene\SettingScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -766,6 +778,12 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.cpp">
       <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\SettingScene\SettingScene.cpp">
+      <Filter>Src\Application\Scene\SettingScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

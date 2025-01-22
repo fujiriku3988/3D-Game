@@ -24,8 +24,8 @@ void NumOne::DrawSprite()
 
 	if (m_drawFlg)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
-			(int)m_texSize.x * (int)m_scale.x, (int)m_texSize.y * (int)m_scale.y, &m_rect, &m_color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, &m_rect, &m_color);
 	}
 }
 

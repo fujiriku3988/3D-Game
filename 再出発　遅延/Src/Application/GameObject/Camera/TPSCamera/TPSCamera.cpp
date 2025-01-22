@@ -1,4 +1,5 @@
 ﻿#include "TPSCamera.h"
+#include "../../../GameObject/Character/Player/Player.h"
 
 void TPSCamera::Init(const std::string _filePath)
 {
@@ -28,7 +29,7 @@ void TPSCamera::Init(const std::string _filePath)
 void TPSCamera::Update()
 {
 	// ターゲット（プレイヤー）の有効性を確認
-	const std::shared_ptr<const KdGameObject> target = m_wpTarget.lock();
+	const std::shared_ptr<Player> target = m_wpTarget.lock();
 	if (!target)
 	{
 		// ターゲットが存在しない場合はデフォルトの処理
@@ -68,4 +69,11 @@ void TPSCamera::Update()
 void TPSCamera::Restart()
 {
 	Init(m_filePath);
+}
+
+void TPSCamera::SetTarget(const std::shared_ptr<Player>& _target)
+{
+	if (!_target) { return; }
+
+	m_wpTarget = _target;
 }

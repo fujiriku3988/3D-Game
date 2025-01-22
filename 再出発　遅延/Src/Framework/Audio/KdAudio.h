@@ -45,6 +45,14 @@ public:
 	// 再生中の音をすべて停止・サウンドアセットの解放を行う
 	void SoundReset();
 
+	//SE・BGMの音量を変更
+	void SetSEVolume(float _vol) { m_seVol = _vol; }
+	void SetBGMVolume(float _vol) { m_bgmVol = _vol; }
+
+	//SE・BGMの音量を取得
+	const float GetSEVolume() { return m_seVol; }
+	const float GetBGMVolume() { return m_bgmVol; }
+
 	// DirectXAudioEngine取得
 	const std::unique_ptr<DirectX::AudioEngine>& GetAudioEngine() { return m_audioEng; }
 
@@ -72,6 +80,12 @@ private:
 
 	// サウント管理マップ
 	std::unordered_map< std::string, std::shared_ptr<KdSoundEffect>> m_soundMap;
+
+	//音量変数
+	//SEの音量
+	float m_seVol = 0.4f;
+	//BGMの音量
+	float m_bgmVol = 0.1f;
 
 	// シングルトンパターン
 public:

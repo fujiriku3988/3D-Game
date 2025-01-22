@@ -12,8 +12,7 @@ public:
 	void PreDraw()			override;
 
 	//追加
-	void SetTarget(const std::shared_ptr<KdGameObject>& target);
-	void SetDegAngY(float _degY) { m_DegAng.y = _degY; }
+	void SetDegAngY(const float _degY) { m_DegAng.y = _degY; }
 	void SetDegAngX(const float& _degX) { m_DegAng.x = _degX; }
 	void SetCameraPos(Math::Vector3 _pos) { m_pos = _pos; }
 
@@ -50,7 +49,6 @@ protected:
 	void UpdateRotateByMouse();
 
 	std::shared_ptr<KdCamera>	m_spCamera = nullptr;
-	std::weak_ptr<KdGameObject>	m_wpTarget;
 
 	//追加
 	Math::Vector3 m_pos = {};

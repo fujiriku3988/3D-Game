@@ -19,6 +19,9 @@ void KdAudioManager::Init()
 	m_audioEng = std::make_unique<DirectX::AudioEngine>(eflags);
 	m_audioEng->SetReverb(DirectX::Reverb_Default);
 
+	m_seVol = JsonManager::Instance().GetParam<float>("Asset/Data/Json/Sound/Sound.json", "Sound", "SE");
+	m_bgmVol = JsonManager::Instance().GetParam<float>("Asset/Data/Json/Sound/Sound.json", "Sound", "BGM");
+
 	m_listener.OrientFront = { 0, 0, 1 };
 }
 

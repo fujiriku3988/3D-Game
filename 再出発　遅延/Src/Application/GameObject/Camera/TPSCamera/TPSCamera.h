@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "../CameraBase.h"
+class Player;
 
 class TPSCamera : public CameraBase
 {
@@ -13,12 +14,15 @@ public:
 	void RotateMouseOFF() { m_rotFlg = false; }
 	void Restart()override;
 
+	//ポインターセット
+	void SetTarget(const std::shared_ptr<Player>& _target);
+
 	//線形補間関数 (lerp)
 	Math::Vector3 Lerp(const Math::Vector3& _start, const Math::Vector3& _end, float _time)
 	{
 		return _start + _time * (_end - _start);
 	}
-
+	//デルタタイム取得
 	float GetDeltaTime()
 	{
 		static auto lastTime = std::chrono::steady_clock::now();
@@ -34,6 +38,7 @@ private:
 	bool m_move = true;
 	bool m_rotFlg = true;
 
+	std::weak_ptr<Player>	m_wpTarget;
 	//カメラの視点オフセット用
 	Math::Vector3 m_offSet;
 	//補間係数（追従速度）

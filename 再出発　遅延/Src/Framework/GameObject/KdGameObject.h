@@ -57,16 +57,6 @@ public:
 
 	virtual void DrawDebug();
 
-	virtual void SetAsset(const std::string&) {}
-
-	virtual void SetPos(const Math::Vector3& pos) { m_mWorld.Translation(pos); }
-	virtual Math::Vector3 GetPos() const { return m_mWorld.Translation(); }
-
-	// 拡大率を変更する関数
-	void SetScale(float scalar);
-	virtual void SetScale(const Math::Vector3& scale);
-	virtual Math::Vector3 GetScale() const;
-
 	const Math::Matrix& GetMatrix() const { return m_mWorld; }
 
 	virtual bool IsExpired() const { return m_isExpired; }
@@ -114,7 +104,7 @@ protected:
 	bool m_isExpired = false;
 
 	// 3D空間に存在する機能
-	Math::Matrix	m_mWorld;
+	Math::Matrix m_mWorld;
 
 	// 当たり判定クラス
 	std::unique_ptr<KdCollider> m_pCollider = nullptr;

@@ -38,11 +38,23 @@ public:
 	void AddObject(const std::shared_ptr<KdGameObject>& obj);
 
 	SceneType GetSceneType() { return m_currentSceneType; }
+	
 	//==========追加===============//
+
+	//現在のSceneから次のScenenにいく
+
+	SceneType IncrementSceneType(SceneType _currentScene)
+	{
+		// 列挙型を整数型にキャストして次のシーンに進む
+		int nextValue = static_cast<int>(_currentScene) + 1;
+
+		// インクリメント後のシーンを返す
+		return static_cast<SceneType>(nextValue);
+	}
 
 	//ノードリスト追加するやつ
 	void AddNode(const KdModelWork::Node*& node);
-
+	//ノードリスト取ってくる
 	const std::list<const KdModelWork::Node*>& GetNodeList();
 
 	//==========追加===============//
@@ -76,7 +88,6 @@ private:
 public:
 
 	// シングルトンパターン
-	// 常に存在する && 必ず1つしか存在しない(1つしか存在出来ない)
 	// どこからでもアクセスが可能で便利だが
 	// 何でもかんでもシングルトンという思考はNG
 	static SceneManager& Instance()

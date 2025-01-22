@@ -23,35 +23,30 @@ void Fade::Draw()
 //ステージ切り替えやシーン切り替えに使おうかな
 void Fade::UpdateBlackFade()
 {
-	//多分これでFadeIN中にFade
-	//しなくなるからバグらない
-	//if (m_bFade)
+	if (m_bFadeOut)
 	{
-		if (m_bFadeOut)
+		m_blackAlpha += 0.008f;
+		if (m_blackAlpha >= 1.0f)
 		{
-			m_blackAlpha += 0.008f;
-			if (m_blackAlpha >= 1.0f)
-			{
-				m_bFadeOut = false;
-				m_blackAlpha = 1.0f;
-				SceneManager::Instance().SetNextScene(m_nextScene);
-				m_bFadeIn = true;
-			}
-			m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
+			m_bFadeOut = false;
+			m_blackAlpha = 1.0f;
+			SceneManager::Instance().SetNextScene(m_nextScene);
+			m_bFadeIn = true;
 		}
+		m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
+	}
 
-		if (m_bFadeIn)
+	if (m_bFadeIn)
+	{
+		m_blackAlpha -= 0.008f;
+		if (m_blackAlpha <= 0.0f)
 		{
-			m_blackAlpha -= 0.008f;
-			if (m_blackAlpha <= 0.0f)
-			{
-				m_bFadeIn = false;
-				m_blackAlpha = 0.0f;
-				SceneManager::Instance().SetNextScene(m_nextScene);
-				m_bFade = false;
-			}
-			m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
+			m_bFadeIn = false;
+			m_blackAlpha = 0.0f;
+			SceneManager::Instance().SetNextScene(m_nextScene);
+			m_bFade = false;
 		}
+		m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
 	}
 }
 
@@ -110,7 +105,7 @@ void Fade::Init()
 	m_blackMat = Math::Matrix::Identity;
 	m_blackAlpha = 0.0f;
 	m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
-	
+
 	m_whiteTex.Load("Asset/Textures/Fade/white.png");
 	m_whiteMat = Math::Matrix::Identity;
 	m_whiteAlpha = 0.0f;

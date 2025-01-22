@@ -1,23 +1,23 @@
-﻿#include "PlayTXT.h"
+﻿#include "SettingTXT.h"
 #include"../../../../main.h"
 
 #include "../../../../Scene/SceneManager.h"
 #include"../../../../Fade/Fade.h"
 
-void PlayTXT::Init(const std::string _filePath)
+void SettingTXT::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Text/play.png");
-	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "pos");
-	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "scale");
-	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "texSize");
-	m_texSizeHarf = JsonManager::Instance().GetParamVec2(_filePath, "PlayTXT", "texSizeHarf");
-	m_color = JsonManager::Instance().GetParamVec4(_filePath, "PlayTXT", "color");
-	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "PlayTXT", "drawFlg");
-	m_fadeAlpha = JsonManager::Instance().GetParam<float>(_filePath, "PlayTXT", "fadeAlpha");
+	m_tex.Load("Asset/Textures/UI/Text/setting.png");
+	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "SettingTXT", "pos");
+	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "SettingTXT", "scale");
+	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "SettingTXT", "texSize");
+	m_texSizeHarf = JsonManager::Instance().GetParamVec2(_filePath, "SettingTXT", "texSizeHarf");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, "SettingTXT", "color");
+	m_drawFlg = JsonManager::Instance().GetParam<bool>(_filePath, "SettingTXT", "drawFlg");
+	m_fadeAlpha = JsonManager::Instance().GetParam<float>(_filePath, "SettingTXT", "fadeAlpha");
 }
 
-void PlayTXT::DrawSprite()
+void SettingTXT::DrawSprite()
 {
 	if (m_drawFlg)
 	{
@@ -26,22 +26,9 @@ void PlayTXT::DrawSprite()
 	}
 }
 
-void PlayTXT::Update()
+void SettingTXT::Update()
 {
 	float alpha = Fade::Instance().GetBlackAlpha();
-
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-	{
-		if (m_key == false)
-		{
-			KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
-			m_key = true;
-		}
-	}	
-	else
-	{
-		m_key = false;
-	}
 
 	{
 		POINT nowPos = {};
@@ -62,7 +49,7 @@ void PlayTXT::Update()
 				{
 					if (m_key == false)
 					{
-						KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, 0.4f);
+						KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
 						SceneManager::Instance().SetNextScene(SceneManager::SceneType::StageSelectScene);
 						m_key = true;
 					}
