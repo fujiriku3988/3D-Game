@@ -7,8 +7,9 @@
 #include"../../GameObject/UI/Text/Title/TitleTXT.h"
 #include"../../GameObject/UI/Text/Play/PlayTXT.h"
 #include"../../GameObject/UI/Text/Setting/SettingTXT.h"
+#include"../../GameObject/UI/Text/Guide/GuideTXT.h"
 
-#include"../../GameObject/UI/Back/TitleBack/TitleBack.h"
+#include"../../GameObject/UI/BackGround/TitleBack/TitleBack.h"
 #include"../../GameObject/UI/Frame/TextFrame/TextFrame.h"
 
 void TitleScene::Event()
@@ -30,7 +31,8 @@ void TitleScene::Event()
 void TitleScene::Init()
 {
 	KdAudioManager::Instance().StopAllSound();
-	KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, KdAudioManager::Instance().GetBGMVolume());
+	m_bgmVolume = KdAudioManager::Instance().GetBGMVolume();
+	KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, m_bgmVolume);
 
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
@@ -55,4 +57,13 @@ void TitleScene::Init()
 	std::shared_ptr<SettingTXT> setting = std::make_shared<SettingTXT>();
 	setting->Init("Asset/Data/Json/UI/Text/SettingTXT.json");
 	AddObject(setting);
+
+	std::shared_ptr<TextFrame> txtFrameGuide = std::make_shared<TextFrame>();
+	txtFrameGuide->Init("Asset/Data/Json/UI/Frame/TextFrame/TextFrameGuide.json");
+	AddObject(txtFrameGuide);
+
+	std::shared_ptr<GuideTXT> guide = std::make_shared<GuideTXT>();
+	guide->Init("Asset/Data/Json/UI/Text/Guide/TitleScene/GuideTXT.json");
+	AddObject(guide);
+
 }

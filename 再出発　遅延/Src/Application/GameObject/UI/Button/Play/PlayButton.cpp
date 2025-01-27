@@ -6,7 +6,7 @@
 void PlayButton::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/Play.png");
+	m_tex.Load("Asset/Textures/UI/Button/Play.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "Play", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "Play", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "Play", "texSize");

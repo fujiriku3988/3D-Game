@@ -4,7 +4,7 @@
 void TitleTXT::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Text/title1.png");
+	m_tex.Load("Asset/Textures/UI/Text/title.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "TitleTXT", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "TitleTXT", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "TitleTXT", "texSize");
@@ -16,8 +16,8 @@ void TitleTXT::DrawSprite()
 {
 	if (m_drawFlg)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_pos.x, (int)m_pos.y,
-			(int)m_texSize.x * (int)m_scale.x, (int)m_texSize.y * (int)m_scale.y, nullptr, &m_color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 	}
 }
 

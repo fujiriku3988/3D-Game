@@ -10,8 +10,8 @@ public:
 	~TitleScene() {}
 
 private:
-
 	void Event() override;
 	void Init() override;
 	bool m_key = false;//キー制御用
+	float m_bgmVolume = {};
 };

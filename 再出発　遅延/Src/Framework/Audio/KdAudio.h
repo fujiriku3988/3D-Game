@@ -22,6 +22,10 @@ public:
 	// 不要なインスタンス削除など
 	void Update();
 
+	//機能追加
+	void UpdateBGMVolume(float _volume);
+	void UpdateSEVolume(float _volume);
+
 	void SetListnerMatrix(const Math::Matrix& mWorld);
 
 	// サウンド再生
@@ -86,6 +90,10 @@ private:
 	float m_seVol = 0.4f;
 	//BGMの音量
 	float m_bgmVol = 0.1f;
+	//現在再生中のBGMインスタンス
+	std::shared_ptr<KdSoundInstance> m_currentBGMInstance;
+	//再生するのSEインスタンスを管理するリスト
+	std::vector<std::shared_ptr<KdSoundInstance>> m_seInstances; 
 
 	// シングルトンパターン
 public:

@@ -3,7 +3,7 @@
 
 void StageFrame::Init(const std::string _filePath)
 {
-	m_tex.Load("Asset/Textures/UI/Result/stageFrame.png");
+	m_tex.Load("Asset/Textures/UI/Frame/stageFrame.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "StageFrame", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "StageFrame", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "StageFrame", "texSize");

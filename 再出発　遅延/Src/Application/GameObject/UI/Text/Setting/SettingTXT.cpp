@@ -50,7 +50,7 @@ void SettingTXT::Update()
 					if (m_key == false)
 					{
 						KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
-						SceneManager::Instance().SetNextScene(SceneManager::SceneType::StageSelectScene);
+						SceneManager::Instance().SetNextScene(SceneManager::SceneType::SettingScene);
 						m_key = true;
 					}
 				}

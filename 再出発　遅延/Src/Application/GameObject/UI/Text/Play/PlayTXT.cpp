@@ -30,19 +30,7 @@ void PlayTXT::Update()
 {
 	float alpha = Fade::Instance().GetBlackAlpha();
 
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-	{
-		if (m_key == false)
-		{
-			KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
-			m_key = true;
-		}
-	}	
-	else
-	{
-		m_key = false;
-	}
-
+	if(m_drawFlg)
 	{
 		POINT nowPos = {};
 		GetCursorPos(&nowPos);
@@ -62,7 +50,7 @@ void PlayTXT::Update()
 				{
 					if (m_key == false)
 					{
-						KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, 0.4f);
+						KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
 						SceneManager::Instance().SetNextScene(SceneManager::SceneType::StageSelectScene);
 						m_key = true;
 					}

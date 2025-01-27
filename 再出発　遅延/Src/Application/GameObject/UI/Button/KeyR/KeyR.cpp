@@ -4,7 +4,7 @@
 void KeyR::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/rKey.png");
+	m_tex.Load("Asset/Textures/UI/Button/rKey.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "KeyR", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "KeyR", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "KeyR", "texSize");

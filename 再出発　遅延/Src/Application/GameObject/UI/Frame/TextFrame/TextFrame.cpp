@@ -4,7 +4,7 @@
 void TextFrame::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/textFrame.png");
+	m_tex.Load("Asset/Textures/UI/Frame/textFrame.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "TextFrame", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "TextFrame", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "TextFrame", "texSize");

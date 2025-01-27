@@ -3,7 +3,7 @@
 void ButtonFrame::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/buttonFrame.png");
+	m_tex.Load("Asset/Textures/UI/Frame/buttonFrame.png");
 
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "ButtonFrame", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "ButtonFrame", "scale");

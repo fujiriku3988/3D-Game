@@ -11,6 +11,8 @@ public:
 	{
 		Title,
 		Game,
+		SettingScene,
+		GuideScene,
 		StageSelectScene,
 		Stage1,
 		Stage2,
@@ -51,11 +53,6 @@ public:
 		// インクリメント後のシーンを返す
 		return static_cast<SceneType>(nextValue);
 	}
-
-	//ノードリスト追加するやつ
-	void AddNode(const KdModelWork::Node*& node);
-	//ノードリスト取ってくる
-	const std::list<const KdModelWork::Node*>& GetNodeList();
 
 	//==========追加===============//
 private:

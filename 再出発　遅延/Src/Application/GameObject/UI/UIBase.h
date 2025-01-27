@@ -10,6 +10,7 @@ public:
 	virtual void Init(const std::string _filePath);
 	void Init()override;
 	void DrawSprite()override;
+	void DrawUnLit()override;
 	void Update()override;
 
 	void ToggleDraw();

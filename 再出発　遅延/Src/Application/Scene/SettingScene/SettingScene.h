@@ -2,12 +2,12 @@
 
 #include"../BaseScene/BaseScene.h"
 
-class TitleScene : public BaseScene
+class SettingScene : public BaseScene
 {
 public:
 
-	TitleScene() { Init(); }
-	~TitleScene() {}
+	SettingScene() { Init(); }
+	~SettingScene() {}
 
 private:
 

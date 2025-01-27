@@ -52,6 +52,35 @@ void KdAudioManager::Update()
 	}
 }
 
+void KdAudioManager::UpdateBGMVolume(float _volume)
+{
+	float currentVol = m_bgmVol;
+	m_bgmVol = _volume;
+
+	//現在のBGMの音量を更新
+	if (m_currentBGMInstance) 
+	{
+		m_currentBGMInstance->SetVolume(_volume);
+	}
+	if (currentVol != m_bgmVol)
+	{
+		JsonManager::Instance().AddParam("Asset/Data/Json/Sound/Sound.json", "Sound", "BGM", m_bgmVol);
+	}
+}
+
+void KdAudioManager::UpdateSEVolume(float _volume)
+{
+	m_seVol = _volume;
+
+	// 再生中の全てのSEインスタンスの音量を変更
+	for (auto& instance : m_seInstances)
+	{
+		if (instance && instance->IsPlaying()) {
+			instance->SetVolume(_volume);
+		}
+	}
+}
+
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
 // リスナーの座標と正面方向の設定
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////
@@ -86,6 +115,13 @@ std::shared_ptr<KdSoundInstance> KdAudioManager::Play(std::string_view rName, bo
 	instance->SetVolume(vol);
 
 	instance->Play(loop);
+
+	// BGMとして管理
+	if (loop) 
+	{
+		//現在のBGMとして保存
+		m_currentBGMInstance = instance; 
+	}
 
 	AddPlayList(instance);
 

@@ -22,7 +22,7 @@ public:
 	void SetGameTime(const std::shared_ptr<GameTime> _time) { m_wpGameTime = _time; }
 	void SetCamera(const std::shared_ptr<TPSCamera> _camera) { m_wpCamera = _camera; }
 	void SetPlayer(const std::shared_ptr<Player> _player) { m_wpPlayer = _player; }
-	void AddUI(const std::shared_ptr<UIBase> _fence);
+	void AddUI(const std::shared_ptr<UIBase> _ui);
 private:
 	std::weak_ptr<UIBase>m_wpUI;
 	std::weak_ptr<GameTime>m_wpGameTime;

@@ -11,7 +11,7 @@
 
 #include"../../GameObject/UI/Frame/StageFrame/StageFrame.h"
 
-#include"../../GameObject/UI/Back/TitleBack/TitleBack.h"
+#include"../../GameObject/UI/BackGround/TitleBack/TitleBack.h"
 
 void StageSelectScene::Event()
 {

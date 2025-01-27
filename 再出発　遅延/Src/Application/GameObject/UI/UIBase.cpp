@@ -26,6 +26,10 @@ void UIBase::DrawSprite()
 		(int)m_texSize.x * (int)m_scale.x, (int)m_texSize.y * (int)m_scale.y, nullptr, &m_color);
 }
 
+void UIBase::DrawUnLit()
+{
+}
+
 void UIBase::Update()
 {
 }

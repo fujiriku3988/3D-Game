@@ -1,23 +1,29 @@
-﻿#include "TitleScene.h"
+﻿#include "SettingScene.h"
 
 #include"../../GameObject/Camera/TPSCamera/TPSCamera.h"
 #include "../SceneManager.h"
 #include"../../Fade/Fade.h"
 
-#include"../../GameObject/UI/Text/Title/TitleTXT.h"
-#include"../../GameObject/UI/Text/Play/PlayTXT.h"
-#include"../../GameObject/UI/Text/Setting/SettingTXT.h"
+#include"../../GameObject/UI/Text/Sound/BGM/BgmTXT.h"
+#include"../../GameObject/UI/Text/Sound/SE/SeTXT.h"
 
-#include"../../GameObject/UI/Back/TitleBack/TitleBack.h"
+#include"../../GameObject/UI/BackGround/TitleBack/TitleBack.h"
+#include"../../GameObject/UI/BackGround/UIBack/UIBack.h"
+
 #include"../../GameObject/UI/Frame/TextFrame/TextFrame.h"
 
-void TitleScene::Event()
+#include"../../GameObject/UI/Sound/BGM/VolumeSliderBGM.h"
+#include"../../GameObject/UI/Sound/SE/VolumeSliderSE.h"
+
+#include"../../GameObject/UI/Button/Back/BackButton.h"
+
+void SettingScene::Event()
 {
 	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
 	{
 		if (m_key == false)
 		{
-			Fade::Instance().BootBlackFade(SceneManager::SceneType::StageSelectScene);
+			SceneManager::Instance().SetNextScene(SceneManager::SceneType::Title);
 			m_key = true;
 		}
 	}
@@ -27,32 +33,33 @@ void TitleScene::Event()
 	}
 }
 
-void TitleScene::Init()
+void SettingScene::Init()
 {
-	KdAudioManager::Instance().StopAllSound();
-	KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, KdAudioManager::Instance().GetBGMVolume());
-
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);
 
-	std::shared_ptr<TitleTXT> title = std::make_shared<TitleTXT>();
-	title->Init("Asset/Data/Json/UI/Text/TitleTXT.json");
-	AddObject(title);
+	std::shared_ptr<UIBack> uiBack = std::make_shared<UIBack>();
+	uiBack->Init("Asset/Data/Json/UI/Back/UIBack.json");
+	AddObject(uiBack);
+	
+	std::shared_ptr<VolumeSliderBGM> volSliderBGM = std::make_shared<VolumeSliderBGM>();
+	volSliderBGM->Init("Asset/Data/Json/UI/Sound/BGM/SliderBGM.json");
+	AddObject(volSliderBGM);
 
-	std::shared_ptr<TextFrame> txtFramePlay = std::make_shared<TextFrame>();
-	txtFramePlay->Init("Asset/Data/Json/UI/Frame/TextFrame/TextFramePlay.json");
-	AddObject(txtFramePlay);
+	std::shared_ptr<BgmTXT> bgmTXT = std::make_shared<BgmTXT>();
+	bgmTXT->Init("Asset/Data/Json/UI/Text/Sound/BGM/bgmTXT.json");
+	AddObject(bgmTXT);
 
-	std::shared_ptr<PlayTXT> play = std::make_shared<PlayTXT>();
-	play->Init("Asset/Data/Json/UI/Text/PlayTXT.json");
-	AddObject(play);
+	std::shared_ptr<VolumeSliderSE> volSliderSE = std::make_shared<VolumeSliderSE>();
+	volSliderSE->Init("Asset/Data/Json/UI/Sound/SE/SliderSE.json");
+	AddObject(volSliderSE);
 
-	std::shared_ptr<TextFrame> txtFrameSetting = std::make_shared<TextFrame>();
-	txtFrameSetting->Init("Asset/Data/Json/UI/Frame/TextFrame/TextFrameSetting.json");
-	AddObject(txtFrameSetting);
+	std::shared_ptr<SeTXT> seTXT = std::make_shared<SeTXT>();
+	seTXT->Init("Asset/Data/Json/UI/Text/Sound/SE/seTXT.json");
+	AddObject(seTXT);
 
-	std::shared_ptr<SettingTXT> setting = std::make_shared<SettingTXT>();
-	setting->Init("Asset/Data/Json/UI/Text/SettingTXT.json");
-	AddObject(setting);
+	std::shared_ptr<BackButton> back = std::make_shared<BackButton>();
+	back->Init("Asset/Data/Json/UI/Button/Back.json");
+	AddObject(back);
 }

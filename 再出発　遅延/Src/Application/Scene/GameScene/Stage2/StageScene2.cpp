@@ -15,7 +15,7 @@
 #include"../../../GameObject/UI/Button/KeyR/KeyR.h"
 #include"../../../GameObject/UI/Button/KeyEnter/KeyEnter.h"
 #include"../../../GameObject/UI/Frame/ButtonFrame/ButtonFrame.h"
-#include"../../../GameObject/UI/Back/BlackBack/BlackBack.h"
+#include"../../../GameObject/UI/BackGround/BlackBack/BlackBack.h"
 #include"../../../GameObject/UI/Star/Star.h"
 #include"../../../GameObject/UI/StarEmpty/StarEmpty.h"
 #include"../../../GameObject/UI/GameTime/GameTime.h"
@@ -81,9 +81,9 @@ void StageScene2::Init()
 	AddObject(player);
 
 	//クリア後の背景色落とす用
-	std::shared_ptr<BlackBack> bBack = std::make_shared<BlackBack>();
-	bBack->Init("Asset/Data/Json/UI/Back/BlackBack.json");
-	AddObject(bBack);
+	std::shared_ptr<BlackBack> blackBack = std::make_shared<BlackBack>();
+	blackBack->Init("Asset/Data/Json/UI/Back/BlackBack.json");
+	AddObject(blackBack);
 
 	//時間表示
 	std::shared_ptr<GameTime> gameTime = std::make_shared<GameTime>();
@@ -177,7 +177,7 @@ void StageScene2::Init()
 	goalpoint->AddUI(bPlay);
 	goalpoint->AddUI(bRestart);
 	goalpoint->AddUI(bReturn);
-	goalpoint->AddUI(bBack);
+	goalpoint->AddUI(blackBack);
 	goalpoint->AddUI(keyR);
 	goalpoint->AddUI(keyB);
 	goalpoint->AddUI(keyEnter);

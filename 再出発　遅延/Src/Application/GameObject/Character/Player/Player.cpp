@@ -320,20 +320,6 @@ void Player::CollisionDetection()
 	}
 }
 
-void Player::AddNode()
-{
-	if (m_modelWork)
-	{
-		if (m_addNodeFlg)
-		{
-			//ノード追加
-			m_pNode = m_modelWork->FindNode("hold");
-			if (m_pNode) { SceneManager::Instance().AddNode(m_pNode); }
-			m_addNodeFlg = false;
-		}
-	}
-}
-
 void Player::Restart()
 {
 	Init(m_filePath);

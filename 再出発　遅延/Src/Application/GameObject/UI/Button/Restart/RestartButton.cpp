@@ -5,7 +5,7 @@
 void RestartButton::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Result/restart.png");
+	m_tex.Load("Asset/Textures/UI/Button/restart.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "Restart", "texSize");
@@ -19,8 +19,8 @@ void RestartButton::DrawSprite()
 {
 	if (m_drawFlg)
 	{
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (float)m_pos.x, (float)m_pos.y,
-			(int)m_texSize.x * (float)m_scale.x, (int)m_texSize.y * (float)m_scale.y, nullptr, &m_color);
+		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_pos.x, m_pos.y,
+			m_texSize.x * m_scale.x, m_texSize.y * m_scale.y, nullptr, &m_color);
 	}
 }
 

@@ -12,7 +12,6 @@ public:
 	void Update()override;
 	void PostUpdate()override;
 	void DrawLit()override;
-	void AddNode()override;
 	void Restart()override;
 
 	void CollisionDetection()override;

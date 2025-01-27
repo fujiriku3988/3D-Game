@@ -6,6 +6,8 @@
 #include "GameScene/Stage1/StageScene1.h"
 #include "GameScene/Stage2/StageScene2.h"
 #include "StageSelectScene/StageSelectScene.h"
+#include "SettingScene/SettingScene.h"
+#include "GuideScene/GuideScene.h"
 
 void SceneManager::PreUpdate()
 {
@@ -58,15 +60,6 @@ void SceneManager::AddObject(const std::shared_ptr<KdGameObject>& obj)
 	m_currentScene->AddObject(obj);
 }
 
-void SceneManager::AddNode(const KdModelWork::Node*& node)
-{
-	m_currentScene->AddNode(node);
-}
-
-const std::list<const KdModelWork::Node*>& SceneManager::GetNodeList()
-{
-	return m_currentScene->GetNodeList();
-}
 
 void SceneManager::ChangeScene(SceneType sceneType)
 {
@@ -79,14 +72,20 @@ void SceneManager::ChangeScene(SceneType sceneType)
 	case SceneType::Game:
 		m_currentScene = std::make_shared<GameScene>();
 		break;
+	case SceneType::SettingScene:
+		m_currentScene = std::make_shared<SettingScene>();
+		break;
+	case SceneType::GuideScene:
+		m_currentScene = std::make_shared<GuideScene>();
+		break;
+	case SceneType::StageSelectScene:
+		m_currentScene = std::make_shared<StageSelectScene>();
+		break;
 	case SceneType::Stage1:
 		m_currentScene = std::make_shared<StageScene1>();
 		break;
 	case SceneType::Stage2:
 		m_currentScene = std::make_shared<StageScene2>();
-		break;
-	case SceneType::StageSelectScene:
-		m_currentScene = std::make_shared<StageSelectScene>();
 		break;
 	}
 

@@ -124,9 +124,6 @@
     <Filter Include="Src\Application\GameObject\UI\Button">
       <UniqueIdentifier>{1900cb21-e760-485d-8fa2-67c63aa5bfa4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back">
-      <UniqueIdentifier>{c155e7c7-da65-406a-8af7-2f7080917cac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Button\Play">
       <UniqueIdentifier>{016ecd04-97cd-4ed0-a740-50fe6c41eb61}</UniqueIdentifier>
     </Filter>
@@ -151,14 +148,8 @@
     <Filter Include="Src\Application\GameObject\UI\Button\Return">
       <UniqueIdentifier>{669ce9e1-ac52-4813-ab07-be79bcf28912}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back\BlackBack">
-      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Star">
       <UniqueIdentifier>{70ee8eea-39d5-4695-ba8b-5e47d5121bdd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Back\TitleBack">
-      <UniqueIdentifier>{730aff95-e9aa-46b0-bf02-ae6f613c23e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\UI\Text\Play">
       <UniqueIdentifier>{8da1fced-0b01-4fb7-86ff-42f0f243a109}</UniqueIdentifier>
@@ -213,6 +204,48 @@
     </Filter>
     <Filter Include="Src\Application\Scene\SettingScene">
       <UniqueIdentifier>{0ae5a631-50df-4303-8ae5-ae4a94a2fdb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Sound">
+      <UniqueIdentifier>{19b46d96-53c4-42b2-89d4-4ca535f0f6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Sound\SE">
+      <UniqueIdentifier>{c4f06111-1b75-4fb2-8965-a5a1b902394b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Sound\BGM">
+      <UniqueIdentifier>{526f6f49-1c7c-4918-a20d-6b8a010767cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Guide">
+      <UniqueIdentifier>{ba08ed22-42a7-4085-9c94-221b2f92ed32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Button\Back">
+      <UniqueIdentifier>{45541031-da47-4385-b0b1-b201a25758f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\GuideBoard">
+      <UniqueIdentifier>{b907f3c9-fce7-48c1-835b-6db52d1a28f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GuideScene">
+      <UniqueIdentifier>{19923b94-1a22-4ba3-8f58-7763ea81bf2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\BackGround">
+      <UniqueIdentifier>{c155e7c7-da65-406a-8af7-2f7080917cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\BackGround\BlackBack">
+      <UniqueIdentifier>{cc4df28b-b0fb-4c3c-8876-708a337dddaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\BackGround\TitleBack">
+      <UniqueIdentifier>{730aff95-e9aa-46b0-bf02-ae6f613c23e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\BackGround\UIBack">
+      <UniqueIdentifier>{33b02604-2145-4683-922c-d76a8849e707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Sound">
+      <UniqueIdentifier>{4424674e-be2b-4a60-9556-9d99782d8403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Sound\BGM">
+      <UniqueIdentifier>{54d66538-9377-44ba-b98e-6e4d5259b412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Sound\SE">
+      <UniqueIdentifier>{9fb30a8c-a918-4ebe-ab17-11d3645f2fb7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -438,14 +471,8 @@
     <ClInclude Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEnter.h">
       <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.h">
-      <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Star\Star.h">
       <Filter>Src\Application\GameObject\UI\Star</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Back\TitleBack\TitleBack.h">
-      <Filter>Src\Application\GameObject\UI\Back\TitleBack</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.h">
       <Filter>Src\Application\GameObject\UI\Text\Play</Filter>
@@ -512,6 +539,39 @@
     </ClInclude>
     <ClInclude Include="Src\Application\Scene\SettingScene\SettingScene.h">
       <Filter>Src\Application\Scene\SettingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Sound\BGM\VolumeSliderBGM.h">
+      <Filter>Src\Application\GameObject\UI\Sound\BGM</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Sound\SE\VolumeSliderSE.h">
+      <Filter>Src\Application\GameObject\UI\Sound\SE</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Guide\GuideTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Guide</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Button\Back\BackButton.h">
+      <Filter>Src\Application\GameObject\UI\Button\Back</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GuideScene\GuideScene.h">
+      <Filter>Src\Application\Scene\GuideScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\GuideBoard\GuideBoard.h">
+      <Filter>Src\Application\GameObject\UI\GuideBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\BackGround\BlackBack\BlackBack.h">
+      <Filter>Src\Application\GameObject\UI\BackGround\BlackBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\BackGround\TitleBack\TitleBack.h">
+      <Filter>Src\Application\GameObject\UI\BackGround\TitleBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\BackGround\UIBack\UIBack.h">
+      <Filter>Src\Application\GameObject\UI\BackGround\UIBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Sound\BGM\BgmTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Sound\BGM</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Sound\SE\SeTXT.h">
+      <Filter>Src\Application\GameObject\UI\Text\Sound\SE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -710,14 +770,8 @@
     <ClCompile Include="Src\Application\GameObject\UI\Button\KeyEnter\KeyEneter.cpp">
       <Filter>Src\Application\GameObject\UI\Button\KeyEnter</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Back\BlackBack\BlackBack.cpp">
-      <Filter>Src\Application\GameObject\UI\Back\BlackBack</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Star\Star.cpp">
       <Filter>Src\Application\GameObject\UI\Star</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Back\TitleBack\TitleBack.cpp">
-      <Filter>Src\Application\GameObject\UI\Back\TitleBack</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Play</Filter>
@@ -784,6 +838,39 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\SettingScene\SettingScene.cpp">
       <Filter>Src\Application\Scene\SettingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Sound\BGM\VolumeSliderBGM.cpp">
+      <Filter>Src\Application\GameObject\UI\Sound\BGM</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Sound\SE\VolumeSliderSE.cpp">
+      <Filter>Src\Application\GameObject\UI\Sound\SE</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Guide\GuideTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Guide</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Button\Back\BackButton.cpp">
+      <Filter>Src\Application\GameObject\UI\Button\Back</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GuideScene\GuideScene.cpp">
+      <Filter>Src\Application\Scene\GuideScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\GuideBoard\GuideBoard.cpp">
+      <Filter>Src\Application\GameObject\UI\GuideBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\BackGround\BlackBack\BlackBack.cpp">
+      <Filter>Src\Application\GameObject\UI\BackGround\BlackBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\BackGround\TitleBack\TitleBack.cpp">
+      <Filter>Src\Application\GameObject\UI\BackGround\TitleBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\BackGround\UIBack\UIBack.cpp">
+      <Filter>Src\Application\GameObject\UI\BackGround\UIBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Sound\BGM\BgmTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Sound\BGM</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Sound\SE\SeTXT.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Sound\SE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
