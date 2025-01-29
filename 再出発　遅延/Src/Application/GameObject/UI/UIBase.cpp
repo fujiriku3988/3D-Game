@@ -1,5 +1,7 @@
 ﻿#include "UIBase.h"
 
+UIBase* UIBase::m_activeSlider = nullptr;
+
 void UIBase::Init(const std::string _filePath)
 {
 

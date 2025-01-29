@@ -33,16 +33,7 @@ void PressurePlate::DrawLit()
 void PressurePlate::Update()
 {
 	PlayAnimation();
-
-
-	if (GetAsyncKeyState('1'))
-	{
-		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"), false);
-		if (m_animator->IsAnimationEnd() == true)
-		{
-			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("downStand"));
-		}
-	}
+	
 
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
 	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
@@ -72,12 +63,16 @@ void PressurePlate::AddFence(std::shared_ptr<Fence> _fence)
 void PressurePlate::PlayAnimation()
 {
 	//定数
-	constexpr int PlateCoolTime = 180;
+	constexpr int plateCoolTime = 180;
 	//プレートが上に上がってるなら
 	if (m_hitFlg)
 	{
+		
 		if (m_plateDown == false)
 		{
+			//スイッチ踏んだときのSE
+			KdAudioManager::Instance().Play("Asset/Sounds/SE/plate.wav", false, KdAudioManager::Instance().GetSEVolume());
+			//踏んだときのアニメーション
 			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"), false);
 			for (auto& wpFence : m_fences)
 			{
@@ -93,6 +88,7 @@ void PressurePlate::PlayAnimation()
 	//プレートが下に下りてるなら
 	if (m_plateUp == false)
 	{
+		//押下部分が上がってくるアニメーション
 		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);
 		m_plateUp = true;
 	}
@@ -100,7 +96,7 @@ void PressurePlate::PlayAnimation()
 	if (m_plateDown == true)
 	{
 		m_plateCT++;
-		if (m_plateCT >= PlateCoolTime)
+		if (m_plateCT >= plateCoolTime)
 		{
 			m_hitFlg = false;
 			m_plateUp = false;

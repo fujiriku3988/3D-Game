@@ -180,6 +180,7 @@
     <ClInclude Include="Src\Application\GameObject\UI\Button\Play\PlayButton.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Button\Restart\RestartButton.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Button\Return\ReturnButton.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\ClearStar\ClearStar.h" />
     <ClInclude Include="Src\Application\GameObject\UI\ClearTime\ClearTime.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Frame\ButtonFrame\ButtonFrame.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.h" />
@@ -205,7 +206,6 @@
     <ClInclude Include="Src\Application\Json\JsonManager.h" />
     <ClInclude Include="Src\Application\main.h" />
     <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h" />
-    <ClInclude Include="Src\Application\Scene\GameScene\GameScene.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage1\StageScene1.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage2\StageScene2.h" />
     <ClInclude Include="Src\Application\Scene\GuideScene\GuideScene.h" />
@@ -283,6 +283,7 @@
     <ClCompile Include="Src\Application\GameObject\UI\Button\Play\PlayButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Button\Restart\RestartButton.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Button\Return\ReturnButton.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\ClearStar\ClearStar.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\ClearTime\ClearTime.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Frame\ButtonFrame\ButtonFrame.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.cpp" />
@@ -308,7 +309,6 @@
     <ClCompile Include="Src\Application\Json\JsonManager.cpp" />
     <ClCompile Include="Src\Application\main.cpp" />
     <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp" />
-    <ClCompile Include="Src\Application\Scene\GameScene\GameScene.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage1\StageScene1.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage2\StageScene2.cpp" />
     <ClCompile Include="Src\Application\Scene\GuideScene\GuideScene.cpp" />

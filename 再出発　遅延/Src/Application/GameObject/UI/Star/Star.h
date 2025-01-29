@@ -29,4 +29,7 @@ private:
 	int m_clearTime = {};//クリア時間
 	bool m_animFlg = false;//アニメーションを行うか
 	std::weak_ptr<GameTime>m_wpGameTime;
+
+	//SE鳴らすよう
+	bool m_seFlg = false;
 };

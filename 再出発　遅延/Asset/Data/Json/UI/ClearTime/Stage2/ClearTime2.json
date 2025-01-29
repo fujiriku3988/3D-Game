@@ -51,25 +51,6 @@
             "x": 35.0,
             "y": -200.0
         },
-        "starColor": {
-            "w": 1.0,
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0
-        },
-        "starFP": "Asset/Textures/UI/Star/Star4.png",
-        "starPos": {
-            "x": 0.0,
-            "y": -150.0
-        },
-        "starScale": {
-            "x": 0.5,
-            "y": 0.5
-        },
-        "starTexSize": {
-            "x": 192.0,
-            "y": 60.0
-        },
         "timeColor": {
             "w": 1.0,
             "x": 1.0,

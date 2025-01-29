@@ -20,6 +20,7 @@
 #include"../../../GameObject/UI/StarEmpty/StarEmpty.h"
 #include"../../../GameObject/UI/GameTime/GameTime.h"
 #include"../../../GameObject/UI/ClearTime/ClearTime.h"
+#include"../../../GameObject/UI/ClearStar/ClearStar.h"
 #include"../../../GameObject/UI/Text/StageClear/StageClearTXT.h"
 
 #include"../../../GameObject/Object/PressurePlate/PressurePlate.h"
@@ -122,6 +123,19 @@ void StageScene2::Init()
 	std::shared_ptr<ClearTime> clearTime3 = std::make_shared<ClearTime>();
 	clearTime3->Init("Asset/Data/Json/UI/ClearTime/Stage2/ClearTime3.json");
 	AddObject(clearTime3);
+
+	std::shared_ptr<ClearStar> clearStar1 = std::make_shared<ClearStar>();
+	clearStar1->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar1.json");
+	AddObject(clearStar1);
+
+	std::shared_ptr<ClearStar> clearStar2 = std::make_shared<ClearStar>();
+	clearStar2->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar2.json");
+	AddObject(clearStar2);
+
+	std::shared_ptr<ClearStar> clearStar3 = std::make_shared<ClearStar>();
+	clearStar3->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar3.json");
+	AddObject(clearStar3);
+	
 	//==================================================//
 
 	std::shared_ptr<StageClearTXT> stageClearTXT = std::make_shared<StageClearTXT>();
@@ -167,6 +181,7 @@ void StageScene2::Init()
 
 	//セットする系
 	player->SetCamera(camera);
+	player->SetGameTime(gameTime);
 	star1->SetGameTime(gameTime);
 	star2->SetGameTime(gameTime);
 	star3->SetGameTime(gameTime);
@@ -189,6 +204,9 @@ void StageScene2::Init()
 	goalpoint->AddUI(clearTime1);
 	goalpoint->AddUI(clearTime2);
 	goalpoint->AddUI(clearTime3);
+	goalpoint->AddUI(clearStar1);
+	goalpoint->AddUI(clearStar2);
+	goalpoint->AddUI(clearStar3);
 	goalpoint->AddUI(stageClearTXT);
 
 	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());

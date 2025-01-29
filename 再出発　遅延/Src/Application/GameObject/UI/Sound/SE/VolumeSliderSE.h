@@ -5,7 +5,13 @@ class VolumeSliderSE :public UIBase
 {
 public:
 	VolumeSliderSE() {};
-	~VolumeSliderSE() {};
+	~VolumeSliderSE()
+	{
+		if (m_activeSlider == this) 
+		{
+			m_activeSlider = nullptr;
+		}
+	}
 
 	void Init(const std::string _filePath)override;
 	void DrawSprite()override;
@@ -16,6 +22,10 @@ public:
 	//ハンドルを操作する関数
 	void MoveHandle(const POINT _pos);
 private:
+	//スライダーが干渉しないようにするための変数
+	//操作中のスライダー
+	//static VolumeSliderSE* m_activeSlider;
+
 	//背景テクスチャ
 	KdTexture m_whiteSlideTex;
 	//背景テクスチャ
@@ -61,6 +71,6 @@ private:
 	//色
 	Math::Color m_handleColor = {};
 
-	//一度だけSEの音出すよう
-	bool m_volumeFlg = false;
+	//ドラッグ状態か
+	bool m_dragFlg = false;
 };

@@ -15,6 +15,10 @@ public:
 
 	void ToggleDraw();
 protected:
+	//BGM,SEのスライダーの共有で使う
+	//ポインターが必要なためここに置く
+	static UIBase* m_activeSlider;
+
 	KdTexture m_tex;
 	Math::Vector2 m_pos;
 	Math::Color m_color;

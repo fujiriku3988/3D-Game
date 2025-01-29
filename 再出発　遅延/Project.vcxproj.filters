@@ -247,6 +247,9 @@
     <Filter Include="Src\Application\GameObject\UI\Text\Sound\SE">
       <UniqueIdentifier>{9fb30a8c-a918-4ebe-ab17-11d3645f2fb7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\GameObject\UI\ClearStar">
+      <UniqueIdentifier>{cfc2501d-6460-4462-858d-84f6fa6a228d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -377,9 +380,6 @@
     </ClInclude>
     <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h">
       <Filter>Src\Application\Scene\BaseScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\Scene\GameScene\GameScene.h">
-      <Filter>Src\Application\Scene\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\Scene\TitleScene\TitleScene.h">
       <Filter>Src\Application\Scene\TitleScene</Filter>
@@ -573,6 +573,9 @@
     <ClInclude Include="Src\Application\GameObject\UI\Text\Sound\SE\SeTXT.h">
       <Filter>Src\Application\GameObject\UI\Text\Sound\SE</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\ClearStar\ClearStar.h">
+      <Filter>Src\Application\GameObject\UI\ClearStar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Pch.cpp">
@@ -682,9 +685,6 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp">
       <Filter>Src\Application\Scene\BaseScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\Scene\GameScene\GameScene.cpp">
-      <Filter>Src\Application\Scene\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\TitleScene\TitleScene.cpp">
       <Filter>Src\Application\Scene\TitleScene</Filter>
@@ -871,6 +871,9 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Sound\SE\SeTXT.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Sound\SE</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\ClearStar\ClearStar.cpp">
+      <Filter>Src\Application\GameObject\UI\ClearStar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

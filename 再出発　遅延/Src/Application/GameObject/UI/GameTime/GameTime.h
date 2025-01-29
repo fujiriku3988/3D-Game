@@ -13,7 +13,8 @@ public:
 	void Restart()override;
 
 	const int GetNowTime()const { return m_nowTime; }
-	void StopTime() { m_timeFlg = false; }
+	void StopTime() { m_startTimeFlg = false; }
+	void StartTime();
 private:
 	//時間用変数
 	struct time
@@ -38,12 +39,6 @@ private:
 		Math::Color color = {};
 	};
 	time m_time;
-	//フレーム数
-	int m_frame = {};
-	//現在の時間
-	int m_nowTime = {};
-	//時間のOn、Off
-	bool m_timeFlg = true;
 
 	//コロン用変数
 	KdTexture m_colonTex;
@@ -53,5 +48,12 @@ private:
 	Math::Rectangle m_colonRect = {};
 	Math::Color m_colonColor = {};
 	Math::Vector2 m_colonAnim = {};//現在のアニメーション
+
+	//取得しやすいようにInt型の経過時間
+	int m_nowTime = {};
+	//経過時間を測るための変数
+	std::chrono::steady_clock::time_point m_lastTime;
+	//時間が開始されたか
+	bool m_startTimeFlg = false;
 
 };

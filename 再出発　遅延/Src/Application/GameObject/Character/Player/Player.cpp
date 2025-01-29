@@ -5,9 +5,9 @@
 #include"../../../Scene/SceneManager.h"
 #include"../../../../Framework/Effekseer/KdEffekseerManager.h"
 
-#include"../../../GameObject/Terrains/TerrainBase.h"
+#include"../../../GameObject/UI/GameTime/GameTime.h"
+
 #include"../../../GameObject/Effect/smoke/smoke.h"
-#include"../../../GameObject/Object/ObjectBase.h"
 
 #include"../../../main.h"
 
@@ -35,6 +35,7 @@ void Player::Init(const std::string _filePath)
 	m_effSize = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSize");
 	m_effSpeed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSpeed");
 	m_efkSeerScaleMAX = JsonManager::Instance().GetParam<float>(_filePath, "Player", "efkScaleMAX");
+	m_gameTimeFlg = false;
 
 	m_tex = std::make_shared<KdTexture>();
 
@@ -97,12 +98,14 @@ void Player::Action()
 	constexpr int DelayConstant = 20;
 	constexpr float efkSeerScaleInc = 0.05f;
 
+	//カメラ情報取得
 	m_spCamera = m_wpCamera.lock();
 	if (!m_spCamera)
 	{
 		return;
 	}
 
+	//魔法陣を出す処理
 	if (GetAsyncKeyState('E') & 0x8000)
 	{
 		if (m_ctrlFlg.E == false)
@@ -143,6 +146,7 @@ void Player::Action()
 		m_ctrlFlg.E = false;
 	}
 
+	//魔法陣を大きくする処理
 	std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
 	if (spEff)
 	{
@@ -216,6 +220,23 @@ void Player::MovementControll()
 	{
 		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
 		m_ctrlFlg.move = true;
+	}
+
+	
+	
+	//動いてるか
+	if (m_ctrlFlg.move)
+	{
+		std::shared_ptr<GameTime> spGameTime = m_wpGameTime.lock();
+		//nullチェック
+		if (spGameTime)
+		{
+			if (m_gameTimeFlg == false)
+			{
+				spGameTime->StartTime();
+				m_gameTimeFlg = true;
+			}
+		}
 	}
 }
 

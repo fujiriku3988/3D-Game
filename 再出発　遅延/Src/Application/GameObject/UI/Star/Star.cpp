@@ -6,7 +6,7 @@
 void Star::Init(const std::string _filePath)
 {
 	UIBase::Init();
-	m_tex.Load("Asset/Textures/UI/Star/star1.png");
+	m_tex.Load("Asset/Textures/UI/Star/star.png");
 	m_pos = JsonManager::Instance().GetParamVec2(_filePath, "Star", "pos");
 	m_scale = JsonManager::Instance().GetParamVec2(_filePath, "Star", "scale");
 	m_texSize = JsonManager::Instance().GetParamVec2(_filePath, "Star", "texSize");
@@ -24,6 +24,7 @@ void Star::Init(const std::string _filePath)
 	m_clearTime = JsonManager::Instance().GetParam<float>(_filePath, "Star", "clearTime");
 	m_animFlg = JsonManager::Instance().GetParam<bool>(_filePath, "Star", "animFlg");
 	m_clearFlg = JsonManager::Instance().GetParam<bool>(_filePath, "Star", "clearFlg");
+	m_seFlg = false;
 
 	m_filePath = _filePath;
 }
@@ -79,6 +80,12 @@ void Star::Update()
 			m_scale.y -= ScaleChangeAmount;
 			m_alpha += AlphaChangeAmount;
 		}
+
+		if (!m_seFlg)
+		{
+			KdAudioManager::Instance().Play("Asset/Sounds/SE/star.wav", false, KdAudioManager::Instance().GetSEVolume());
+		}
+		m_seFlg = true;
 
 		if (m_alpha >= NumberConstants::NumOne)
 		{

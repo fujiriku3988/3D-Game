@@ -5,7 +5,13 @@ class VolumeSliderBGM :public UIBase
 {
 public:
 	VolumeSliderBGM() {};
-	~VolumeSliderBGM() {};
+	~VolumeSliderBGM()
+	{
+		if (m_activeSlider == this)
+		{
+			m_activeSlider = nullptr;
+		}
+	}
 
 	void Init(const std::string _filePath)override;
 	void DrawSprite()override;
@@ -14,6 +20,10 @@ public:
 	void WirteJsonFile();
 	void MoveHandle(const POINT _pos);
 private:
+	//スライダーが干渉しないようにするための変数
+	//操作中のスライダー
+	//static VolumeSliderBGM* m_activeSlider; 
+
 	//背景テクスチャ
 	KdTexture m_whiteSlideTex;
 	//背景テクスチャ
@@ -61,6 +71,6 @@ private:
 
 	//音量
 	float m_volumeBGM;
-	//一度だけSEの音出すよう
-	bool m_volumeFlg = false;
+	//ハンドルを掴んでいるかのフラグ
+	bool m_dragFlg = false;
 };

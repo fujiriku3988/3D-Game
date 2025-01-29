@@ -1,7 +1,7 @@
 ﻿#pragma once
 #pragma once
 #include"../../../GameObject/Character/CharacterBase.h"
-class smoke;
+class GameTime;
 class Player :public CharacterBase
 {
 public:
@@ -14,8 +14,12 @@ public:
 	void DrawLit()override;
 	void Restart()override;
 
+	//当たり判定
 	void CollisionDetection()override;
+	//プレイヤーの動きを止める
 	void PlayerStopON() { m_ctrlFlg.stop = true; }
+	//ポインター情報をセット
+	void SetGameTime(std::shared_ptr<GameTime>_gameTime) { m_wpGameTime = _gameTime; }
 private:
 	//プレイヤーの動き
 	void Action();
@@ -31,7 +35,7 @@ private:
 	//魔法陣の位置へ移動
 	void TeleportToMagicCircle();
 
-	//フラグ制御用
+	//プレイヤーフラグ制御用
 	struct flgControl
 	{
 		bool Lbuuton = false;
@@ -58,4 +62,7 @@ private:
 	Math::Vector3 m_magicCirclePos = {};
 	//エフェクシアの情報持つ用
 	std::weak_ptr<KdEffekseerObject> m_wpEffekseer;
+	//ゲームタイムの情報持つ用
+	std::weak_ptr<GameTime> m_wpGameTime;
+	bool m_gameTimeFlg = false;
 };

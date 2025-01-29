@@ -3,6 +3,9 @@
 #include"../../../../Scene/SceneManager.h"
 #include"../../../../Fade/Fade.h"
 
+//初期状態は nullptr
+//VolumeSliderSE* VolumeSliderSE::m_activeSlider = nullptr;
+
 void VolumeSliderSE::Init(const std::string _filePath)
 {
 	UIBase::Init();
@@ -37,7 +40,8 @@ void VolumeSliderSE::DrawSprite()
 {
 	//青いスライドだけに適用
 	//切り取り位置、切り取り範囲
-	Math::Rectangle slideRect = { 0,0,(long)m_blueTexSize.x + (int)m_blueDrawAdjust.x,(long)m_blueTexSize.y };
+	Math::Rectangle slideRect = { NumberConstants::NumZero,NumberConstants::NumZero,
+		(long)m_blueTexSize.x + (int)m_blueDrawAdjust.x,(long)m_blueTexSize.y };
 	//描画
 	if (m_drawFlg)
 	{
@@ -96,36 +100,46 @@ void VolumeSliderSE::WirteJsonFile()
 
 void VolumeSliderSE::MoveHandle(const POINT _pos)
 {
-	//表示してるなら
-	if (m_drawFlg)
+	if (!m_drawFlg) return;
+
+	// すでに他のスライダーが操作中なら、自分の範囲外で return する
+	if (UIBase::m_activeSlider != nullptr && UIBase::m_activeSlider != this)
 	{
-		//ハンドルとマウスの当たり判定
-		if (_pos.y <= -m_handlePos.y + m_handleTexSize.y && _pos.y >= -m_handlePos.y - m_handleTexSize.y
-			&& _pos.x >= m_handlePos.x - m_handleTexSize.x && _pos.x <= m_handlePos.x + m_handleTexSize.x)
+		// マウスが SE スライダーの範囲内にない場合は return
+		if (!(_pos.y <= -m_handlePos.y + m_handleTexSize.y && _pos.y >= -m_handlePos.y - m_handleTexSize.y
+			&& _pos.x >= m_handlePos.x - m_handleTexSize.x && _pos.x <= m_handlePos.x + m_handleTexSize.x))
 		{
-			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-			{
-				if (!m_volumeFlg)
-				{
-					KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
-					m_volumeFlg = true;
-				}
+			return;
+		}
+	}
 
-				m_handlePos.x = _pos.x;
+	// 左クリックが押されたらハンドルをつかむ
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+	{
+		// 他のスライダーが操作中でも、自分の範囲内なら m_activeSlider を更新
+		UIBase::m_activeSlider = this;
 
-				if (m_handlePos.x > m_blueTexSizeHarf.x)
-				{
-					m_handlePos.x = m_blueTexSizeHarf.x;
-				}
-				else if (m_handlePos.x < -m_blueTexSizeHarf.x)
-				{
-					m_handlePos.x = -m_blueTexSizeHarf.x;
-				}
-			}
-			else
+		if (m_dragFlg ||
+			(_pos.y <= -m_handlePos.y + m_handleTexSize.y && _pos.y >= -m_handlePos.y - m_handleTexSize.y
+				&& _pos.x >= m_handlePos.x - m_handleTexSize.x && _pos.x <= m_handlePos.x + m_handleTexSize.x))
+		{
+			if (!m_dragFlg)
 			{
-				m_volumeFlg = false;
+				KdAudioManager::Instance().Play("Asset/Sounds/SE/click.wav", false, KdAudioManager::Instance().GetSEVolume());
 			}
+			m_dragFlg = true;
+			m_handlePos.x = _pos.x;
+
+			if (m_handlePos.x > m_blueTexSizeHarf.x) m_handlePos.x = m_blueTexSizeHarf.x;
+			else if (m_handlePos.x < -m_blueTexSizeHarf.x) m_handlePos.x = -m_blueTexSizeHarf.x;
+		}
+	}
+	else
+	{
+		m_dragFlg = false;
+		if (UIBase::m_activeSlider == this)
+		{
+			UIBase::m_activeSlider = nullptr;
 		}
 	}
 }

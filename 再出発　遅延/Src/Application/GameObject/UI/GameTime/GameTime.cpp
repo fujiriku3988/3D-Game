@@ -25,9 +25,13 @@ void GameTime::Init(const std::string _filePath)
 	m_colonScale = JsonManager::Instance().GetParamVec2(_filePath, "GameTime", "colonScale");
 	m_colonTexSize = JsonManager::Instance().GetParamVec2(_filePath, "GameTime", "colonTexSize");
 	m_colonColor = JsonManager::Instance().GetParamVec4(_filePath, "GameTime", "colonColor");
-	m_frame = JsonManager::Instance().GetParam<int>("Asset/Data/Json/UI/GameTime/GameTime.json", "GameTime", "frame");
-	m_nowTime = JsonManager::Instance().GetParam<int>("Asset/Data/Json/UI/GameTime/GameTime.json", "GameTime", "nowTime");
-	m_timeFlg = JsonManager::Instance().GetParam<bool>("Asset/Data/Json/UI/GameTime/GameTime.json", "GameTime", "timeFlg");
+
+	//経過時間初期化
+	m_nowTime = {};
+	//現在の最初の時間
+	m_lastTime = std::chrono::steady_clock::now(); 
+	//時間が開始されたか
+	m_startTimeFlg = false;
 
 	m_filePath = _filePath;
 }
@@ -48,56 +52,81 @@ void GameTime::DrawSprite()
 
 	m_colonRect = { {},{},(long)m_colonTexSize.x ,(long)m_colonTexSize.y };
 
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.secPosR.x, (int)m_time.secPosR.y,
-		(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.secRectR, &m_time.color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_time.secPosR.x, m_time.secPosR.y,
+		m_time.texSize.x * m_time.scale.x, m_time.texSize.y * m_time.scale.y, &m_time.secRectR, &m_time.color);
 
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.secPosL.x, (int)m_time.secPosL.y,
-		(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.secRectL, &m_time.color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_time.secPosL.x, m_time.secPosL.y,
+		m_time.texSize.x * m_time.scale.x, m_time.texSize.y * m_time.scale.y, &m_time.secRectL, &m_time.color);
 
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.minPosR.x, (int)m_time.minPosR.y,
-		(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.minRectR, &m_time.color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_time.minPosR.x, m_time.minPosR.y,
+		m_time.texSize.x * m_time.scale.x, m_time.texSize.y * m_time.scale.y, &m_time.minRectR, &m_time.color);
 
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, (int)m_time.minPosL.x, (int)m_time.minPosL.y,
-		(int)m_time.texSize.x * (int)m_time.scale.x, (int)m_time.texSize.y * (int)m_time.scale.y, &m_time.minRectL, &m_time.color);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_tex, m_time.minPosL.x, m_time.minPosL.y,
+		m_time.texSize.x * m_time.scale.x, m_time.texSize.y * m_time.scale.y, &m_time.minRectL, &m_time.color);
 
-	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_colonTex, (int)m_colonPos.x, (int)m_colonPos.y,
-		(int)m_colonTexSize.x * (int)m_colonScale.x, (int)m_colonTexSize.y * (int)m_colonScale.y, &m_colonRect, &m_colonColor);
+	KdShaderManager::Instance().m_spriteShader.DrawTex(&m_colonTex, m_colonPos.x, m_colonPos.y,
+		m_colonTexSize.x * m_colonScale.x, m_colonTexSize.y * m_colonScale.y, &m_colonRect, &m_colonColor);
 
 }
 
 void GameTime::Update()
 {
-	//秒数１ケタ目
-	constexpr int MaxSeconds = 9;
-	//秒数２ケタ目
-	constexpr int MaxTensOfSeconds = 6;
+	// 時間関連の定数
+	constexpr int MaxSeconds = 9;        //秒の1桁目の最大値
+	constexpr int MaxTensOfSeconds = 5;  //秒の10桁目の最大値
+	constexpr int MaxMinutes = 9;        //分の1桁目の最大値
+	constexpr int MaxTensOfMinutes = 5;  //分の10桁目の最大値
 
-	if (m_timeFlg)
-	{
-		m_frame++;
-	}
+	if (m_startTimeFlg == false) { return; }
 
-	if (m_frame > NumberConstants::MaxOneSecondFrame)
+	//現在の時間取得
+	auto realTime = std::chrono::steady_clock::now();
+	//経過時間
+	auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(realTime - m_lastTime).count();
+
+	if (elapsedTime >= NumberConstants::NumOne)  //1秒ごとに時間を進める
 	{
+		//時間リセット
+		m_lastTime = realTime;
 		m_nowTime++;
+
+		// 秒単位の更新
 		m_time.secAnimR.x++;
-		m_frame = NumberConstants::NumOne;
-	}
+		if (m_time.secAnimR.x > MaxSeconds)
+		{
+			m_time.secAnimR.x = NumberConstants::NumZero;
+			m_time.secAnimL.x++;
+		}
 
-	if (m_time.secAnimR.x > MaxSeconds)
-	{
-		m_time.secAnimR.x = NumberConstants::NumOne;
-		m_time.secAnimL.x++;
-	}
+		// 10秒単位の更新
+		if (m_time.secAnimL.x > MaxTensOfSeconds)
+		{
+			m_time.secAnimL.x = NumberConstants::NumZero;
+			m_time.minAnimR.x++;
+		}
 
-	if (m_time.secAnimL.x >= MaxTensOfSeconds)
-	{
-		m_time.secAnimL.x = NumberConstants::NumOne;
-		m_time.minAnimR.x++;
+		// 分単位の更新
+		if (m_time.minAnimR.x > MaxMinutes)
+		{
+			m_time.minAnimR.x = NumberConstants::NumZero;
+			m_time.minAnimL.x++;
+		}
+
+		// 10分単位の更新
+		if (m_time.minAnimL.x > MaxTensOfMinutes)
+		{
+			m_time.minAnimL.x = NumberConstants::NumZero;
+		}
 	}
 }
 
 void GameTime::Restart()
 {
 	Init(m_filePath);
+}
+
+void GameTime::StartTime()
+{
+	m_startTimeFlg = true;
+	m_lastTime = std::chrono::steady_clock::now();
 }

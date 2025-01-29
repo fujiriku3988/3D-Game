@@ -27,14 +27,6 @@ void ClearTime::Init(const std::string _filePath)
 	m_colonTexSize = JsonManager::Instance().GetParamVec2(_filePath, "ClearTime", "colonTexSize");
 	m_colonColor = JsonManager::Instance().GetParamVec4(_filePath, "ClearTime", "colonColor");
 
-	//スター
-	m_starFilePath = JsonManager::Instance().GetParam <std::string>(_filePath, "ClearTime", "starFP");
-	m_starTex.Load(m_starFilePath);
-	m_starPos = JsonManager::Instance().GetParamVec2(_filePath, "ClearTime", "starPos");
-	m_starScale = JsonManager::Instance().GetParamVec2(_filePath, "ClearTime", "starScale");
-	m_starTexSize = JsonManager::Instance().GetParamVec2(_filePath, "ClearTime", "starTexSize");
-	m_starColor = JsonManager::Instance().GetParamVec4(_filePath, "ClearTime", "starColor");
-
 	m_filePath = _filePath;
 }
 
@@ -72,10 +64,6 @@ void ClearTime::DrawSprite()
 		//コロン
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_colonTex, m_colonPos.x, m_colonPos.y,
 			m_colonTexSize.x * m_colonScale.x, m_colonTexSize.y * m_colonScale.y, &m_colonRect, &m_colonColor);
-
-		//スター
-		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_starTex, m_starPos.x, m_starPos.y,
-			m_starTexSize.x * m_starScale.x,m_starTexSize.y * m_starScale.y, nullptr, &m_starColor);
 	}
 }
 
