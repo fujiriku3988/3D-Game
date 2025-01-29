@@ -34,6 +34,7 @@ void Player::Init(const std::string _filePath)
 	m_effDelay = JsonManager::Instance().GetParam<int>(_filePath, "Player", "effDelay");
 	m_effSize = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSize");
 	m_effSpeed = JsonManager::Instance().GetParam<float>(_filePath, "Player", "effSpeed");
+	m_efkSeerScaleMAX = JsonManager::Instance().GetParam<float>(_filePath, "Player", "efkScaleMAX");
 
 	m_tex = std::make_shared<KdTexture>();
 
@@ -94,6 +95,7 @@ void Player::Action()
 {
 	//定数
 	constexpr int DelayConstant = 20;
+	constexpr float efkSeerScaleInc = 0.05f;
 
 	m_spCamera = m_wpCamera.lock();
 	if (!m_spCamera)
@@ -113,17 +115,23 @@ void Player::Action()
 				//再生
 				m_wpEffekseer = KdEffekseerManager::GetInstance().Play("MagicCircle.efkefc", m_pos + Math::Vector3::Up,
 					m_effSize, m_effSpeed, false);
+
+				//SE音出す
+				KdAudioManager::Instance().Play("Asset/Sounds/SE/magicCircle.wav", false, KdAudioManager::Instance().GetSEVolume());
 				m_ctrlFlg.mgcCircle = true;
 			}
 			else
 			{
 				//魔法陣に移動
 				TeleportToMagicCircle();
+				//SE音出す
+				KdAudioManager::Instance().Play("Asset/Sounds/SE/warp.wav", false, KdAudioManager::Instance().GetSEVolume());
 				std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
 				if (spEff)
 				{
 					//エフェクトを止める
 					spEff->StopEffect();
+					m_effSize = JsonManager::Instance().GetParam<float>(m_filePath, "Player", "effSize");
 				}
 				m_ctrlFlg.mgcCircle = false;
 			}
@@ -133,6 +141,19 @@ void Player::Action()
 	else
 	{
 		m_ctrlFlg.E = false;
+	}
+
+	std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
+	if (spEff)
+	{
+		//スケールを徐々に大きくする処理
+		//最大スケールを制限
+		if (m_effSize < m_efkSeerScaleMAX)
+		{
+			//スケールの増加速度
+			m_effSize += efkSeerScaleInc;
+			spEff->SetScale(m_effSize);
+		}
 	}
 
 	//動いたときにでる足煙
@@ -145,7 +166,7 @@ void Player::Action()
 			{
 				std::shared_ptr<smoke> smokeEff = std::make_shared<smoke>();
 				smokeEff->Init("Asset/Data/Json/Effect/Smoke/Smoke.json");
-				smokeEff->SetPos(m_pos+Math::Vector3::TransformNormal(Math::Vector3::Forward, m_rotationMat));
+				smokeEff->SetPos(m_pos + Math::Vector3::TransformNormal(Math::Vector3::Forward, m_rotationMat));
 				smokeEff->SetCamera(m_spCamera);
 				SceneManager::Instance().AddObject(smokeEff);
 				m_effDelay = DelayConstant;
@@ -202,7 +223,7 @@ void Player::Rotation()
 {
 	//定数
 	constexpr float AngleMAX = 5.0f;
-	constexpr float AngChangeAmount = 0.1f;
+	constexpr float AngChangeAmount = 0.75f;
 	constexpr float DegAngMAX = 360.0f;
 
 	if (m_ctrlFlg.move == true)

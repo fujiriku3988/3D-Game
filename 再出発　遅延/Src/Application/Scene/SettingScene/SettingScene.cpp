@@ -59,7 +59,7 @@ void SettingScene::Init()
 	seTXT->Init("Asset/Data/Json/UI/Text/Sound/SE/seTXT.json");
 	AddObject(seTXT);
 
-	std::shared_ptr<BackButton> back = std::make_shared<BackButton>();
-	back->Init("Asset/Data/Json/UI/Button/Back.json");
-	AddObject(back);
+	std::shared_ptr<BackButton> backButton = std::make_shared<BackButton>();
+	backButton->Init("Asset/Data/Json/UI/Button/Back.json");
+	AddObject(backButton);
 }

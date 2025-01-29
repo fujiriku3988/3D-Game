@@ -4,7 +4,7 @@ void Fence::Init(const std::string _filePath)
 {
 	ObjectBase::Init();
 
-	m_modelWork->SetModelData("Asset/Models/Terrain/Fence/Fence2.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/Fence/Fence.gltf");
 
 	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "Fence", "pos");
 	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "Fence", "scale");
@@ -22,8 +22,12 @@ void Fence::Init(const std::string _filePath)
 
 void Fence::DrawLit()
 {
+	//テクスチャのUVTile
+	constexpr Math::Vector2 uvTile = { 3,3 };
+
 	if (m_modelWork)
 	{
+		KdShaderManager::Instance().m_StandardShader.SetUVTiling(uvTile);
 		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
 	}
 }
@@ -70,6 +74,7 @@ void Fence::Raise()
 	{
 		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"),false);
 	}
+	KdAudioManager::Instance().Play("Asset/Sounds/SE/fence.wav", false, KdAudioManager::Instance().GetSEVolume());
 }
 
 void Fence::Lower()
@@ -77,6 +82,7 @@ void Fence::Lower()
 	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"),false);
 	if (m_animator->IsAnimationEnd() == true)
 	{
-		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("downStand"),false);
+		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("downStand"),false);\
 	}
+	KdAudioManager::Instance().Play("Asset/Data/Sounds/SE/fence.wav", false, KdAudioManager::Instance().GetSEVolume());
 }

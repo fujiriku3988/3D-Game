@@ -22,8 +22,9 @@
 			"z": 0.0
 		},
 		"effDelay": 30,
-		"effSize": 1.3,
+		"effSize": 0.1,
 		"effSpeed": 1.0,
+		"efkScaleMAX": 1.5,
 		"gravity": 0.0,
 		"gravityPow": 0.009,
 		"jumpPow": 0.25,

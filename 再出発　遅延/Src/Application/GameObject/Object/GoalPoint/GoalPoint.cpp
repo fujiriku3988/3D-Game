@@ -12,7 +12,7 @@ void GoalPoint::Init(const std::string _filePath)
 
 	ObjectBase::Init();
 
-	m_modelWork->SetModelData("Asset/Models/Terrain/GoalPoint/GoalPoint.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/GoalPoint/GoalPoint.gltf");
 
 	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "GoalPoint", "pos");
 	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "GoalPoint", "scale");

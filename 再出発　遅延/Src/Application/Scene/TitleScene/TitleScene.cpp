@@ -26,14 +26,48 @@ void TitleScene::Event()
 	{
 		m_key = false;
 	}
+
+	if (GetAsyncKeyState('1') & 0x8000)
+	{
+		if (m_key == false)
+		{
+			KdAudioManager::Instance().PauseAllSound();
+			m_key = true;
+		}
+	}
+	else
+	{
+		//KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, m_bgmVolume);
+		
+		m_key = false;
+	}
+
+	if (GetAsyncKeyState('2') & 0x8000)
+	{
+		if (m_key == false)
+		{
+			KdAudioManager::Instance().ResumeAllSound();
+			m_key = true;
+		}
+	}
+	else
+	{
+		m_key = false;
+	}
 }
 
 void TitleScene::Init()
 {
-	KdAudioManager::Instance().StopAllSound();
-	m_bgmVolume = KdAudioManager::Instance().GetBGMVolume();
-	KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, m_bgmVolume);
+	//KdAudioManager::Instance().StopAllSound();
+	if (KdAudioManager::Instance().IsBGMPlaying())
+	{
 
+	}
+	else
+	{
+		m_bgmVolume = KdAudioManager::Instance().GetBGMVolume();
+		KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, m_bgmVolume);
+	}
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);

@@ -4,7 +4,6 @@
 #include "../SceneManager.h"
 #include"../../Fade/Fade.h"
 
-#include"../../GameObject/UI/Text/Title/TitleTXT.h"
 #include"../../GameObject/UI/Text/StageSelect/StageSelectTXT.h"
 #include"../../GameObject/UI/Text/NumOne/NumOne.h"
 #include"../../GameObject/UI/Text/NumTwo/NumTwo.h"
@@ -12,6 +11,9 @@
 #include"../../GameObject/UI/Frame/StageFrame/StageFrame.h"
 
 #include"../../GameObject/UI/BackGround/TitleBack/TitleBack.h"
+#include"../../GameObject/UI/BackGround/UIBack/UIBack.h"
+
+#include"../../GameObject/UI/Button/Back/BackButton.h"
 
 void StageSelectScene::Event()
 {
@@ -23,9 +25,17 @@ void StageSelectScene::Init()
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);
 
+	std::shared_ptr<UIBack> uiBack = std::make_shared<UIBack>();
+	uiBack->Init("Asset/Data/Json/UI/Back/UIBack.json");
+	AddObject(uiBack);
+
 	std::shared_ptr<StageSelectTXT> stageSelectTXT = std::make_shared<StageSelectTXT>();
 	stageSelectTXT->Init("Asset/Data/Json/UI/Text/StageSelectTXT.json");
 	AddObject(stageSelectTXT);
+
+	std::shared_ptr<BackButton> backButton = std::make_shared<BackButton>();
+	backButton->Init("Asset/Data/Json/UI/Button/Back.json");
+	AddObject(backButton);
 
 	//=======================================================================//
 	//ステージ１用

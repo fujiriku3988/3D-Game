@@ -4,7 +4,7 @@
 void PressurePlate::Init(const std::string _filePath)
 {
 	ObjectBase::Init();
-	m_modelWork->SetModelData("Asset/Models/Terrain/PressurePlate/PressurePlate.gltf");
+	m_modelWork->SetModelData("Asset/Models/Object/PressurePlate/PressurePlate.gltf");
 	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"));
 
 	m_pos = JsonManager::Instance().GetParamVec3(_filePath,"PressurePlate","pos");

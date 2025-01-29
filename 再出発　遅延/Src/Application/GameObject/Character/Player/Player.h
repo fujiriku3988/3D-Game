@@ -49,7 +49,11 @@ private:
 		bool move = false;
 	};
 	flgControl m_ctrlFlg;
+	
+	//足煙で使う2Dエフェクトのディレイ
 	int m_effDelay = {};
+	//3Dで使うエフェクトのマックスサイズ
+	float m_efkSeerScaleMAX = {};
 	//魔法陣の座標
 	Math::Vector3 m_magicCirclePos = {};
 	//エフェクシアの情報持つ用

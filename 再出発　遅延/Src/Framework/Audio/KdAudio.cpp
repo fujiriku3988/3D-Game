@@ -54,7 +54,7 @@ void KdAudioManager::Update()
 
 void KdAudioManager::UpdateBGMVolume(float _volume)
 {
-	float currentVol = m_bgmVol;
+	float currentBgmVol = m_bgmVol;
 	m_bgmVol = _volume;
 
 	//現在のBGMの音量を更新
@@ -62,7 +62,8 @@ void KdAudioManager::UpdateBGMVolume(float _volume)
 	{
 		m_currentBGMInstance->SetVolume(_volume);
 	}
-	if (currentVol != m_bgmVol)
+	//音量が変わってるならJSONに記録
+	if (currentBgmVol != m_bgmVol)
 	{
 		JsonManager::Instance().AddParam("Asset/Data/Json/Sound/Sound.json", "Sound", "BGM", m_bgmVol);
 	}
@@ -70,6 +71,7 @@ void KdAudioManager::UpdateBGMVolume(float _volume)
 
 void KdAudioManager::UpdateSEVolume(float _volume)
 {
+	float currentSeVol = m_seVol;
 	m_seVol = _volume;
 
 	// 再生中の全てのSEインスタンスの音量を変更
@@ -78,6 +80,12 @@ void KdAudioManager::UpdateSEVolume(float _volume)
 		if (instance && instance->IsPlaying()) {
 			instance->SetVolume(_volume);
 		}
+	}
+
+	//音量が変わってるならJSONに記録
+	if (currentSeVol != m_seVol)
+	{
+		JsonManager::Instance().AddParam("Asset/Data/Json/Sound/Sound.json", "Sound", "SE", m_seVol);
 	}
 }
 
@@ -199,6 +207,27 @@ void KdAudioManager::SoundReset()
 	StopAllSound();
 
 	m_soundMap.clear();
+}
+
+void KdAudioManager::PauseBGM()
+{
+	if (m_currentBGMInstance && m_currentBGMInstance->IsPlaying()) 
+	{
+		m_currentBGMInstance->Pause();
+	}
+}
+
+void KdAudioManager::ResumeBGM()
+{
+	if (m_currentBGMInstance && !m_currentBGMInstance->IsPlaying()) 
+	{
+		m_currentBGMInstance->Play(true);
+	}
+}
+
+bool KdAudioManager::IsBGMPlaying()
+{
+	return m_currentBGMInstance && m_currentBGMInstance->IsPlaying();
 }
 
 // ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// ///// /////

@@ -67,7 +67,7 @@ void BackButton::Update()
 		}
 		else
 		{
-			m_scale = { NumberConstants::NumOne };
+			m_scale = JsonManager::Instance().GetParamVec2(m_filePath, "Back", "scale");
 		}
 	}
 }

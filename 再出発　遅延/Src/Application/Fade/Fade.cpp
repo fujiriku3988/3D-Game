@@ -105,9 +105,11 @@ void Fade::Init()
 	m_blackMat = Math::Matrix::Identity;
 	m_blackAlpha = 0.0f;
 	m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
+	m_blackColor.w = m_blackAlpha;
 
 	m_whiteTex.Load("Asset/Textures/Fade/white.png");
 	m_whiteMat = Math::Matrix::Identity;
 	m_whiteAlpha = 0.0f;
 	m_whiteColor = { 1.0f,1.0f,1.0f,m_whiteAlpha };
+	m_whiteColor.w = m_whiteAlpha;
 }

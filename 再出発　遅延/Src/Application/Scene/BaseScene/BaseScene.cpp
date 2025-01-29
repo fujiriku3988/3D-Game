@@ -37,6 +37,8 @@ void BaseScene::Update()
 	{
 		obj->Update();
 	}
+
+	//フェードの処理
 	Fade::Instance().Update();
 
 	//エフェクシア
@@ -123,6 +125,7 @@ void BaseScene::DrawSprite()
 		}
 	}
 
+	//フェードのテクスチャの描画
 	Fade::Instance().Draw();
 
 	KdShaderManager::Instance().m_spriteShader.End();

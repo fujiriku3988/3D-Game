@@ -45,9 +45,15 @@ public:
 	void PauseAllSound();
 	// 再生中の音をすべて停止する
 	void ResumeAllSound();
-
 	// 再生中の音をすべて停止・サウンドアセットの解放を行う
 	void SoundReset();
+
+	//BGMを一時停止する
+	void PauseBGM();
+	//BGMを再開する
+	void ResumeBGM();
+	//現在BGMが再生中かを確認
+	bool IsBGMPlaying(); 
 
 	//SE・BGMの音量を変更
 	void SetSEVolume(float _vol) { m_seVol = _vol; }
