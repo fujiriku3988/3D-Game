@@ -221,7 +221,6 @@ void Player::MovementControll()
 		m_dir += Math::Vector3::TransformNormal(Math::Vector3::Right, m_spCamera->GetRotationYMatrix());
 		m_ctrlFlg.move = true;
 	}
-
 	
 	
 	//動いてるか

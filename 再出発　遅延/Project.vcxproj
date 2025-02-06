@@ -163,10 +163,13 @@
     <ClInclude Include="Src\Application\GameObject\Character\Player\Player.h" />
     <ClInclude Include="Src\Application\GameObject\Effect\EffectBase.h" />
     <ClInclude Include="Src\Application\GameObject\Effect\smoke\smoke.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\Block\BlueBlock\BlueBlock.h" />
     <ClInclude Include="Src\Application\GameObject\Object\Fence\Fence.h" />
     <ClInclude Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.h" />
     <ClInclude Include="Src\Application\GameObject\Object\ObjectBase.h" />
-    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\BlockPlate\BlockPlate.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\FencePlate\FencePlate.h" />
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Sphere\Sphere.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h" />
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="Src\Application\Scene\BaseScene\BaseScene.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage1\StageScene1.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage2\StageScene2.h" />
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage3\StageScene3.h" />
     <ClInclude Include="Src\Application\Scene\GuideScene\GuideScene.h" />
     <ClInclude Include="Src\Application\Scene\SceneManager.h" />
     <ClInclude Include="Src\Application\Scene\SettingScene\SettingScene.h" />
@@ -266,10 +270,13 @@
     <ClCompile Include="Src\Application\GameObject\Character\Player\Player.cpp" />
     <ClCompile Include="Src\Application\GameObject\Effect\EffectBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Effect\smoke\smoke.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\Block\BlueBlock\BlueBlock.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\Fence\Fence.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.cpp" />
     <ClCompile Include="Src\Application\GameObject\Object\ObjectBase.cpp" />
-    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\BlockPlate\BlockPlate.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\FencePlate\FencePlate.cpp" />
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Sphere\Sphere.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp" />
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp" />
@@ -311,6 +318,7 @@
     <ClCompile Include="Src\Application\Scene\BaseScene\BaseScene.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage1\StageScene1.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage2\StageScene2.cpp" />
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage3\StageScene3.cpp" />
     <ClCompile Include="Src\Application\Scene\GuideScene\GuideScene.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scene\SettingScene\SettingScene.cpp" />

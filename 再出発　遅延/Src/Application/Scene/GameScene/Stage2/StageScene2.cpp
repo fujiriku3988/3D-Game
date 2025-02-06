@@ -23,7 +23,7 @@
 #include"../../../GameObject/UI/ClearStar/ClearStar.h"
 #include"../../../GameObject/UI/Text/StageClear/StageClearTXT.h"
 
-#include"../../../GameObject/Object/PressurePlate/PressurePlate.h"
+#include"../../../GameObject/Object/PressurePlate/FencePlate/FencePlate.h"
 #include"../../../GameObject/Object/Fence/Fence.h"
 #include"../../../GameObject/Object/GoalPoint/GoalPoint.h"
 
@@ -64,11 +64,11 @@ void StageScene2::Init()
 	AddObject(fence2);
 
 	//感圧式スイッチ
-	std::shared_ptr<PressurePlate> plate = std::make_shared<PressurePlate>();
-	plate->Init("Asset/Data/Json/Stage/Stage2/PressurePlate/PressurePlate.json");
-	plate->AddFence(fence1);
-	plate->AddFence(fence2);
-	AddObject(plate);
+	std::shared_ptr<FencePlate> fencePlate = std::make_shared<FencePlate>();
+	fencePlate->Init("Asset/Data/Json/Stage/Stage2/PressurePlate/FencePlate/FencePlate.json");
+	fencePlate->AddFence(fence1);
+	fencePlate->AddFence(fence2);
+	AddObject(fencePlate);
 
 	//ゴール
 	std::shared_ptr<GoalPoint> goalpoint = std::make_shared<GoalPoint>();

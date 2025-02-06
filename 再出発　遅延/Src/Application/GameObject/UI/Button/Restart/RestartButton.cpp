@@ -32,10 +32,18 @@ void RestartButton::Update()
 
 	if (GetAsyncKeyState('R') & 0x8000)
 	{
-		for (auto& obj : SceneManager::Instance().GetObjList())
+		if (m_keyFlg == false)
 		{
-			obj->Restart();
+			for (auto& obj : SceneManager::Instance().GetObjList())
+			{
+				obj->Restart();
+			}
+			m_keyFlg = true;
 		}
+	}
+	else
+	{
+		m_keyFlg = false;
 	}
 
 	if (m_drawFlg)
@@ -53,10 +61,18 @@ void RestartButton::Update()
 		{
 			if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 			{
-				for (auto& obj : SceneManager::Instance().GetObjList())
+				if (m_keyFlg == false)
 				{
-					obj->Restart();
+					for (auto& obj : SceneManager::Instance().GetObjList())
+					{
+						obj->Restart();
+					}
+					m_keyFlg = true;
 				}
+			}
+			else
+			{
+				m_keyFlg = false;
 			}
 
 			m_scale.x += ScaleChangeAmount;

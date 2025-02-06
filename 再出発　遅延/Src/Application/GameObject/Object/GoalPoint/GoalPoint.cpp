@@ -8,7 +8,10 @@
 
 void GoalPoint::Init(const std::string _filePath)
 {
-	ShowCursor(false);
+	if (m_cursorFlg == true)
+	{
+		ShowCursor(false);
+	}
 
 	ObjectBase::Init();
 
@@ -25,9 +28,12 @@ void GoalPoint::Init(const std::string _filePath)
 	m_pCollider->RegisterCollisionShape("goal", m_modelWork, KdCollider::TypeEvent);
 	m_objType = eGoalPoint;
 
+	m_hitFlg = false;
+	m_cursorFlg = false;
+
 	m_filePath = _filePath;
 
-	KdEffekseerManager::GetInstance().Play("GoalPoint.efkefc", m_pos , m_effSize, m_effSpeed, true);
+	m_wpEffekseer = KdEffekseerManager::GetInstance().Play("GoalPoint.efkefc", m_pos , m_effSize, m_effSpeed, true);
 }
 
 void GoalPoint::DrawLit()
@@ -43,7 +49,7 @@ void GoalPoint::Update()
 {
 	if (m_hitFlg)
 	{
-		ShowCursor(true);
+		ShowCursorIfNeeded();
 
 		for (auto& m_wpUI : m_UIList)
 		{
@@ -64,14 +70,8 @@ void GoalPoint::Update()
 		{
 			spPlayer->PlayerStopON();
 		}
-		m_hitFlg = false;
-	}
 
-	std::shared_ptr<KdEffekseerObject> spEffect = m_wpEffect.lock();
-	if (spEffect)
-	{
-		//エフェクトを止める
-		//spEffect->StopEffect();
+		m_hitFlg = false;
 	}
 
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
@@ -86,6 +86,22 @@ void GoalPoint::PostUpdate()
 void GoalPoint::Restart()
 {
 	Init(m_filePath);
+	
+	std::shared_ptr<KdEffekseerObject> spEff = m_wpEffekseer.lock();
+	if (spEff)
+	{
+		//エフェクトを止める
+		spEff->StopEffect();
+	}
+}
+
+void GoalPoint::ShowCursorIfNeeded()
+{
+	if (!m_cursorFlg)  // カーソルが非表示の場合のみ表示する
+	{
+		ShowCursor(true);
+		m_cursorFlg = true;
+	}
 }
 
 void GoalPoint::AddUI(std::shared_ptr<UIBase> _ui)

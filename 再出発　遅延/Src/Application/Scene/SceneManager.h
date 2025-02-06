@@ -16,6 +16,7 @@ public:
 		StageSelectScene,
 		Stage1,
 		Stage2,
+		Stage3,
 	};
 
 	void PreUpdate();
@@ -72,7 +73,7 @@ private:
 	std::shared_ptr<BaseScene> m_currentScene = nullptr;
 
 	//現在のシーンの種類を保持している変数
-	SceneType m_currentSceneType = SceneType::Title;
+	SceneType m_currentSceneType = SceneType::Stage3;
 
 	//次のシーンの種類を保持している変数
 	SceneType m_nextSceneType = m_currentSceneType;

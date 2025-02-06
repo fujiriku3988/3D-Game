@@ -25,11 +25,11 @@ void Stage::Init(const std::string _filePath, const std::string _stage)
 	m_modelData = std::make_shared<KdModelData>();
 	m_modelData->Load("Asset/Models/Terrain/" + _stage + "/Stage.gltf");
 
-	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "stage1", "pos");
-	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "stage1", "scale");
-	m_color = JsonManager::Instance().GetParamVec4(_filePath, "stage1", "color");
-	m_effSize = JsonManager::Instance().GetParam<float>(_filePath, "stage1", "effSize");
-	m_effSpeed = JsonManager::Instance().GetParam<float>(_filePath, "stage1", "effSpeed");
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath, _stage, "pos");
+	m_scale = JsonManager::Instance().GetParamVec3(_filePath, _stage, "scale");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, _stage, "color");
+	m_effSize = JsonManager::Instance().GetParam<float>(_filePath, _stage, "effSize");
+	m_effSpeed = JsonManager::Instance().GetParam<float>(_filePath, _stage, "effSpeed");
 
 	m_pCollider = std::make_unique<KdCollider>();
 	m_pCollider->RegisterCollisionShape("Stage", m_modelData, KdCollider::TypeGround);

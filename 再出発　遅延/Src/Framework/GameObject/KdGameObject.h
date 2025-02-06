@@ -24,7 +24,8 @@ public:
 		eNone,
 		ePressurePlate,
 		eFence,
-		eGoalPoint
+		eGoalPoint,
+		eBlueBlock,
 	};
 
 	// どのような描画を行うのかを設定するTypeID：Bitフラグで複数指定可能

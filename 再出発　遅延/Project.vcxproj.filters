@@ -250,6 +250,21 @@
     <Filter Include="Src\Application\GameObject\UI\ClearStar">
       <UniqueIdentifier>{cfc2501d-6460-4462-858d-84f6fa6a228d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Stage3">
+      <UniqueIdentifier>{6b648232-866c-4c74-9846-f18988e6ebbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Block">
+      <UniqueIdentifier>{0eb5684e-976d-4d54-a7ef-f0e06d1cc551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\Block\BlueBlock">
+      <UniqueIdentifier>{d83f7bc1-f3c2-4cd6-81c3-a4256e878f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\PressurePlate\BlockPlate">
+      <UniqueIdentifier>{b92159bf-6777-43fa-92f6-0d7c44c8cf08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\Object\PressurePlate\FencePlate">
+      <UniqueIdentifier>{97556bba-bd97-4238-b17e-e302accceaa1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Pch.h">
@@ -456,9 +471,6 @@
     <ClInclude Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.h">
       <Filter>Src\Application\GameObject\Object\GoalPoint</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.h">
-      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.h">
       <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
     </ClInclude>
@@ -575,6 +587,21 @@
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\ClearStar\ClearStar.h">
       <Filter>Src\Application\GameObject\UI\ClearStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage3\StageScene3.h">
+      <Filter>Src\Application\Scene\GameScene\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\Block\BlueBlock\BlueBlock.h">
+      <Filter>Src\Application\GameObject\Object\Block\BlueBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\BlockPlate\BlockPlate.h">
+      <Filter>Src\Application\GameObject\Object\PressurePlate\BlockPlate</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\FencePlate\FencePlate.h">
+      <Filter>Src\Application\GameObject\Object\PressurePlate\FencePlate</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.h">
+      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -755,9 +782,6 @@
     <ClCompile Include="Src\Application\GameObject\Object\GoalPoint\GoalPoint.cpp">
       <Filter>Src\Application\GameObject\Object\GoalPoint</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlate.cpp">
-      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Button\KeyB\KeyB.cpp">
       <Filter>Src\Application\GameObject\UI\Button\KeyB</Filter>
     </ClCompile>
@@ -874,6 +898,21 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\ClearStar\ClearStar.cpp">
       <Filter>Src\Application\GameObject\UI\ClearStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage3\StageScene3.cpp">
+      <Filter>Src\Application\Scene\GameScene\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\Block\BlueBlock\BlueBlock.cpp">
+      <Filter>Src\Application\GameObject\Object\Block\BlueBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\BlockPlate\BlockPlate.cpp">
+      <Filter>Src\Application\GameObject\Object\PressurePlate\BlockPlate</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\FencePlate\FencePlate.cpp">
+      <Filter>Src\Application\GameObject\Object\PressurePlate\FencePlate</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.cpp">
+      <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

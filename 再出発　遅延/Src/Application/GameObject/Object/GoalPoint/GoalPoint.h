@@ -17,6 +17,8 @@ public:
 	void Update()override;
 	void PostUpdate()override;
 	void Restart()override;
+	void ShowCursorIfNeeded();
+
 
 	void SetUI(const std::shared_ptr<UIBase> _ui) { m_wpUI = _ui; }
 	void SetGameTime(const std::shared_ptr<GameTime> _time) { m_wpGameTime = _time; }
@@ -31,5 +33,7 @@ private:
 	std::list<std::weak_ptr<UIBase>>m_UIList; //関連付けられたUIのリスト
 
 	//エフェクトの情報持つ用
-	std::weak_ptr<KdEffekseerObject> m_wpEffect;
+	std::weak_ptr<KdEffekseerObject> m_wpEffekseer;
+	bool m_cursorFlg = true;  // カーソルの状態を管理
+
 };
