@@ -2,11 +2,11 @@
 
 namespace NumberConstants
 {
+	//0、1、2などの初期化や割ったりする時によく使う定数
 	constexpr int NumZero = 0;
-	constexpr float NumOne = 1.0f;
+	constexpr auto NumOne = 1;
 	constexpr int NumTwo = 2;
-	//60フレームを１秒
-	constexpr int MaxOneSecondFrame = 60;
+	//画面サイズ1280×720
 	constexpr int WindowSizeWidth = 640;
 	constexpr int WindowSizeHeight = 360;
 	//アルファ値の値の定数
@@ -116,9 +116,10 @@ protected:
 	//＝＝＝＝＝＝＝＝＝＝ここから＝＝＝＝＝＝＝＝＝＝＝＝//
 	//＝＝＝＝＝＝＝＝＝＝＝＝追加＝＝＝＝＝＝＝＝＝＝＝＝//
 
-	//エフェクト
-	float m_effSize = 1;
-	float m_effSpeed = 1;
+	//エフェクトのスピード、サイズ
+	//多数必要ならそのクラス内で変数を作る
+	float m_effSize = NumberConstants::NumOne;
+	float m_effSpeed = NumberConstants::NumOne;
 
 	//オブジェクトタイプ
 	ObjectType m_objType = eNone;

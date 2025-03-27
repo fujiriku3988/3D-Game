@@ -1,20 +1,34 @@
 ﻿#include "Fade.h"
 
 #include"../Scene/SceneManager.h"
+#include"../main.h"
 
 void Fade::Update()
 {
-	if (m_bColor)UpdateWhiteFade();
-	else if (!m_bColor)UpdateBlackFade();
+	//ホワイトフェード
+	if (m_bColor == true)UpdateWhiteFade();
+	//ブラックフェード
+	else if (m_bColor == false)UpdateBlackFade();
+
+	Application::Instance().m_log.Clear();
+	Application::Instance().m_log.AddLog("bFade: %s\n", m_bFade ? "true" : "false");
+	Application::Instance().m_log.AddLog("bColor: %s\n", m_bColor ? "true" : "false");
+	Application::Instance().m_log.AddLog("m_bFadeOut: %s\n", m_bFadeOut ? "true" : "false");
+	Application::Instance().m_log.AddLog("m_bFadeIn: %s\n", m_bFadeIn ? "true" : "false");
+	Application::Instance().m_log.AddLog("Fade Update: m_bFade = %d, m_bColor = %d\n", m_bFade, m_bColor);
+	Application::Instance().m_log.AddLog("FadeOut処理中: m_blackAlpha = %f\n", m_blackAlpha);
+	Application::Instance().m_log.AddLog("BootBlackFade 実行: m_bFade = %d, m_bFadeOut = %d, m_bColor = %d\n", m_bFade, m_bFadeOut, m_bColor);
 }
 
 void Fade::Draw()
 {
-	if (m_bColor)
+	//ホワイトフェード
+	if (m_bColor == true)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_whiteTex, 0, 0, nullptr, &m_whiteColor);
 	}
-	else if (!m_bColor)
+	//ブラックフェード
+	else if (m_bColor == false)
 	{
 		KdShaderManager::Instance().m_spriteShader.DrawTex(&m_blackTex, 0, 0, nullptr, &m_blackColor);
 	}
@@ -23,63 +37,80 @@ void Fade::Draw()
 //ステージ切り替えやシーン切り替えに使おうかな
 void Fade::UpdateBlackFade()
 {
-	if (m_bFadeOut)
+	//定数
+	constexpr float incrementAlpha = 0.008f;
+	//if (m_bFade)
 	{
-		m_blackAlpha += 0.008f;
-		if (m_blackAlpha >= 1.0f)
+		//フェードアウト
+		if (m_bFadeOut == true)
 		{
-			m_bFadeOut = false;
-			m_blackAlpha = 1.0f;
-			SceneManager::Instance().SetNextScene(m_nextScene);
-			m_bFadeIn = true;
+			m_blackAlpha += incrementAlpha;
+			//アルファ値が１以上なら
+			if (m_blackAlpha >= NumberConstants::NumOne)
+			{
+				m_bFadeOut = false;
+				m_blackAlpha = NumberConstants::NumOne;
+				SceneManager::Instance().SetNextScene(m_nextScene);
+				m_bFadeIn = true;
+			}
+			//m_blackColor.w = m_blackAlpha;
+			m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
 		}
-		m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
-	}
-
-	if (m_bFadeIn)
-	{
-		m_blackAlpha -= 0.008f;
-		if (m_blackAlpha <= 0.0f)
+		//フェードイン
+		if (m_bFadeIn == true)
 		{
-			m_bFadeIn = false;
-			m_blackAlpha = 0.0f;
-			SceneManager::Instance().SetNextScene(m_nextScene);
-			m_bFade = false;
+			m_blackAlpha -= incrementAlpha;
+			//アルファ値が０以下なら
+			if (m_blackAlpha <= NumberConstants::NumZero)
+			{
+				m_bFadeIn = false;
+				m_blackAlpha = NumberConstants::NumZero;
+				SceneManager::Instance().SetNextScene(m_nextScene);
+				m_bFade = false;
+			}
+			//m_blackColor.w = m_blackAlpha;
+			m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
 		}
-		m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
 	}
 }
 
 void Fade::UpdateWhiteFade()
 {
-	if (m_bFadeOut)
+	//定数
+	constexpr float incrementAlpha = 0.008f;
+	//フェードアウト
+	if (m_bFadeOut == true)
 	{
-		m_whiteAlpha += 0.008f;
-		if (m_whiteAlpha >= 1.0f)
+		m_whiteAlpha += incrementAlpha;
+		//アルファ値が１以上なら
+		if (m_whiteAlpha >= NumberConstants::NumOne)
 		{
-			m_bFadeOut = false;
-			m_whiteAlpha = 1.0f;
+			m_bFadeOut = true;
+			m_whiteAlpha = NumberConstants::NumOne;
 			SceneManager::Instance().SetNextScene(m_nextScene);
 			m_bFadeIn = true;
 		}
-		m_whiteColor = { 1.0f,1.0f,1.0f,m_whiteAlpha };
+		m_whiteColor.w = m_whiteAlpha;
 	}
-
-	if (m_bFadeIn)
+	//フェードイン
+	if (m_bFadeIn == true)
 	{
-		m_whiteAlpha -= 0.008f;
-		if (m_whiteAlpha <= 0.0f)
+		m_whiteAlpha -= incrementAlpha;
+		//アルファ値が０以下なら
+		if (m_whiteAlpha <= NumberConstants::NumZero)
 		{
 			m_bFadeIn = false;
-			m_whiteAlpha = 0.0f;
+			m_whiteAlpha = NumberConstants::NumZero;
 			m_bFade = false;
 		}
-		m_whiteColor = { 1.0f,1.0f,1.0f,m_whiteAlpha };
+		m_whiteColor.w = m_whiteAlpha;
 	}
 }
 
 void Fade::BootBlackFade(SceneManager::SceneType _type)
 {
+	//各フラグを設定
+	//ブラックフェードを使う時に使う
 	m_bFade = true;
 	m_bFadeOut = true;
 	m_nextScene = _type;
@@ -88,6 +119,8 @@ void Fade::BootBlackFade(SceneManager::SceneType _type)
 
 void Fade::BootWhiteFade(SceneManager::SceneType _type)
 {
+	//各フラグを設定
+	//ホワイトフェードを使う時に使う
 	m_bFade = true;
 	m_bFadeOut = true;
 	m_nextScene = _type;
@@ -103,13 +136,13 @@ void Fade::Init()
 
 	m_blackTex.Load("Asset/Textures/Fade/black.png");
 	m_blackMat = Math::Matrix::Identity;
-	m_blackAlpha = 0.0f;
-	m_blackColor = { 1.0f,1.0f,1.0f,m_blackAlpha };
+	m_blackAlpha = NumberConstants::NumZero;
+	m_blackColor = JsonManager::Instance().GetParamVec4("Asset/Data/Json/Fade/Fade.json", "Fade", "blackColor");
 	m_blackColor.w = m_blackAlpha;
 
 	m_whiteTex.Load("Asset/Textures/Fade/white.png");
 	m_whiteMat = Math::Matrix::Identity;
-	m_whiteAlpha = 0.0f;
-	m_whiteColor = { 1.0f,1.0f,1.0f,m_whiteAlpha };
+	m_whiteAlpha = NumberConstants::NumZero;
+	m_whiteColor = JsonManager::Instance().GetParamVec4("Asset/Data/Json/Fade/Fade.json", "Fade", "whiteColor");
 	m_whiteColor.w = m_whiteAlpha;
 }

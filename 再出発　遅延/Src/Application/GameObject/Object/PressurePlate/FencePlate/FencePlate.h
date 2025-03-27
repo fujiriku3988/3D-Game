@@ -14,10 +14,8 @@ public:
 	void PostUpdate()override;
 	void Restart()override;
 
-	void SetFence(std::shared_ptr<Fence>_fence) { m_wpFence = _fence; }
 	void AddFence(std::shared_ptr<Fence> _fence);
 private:
 	void PlayAnimation()override;
-	std::weak_ptr<Fence>m_wpFence;
 	std::list<std::weak_ptr<Fence>> m_fences; //関連付けられたフェンスのリスト
 };

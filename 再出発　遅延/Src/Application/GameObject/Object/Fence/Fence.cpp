@@ -34,6 +34,7 @@ void Fence::DrawLit()
 
 void Fence::Update()
 {
+	//行列の更新
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
 	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = scaleMat * transMat;

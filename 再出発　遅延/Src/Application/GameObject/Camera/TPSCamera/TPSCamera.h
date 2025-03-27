@@ -22,6 +22,7 @@ public:
 	{
 		return _start + _time * (_end - _start);
 	}
+
 	//デルタタイム取得
 	float GetDeltaTime()
 	{
@@ -33,9 +34,7 @@ public:
 	}
 
 private:
-	//消す
-	bool m_flg = false;
-	bool m_move = true;
+	//回転処理フラグ
 	bool m_rotFlg = true;
 
 	std::weak_ptr<Player>	m_wpTarget;

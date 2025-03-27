@@ -1,0 +1,49 @@
+{
+	"Star": {
+		"alpha": 0.10000000149011612,
+		"anim": {
+			"x": 0.0,
+			"y": 0.0
+		},
+		"animDelay": 0.0,
+		"animFlg": false,
+		"clearFlg": false,
+		"clearTime": 35.0,
+		"drawFlg": false,
+		"effColor": {
+			"w": 1.0,
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0
+		},
+		"effPos": {
+			"x": -96.0,
+			"y": 70.0
+		},
+		"effScale": {
+			"x": 1.0,
+			"y": 1.0
+		},
+		"effTexSize": {
+			"x": 256.0,
+			"y": 256.0
+		},
+		"pos": {
+			"x": -96.0,
+			"y": 100.0
+		},
+		"rgb": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0
+		},
+		"scale": {
+			"x": 2.5,
+			"y": 2.5
+		},
+		"texSize": {
+			"x": 64.0,
+			"y": 60.0
+		}
+	}
+}

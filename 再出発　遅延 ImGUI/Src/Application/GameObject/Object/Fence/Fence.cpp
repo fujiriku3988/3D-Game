@@ -1,0 +1,94 @@
+﻿#include "Fence.h"
+
+void Fence::Init(const std::string _filePath, int _id)
+{
+	ObjectBase::Init();
+
+	// オブジェクト名を設定
+	m_objName = "Fence" + std::to_string(_id);
+	SetName(m_objName);
+
+	m_modelWork->SetModelData("Asset/Models/Object/Fence/Fence.gltf");
+
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath, m_objName, "pos");
+	m_scale = JsonManager::Instance().GetParamVec3(_filePath, m_objName, "scale");
+	m_color = JsonManager::Instance().GetParamVec4(_filePath, m_objName, "color");
+	m_raise = JsonManager::Instance().GetParam<bool>(_filePath, m_objName, "raise");
+	m_animState = JsonManager::Instance().GetParam<std::string>(_filePath, m_objName, "animation");
+	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation(m_animState));
+
+	m_pCollider = std::make_unique<KdCollider>();
+	m_pCollider->RegisterCollisionShape("Fence", m_modelWork, KdCollider::TypeBump);
+	m_objType = eFence;
+
+	m_filePath = _filePath;
+	m_id = _id;
+}
+
+void Fence::DrawLit()
+{
+	//テクスチャのUVTile
+	constexpr Math::Vector2 uvTile = { 3,3 };
+
+	if (m_modelWork)
+	{
+		KdShaderManager::Instance().m_StandardShader.SetUVTiling(uvTile);
+		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);
+	}
+}
+
+void Fence::Update()
+{
+	//行列の更新
+	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
+	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
+	m_mWorld = scaleMat * transMat;
+}
+
+void Fence::PostUpdate()
+{
+	//アニメーションの更新
+	m_animator->AdvanceTime(m_modelWork->WorkNodes());
+	m_modelWork->CalcNodeMatrices();
+}
+
+void Fence::Restart()
+{
+	Init(m_filePath,m_id);
+}
+
+void Fence::ToggleRaise()
+{
+	// 状態を反転
+	m_raise = !m_raise;
+
+	// 状態に応じて上げる・下げるアニメーションを再生
+	if (m_raise)
+	{
+		Raise();
+	}
+	else 
+	{
+		Lower();
+	}
+}
+
+void Fence::Raise()
+{
+	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"),false);
+	if (m_animator->IsAnimationEnd() == true)
+	{
+		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"),false);
+	}
+	KdAudioManager::Instance().Play("Asset/Sounds/SE/fence.wav", false, KdAudioManager::Instance().GetSEVolume());
+}
+
+void Fence::Lower()
+{
+	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"),false);
+	if (m_animator->IsAnimationEnd() == true)
+	{
+		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("downStand"),false);\
+	}
+	KdAudioManager::Instance().Play("Asset/Data/Sounds/SE/fence.wav", false, KdAudioManager::Instance().GetSEVolume());
+}

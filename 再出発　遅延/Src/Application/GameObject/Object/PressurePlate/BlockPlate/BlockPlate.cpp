@@ -3,16 +3,16 @@
 
 void BlockPlate::Init(const std::string _filePath)
 {
-	ObjectBase::Init();
+	PressurePlateBase::Init();
 	m_modelWork->SetModelData("Asset/Models/Object/PressurePlate/BlockPlate/BlockPlate.gltf");
 	m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("upStand"));
 
-	m_pos = JsonManager::Instance().GetParamVec3(_filePath,"BlockPlate","pos");
+	m_pos = JsonManager::Instance().GetParamVec3(_filePath, "BlockPlate", "pos");
 	m_scale = JsonManager::Instance().GetParamVec3(_filePath, "BlockPlate", "scale");
 	m_color = JsonManager::Instance().GetParamVec4(_filePath, "BlockPlate", "color");
 	m_plateCT = JsonManager::Instance().GetParam<float>(_filePath, "BlockPlate", "plateCT");
-	m_plateUp = JsonManager::Instance().GetParam<bool>(_filePath, "BlockPlate", "plateUp");
-	m_plateDown = JsonManager::Instance().GetParam<bool>(_filePath, "BlockPlate", "plateDown");
+	m_plateFlg = true;
+	m_plateAnim = false;
 	m_hitFlg = false;
 
 	m_pCollider = std::make_unique<KdCollider>();
@@ -32,9 +32,9 @@ void BlockPlate::DrawLit()
 
 void BlockPlate::Update()
 {
+	//アニメーションさせる関数
 	PlayAnimation();
-	
-
+	//行列更新
 	Math::Matrix scaleMat = Math::Matrix::CreateScale(m_scale);
 	Math::Matrix transMat = Math::Matrix::CreateTranslation(m_pos);
 	m_mWorld = scaleMat * transMat;
@@ -49,6 +49,7 @@ void BlockPlate::PostUpdate()
 
 void BlockPlate::Restart()
 {
+	//リスタートする時に使う
 	Init(m_filePath);
 }
 
@@ -61,50 +62,51 @@ void BlockPlate::AddBlueBlock(std::shared_ptr<BlueBlock> _block)
 }
 
 void BlockPlate::PlayAnimation()
-{
+{	
 	//定数
 	constexpr int plateCoolTime = 180;
-	//プレートが上に上がってるなら
 	if (m_hitFlg)
 	{
-		
-		if (m_plateDown == false)
+		// プレートが上がっている場合
+		if (m_plateFlg)
 		{
-			//スイッチ踏んだときのSE
+			// スイッチ踏んだときのSE
 			KdAudioManager::Instance().Play("Asset/Sounds/SE/plate.wav", false, KdAudioManager::Instance().GetSEVolume());
-			//踏んだときのアニメーション
+
+			// 踏んだときのアニメーション
 			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("down"), false);
+
 			for (auto& wpBlock : m_blocks)
 			{
-				if (std::shared_ptr<BlueBlock>spBlock = wpBlock.lock())
+				if (std::shared_ptr<BlueBlock> spBlock = wpBlock.lock())
 				{
-					spBlock->ToggleRaise();
+					spBlock->ToggleErase();
 				}
 			}
-			m_plateDown = true;
+
+			m_plateFlg = false;
 		}
 	}
 
-	//プレートが下に下りてるなら
-	if (m_plateUp == false)
-	{
-		//押下部分が上がってくるアニメーション
-		m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);
-		m_plateUp = true;
-	}
-	
-	if (m_plateDown == true)
+	// プレートが下がっている場合（m_plateFlgがfalseのとき）
+	if (m_plateFlg == false)
 	{
 		m_plateCT++;
 		if (m_plateCT >= plateCoolTime)
 		{
 			m_hitFlg = false;
-			m_plateUp = false;
-			m_plateDown = false;
+			m_plateFlg = true; // クールタイム終了後、プレートを上げる
+			m_plateAnim = false; // アニメーションリセット
+			m_plateCT = NumberConstants::NumZero;
 		}
 	}
 	else
 	{
-		m_plateCT = NumberConstants::NumZero;
+		// プレートが上がるアニメーションを再生（m_plateFlgがtrueなら）
+		if (m_plateAnim == false)
+		{
+			m_animator->SetAnimation(m_modelWork->GetData()->GetAnimation("up"), false);
+			m_plateAnim = true;
+		}
 	}
 }

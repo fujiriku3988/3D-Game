@@ -18,7 +18,7 @@ void TitleScene::Event()
 	{
 		if (m_key == false)
 		{
-			Fade::Instance().BootBlackFade(SceneManager::SceneType::StageSelectScene);
+			Fade::Instance().BootBlackFade(SceneManager::SceneType::StageSelect);
 			m_key = true;
 		}
 	}
@@ -58,7 +58,6 @@ void TitleScene::Event()
 
 void TitleScene::Init()
 {
-	//KdAudioManager::Instance().StopAllSound();
 	if (KdAudioManager::Instance().IsBGMPlaying())
 	{
 
@@ -68,6 +67,7 @@ void TitleScene::Init()
 		m_bgmVolume = KdAudioManager::Instance().GetBGMVolume();
 		KdAudioManager::Instance().Play("Asset/Sounds/BGM/BGM.wav", true, m_bgmVolume);
 	}
+
 	std::shared_ptr<TitleBack> titleBack = std::make_shared<TitleBack>();
 	titleBack->Init("Asset/Data/Json/UI/Back/TitleBack.json");
 	AddObject(titleBack);

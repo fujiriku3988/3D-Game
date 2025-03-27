@@ -35,6 +35,7 @@ void StageScene3::Event()
 
 void StageScene3::Init()
 {
+	//ステージ切り替え時エフェクト初期化
 	KdEffekseerManager::GetInstance().StopAllEffect();
 	//エフェクシア用
 	Math::Viewport viewPort;
@@ -54,7 +55,17 @@ void StageScene3::Init()
 	stage->Init("Asset/Data/Json/Stage/Stage3/Stage3.json","Stage3");
 	AddObject(stage);
 
-	//ブロック
+	//ゴール
+	std::shared_ptr<GoalPoint> goalPoint = std::make_shared<GoalPoint>();
+	goalPoint->Init("Asset/Data/Json/Stage/Stage3/GoalPoint/GoalPoint.json");
+	AddObject(goalPoint);
+
+	//プレイヤー
+	std::shared_ptr<Player> player = std::make_shared<Player>();
+	player->Init("Asset/Data/Json/Player/Stage3/Player.json");
+	AddObject(player);
+
+	//=================ブロック=================//
 	std::shared_ptr<BlueBlock> blueBlock1 = std::make_shared<BlueBlock>();
 	blueBlock1->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock1.json");
 	AddObject(blueBlock1);
@@ -71,25 +82,124 @@ void StageScene3::Init()
 	blueBlock4->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock4.json");
 	AddObject(blueBlock4);
 
-	//感圧式スイッチ
-	std::shared_ptr<BlockPlate> blockPlate = std::make_shared<BlockPlate>();
-	blockPlate->Init("Asset/Data/Json/Stage/Stage3/PressurePlate/BlockPlate/BlockPlate.json");
-	blockPlate->AddBlueBlock(blueBlock1);
-	blockPlate->AddBlueBlock(blueBlock2);
-	blockPlate->AddBlueBlock(blueBlock3);
-	blockPlate->AddBlueBlock(blueBlock4);
-	AddObject(blockPlate);
+	std::shared_ptr<BlueBlock> blueBlock5 = std::make_shared<BlueBlock>();
+	blueBlock5->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock5.json");
+	AddObject(blueBlock5);
 
-	//ゴール
-	std::shared_ptr<GoalPoint> goalpoint = std::make_shared<GoalPoint>();
-	goalpoint->Init("Asset/Data/Json/Stage/Stage3/GoalPoint/GoalPoint.json");
-	AddObject(goalpoint);
+	std::shared_ptr<BlueBlock> blueBlock6 = std::make_shared<BlueBlock>();
+	blueBlock6->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock6.json");
+	AddObject(blueBlock6);
+
+	std::shared_ptr<BlueBlock> blueBlock7 = std::make_shared<BlueBlock>();
+	blueBlock7->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock7.json");
+	AddObject(blueBlock7);
+
+	std::shared_ptr<BlueBlock> blueBlock8 = std::make_shared<BlueBlock>();
+	blueBlock8->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock8.json");
+	AddObject(blueBlock8);
+
+	std::shared_ptr<BlueBlock> blueBlock9 = std::make_shared<BlueBlock>();
+	blueBlock9->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock9.json");
+	AddObject(blueBlock9);
+
+	std::shared_ptr<BlueBlock> blueBlock10 = std::make_shared<BlueBlock>();
+	blueBlock10->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock10.json");
+	AddObject(blueBlock10);
+
+	std::shared_ptr<BlueBlock> blueBlock11 = std::make_shared<BlueBlock>();
+	blueBlock11->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock11.json");
+	AddObject(blueBlock11);
+
+	std::shared_ptr<BlueBlock> blueBlock12 = std::make_shared<BlueBlock>();
+	blueBlock12->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock12.json");
+	AddObject(blueBlock12);
+
+	std::shared_ptr<BlueBlock> blueBlock13 = std::make_shared<BlueBlock>();
+	blueBlock13->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock13.json");
+	AddObject(blueBlock13);
+
+	std::shared_ptr<BlueBlock> blueBlock14 = std::make_shared<BlueBlock>();
+	blueBlock14->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock14.json");
+	AddObject(blueBlock14);
+
+	std::shared_ptr<BlueBlock> blueBlock15 = std::make_shared<BlueBlock>();
+	blueBlock15->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock15.json");
+	AddObject(blueBlock15);
+
+	std::shared_ptr<BlueBlock> blueBlock16 = std::make_shared<BlueBlock>();
+	blueBlock16->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock16.json");
+	AddObject(blueBlock16);
+
+	std::shared_ptr<BlueBlock> blueBlock17 = std::make_shared<BlueBlock>();
+	blueBlock17->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock17.json");
+	AddObject(blueBlock17);
+
+	std::shared_ptr<BlueBlock> blueBlock18 = std::make_shared<BlueBlock>();
+	blueBlock18->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock18.json");
+	AddObject(blueBlock18);
+
+	std::shared_ptr<BlueBlock> blueBlock19 = std::make_shared<BlueBlock>();
+	blueBlock19->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock19.json");
+	AddObject(blueBlock19);
+
+	std::shared_ptr<BlueBlock> blueBlock20 = std::make_shared<BlueBlock>();
+	blueBlock20->Init("Asset/Data/Json/Stage/Stage3/BlueBlock/BlueBlock20.json");
+	AddObject(blueBlock20);
+	//=================ブロック=================//
+
+	//=================感圧式スイッチ=================//
+	std::shared_ptr<BlockPlate> blockPlate1 = std::make_shared<BlockPlate>();
+	blockPlate1->Init("Asset/Data/Json/Stage/Stage3/PressurePlate/BlockPlate/BlockPlate1.json");
+	//ブロックの情報を渡す
+	blockPlate1->AddBlueBlock(blueBlock1);
+	blockPlate1->AddBlueBlock(blueBlock2);
+	blockPlate1->AddBlueBlock(blueBlock3);
+	blockPlate1->AddBlueBlock(blueBlock4);
+	blockPlate1->AddBlueBlock(blueBlock5);
+	blockPlate1->AddBlueBlock(blueBlock6);
+	blockPlate1->AddBlueBlock(blueBlock7);
+	blockPlate1->AddBlueBlock(blueBlock8);
+	blockPlate1->AddBlueBlock(blueBlock9);
+	blockPlate1->AddBlueBlock(blueBlock10);
+	blockPlate1->AddBlueBlock(blueBlock11);
+	blockPlate1->AddBlueBlock(blueBlock12);
+	blockPlate1->AddBlueBlock(blueBlock13);
+	blockPlate1->AddBlueBlock(blueBlock14);
+	blockPlate1->AddBlueBlock(blueBlock15);
+	blockPlate1->AddBlueBlock(blueBlock16);
+	blockPlate1->AddBlueBlock(blueBlock17);
+	blockPlate1->AddBlueBlock(blueBlock18);
+	blockPlate1->AddBlueBlock(blueBlock19);
+	blockPlate1->AddBlueBlock(blueBlock20);
+	AddObject(blockPlate1);
+
+	std::shared_ptr<BlockPlate> blockPlate2 = std::make_shared<BlockPlate>();
+	blockPlate2->Init("Asset/Data/Json/Stage/Stage3/PressurePlate/BlockPlate/BlockPlate2.json");
+	//ブロックの情報を渡す
+	blockPlate2->AddBlueBlock(blueBlock1);
+	blockPlate2->AddBlueBlock(blueBlock2);
+	blockPlate2->AddBlueBlock(blueBlock3);
+	blockPlate2->AddBlueBlock(blueBlock4);
+	blockPlate2->AddBlueBlock(blueBlock5);
+	blockPlate2->AddBlueBlock(blueBlock6);
+	blockPlate2->AddBlueBlock(blueBlock7);
+	blockPlate2->AddBlueBlock(blueBlock8);
+	blockPlate2->AddBlueBlock(blueBlock9);
+	blockPlate2->AddBlueBlock(blueBlock10);
+	blockPlate2->AddBlueBlock(blueBlock11);
+	blockPlate2->AddBlueBlock(blueBlock12);
+	blockPlate2->AddBlueBlock(blueBlock13);
+	blockPlate2->AddBlueBlock(blueBlock14);
+	blockPlate2->AddBlueBlock(blueBlock15);
+	blockPlate2->AddBlueBlock(blueBlock16);
+	blockPlate2->AddBlueBlock(blueBlock17);
+	blockPlate2->AddBlueBlock(blueBlock18);
+	blockPlate2->AddBlueBlock(blueBlock19);
+	blockPlate2->AddBlueBlock(blueBlock20);
+	AddObject(blockPlate2);
+	//=================感圧式スイッチ1=================//
+
 	//==================================================//
-
-	//プレイヤー
-	std::shared_ptr<Player> player = std::make_shared<Player>();
-	player->Init("Asset/Data/Json/Player/Stage3/Player.json");
-	AddObject(player);
 
 	//クリア後の背景色落とす用
 	std::shared_ptr<BlackBack> blackBack = std::make_shared<BlackBack>();
@@ -108,46 +218,47 @@ void StageScene3::Init()
 	AddObject(starEmp);
 
 	std::shared_ptr<Star> star1 = std::make_shared<Star>();
-	star1->Init("Asset/Data/Json/UI/Star/Stage2/Star1.json");
+	star1->Init("Asset/Data/Json/UI/Star/Star1.json");
 	AddObject(star1);
 
 	std::shared_ptr<Star> star2 = std::make_shared<Star>();
-	star2->Init("Asset/Data/Json/UI/Star/Stage2/Star2.json");
+	star2->Init("Asset/Data/Json/UI/Star/Star2.json");
 	AddObject(star2);
 
 	std::shared_ptr<Star> star3 = std::make_shared<Star>();
-	star3->Init("Asset/Data/Json/UI/Star/Stage2/Star3.json");
+	star3->Init("Asset/Data/Json/UI/Star/Star3.json");
 	AddObject(star3);
 	//==================================================//
 
 	//==============クリアランクレベル表示=================//
 	//どの程度の時間でクリアすれば良いかの指標
 	std::shared_ptr<ClearTime> clearTime1 = std::make_shared<ClearTime>();
-	clearTime1->Init("Asset/Data/Json/UI/ClearTime/Stage2/ClearTime1.json");
+	clearTime1->Init("Asset/Data/Json/UI/ClearTime/Stage3/ClearTime1.json");
 	AddObject(clearTime1);
 
 	std::shared_ptr<ClearTime> clearTime2 = std::make_shared<ClearTime>();
-	clearTime2->Init("Asset/Data/Json/UI/ClearTime/Stage2/ClearTime2.json");
+	clearTime2->Init("Asset/Data/Json/UI/ClearTime/Stage3/ClearTime2.json");
 	AddObject(clearTime2);
 
 	std::shared_ptr<ClearTime> clearTime3 = std::make_shared<ClearTime>();
-	clearTime3->Init("Asset/Data/Json/UI/ClearTime/Stage2/ClearTime3.json");
+	clearTime3->Init("Asset/Data/Json/UI/ClearTime/Stage3/ClearTime3.json");
 	AddObject(clearTime3);
 
 	std::shared_ptr<ClearStar> clearStar1 = std::make_shared<ClearStar>();
-	clearStar1->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar1.json");
+	clearStar1->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar1.json");
 	AddObject(clearStar1);
 
 	std::shared_ptr<ClearStar> clearStar2 = std::make_shared<ClearStar>();
-	clearStar2->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar2.json");
+	clearStar2->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar2.json");
 	AddObject(clearStar2);
 
 	std::shared_ptr<ClearStar> clearStar3 = std::make_shared<ClearStar>();
-	clearStar3->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar3.json");
+	clearStar3->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar3.json");
 	AddObject(clearStar3);
 	
 	//==================================================//
 
+	//ステージクリアのテキスト表示
 	std::shared_ptr<StageClearTXT> stageClearTXT = std::make_shared<StageClearTXT>();
 	stageClearTXT->Init("Asset/Data/Json/UI/Text/StageClearTXT.json");
 	AddObject(stageClearTXT);
@@ -195,29 +306,29 @@ void StageScene3::Init()
 	star1->SetGameTime(gameTime);
 	star2->SetGameTime(gameTime);
 	star3->SetGameTime(gameTime);
-	goalpoint->SetCamera(camera);
-	goalpoint->SetPlayer(player);
-	goalpoint->SetGameTime(gameTime);
-	goalpoint->AddUI(bFrame);
-	goalpoint->AddUI(bPlay);
-	goalpoint->AddUI(bRestart);
-	goalpoint->AddUI(bReturn);
-	goalpoint->AddUI(blackBack);
-	goalpoint->AddUI(keyR);
-	goalpoint->AddUI(keyB);
-	goalpoint->AddUI(keyEnter);
-	goalpoint->AddUI(star1);
-	goalpoint->AddUI(star2);
-	goalpoint->AddUI(star3);
-	goalpoint->AddUI(starEmp);
-	goalpoint->AddUI(gameTime);
-	goalpoint->AddUI(clearTime1);
-	goalpoint->AddUI(clearTime2);
-	goalpoint->AddUI(clearTime3);
-	goalpoint->AddUI(clearStar1);
-	goalpoint->AddUI(clearStar2);
-	goalpoint->AddUI(clearStar3);
-	goalpoint->AddUI(stageClearTXT);
+	goalPoint->SetCamera(camera);
+	goalPoint->SetPlayer(player);
+	goalPoint->SetGameTime(gameTime);
+	goalPoint->AddUI(bFrame);
+	goalPoint->AddUI(bPlay);
+	goalPoint->AddUI(bRestart);
+	goalPoint->AddUI(bReturn);
+	goalPoint->AddUI(blackBack);
+	goalPoint->AddUI(keyR);
+	goalPoint->AddUI(keyB);
+	goalPoint->AddUI(keyEnter);
+	goalPoint->AddUI(star1);
+	goalPoint->AddUI(star2);
+	goalPoint->AddUI(star3);
+	goalPoint->AddUI(starEmp);
+	goalPoint->AddUI(gameTime);
+	goalPoint->AddUI(clearTime1);
+	goalPoint->AddUI(clearTime2);
+	goalPoint->AddUI(clearTime3);
+	goalPoint->AddUI(clearStar1);
+	goalPoint->AddUI(clearStar2);
+	goalPoint->AddUI(clearStar3);
+	goalPoint->AddUI(stageClearTXT);
 
 	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());
 }

@@ -35,6 +35,7 @@ void ObjectBase::PostUpdate()
 
 void ObjectBase::DrawLit()
 {
+	//モデル描画
 	if (m_modelWork)
 	{
 		KdShaderManager::Instance().m_StandardShader.DrawModel(*m_modelWork, m_mWorld, m_color);

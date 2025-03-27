@@ -1,22 +1,21 @@
 {
-    "BlueBlock": {
-        "animation": "downStand",
+	"BlueBlock": {
 		"color": {
-			"w": 1.0,
+			"w": 0.5,
+			"x": 5.0,
+			"y": 5.0,
+			"z": 5.0
+		},
+		"pos": {
+			"x": 1.0,
+			"y": 4.0,
+			"z": -4.0
+		},
+		"erase": false,
+		"scale": {
 			"x": 1.0,
 			"y": 1.0,
 			"z": 1.0
-		},
-        "pos": {
-            "x": 1.0,
-            "y": 4.0,
-            "z": -4.0
-        },
-        "raise": false,
-        "scale": {
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0
-        }
-    }
+		}
+	}
 }

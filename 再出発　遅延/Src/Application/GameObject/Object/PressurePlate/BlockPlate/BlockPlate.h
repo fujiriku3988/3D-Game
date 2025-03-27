@@ -1,9 +1,8 @@
 ﻿#pragma once
-#include"../../ObjectBase.h"
+#include"../../PressurePlate/PressurePlateBase.h"
 
 class BlueBlock;
-
-class BlockPlate :public ObjectBase
+class BlockPlate :public PressurePlateBase
 {
 public:
 	BlockPlate() {};
@@ -17,10 +16,6 @@ public:
 
 	void AddBlueBlock(std::shared_ptr<BlueBlock> _block);
 private:
-	void PlayAnimation();
-	bool m_plateUp = true;//true:上がっている,false:下がっている
-	bool m_plateDown = false;//true:下がっている,false:上がっている
-	int m_plateCT = {};
-	std::weak_ptr<BlueBlock>m_wpBlock;
+	void PlayAnimation()override;
 	std::list<std::weak_ptr<BlueBlock>> m_blocks; //関連付けられたブロックのリスト
 };

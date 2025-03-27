@@ -10,13 +10,13 @@ public:
 	enum class SceneType
 	{
 		Title,
-		Game,
-		SettingScene,
-		GuideScene,
-		StageSelectScene,
+		Setting,
+		Guide,
+		StageSelect,
 		Stage1,
 		Stage2,
 		Stage3,
+		Stage4,
 	};
 
 	void PreUpdate();
@@ -49,7 +49,7 @@ public:
 	SceneType IncrementSceneType(SceneType _currentScene)
 	{
 		// 列挙型を整数型にキャストして次のシーンに進む
-		int nextValue = static_cast<int>(_currentScene) + 1;
+		int nextValue = static_cast<int>(_currentScene) + NumberConstants::NumOne;
 
 		// インクリメント後のシーンを返す
 		return static_cast<SceneType>(nextValue);
@@ -73,7 +73,7 @@ private:
 	std::shared_ptr<BaseScene> m_currentScene = nullptr;
 
 	//現在のシーンの種類を保持している変数
-	SceneType m_currentSceneType = SceneType::Stage3;
+	SceneType m_currentSceneType = SceneType::Stage4;
 
 	//次のシーンの種類を保持している変数
 	SceneType m_nextSceneType = m_currentSceneType;

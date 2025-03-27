@@ -5,8 +5,9 @@
 #include"../../Fade/Fade.h"
 
 #include"../../GameObject/UI/Text/StageSelect/StageSelectTXT.h"
-#include"../../GameObject/UI/Text/NumOne/NumOne.h"
-#include"../../GameObject/UI/Text/NumTwo/NumTwo.h"
+#include"../../GameObject/UI/Text/Number/NumOne/NumOne.h"
+#include"../../GameObject/UI/Text/Number/NumTwo/NumTwo.h"
+#include"../../GameObject/UI/Text/Number/NumThree/NumThree.h"
 
 #include"../../GameObject/UI/Frame/StageFrame/StageFrame.h"
 
@@ -57,6 +58,17 @@ void StageSelectScene::Init()
 	std::shared_ptr<NumTwo> numTwo = std::make_shared<NumTwo>();
 	numTwo->Init("Asset/Data/Json/UI/Text/Number/NumTwo/NumTwo.json");
 	AddObject(numTwo);
+	//=======================================================================//
+
+	//=======================================================================//
+	//ステージ３用
+	std::shared_ptr<StageFrame> stageFrame3 = std::make_shared<StageFrame>();
+	stageFrame3->Init("Asset/Data/Json/UI/Frame/StageFrame/StageFrame3/StageFrame3.json");
+	AddObject(stageFrame3);
+
+	std::shared_ptr<NumThree> numThree = std::make_shared<NumThree>();
+	numThree->Init("Asset/Data/Json/UI/Text/Number/NumThree/NumThree.json");
+	AddObject(numThree);
 	//=======================================================================//
 
 }

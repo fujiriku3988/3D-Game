@@ -195,8 +195,9 @@
     <ClInclude Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Star\Star.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Guide\GuideTXT.h" />
-    <ClInclude Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.h" />
-    <ClInclude Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumOne\NumOne.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumThree\NumThree.h" />
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumTwo\NumTwo.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.h" />
     <ClInclude Include="Src\Application\GameObject\UI\Text\Sound\BGM\BgmTXT.h" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Src\Application\Scene\GameScene\Stage1\StageScene1.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage2\StageScene2.h" />
     <ClInclude Include="Src\Application\Scene\GameScene\Stage3\StageScene3.h" />
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage4\StageScene4.h" />
     <ClInclude Include="Src\Application\Scene\GuideScene\GuideScene.h" />
     <ClInclude Include="Src\Application\Scene\SceneManager.h" />
     <ClInclude Include="Src\Application\Scene\SettingScene\SettingScene.h" />
@@ -302,8 +304,9 @@
     <ClCompile Include="Src\Application\GameObject\UI\StarEmpty\StarEmpty.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Star\Star.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Guide\GuideTXT.cpp" />
-    <ClCompile Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.cpp" />
-    <ClCompile Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumOne\NumOne.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumThree\NumThree.cpp" />
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumTwo\NumTwo.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Play\PlayTXT.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.cpp" />
     <ClCompile Include="Src\Application\GameObject\UI\Text\Sound\BGM\BgmTXT.cpp" />
@@ -319,6 +322,7 @@
     <ClCompile Include="Src\Application\Scene\GameScene\Stage1\StageScene1.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage2\StageScene2.cpp" />
     <ClCompile Include="Src\Application\Scene\GameScene\Stage3\StageScene3.cpp" />
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage4\StageScene4.cpp" />
     <ClCompile Include="Src\Application\Scene\GuideScene\GuideScene.cpp" />
     <ClCompile Include="Src\Application\Scene\SceneManager.cpp" />
     <ClCompile Include="Src\Application\Scene\SettingScene\SettingScene.cpp" />

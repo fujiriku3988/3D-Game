@@ -13,12 +13,10 @@ public:
 	void PostUpdate()override;
 	void Restart()override;
 
-	//m_raiseの状態を切り替える
-	void ToggleRaise();
+	//m_eraseの状態を切り替える
+	void ToggleErase();
 
 private:
-	bool m_raise = false;//true:上がっている false:下がっている
-
-	void Raise();// 柵を上げる処理
-	void Lower();// 柵を下げる処理
+	//ブロックの透過状態
+	bool m_erase = false;//true:消えてない false:消えてる
 };

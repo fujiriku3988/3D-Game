@@ -36,6 +36,7 @@ void StageScene2::Event()
 
 void StageScene2::Init()
 {
+	//ステージ切り替え時エフェクト初期化
 	KdEffekseerManager::GetInstance().StopAllEffect();
 	//エフェクシア用
 	Math::Viewport viewPort;
@@ -71,14 +72,14 @@ void StageScene2::Init()
 	AddObject(fencePlate);
 
 	//ゴール
-	std::shared_ptr<GoalPoint> goalpoint = std::make_shared<GoalPoint>();
-	goalpoint->Init("Asset/Data/Json/Stage/Stage2/GoalPoint/GoalPoint.json");
-	AddObject(goalpoint);
+	std::shared_ptr<GoalPoint> goalPoint = std::make_shared<GoalPoint>();
+	goalPoint->Init("Asset/Data/Json/Stage/Stage2/GoalPoint/GoalPoint.json");
+	AddObject(goalPoint);
 	//==================================================//
 
 	//プレイヤー
 	std::shared_ptr<Player> player = std::make_shared<Player>();
-	player->Init("Asset/Data/Json/Player/Player.json");
+	player->Init("Asset/Data/Json/Player/Stage2/Player.json");
 	AddObject(player);
 
 	//クリア後の背景色落とす用
@@ -98,15 +99,15 @@ void StageScene2::Init()
 	AddObject(starEmp);
 
 	std::shared_ptr<Star> star1 = std::make_shared<Star>();
-	star1->Init("Asset/Data/Json/UI/Star/Stage2/Star1.json");
+	star1->Init("Asset/Data/Json/UI/Star/Star1.json");
 	AddObject(star1);
 
 	std::shared_ptr<Star> star2 = std::make_shared<Star>();
-	star2->Init("Asset/Data/Json/UI/Star/Stage2/Star2.json");
+	star2->Init("Asset/Data/Json/UI/Star/Star2.json");
 	AddObject(star2);
 
 	std::shared_ptr<Star> star3 = std::make_shared<Star>();
-	star3->Init("Asset/Data/Json/UI/Star/Stage2/Star3.json");
+	star3->Init("Asset/Data/Json/UI/Star/Star3.json");
 	AddObject(star3);
 	//==================================================//
 
@@ -125,19 +126,20 @@ void StageScene2::Init()
 	AddObject(clearTime3);
 
 	std::shared_ptr<ClearStar> clearStar1 = std::make_shared<ClearStar>();
-	clearStar1->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar1.json");
+	clearStar1->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar1.json");
 	AddObject(clearStar1);
 
 	std::shared_ptr<ClearStar> clearStar2 = std::make_shared<ClearStar>();
-	clearStar2->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar2.json");
+	clearStar2->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar2.json");
 	AddObject(clearStar2);
 
 	std::shared_ptr<ClearStar> clearStar3 = std::make_shared<ClearStar>();
-	clearStar3->Init("Asset/Data/Json/UI/ClearStar/GameScene/Stage2/ClearStar3.json");
+	clearStar3->Init("Asset/Data/Json/UI/ClearStar/GameScene/ClearStar3.json");
 	AddObject(clearStar3);
 	
 	//==================================================//
 
+	//ステージクリアのテキスト表示
 	std::shared_ptr<StageClearTXT> stageClearTXT = std::make_shared<StageClearTXT>();
 	stageClearTXT->Init("Asset/Data/Json/UI/Text/StageClearTXT.json");
 	AddObject(stageClearTXT);
@@ -185,29 +187,29 @@ void StageScene2::Init()
 	star1->SetGameTime(gameTime);
 	star2->SetGameTime(gameTime);
 	star3->SetGameTime(gameTime);
-	goalpoint->SetCamera(camera);
-	goalpoint->SetPlayer(player);
-	goalpoint->SetGameTime(gameTime);
-	goalpoint->AddUI(bFrame);
-	goalpoint->AddUI(bPlay);
-	goalpoint->AddUI(bRestart);
-	goalpoint->AddUI(bReturn);
-	goalpoint->AddUI(blackBack);
-	goalpoint->AddUI(keyR);
-	goalpoint->AddUI(keyB);
-	goalpoint->AddUI(keyEnter);
-	goalpoint->AddUI(star1);
-	goalpoint->AddUI(star2);
-	goalpoint->AddUI(star3);
-	goalpoint->AddUI(starEmp);
-	goalpoint->AddUI(gameTime);
-	goalpoint->AddUI(clearTime1);
-	goalpoint->AddUI(clearTime2);
-	goalpoint->AddUI(clearTime3);
-	goalpoint->AddUI(clearStar1);
-	goalpoint->AddUI(clearStar2);
-	goalpoint->AddUI(clearStar3);
-	goalpoint->AddUI(stageClearTXT);
+	goalPoint->SetCamera(camera);
+	goalPoint->SetPlayer(player);
+	goalPoint->SetGameTime(gameTime);
+	goalPoint->AddUI(bFrame);
+	goalPoint->AddUI(bPlay);
+	goalPoint->AddUI(bRestart);
+	goalPoint->AddUI(bReturn);
+	goalPoint->AddUI(blackBack);
+	goalPoint->AddUI(keyR);
+	goalPoint->AddUI(keyB);
+	goalPoint->AddUI(keyEnter);
+	goalPoint->AddUI(star1);
+	goalPoint->AddUI(star2);
+	goalPoint->AddUI(star3);
+	goalPoint->AddUI(starEmp);
+	goalPoint->AddUI(gameTime);
+	goalPoint->AddUI(clearTime1);
+	goalPoint->AddUI(clearTime2);
+	goalPoint->AddUI(clearTime3);
+	goalPoint->AddUI(clearStar1);
+	goalPoint->AddUI(clearStar2);
+	goalPoint->AddUI(clearStar3);
+	goalPoint->AddUI(stageClearTXT);
 
 	KdEffekseerManager::GetInstance().SetCamera(camera->GetCamera());
 }

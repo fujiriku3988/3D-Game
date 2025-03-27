@@ -91,14 +91,8 @@
     <Filter Include="Src\Application\GameObject\Object">
       <UniqueIdentifier>{c2b74060-d4db-4fc2-9e95-2d6fedca84f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains">
-      <UniqueIdentifier>{708cd46d-37e0-4430-8a29-e02fe2512348}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Text">
       <UniqueIdentifier>{9aeb754a-3fdf-4001-afaa-5dcb905f58dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\Stage">
-      <UniqueIdentifier>{dbf0a049-289a-493c-9df0-62424b52cb85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\Character\Player">
       <UniqueIdentifier>{3c20c8ca-1475-4c2a-b346-2f84c4ccd645}</UniqueIdentifier>
@@ -108,9 +102,6 @@
     </Filter>
     <Filter Include="Src\Application\JSON">
       <UniqueIdentifier>{30985909-75c5-4ccf-ae06-4a0cd842e63b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\Terrains\Sphere">
-      <UniqueIdentifier>{bec64758-a0c6-4859-b00e-faa6ed35f70d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\Object\Fence">
       <UniqueIdentifier>{fffce7ec-6b9b-4ff4-b999-98b4e4faac25}</UniqueIdentifier>
@@ -163,9 +154,6 @@
     <Filter Include="Src\Application\Scene\StageSelectScene">
       <UniqueIdentifier>{81f58fb8-3070-4e37-af34-2110628514e2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Text\NumOne">
-      <UniqueIdentifier>{e29cad76-cb36-4569-92c4-f63d42561d6a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Application\GameObject\UI\Frame\StageFrame">
       <UniqueIdentifier>{41d91b4c-ef6c-4b0e-b602-fbf1d653a897}</UniqueIdentifier>
     </Filter>
@@ -195,9 +183,6 @@
     </Filter>
     <Filter Include="Src\Application\Scene\GameScene\Stage2">
       <UniqueIdentifier>{89162316-5a2e-4170-aaf9-ecd9e16f1912}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Application\GameObject\UI\Text\NumTwo">
-      <UniqueIdentifier>{fa98d083-3d96-4fa6-a1da-63159c196e19}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Application\GameObject\UI\Text\Setting">
       <UniqueIdentifier>{186302e2-3b0a-4b65-b9ad-f08fc82ad519}</UniqueIdentifier>
@@ -264,6 +249,30 @@
     </Filter>
     <Filter Include="Src\Application\GameObject\Object\PressurePlate\FencePlate">
       <UniqueIdentifier>{97556bba-bd97-4238-b17e-e302accceaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Number">
+      <UniqueIdentifier>{d8ccd5b8-79ec-480b-b6cc-bc71c187d7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Number\NumOne">
+      <UniqueIdentifier>{e29cad76-cb36-4569-92c4-f63d42561d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Number\NumTwo">
+      <UniqueIdentifier>{fa98d083-3d96-4fa6-a1da-63159c196e19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Text\Number\NumThree">
+      <UniqueIdentifier>{6e722506-8715-44fb-a121-2bd8955493a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Terrains">
+      <UniqueIdentifier>{708cd46d-37e0-4430-8a29-e02fe2512348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Terrains\Stage">
+      <UniqueIdentifier>{dbf0a049-289a-493c-9df0-62424b52cb85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\GameObject\UI\Terrains\Sphere">
+      <UniqueIdentifier>{bec64758-a0c6-4859-b00e-faa6ed35f70d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Application\Scene\GameScene\Stage4">
+      <UniqueIdentifier>{c5cc4c79-e4a6-4820-8fb6-8ba732d661f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -448,10 +457,10 @@
       <Filter>Src\Application\GameObject\UI</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\Stage\Stage.h">
-      <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains\Stage</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\TerrainBase.h">
-      <Filter>Src\Application\GameObject\Terrains</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Character\CharacterBase.h">
       <Filter>Src\Application\GameObject\Character</Filter>
@@ -463,7 +472,7 @@
       <Filter>Src\Application\JSON</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Terrains\Sphere\Sphere.h">
-      <Filter>Src\Application\GameObject\Terrains\Sphere</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Object\Fence\Fence.h">
       <Filter>Src\Application\GameObject\Object\Fence</Filter>
@@ -497,9 +506,6 @@
     </ClInclude>
     <ClInclude Include="Src\Application\Scene\StageSelectScene\StageSelectScene.h">
       <Filter>Src\Application\Scene\StageSelectScene</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.h">
-      <Filter>Src\Application\GameObject\UI\Text\NumOne</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.h">
       <Filter>Src\Application\GameObject\UI\Frame\StageFrame</Filter>
@@ -542,9 +548,6 @@
     </ClInclude>
     <ClInclude Include="Src\Application\Scene\GameScene\Stage1\StageScene1.h">
       <Filter>Src\Application\Scene\GameScene\Stage1</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.h">
-      <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.h">
       <Filter>Src\Application\GameObject\UI\Text\Setting</Filter>
@@ -602,6 +605,18 @@
     </ClInclude>
     <ClInclude Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.h">
       <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumThree\NumThree.h">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumThree</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumOne\NumOne.h">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumOne</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\GameObject\UI\Text\Number\NumTwo\NumTwo.h">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumTwo</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Application\Scene\GameScene\Stage4\StageScene4.h">
+      <Filter>Src\Application\Scene\GameScene\Stage4</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -759,10 +774,10 @@
       <Filter>Src\Application\GameObject\UI</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Stage\Stage.cpp">
-      <Filter>Src\Application\GameObject\Terrains\Stage</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\TerrainBase.cpp">
-      <Filter>Src\Application\GameObject\Terrains</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Character\CharacterBase.cpp">
       <Filter>Src\Application\GameObject\Character</Filter>
@@ -774,7 +789,7 @@
       <Filter>Src\Application\JSON</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Terrains\Sphere\Sphere.cpp">
-      <Filter>Src\Application\GameObject\Terrains\Sphere</Filter>
+      <Filter>Src\Application\GameObject\UI\Terrains\Sphere</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\Fence\Fence.cpp">
       <Filter>Src\Application\GameObject\Object\Fence</Filter>
@@ -808,9 +823,6 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\StageSelectScene\StageSelectScene.cpp">
       <Filter>Src\Application\Scene\StageSelectScene</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Text\NumOne\NumOne.cpp">
-      <Filter>Src\Application\GameObject\UI\Text\NumOne</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Frame\StageFrame\StageFrame.cpp">
       <Filter>Src\Application\GameObject\UI\Frame\StageFrame</Filter>
@@ -853,9 +865,6 @@
     </ClCompile>
     <ClCompile Include="Src\Application\Scene\GameScene\Stage1\StageScene1.cpp">
       <Filter>Src\Application\Scene\GameScene\Stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Application\GameObject\UI\Text\NumTwo\NumTwo.cpp">
-      <Filter>Src\Application\GameObject\UI\Text\NumTwo</Filter>
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\UI\Text\Setting\SettingTXT.cpp">
       <Filter>Src\Application\GameObject\UI\Text\Setting</Filter>
@@ -913,6 +922,18 @@
     </ClCompile>
     <ClCompile Include="Src\Application\GameObject\Object\PressurePlate\PressurePlateBase.cpp">
       <Filter>Src\Application\GameObject\Object\PressurePlate</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumThree\NumThree.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumThree</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumOne\NumOne.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumOne</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\GameObject\UI\Text\Number\NumTwo\NumTwo.cpp">
+      <Filter>Src\Application\GameObject\UI\Text\Number\NumTwo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Application\Scene\GameScene\Stage4\StageScene4.cpp">
+      <Filter>Src\Application\Scene\GameScene\Stage4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
