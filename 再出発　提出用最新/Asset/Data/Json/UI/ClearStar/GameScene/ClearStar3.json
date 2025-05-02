@@ -1,0 +1,24 @@
+{
+	"ClearStar": {
+		"starColor": {
+			"w": 1.0,
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0
+		},
+		"starFP": "Asset/Textures/UI/Star/starThree.png",
+		"starPos": {
+			"x": 180.0,
+			"y": -150.0
+		},
+		"starScale": {
+			"x": 0.5,
+			"y": 0.5
+		},
+		"starTexSize": {
+			"x": 192.0,
+			"y": 60.0
+		},
+		"drawFlg": false
+	}
+}

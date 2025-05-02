@@ -1,0 +1,54 @@
+{
+	"CharacterBase": {
+		"adjustHeightRay": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"adjustHeightSph": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"color": {
+			"w": 1.0,
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"degAng": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"fixMouPosX": 0.0,
+		"fixMouPosY": 0.0,
+		"gravity": 0.0,
+		"gravityPow": 0.0,
+		"hitFlg": false,
+		"jumpPow": 0.0,
+		"jumpVelocity": 0.0,
+		"pos": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"scale": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"speed": 0.0,
+		"sprPos": {
+			"x": 0.0,
+			"y": 0.0
+		},
+		"texSize": {
+			"x": 0.0,
+			"y": 0.0
+		},
+		"volDamage": 1.0,
+		"volJump": 1.0,
+		"volWalk": 1.0
+	}
+}
